@@ -1,0 +1,261 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Adicionar contato</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+
+    <form [formGroup]="_formContato" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="row">
+
+        <!-- SelectBox de Tipo -->
+        <div class="form-group col-sm-6">
+          <label for="tipo" class="form-control-label">Tipo <span class="required">*</span></label>
+          <select id="tipo" class="form-control" formControlName="tipo"
+            (change)="verificarTipoSelecionado($event.target.value)">
+            <option value="null" disabled selected>Selecione...</option>
+            <option *ngFor="let tipo of selectOptionCategory" value="{{ tipo.value }}">
+              {{ tipo.value }}</option>
+          </select>
+          <small *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)" class="text-danger">
+            <div *ngIf="tipo.errors.required">
+              Tipo é obrigatório.
+            </div>
+          </small>
+        </div>
+
+        <!-- Input Descrição -->
+        <div
+          *ngIf="tipoSelecionado == 'Endereço' || tipoSelecionado == 'Telefone' || tipoSelecionado == 'Email' || tipoSelecionado == 'Rede Social'"
+          class="form-group col-sm-6">
+          <label for="descricao" class="form-control-label">Nome do contato <span class="required">*</span></label>
+          <input id="descricao" class="form-control" formControlName="descricao" type="text"
+            placeholder="{{ messagePlaceholder }}" maxlength="50">
+          <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+            <div *ngIf="descricao.errors.required">
+              Nome do contato é obrigatório.
+            </div>
+            <div *ngIf="descricao.errors.contatoNomeAlreadyExists">
+              Já existe um registro com esse nome. Escolha outro nome.
+            </div>
+          </small>
+        </div>
+
+      </div>
+
+      <!-- Formulário de Endereço -->
+      <div *ngIf="tipoSelecionado == 'Endereço'" formGroupName="endereco">
+
+        <div class="row">
+
+          <!-- Input de CEP -->
+          <div class="form-group col-sm-2">
+            <label for="cep" class="form-control-label">CEP <span class="required">*</span></label>
+            <input id="cep" class="form-control" formControlName="cep" type="text" placeholder="CEP" mask="00000-000">
+            <small *ngIf="_formContato.controls.endereco.controls.cep.invalid && (_formContato.controls.endereco.controls.cep.dirty || _formContato.controls.endereco.controls.cep.touched)" class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.cep.errors.required">
+                CEP é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Logradouro -->
+          <div class="form-group col-sm-4">
+            <label for="rua" class="form-control-label">Logradouro <span class="required">*</span></label>
+            <input id="rua" class="form-control" formControlName="rua" type="text" placeholder="Logradouro" maxlength="100">
+            <small
+              *ngIf="_formContato.controls.endereco.controls.rua.invalid && (_formContato.controls.endereco.controls.rua.dirty || _formContato.controls.endereco.controls.rua.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.rua.errors.required">
+                Logradouro é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Número -->
+          <div class="form-group col-sm-2">
+            <label for="numero" class="form-control-label">Número <span class="required">*</span></label>
+            <input id="numero" class="form-control" formControlName="numero" type="text" placeholder="Número" maxlength="4">
+            <small
+              *ngIf="_formContato.controls.endereco.controls.numero.invalid && (_formContato.controls.endereco.controls.numero.dirty || _formContato.controls.endereco.controls.numero.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.numero.errors.required">
+                Número é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Bairro -->
+          <div class="form-group col-sm-4">
+            <label for="bairro" class="form-control-label">Bairro <span class="required">*</span></label>
+            <input id="bairro" class="form-control" formControlName="bairro" type="text" placeholder="Bairro" maxlength="50">
+            <small
+              *ngIf="_formContato.controls.endereco.controls.bairro.invalid && (_formContato.controls.endereco.controls.bairro.dirty || _formContato.controls.endereco.controls.bairro.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.bairro.errors.required">
+                Bairro é obrigatório.
+              </div>
+            </small>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <!-- Input de Cidade -->
+          <div class="form-group col-sm-4">
+            <label for="cidade" class="form-control-label">Cidade <span class="required">*</span></label>
+            <input id="cidade" class="form-control" formControlName="cidade" type="text" placeholder="Cidade" maxlength="75">
+            <small
+              *ngIf="_formContato.controls.endereco.controls.cidade.invalid && (_formContato.controls.endereco.controls.cidade.dirty || _formContato.controls.endereco.controls.cidade.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.cidade.errors.required">
+                Cidade é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- SelectBox de Estado -->
+          <div class="form-group col-sm-2">
+            <label for="estado" class="form-control-label">Estado <span class="required">*</span></label>
+            <select id="estado" class="form-control" formControlName="estado">
+              <option value="null" disabled selected>Selecione...</option>
+              <option *ngFor="let estado of estados" value="{{ estado.value }}">
+                {{ estado.value }}</option>
+            </select>
+            <small
+              *ngIf="_formContato.controls.endereco.controls.estado.invalid && (_formContato.controls.endereco.controls.estado.dirty || _formContato.controls.endereco.controls.estado.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.endereco.controls.estado.errors.required">
+                Estado é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Complemento -->
+          <div class="form-group col-sm-6">
+            <label for="complemento" class="form-control-label">Complemento</label>
+            <input id="complemento" class="form-control" formControlName="complemento" type="text"
+              placeholder="Complemento" maxlength="75">
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formulário de Telefone -->
+      <div *ngIf="tipoSelecionado == 'Telefone'" formGroupName="telefone">
+
+        <div class="row">
+
+          <!-- Input de DDI -->
+          <div class="form-group col-sm-3">
+            <label for="ddi" class="form-control-label">DDI</label>
+            <input id="ddi" class="form-control" formControlName="ddi" type="text" placeholder="DDI" mask="0*" maxlength="4">
+          </div>
+
+          <!-- Input de Prefixo -->
+          <div class="form-group col-sm-3">
+            <label for="prefixo" class="form-control-label">Prefixo <span class="required">*</span></label>
+            <input id="prefixo" class="form-control" formControlName="prefixo" type="tel" placeholder="Prefixo" mask="00">
+            <small
+              *ngIf="_formContato.controls.telefone.controls.prefixo.invalid && (_formContato.controls.telefone.controls.prefixo.dirty || _formContato.controls.telefone.controls.prefixo.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.telefone.controls.prefixo.errors.required">
+                Prefixo é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Número -->
+          <div class="form-group col-sm-6">
+            <label for="numero" class="form-control-label">Número <span class="required">*</span></label>
+            <input id="numero" class="form-control" formControlName="numero" type="tel" placeholder="Número" minlength="8" maxlength="9">
+            <small
+              *ngIf="_formContato.controls.telefone.controls.numero.invalid && (_formContato.controls.telefone.controls.numero.dirty || _formContato.controls.telefone.controls.numero.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.telefone.controls.numero.errors.required">
+                Número é obrigatório.
+              </div>
+            </small>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formulário de Email -->
+      <div *ngIf="tipoSelecionado == 'Email'">
+
+        <div class="row">
+
+          <!-- Input de Email -->
+          <div class="form-group col-sm-12">
+            <label for="email" class="form-control-label">Email <span class="required">*</span></label>
+            <input id="email" class="form-control" formControlName="email" type="email" placeholder="Email" maxlength="75">
+            <small *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors.required">
+                E-mail é obrigatório.
+              </div>
+            </small>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Formulário de Rede Social -->
+      <div *ngIf="tipoSelecionado == 'Rede Social'" formGroupName="redesocial">
+
+        <div class="row">
+
+          <!-- Input de Rede Social -->
+          <div class="form-group col-sm-3">
+            <label for="tipo" class="form-control-label">Rede Social <span class="required">*</span></label>
+            <select id="tipo" class="form-control" formControlName="tipo">
+              <option value="null" disabled selected>Selecione...</option>
+              <option *ngFor="let redesocial of redessociais" value="{{ redesocial.value }}">
+                {{ redesocial.value }}</option>
+            </select>
+            <small
+              *ngIf="_formContato.controls.redesocial.controls.tipo.invalid && (_formContato.controls.redesocial.controls.tipo.dirty || _formContato.controls.redesocial.controls.tipo.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.redesocial.controls.tipo.errors.required">
+                Rede Social é obrigatório.
+              </div>
+            </small>
+          </div>
+
+          <!-- Input de Link -->
+          <div class="form-group col-sm-9">
+            <label for="link" class="form-control-label">Link <span class="required">*</span></label>
+            <input id="link" class="form-control" formControlName="link" type="url" placeholder="Link" maxlength="100">
+            <small
+              *ngIf="_formContato.controls.redesocial.controls.link.invalid && (_formContato.controls.redesocial.controls.link.dirty || _formContato.controls.redesocial.controls.link.touched)"
+              class="text-danger">
+              <div *ngIf="_formContato.controls.redesocial.controls.link.errors.required">
+                Link é obrigatório.
+              </div>
+            </small>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Botões de manipulação de formulário -->
+      <div class="row">
+        <div class="col-sm-12 positionButtons">
+          <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
+          <button
+            *ngIf="tipoSelecionado == 'Endereço' || tipoSelecionado == 'Telefone' || tipoSelecionado == 'Email' || tipoSelecionado == 'Rede Social'"
+            type="submit" class="btn btn-outline-success btn-sm" [disabled]="!_formContato.valid">Adicionar</button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

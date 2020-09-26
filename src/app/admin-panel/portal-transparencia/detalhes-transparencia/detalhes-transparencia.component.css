@@ -1,0 +1,10 @@
+.linkToFile {
+    font-size: 10px;
+    color: rgb(10, 180, 250) !important;
+}
+
+.linkToFile:hover {
+    font-size: 10px;
+    color: rgb(10, 130, 250) !important;
+    text-decoration: underline !important;
+}

@@ -1,0 +1,48 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading && statusResponse == 200">
+    <div class="row">
+      <div class="col-sm-8 positionTitle">
+        <h5>{{noticia['titulo']}}</h5>
+      </div>
+      <div class="col-sm-4 positionButtons">
+        <button type="button" class="btn btn-outline-warning btn-sm"
+          [routerLink]="['/admin/noticias/atualizar', noticia['titulo']]">Editar</button>
+        <button button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
+          (click)="canDelete(noticia['titulo'], noticia['_id'])">Excluir</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="form-control-label">Título</label>
+          <div>
+            {{noticia['titulo']}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="form-control-label">Descrição</label>
+          <div [innerHTML]="noticia['descricao'] | noSanitizeHtml:'html'">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="noticia && hasImages">
+        <div class="col-sm-12">
+          <label class="form-control-label">Imagens</label>
+        </div>
+      </div>
+      <div class="row" *ngIf="noticia && hasImages">
+        <div *ngFor="let image of imagens; let i = index" class="col-md-3" id="marginBottomCardsCol">
+          <div>
+            <img class="card-img maxSize" [src]="image.src" [alt]="image" data-toggle="tooltip">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

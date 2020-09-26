@@ -1,0 +1,65 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Atualizar usuário</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <form [formGroup]="_formUsuario" novalidate>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="nome" class="form-control-label">Nome <span class="required">*</span></label>
+            <input class="form-control" formControlName="nome" type="text" placeholder="Nome" id="nome">
+            <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+              <div *ngIf="nome.errors.required">
+                Nome é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="user" class="form-control-label">Usuário <span class="required">*</span></label>
+            <input class="form-control" formControlName="user" type="text" placeholder="Usuário" id="user">
+            <small *ngIf="user.invalid && (user.dirty || user.touched)" class="text-danger">
+              <div *ngIf="user.errors.required">
+                Usuário é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="email" class="form-control-label">E-mail <span class="required">*</span></label>
+            <input class="form-control" formControlName="email" type="text" placeholder="E-mail" id="email">
+            <small *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+              <div *ngIf="email.errors.required">
+                E-mail é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="role" class="form-control-label">Nível de Acesso <span class="required">*</span></label>
+            <select class="form-control" formControlName="role" id="role">
+              <option [ngValue]="null">Selecione</option>
+              <option *ngFor="let option of selectOptionCategory">{{option.value}}</option>
+            </select>
+            <small *ngIf="role.invalid && (role.dirty || role.touched)" class="text-danger">
+              <div *ngIf="role.errors.required">
+                Nível de acesso é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="updateUser()">Atualizar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

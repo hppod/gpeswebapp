@@ -1,0 +1,40 @@
+.donate-online {
+    margin-top: 80px;
+    padding-top: 90px;
+    padding-bottom: 90px;
+    background-color: rgb(43, 50, 82);
+    color: #fff;
+}
+
+.btn {
+    font-size: 15px;
+    margin-top: 15px;
+    padding: 12px 45px 12px 45px;
+}
+
+.visit-home {
+    padding-top: 90px;
+    padding-bottom: 90px;
+}
+
+.card-img-top:hover {
+    opacity: 0.5;
+    transition: 0.5s;
+}
+
+.card-img-top {
+    opacity: 0.8;
+    transition: 0.3s;
+    height: 100%;
+    width: 100%;
+}
+
+.overlay {
+    background-color: #000;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.resposividade{
+    height: 250px;
+}

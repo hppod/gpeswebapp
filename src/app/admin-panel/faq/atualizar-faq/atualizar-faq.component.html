@@ -1,0 +1,56 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>
+          Atualizar Dúvida Frequente
+        </h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <form [formGroup]="faqForm" novalidates>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="pergunta" class="table">Pergunta <span class="required">*</span></label>
+            <textarea rows="5" class="form-control" formControlName="pergunta" type="text" placeholder="Resposta..."
+              id="pergunta" [(ngModel)]="rolePergunta" [maxLength]="maxCharsPergunta"></textarea>
+            <small *ngIf="pergunta.invalid && (pergunta.dirty || pergunta.touched)" class="text-danger">
+              <div *ngIf="pergunta.errors.required">
+                Pergunta é obrigatório.
+              </div>
+            </small>
+          </div>
+          <span class="col-sm-12 countChars">
+            {{rolePergunta.length}}/{{maxCharsPergunta}}
+          </span>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="resposta" class="table">Resposta <span class="required">*</span></label>
+            <textarea rows="8" class="form-control" formControlName="resposta" type="text" placeholder="Resposta..."
+              id="resposta" [(ngModel)]="roleResposta" [maxLength]="maxCharsResposta"></textarea>
+            <small *ngIf="resposta.invalid && (resposta.dirty || resposta.touched)" class="text-danger">
+              <div *ngIf="resposta.errors.required">
+                Resposta é obrigatório.
+              </div>
+            </small>
+          </div>
+          <span class="col-sm-12 countChars">
+            {{roleResposta.length}}/{{maxCharsResposta}}
+          </span>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="cancelar()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!faqForm.valid"
+              (click)="update()">Atualizar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

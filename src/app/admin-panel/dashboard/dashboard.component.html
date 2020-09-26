@@ -1,0 +1,128 @@
+<div class="container-fluid mt--0">
+  <div class="row pt-4">
+    <div class="col-xl-3 col-lg-6">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">Número de Doações</h5><span _ngcontent-c6=""
+                class="h2 font-weight-bold mb-0">{{numberDoacao}}</span>
+            </div>
+            <div class="col-auto">
+              <div class="icon icon-shape bg-danger text-white rounded-circle shadow"><i class="fas fa-chart-bar"></i>
+              </div>
+            </div>
+          </div>
+          <p class="mt-1 mb-0 text-muted text-sm float-right">
+            <span tooltip="Número total de doações até o momento." placement="auto" [delay]="250"
+              class="text-danger mr-2">
+              <i class="fas fa-question-circle"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">Doadores únicos</h5><span
+                class="h2 font-weight-bold mb-0">{{numberDoadores}}</span>
+            </div>
+            <div class="col-auto">
+              <div class="icon icon-shape bg-warning text-white rounded-circle shadow"><i class="fas fa-users"></i>
+              </div>
+            </div>
+          </div>
+          <p class="mt-1 mb-0 text-muted text-sm float-right">
+            <span tooltip="Quantidade de doadores únicos (por CPF)." placement="auto" [delay]="250"
+              class="text-danger mr-2">
+              <i class="fas fa-question-circle"></i>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">Doações neste mês</h5><span _ngcontent-c6=""
+                class="h2 font-weight-bold mb-0">{{valueDoacaoByDate | currency:"BRL":"symbol"}}</span>
+            </div>
+            <div class="col-auto">
+              <div class="icon icon-shape bg-yellow text-white rounded-circle shadow"><i class="fas fa-chart-pie"></i>
+              </div>
+            </div>
+          </div>
+          <p class="mt-1 mb-0 text-muted text-sm float-right">
+            <span tooltip="Valor total de doações realizadas no mês atual." placement="auto" [delay]="250"
+              class="text-danger mr-2">
+              <i class="fas fa-question-circle"></i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-3 col-lg-6">
+      <div class="card card-stats mb-4 mb-xl-0">
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <h5 class="card-title text-uppercase text-muted mb-0">Total das doações</h5><span
+                class="h2 font-weight-bold mb-0">{{valueDoacaoAllTime | currency:"BRL":"symbol"}}</span>
+            </div>
+            <div class="col-auto">
+              <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                <i class="fas fa-money-check-alt"></i>
+              </div>
+            </div>
+          </div>
+          <p class="mt-1 mb-0 text-muted text-sm float-right">
+            <span tooltip="Valor total de doações desde o início." placement="auto" [delay]="250"
+              class="text-danger mr-2">
+              <i class="fas fa-question-circle"></i></span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-12 mb-3 pt-3 pb-3"></div>
+  <div class="row">
+    <div class="col-lg-6">
+      <h5>Valor líquido da doação por dias (últimos 15 dias)</h5>
+      <div class="text-center">
+        <span *ngIf="doacaoRangeByDays?.length == 0" class="badge badge-danger">Não houve doações finalizadas nos
+          últimos 15 dias.</span>
+      </div>
+      <ngx-charts-bar-vertical scheme="vivid" [results]="doacaoRangeByDays" [gradient]="gradient" [xAxis]="showXAxis"
+        [yAxis]="showYAxis" [legend]="showLegend" legendTitle="Legenda" [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel" xAxisLabel="Datas" yAxisLabel="Valor líquido doado (R$)">
+      </ngx-charts-bar-vertical>
+    </div>
+    <div class="col-lg-6">
+      <h5>Últimos doadores</h5>
+      <table *ngIf="!isLoading && statusResponse == 200" class="table">
+        <thead>
+          <tr>
+            <th>Nome do Doador</th>
+            <th>Data</th>
+            <th>Valor</th>
+            <th>Situação</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="let doacao of doacoes | paginate: {itemsPerPage: 10, currentPage: 1, totalItems: total}; let i = index"
+            [routerLink]="['/admin/doacao/detalhes', doacao['_id']]" class="pointer hoverRowTable">
+            <td>{{doacao['nome']}}</td>
+            <td>{{doacao['data'] | date: 'dd/MM/yyyy'}}</td>
+            <td>{{doacao['valor_bruto'] | currency:"BRL":"symbol" }}</td>
+            <td>{{statusList[i]}}<span *ngIf="!statusList[i]">Carregando...</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

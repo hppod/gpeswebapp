@@ -1,0 +1,23 @@
+<div style="width: 21rem">
+  <div class="card card-stats">
+    <div class="card-body">
+      <div class="row">
+        <div class="col">
+          <h6 class="card-title text-muted mb-0">
+            {{data['title']}}
+          </h6>
+          <span *ngIf="data['type'] == 'INTEGER'" class="h2 font-weight-bold mb-0">{{data['value']}}</span>
+          <span *ngIf="data['type'] == 'TIME'" class="h2 font-weight-bold mb-0">{{convertSeconds(data['value'])}}</span>
+          <span *ngIf="data['type'] == 'FLOAT'" class="h2 font-weight-bold mb-0">{{roundFloat(data['value'])}}</span>
+        </div>
+        <div class="col-auto">
+          <div class="icon icon-shape bg-dkorange text-white rounded-circle shadow">
+            <i class="fa fa-chart-pie"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <span class="small text-muted positionTooltipCardStats"><i class="fa fa-question-circle" [tooltip]="data['tooltip']"
+        placement="auto"></i></span>
+  </div>
+</div>

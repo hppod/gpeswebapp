@@ -1,0 +1,69 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Adicionar documento</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <form [formGroup]="_formTransparencia" novalidate>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="titulo" class="form-control-label">Título <span class="required">*</span></label>
+            <input class="form-control" formControlName="titulo" type="text" placeholder="Título" id="titulo"
+              maxlength="150">
+            <small *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="text-danger">
+              <div *ngIf="titulo.errors.required">
+                Título é obrigatório.
+              </div>
+              <div *ngIf="titulo.errors.transparenciaTituloAlreadyExists">
+                Já existe um registro com esse título. Escolha outro título.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="categoria" class="form-control-label">Categoria <span class="required">*</span></label>
+            <select class="form-control pointer" formControlName="categoria" id="categoria"
+              (change)="onChange($event.target.value)" [(ngModel)]="selectedCategory">
+              <option [ngValue]="null" disabled>Selecione</option>
+              <option *ngFor="let option of selectOptionCategory" [value]="option.nome">{{option.nome}}</option>
+            </select>
+            <small *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="text-danger">
+              <div *ngIf="categoria.errors.required">
+                Categoria é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
+            <textarea class="form-control" formControlName="descricao" type="text" placeholder="Descrição..."
+              id="descricao" [(ngModel)]="role" [maxLength]="maxChars"></textarea>
+            <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+              <div *ngIf="descricao.errors.required">
+                Descrição é obrigatório.
+              </div>
+            </small>
+          </div>
+          <span class="col-sm-12 countChars">
+            {{role.length}}/{{maxChars}}
+          </span>
+        </div>
+        <app-file-uploader (uploaded)="setFiles()" [fileAccept]="'document'"></app-file-uploader>
+        <br>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" *ngIf="_formTransparencia.dirty" class="btn btn-outline-danger btn-sm"
+              (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!_formTransparencia.valid"
+              (click)="addNewDocuments()">Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

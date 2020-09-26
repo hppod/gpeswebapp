@@ -1,0 +1,26 @@
+.notData {
+    text-align: center;
+}
+
+.conteudoSobre {
+    /* text-indent: 2%; */
+    text-indent: 20px;
+}
+
+.imagemSobre {
+    border-radius: 1%;
+}
+
+.float-sm-left {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 5px;
+}
+
+h3 {
+    clear: both;
+}
+
+.lineBreak {
+    clear: both;
+}

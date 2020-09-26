@@ -1,0 +1,46 @@
+<nav class="navbar navbar-expand-lg navbar-dark" [ngClass]="{'bg-header-opaque': url != '/'}">
+    <div class="container">
+
+        <a class="navbar-brand" [routerLink]="['/institucional/home']">
+            <img class="img-fluid" alt="Volte para a página inicial" src="../../../../assets/img/brand/logo3.png">
+
+        </a>
+        <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
+            aria-controls="sidenav-collapse-main">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse navbar-wrapper" [ngbCollapse]="isCollapsed" id="sidenav-collapse-main">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/institucional/sobre']"><b>Sobre</b></a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/institucional/noticias']"><b>Notícias</b></a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/institucional/duvidas-frequentes']"><b>Dúvidas
+                            Frequentes</b></a>
+                </li>
+                <li class="nav-item" routerLinkActive="active">
+                    <a class="nav-link" [routerLink]="['/institucional/transparencia']"><b>Portal da
+                            Transparência</b></a>
+                </li>
+                <button class="btn btn-info-dkorange btn-sm h-100 position-button-doe"
+                    [routerLink]="['/institucional/doe-online']"><b>Doe Online</b></button>
+                <li class="nav-item nav-item-login dropdown">
+                    <a class="nav-link pointer" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        <b>Login</b>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbar-default_dropdown_1">
+                        <a class="dropdown-item" [routerLink]="['/admin/auth/login']">Painel Administrativo</a>
+                        <a class="dropdown-item" href="https://www.laribitinga.com.br/#/login" target="_blank">Doutor
+                            Vida</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</nav>

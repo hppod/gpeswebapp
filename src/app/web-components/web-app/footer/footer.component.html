@@ -1,0 +1,67 @@
+<footer id="sticky-footer" class="py-4 bg-footer text-dark-50 footer">
+  <div id="contatos" class="container text-center">
+    <div class="row">
+      <!-- Listagem de Endereços -->
+      <div *ngIf="enderecos.length != 0" [ngClass]="divContato">
+        <!-- Primeira coluna -->
+        <div class="conteudo" *ngFor="let endereco of enderecos">
+          <i class="fas fa-map-marker-alt"></i>
+          <small>{{ endereco.endereco.rua }}, {{ endereco.endereco.numero }} - {{ endereco.endereco.bairro }}</small>
+          <br>
+          <small
+            *ngIf="endereco.endereco.complemento != '' && endereco.endereco.complemento != undefined">{{ endereco.endereco.complemento }}</small>
+          <br *ngIf="endereco.endereco.complemento != '' && endereco.endereco.complemento != undefined">
+          <small>{{ endereco.endereco.cidade }} -
+            {{ endereco.endereco.estado }} <br> CEP: {{ endereco.endereco.cep | mask: '00000-000' }} </small>
+        </div>
+      </div>
+      <!-- Segunda coluna -->
+      <div *ngIf="showColumn" [ngClass]="divContato">
+        <!-- Listagem de Telefones -->
+        <div *ngIf="telefones.lenght != 0">
+          <div class="conteudo-menor" *ngFor="let telefone of telefones">
+            <i class="fas fa-phone-alt"></i>
+            <small
+              *ngIf="telefone.telefone.ddi != '' && telefone.telefone.ddi != undefined">+{{ telefone.telefone.ddi }}</small>
+            <small> ({{ telefone.telefone.prefixo }}) </small>
+            <small *ngIf="(telefone.telefone.numero).length == 9"> {{ telefone.telefone.numero | mask: '00000-0000' }}
+            </small>
+            <small *ngIf="(telefone.telefone.numero).length == 8"> {{ telefone.telefone.numero | mask: '0000-0000' }}
+            </small>
+          </div>
+          <div class="marginBottom"></div>
+        </div>
+        <!-- Listagem de Emails -->
+        <div *ngIf="emails.length != 0">
+          <div class="conteudo-menor" *ngFor="let email of emails">
+            <i class="far fa-envelope"></i>
+            <small>{{ email.email }}</small>
+          </div>
+        </div>
+      </div>
+      <!-- Listagem de Redes Sociais -->
+      <div *ngIf="redessociais.length != 0" [ngClass]="divContato">
+        <!-- Terceira coluna -->
+        <div class="conteudo-menor" *ngFor="let redesocial of redessociais">
+          <div><a href="{{ redesocial.redesocial.link }}" target="_blank">
+              <i *ngIf="redesocial.redesocial.tipo == 'Facebook'" class="fab fa-facebook-f"></i>
+              <i *ngIf="redesocial.redesocial.tipo == 'Instagram'" class="fab fa-instagram"></i>
+              <i *ngIf="redesocial.redesocial.tipo == 'LinkedIn'" class="fab fa-linkedin-in"></i>
+              <i *ngIf="redesocial.redesocial.tipo == 'Twitter'" class="fab fa-twitter"></i>
+              <i *ngIf="redesocial.redesocial.tipo == 'Outro'" class="fas fa-external-link-alt"></i>
+              <small>{{ redesocial.descricao }}</small></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Copyright -->
+  <div [ngClass]="divCopy">
+    <a class="nav-link" routerLinkActive="active" [routerLink]="['/institucional/gpes']">Copyright 2020 &copy;
+      <b>GPES</b> - Grupo de Pesquisa em Engenharia de Software</a>
+    <br>
+    <p class="version"><b>App</b> - 4.11 / <b>API</b> - 2.11</p>
+    <br>
+    <p class="version"><b>Production:</b> {{prod}} / <b>API:</b> {{url}}</p>
+  </div>
+</footer>

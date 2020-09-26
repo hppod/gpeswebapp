@@ -1,0 +1,15 @@
+<nav class="navbar navbar-top navbar-expand-sm navbar-dark bg-dkblue">
+  <div class="col-sm-12 positionButton">
+    <span class="header-info pointer pull-right mr-1"><a (click)="logout()">Sair <i class="fa fa-sign-out-alt"></i></a></span>
+
+    <span class="header-info pull-right mr-1"><a>{{userLogged}}</a></span>
+   
+    <div class="sidenav-toggler sidenav-toggler-dark pull-left mt-1" data-action="sidenav-pin" data-target="#sidenav-main" (click)="openCloseSidebar()">
+      <div class="sidenav-toggler-inner">
+        <i class="sidenav-toggler-line"></i>
+        <i class="sidenav-toggler-line"></i>
+        <i class="sidenav-toggler-line"></i>
+      </div>
+    </div>
+  </div>
+</nav>

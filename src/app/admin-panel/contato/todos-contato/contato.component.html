@@ -1,0 +1,83 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div class="row">
+    <div class="col-sm-6 positionTitle">
+      <h5>Contato</h5>
+    </div>
+    <div class="col-sm-6 positionButtons" *ngIf="statusResponse == 200 && !isLoading">
+      <div class="btn-group marginDropdown" dropdown>
+        <button id="button-basic" dropdownToggle type="button"
+          class="btn btn-outline-info-dkblue btn-sm dropdown-toggle" aria-controls="dropdown-basic">Filtrar<span
+            class="caret"></span>
+        </button>
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li role="menuItem">
+            <a *ngFor="let item of dropdownFilterMenuItems" class="dropdown-item pointer"
+              [class.active]="item === dropdownFilterSelectedItem"
+              (click)="onSelectFilterDropdownMenu(item)">{{item.option}}</a>
+          </li>
+        </ul>
+      </div>
+      <button *ngIf="filterCategory" type="button" class="btn btn-outline-danger btn-sm marginDropdown"
+        (click)="clearConditions()">Limpar
+        filtros </button>
+      <button type="button" class="btn btn-outline-success btn-sm"
+        [routerLink]="['/admin/contato/novo']">Adicionar</button>
+    </div>
+  </div>
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="contatos && statusResponse == 200 && !isLoading" class="marginTop">
+    <table class="table table-hover">
+      <thead>
+        <th *ngFor="let item of headTableItems" scope="col" class="pointer headTable" (click)="onClickSortTable(item)"
+          tooltip="Ordenar por {{item['option']}}" placement="top" [delay]="750">
+          {{item['option']}}
+          <span><i class="pull-right rotate fa"
+              [ngClass]="{'i-active': item === sortSelectedItem, 'fa-chevron-down': this.contatoService.params.get('valueSort') == 'descending', 'fa-chevron-up': this.contatoService.params.get('valueSort') == 'ascending'}"></i></span>
+        </th>
+        <th>Conteúdo</th>
+        <th>Ações</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contato of contatos | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
+          [routerLink]="['/admin/contato/detalhes/', contato['descricao']]" class="pointer hoverRowTable">
+          <td><span>{{ contato.descricao }}</span></td>
+          <td><span>{{ contato.tipo }}</span></td>
+          <td *ngIf="contato.tipo == 'Email'"><span>{{ contato.email }}</span></td>
+          <td *ngIf="contato.tipo == 'Endereço'"><span>{{ contato.endereco.rua }}, {{ contato.endereco.numero }},
+              {{ contato.endereco.bairro }} <br
+                *ngIf="contato.endereco.complemento != undefined && contato.endereco.complemento != ''">
+              {{ contato.endereco.complemento }} <br>
+              {{ contato.endereco.cidade }} - {{ contato.endereco.estado }}
+              ({{ contato.endereco.cep | mask: '00000-000' }})</span>
+          </td>
+          <td *ngIf="contato.tipo == 'Telefone'"><span><span
+                *ngIf="contato.telefone.ddi != undefined && contato.telefone.ddi != ''">+{{ contato.telefone.ddi }}</span>
+              ({{ contato.telefone.prefixo }})
+              <span
+                *ngIf="(contato.telefone.numero).length == 9">{{ contato.telefone.numero | mask: '00000-0000' }}</span>
+              <span
+                *ngIf="(contato.telefone.numero).length == 8">{{ contato.telefone.numero | mask: '0000-0000' }}</span></span>
+          </td>
+          <td *ngIf="contato.tipo == 'Rede Social'">
+            <span>{{ contato.redesocial.tipo }}<br>{{ contato.redesocial.link }}</span></td>
+          <td (click)="$event.stopPropagation()">
+            <button class="btn btn-outline-warning btn-sm"
+              [routerLink]="['/admin/contato/atualizar/', contato['descricao']]"
+              routerLinkActive="router-link-active">Editar</button>
+            <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
+              (click)="canDelete(contato['_id'], contato['descricao'])">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <nav *ngIf="contatos">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul>
+    </nav>
+  </div>
+  <app-no-data *ngIf="statusResponse == 204 && !isLoading && !contatos"></app-no-data>
+  <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !contatos"></app-error>
+</div>

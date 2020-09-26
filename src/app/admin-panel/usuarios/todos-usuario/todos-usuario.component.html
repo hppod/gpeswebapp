@@ -1,0 +1,64 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Usuários</h5>
+      </div>
+      <div class="col-sm-6 positionButtons">
+        <div class="btn-group marginDropdown" dropdown>
+          <button id="button-basic" dropdownToggle type="button"
+            class="btn btn-outline-info-dkblue btn-sm dropdown-toggle" aria-controls="dropdown-basic">Filtrar<span
+              class="caret"></span></button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+            <li role="menuItem">
+              <a *ngFor="let item of dropdownFilterMenuItems" class="dropdown-item pointer"
+                [class.active]="item === dropdownFilterSelectedItem"
+                (click)="onSelectFilterDropdownMenu(item)">{{item.option}}</a>
+            </li>
+          </ul>
+        </div>
+        <button *ngIf="filterCategory" type="button" class="btn btn-outline-danger btn-sm marginDropdown"
+          (click)="clearConditions()">Limpar filtros</button>
+        <button type="button" class="btn btn-outline-success btn-sm"
+          [routerLink]="['/admin/usuario/novo']">Adicionar</button>
+      </div>
+    </div>
+    <app-loading [condition]="isLoading"></app-loading>
+    <table *ngIf="!isLoading && statusResponse == 200" class="table">
+      <thead>
+        <tr>
+          <th *ngFor="let item of headTableItems" scope="col" class="pointer headTable" (click)="onClickSortTable(item)"
+            tooltip="Ordenar por {{item['option']}}" placement="top" [delay]="750">
+            {{item['option']}}
+            <span><i class="pull-right rotate fa"
+                [ngClass]="{'i-active': item === sortSelectedItem, 'fa-chevron-down': this._service.params.get('valueSort') == 'descending', 'fa-chevron-up': this._service.params.get('valueSort') == 'ascending'}"></i></span>
+          </th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
+          [routerLink]="['/admin/usuario/detalhes', user['user']]" class="pointer hoverRowTable">
+          <th scope="row">{{user['nome']}} <i *ngIf="!user['verified']" class="fa fa-exclamation-circle unverified"
+              tooltip="O usuário ainda não cadastrou uma senha." placement="right"></i></th>
+          <td>{{user['email']}}</td>
+          <td>{{user['role']}}</td>
+          <td (click)="$event.stopPropagation()">
+            <button class="btn btn-outline-warning btn-sm"
+              [routerLink]="['/admin/usuario/atualizar', user['user']]">Editar</button>
+            <button class="btn btn-outline-danger btn-sm" (click)="canDelete(user['user'])">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !users"></app-no-data>
+    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !users"></app-error>
+    <nav *ngIf="users">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul>
+    </nav>
+  </div>
+</div>

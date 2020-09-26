@@ -1,0 +1,50 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading && statusResponse == 200">
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>{{user['nome']}}</h5>
+        <h6><a *ngIf="!user['verified']" (click)="resendMail()" class="badge badge-danger text-white pointer"
+            tooltip="O usuário ainda não cadastrou uma senha. Clique para reenviar o e-mail de cadastro da senha."
+            placement="right"><i class="fa fa-exclamation-circle"></i> Usuário pendente</a></h6>
+      </div>
+      <div class="col-sm-6 positionButtons">
+        <button type="button" class="btn btn-outline-warning btn-sm"
+          [routerLink]="['/admin/usuario/atualizar', user['user']]">Editar</button>
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="canDelete(user['user'])">Apagar</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="form-control-label">Nome</label>
+          <div>
+            {{user['nome']}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-control-label">Usuário</label>
+          <div>
+            {{user['user']}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="form-control-label">E-mail</label>
+          <div>
+            {{user['email']}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-control-label">Nível de Acesso</label>
+          <div>
+            {{user['role']}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

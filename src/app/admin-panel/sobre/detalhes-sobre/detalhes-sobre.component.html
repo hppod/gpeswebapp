@@ -1,0 +1,44 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading && statusResponse == 200">
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>{{sobre['titulo']}}</h5>
+      </div>
+      <div class="col-sm-6 positionButtons">
+        <button type="button" class="btn btn-outline-warning btn-sm"
+        [routerLink]="['/admin/sobre/atualizar', sobre['titulo']]">Editar</button>
+        <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
+        (click)="canDelete(sobre['titulo'], sobre['_id'])">Excluir</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="form-control-label">Título</label>
+          <div>
+            {{sobre['titulo']}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-12">
+          <label class="form-control-label">Descrição</label>
+          <div [innerHTML]="sobre['descricao'] | noSanitizeHtml:'html'">
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row" *ngIf="sobre && hasImage" >
+        <div class="col-sm-12">
+          <label class="form-control-label">Imagem</label>
+          <div class="imagemSobre">
+            <img class="imagem" [src]="file" alt="sobre['titulo']">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

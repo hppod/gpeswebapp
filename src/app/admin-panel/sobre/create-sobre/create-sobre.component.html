@@ -1,0 +1,51 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Adicionar Sobre</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <app-loading [condition]="isLoading"></app-loading>
+      <form [formGroup]="sobreForm" (ngSubmit)="postSobre(sobreForm.value)" novalidate>
+        <div class="form-row">
+          <div class="form-group col-sm-12">
+            <label for="titulo" class="form-control-label">Título <span class="required">*</span></label>
+            <input type="text" name="titulo" class="form-control" placeholder="Título" formControlName="titulo">
+            <small *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="text-danger">
+              <div *ngIf="titulo.errors.required">
+                Título é obrigatório.
+              </div>
+              <div *ngIf="titulo.errors.sobreTituloAlreadyExists">
+                Já existe um registro com esse título. Escolha outro título.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-12">
+            <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
+            <app-ngx-editor [config]="editorConfig" name="descricao" placeholder="Descrição..."
+              formControlName="descricao"></app-ngx-editor>
+            <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+              <div *ngIf="descricao.errors.required">
+                Descrição é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <app-file-uploader [fileAccept]="'images'" [limitOnOne]="true"></app-file-uploader>
+        <br>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" *ngIf="sobreForm.dirty" class="btn btn-outline-danger btn-sm"
+              (click)="Cancel()">Cancelar</button>
+            <button type="submit" class="btn btn-outline-success btn-sm" [disabled]="!sobreForm.valid">
+              Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

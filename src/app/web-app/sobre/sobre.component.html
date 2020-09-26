@@ -1,0 +1,25 @@
+<div class="container-fluid marginTopBottomContentContainer">
+  <h2 class="titlePage">Sobre Nós</h2>
+  <hr>
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="sobre && statusResponse == 200">
+    <div *ngFor="let sobre of sobre">
+      <h3>{{sobre.titulo}}</h3>
+      <div>
+        <div class="float-sm-left" *ngIf="sobre.imagem != null">
+          <img class="imagemSobre" src="{{sobre.imagem}}" alt="{{sobre.titulo}}">
+        </div>
+        <div class="conteudoSobre">
+          <p [innerHTML]="sobre.descricao | noSanitizeHtml: 'html'"></p>
+        </div>
+      </div>
+      <br class="lineBreak">
+    </div>
+  </div>
+  <div *ngIf="!isLoading && statusResponse == 204 && !sobre">
+    <app-no-data></app-no-data>
+  </div>
+  <div *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !sobre">
+    <app-error></app-error>
+  </div>
+</div>

@@ -1,0 +1,10 @@
+<div class="modal-body">
+  <lottie-animation-view [options]="lottieConfig" [width]="200" [height]="200"></lottie-animation-view>
+  <p class="text-center">
+    {{message}}
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="decline()">Não</button>
+  <button type="button" class="btn btn-outline-success btn-sm" (click)="confirm()">Sim</button>
+</div>

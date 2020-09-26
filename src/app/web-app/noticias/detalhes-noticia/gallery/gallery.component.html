@@ -1,0 +1,12 @@
+<div class="container-fluid marginTopBottomContentContainer">
+  <div>
+    <div class="row">
+      <div *ngFor="let image of images; let i = index" class="col-md-3" id="marginBottomCardsCol">
+        <div class="card">
+          <img class="card-img maxSize setPointer" [src]="image['src']" [alt]="image" (click)="open(i)"
+            data-toggle="tooltip" title="Clique para expandir">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

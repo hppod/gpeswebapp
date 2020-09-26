@@ -1,0 +1,49 @@
+<app-carousel></app-carousel>
+<section class="container">
+    <h1 class="text-center display-2 font-weight-bold p-5">Notícias</h1>
+    <div class="row">
+        <div class="col-md-4" *ngFor="let noticia of noticias">
+            <div class="card mb-3">
+                <a class="overlay" [routerLink]="['/institucional/noticias/noticia', noticia.titulo]">
+                    <div class="resposividade" *ngIf="noticia['imagemPrincipal'];else imageNotDefined">
+                        <img class="card-img-top" src="{{noticia['imagemPrincipal']}}" alt="{{noticia.titulo}}">
+                    </div>
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{noticia.titulo | slice: 0:50}}
+                        <span *ngIf="showEllipsisInTheText(noticia.titulo, 50)">...</span>
+                    </h5>
+                    <p class="card-text" innerHTML="{{noticia.descricao | slice: 0:130}}">
+                        <span *ngIf="showEllipsisInTheText(noticia.descricao, 130)">...
+                            <a [routerLink]="['/institucional/noticias/noticia', noticia.titulo]">continuar lendo</a>
+                        </span>
+                    </p>
+                    <p class="card-text">
+                        <small class="text-muted">Publicado em: {{noticia.date | date: 'dd/MM/yyyy'}}</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <h5 class="text-center text-muted" *ngIf="!noticias">Não há nenhuma notícia cadastrada.</h5>
+    <div class="text-center">
+        <button [routerLink]="['/institucional/noticias']" class="btn btn-outline-info-dkorange">Ver mais
+            notícias</button>
+    </div>
+</section>
+<section class="donate-online">
+    <div class="container text-center">
+        <h1 class="display-2 font-weight-bold p-2">Doe Online</h1>
+        <h2>Realize uma doação online!</h2>
+        <button class="btn btn-info-dkorange" [routerLink]="['/institucional/doe-online']">Saiba mais</button>
+    </div>
+</section>
+<section class="visit-home">
+    <div class="container text-center">
+        <h1 class="display-2 p-2">Venha nos visitar!</h1>
+        <div class="text-muted">
+            <h4>Horários de visita:</h4>
+            <h4>De seguda a sexta das 10h da manhã até as 18h</h4>
+        </div>
+    </div>
+</section>

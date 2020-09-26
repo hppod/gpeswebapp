@@ -1,0 +1,20 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <!-- <h5 class="card-header">Asilo Web App - Enviar e-mail de recuperação</h5> -->
+    <img class="img-fluid logo-asilo" alt="Volte para a página inicial" src="../../../../assets/img/brand/logo2.png">
+    <div class="card-body">
+      <form [formGroup]="_formSendMail">
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="text" formControlName="email" class="form-control" placeholder="E-mail" />
+        </div>
+        <div class="row">
+          <div class="col-sm-12 loginButton">
+            <button type="button" class="btn btn-outline-info-dkorange btn-sm" (click)="sendMail()">Enviar e-mail de
+              recuperação</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

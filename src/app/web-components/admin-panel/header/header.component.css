@@ -1,0 +1,24 @@
+.bg-dkblue {
+    background-color: rgb(43, 50, 82) !important;
+}
+
+.header-info {
+    color: rgb(255, 255, 255);
+    background-color: rgb(43, 50, 82);
+    font-size: small;
+    font-weight: bold;
+}
+
+.positionButton {
+    text-align: end;
+}
+
+.sidenav-toggler {
+    margin-left: 16rem!important;
+}
+
+@media (min-width: 1199.98px) {
+    .sidenav-toggler {
+        display: none;
+    }
+}

@@ -1,0 +1,25 @@
+<div class="uploadfilecontainer" (click)="fileInput.click()" appDragDrop (onFileDropped)="uploadFile($event)">
+  <div class="row">
+    <span class="col-sm-12 info-upload text-center">Clique aqui ou arraste e solte os arquivos</span>
+  </div>
+  <input hidden #fileInput [multiple]="!limitOnOne" type="file" [accept]="fileType"
+    (change)="uploadFile($event.target.files)">
+</div>
+<div *ngIf="files.length > 1" class="col-sm-12">
+  <span class="info-main-image">Para selecionar a imagem principal da notícia, clique em cima dela</span>
+</div>
+<div class="img-preview-container">
+  <div class="row align-preview">
+    <div *ngFor="let selectedFile of files, let i = index">
+      <div class="img-preview{{selectedFile.status === 'fail' ? '-error' : ''}}"
+        [ngStyle]="{'background-image': 'url('+ selectedFile.src + ')'}" (click)="select(i)"
+        [ngClass]="{'img-preview-selected': isActive(i)}">
+      </div>
+      <div class="row filename-pdf-row" *ngIf="fileAccept == 'document'">
+        <span class="filename-pdf col-sm-12 text-center">{{selectedFile.file.name || selectedFile.file.originalname}}</span>
+      </div>
+      <span (click)="deleteAttachment(i)" class="delete-file col-sm-12 text-center">{{deleteMessage}} <i
+          class="fa fa-close"></i></span>
+    </div>
+  </div>
+</div>

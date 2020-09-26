@@ -1,0 +1,17 @@
+.forgetPassword {
+    font-size: small;
+    text-align: start;
+    text-decoration: underline;
+    color: rgb(43, 50, 82);
+}
+
+.loginButton {
+    text-align: end;
+}
+
+.backHome {
+    font-size: small;
+    text-align: center;
+    text-decoration: underline;
+    color: rgb(43, 50, 82);
+}

@@ -1,0 +1,14 @@
+.positionRequired {
+    text-align: end;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #da1b41;
+    font-style: italic;
+}
+
+.countChars {
+    text-align: end;
+    font-size: small;
+    margin-top: -12px;
+    color: rgb(180, 180, 180);
+}

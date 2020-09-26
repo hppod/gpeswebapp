@@ -1,0 +1,25 @@
+#margin{
+    padding: 2% 2%;
+}
+
+.i-active {
+    color: rgb(239, 84, 85);
+}
+
+.positionButtons {
+    text-align: end;
+}
+
+.headTable:hover {
+    background-color: rgb(245, 245, 245);
+    color: rgb(43, 50, 82)
+}
+
+.rotate:before {
+    display: inline-block;
+    transition: 1s all;
+}
+
+.rotate:hover:before {
+    transform: rotate(180deg)
+}

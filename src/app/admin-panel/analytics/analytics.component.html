@@ -1,0 +1,193 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Estatísticas do site</h5>
+        <span *ngIf="!isLoading" class="infoPeriodSearch">Exibindo resultados de: {{startDate | date:'dd/MM/yyyy'}} a
+          {{endDate | date:'dd/MM/yyyy'}}</span>
+      </div>
+      <div class="col-sm-6 positionButtons">
+        <button *ngIf="filterDate" type="button" class="btn btn-outline-danger btn-sm marginDropdown"
+          (click)="clearConditions()">Limpar filtros</button>
+        <button type="button" class="btn btn-outline-info-dkblue btn-sm" data-toggle="modal"
+          data-target="#modalPeriodSearch">Buscar por período</button>
+      </div>
+    </div>
+    <app-loading [condition]="isLoading"></app-loading>
+    <div *ngIf="!isLoading">
+      <div class="row">
+        <div *ngFor="let data of dataAnalytics" class="col-sm-4">
+          <app-card-stats [data]="data"></app-card-stats>
+        </div>
+      </div>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+          <div *ngIf="viewLineChartComparativeSize">
+            <h5 class="positionTitleChart">Comparativo Usuários x Novos usuários</h5>
+            <h6 class="positionTitleChart">Por data</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="viewLineChartComparativeSize">
+          <ngx-charts-line-chart [view]="viewLineChartComparativeSize" [scheme]="colorScheme" [legend]="legend"
+            legendTitle="Legenda" [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis"
+            [yAxis]="yAxis" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline"
+            [results]="dataAnalyticsLineChartComparative" [legendPosition]="legendPosition" [autoScale]="autoScale"
+            (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+          </ngx-charts-line-chart>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <div class="row">
+        <div class="col-sm-4">
+          <div *ngIf="dataAnalyticsPieChartState">
+            <h5 class="positionTitleChart">Estado</h5>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div *ngIf="dataAnalyticsPieChartCity">
+            <h5 class="positionTitleChart">Cidade</h5>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div *ngIf="dataAnalyticsPieChartUserType">
+            <h5 class="positionTitleChart">Tipo de usuário</h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div *ngIf="dataAnalyticsPieChartState">
+          <ngx-charts-pie-chart [view]="viewPieChartSize" [scheme]="colorScheme" [results]="dataAnalyticsPieChartState"
+            [gradient]="gradient" [legend]="legend" legendTitle="Legenda" [legendPosition]="legendPosition"
+            [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)">
+          </ngx-charts-pie-chart>
+        </div>
+        <div *ngIf="dataAnalyticsPieChartCity">
+          <ngx-charts-pie-chart [view]="viewPieChartSize" [scheme]="colorScheme" [results]="dataAnalyticsPieChartCity"
+            [gradient]="gradient" [legend]="legend" legendTitle="Legenda" [legendPosition]="legendPosition"
+            [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)" (activate)="onActivate($event)"
+            (deactivate)="onDeactivate($event)">
+          </ngx-charts-pie-chart>
+        </div>
+        <div *ngIf="dataAnalyticsPieChartUserType">
+          <ngx-charts-pie-chart [view]="viewPieChartSize" [scheme]="colorScheme"
+            [results]="dataAnalyticsPieChartUserType" [gradient]="gradient" [legend]="legend" legendTitle="Legenda"
+            [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut" (select)="onSelect($event)"
+            (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+          </ngx-charts-pie-chart>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <div class="row">
+        <div class="col-sm-6">
+          <h5 class="positionTitleChart">Páginas acessadas</h5>
+        </div>
+        <div class="col-sm-6">
+          <h5 class="positionTitleChart">Notícias acessadas</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Página</th>
+                <th>Visualizções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of dataAnalyticsPagePaths | paginate: {id: 'pagination1', itemsPerPage: 6, currentPage: p}"
+                class="hoverRowTable">
+                <td>{{data['name']}}</td>
+                <td>{{data['value']}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-sm-6">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Notícia</th>
+                <th>Visualizções</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let data of dataAnalyticsNoticiaPaths | paginate: {id: 'pagination2', itemsPerPage: 6, currentPage: pN}"
+                class="hoverRowTable">
+                <td [tooltip]="data['name']" placement="auto" [delay]="500">{{data['name'] | slice: 0:50}}</td>
+                <td>{{data['value']}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <pagination-controls *ngIf="showPagination" id="pagination2" class="my-pagination positionTitleChart"
+            (pageChange)="pN = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <div class="row">
+        <div class="col-sm-12">
+          <div *ngIf="viewPieChartSize">
+            <h5 class="positionTitleChart">Comparativo Acessos a Doe Online x Doações efetivadas</h5>
+            <h6 class="positionTitleChart">Por data</h6>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+          <div *ngIf="viewPieChartSize">
+            <ngx-charts-pie-chart [view]="viewPieChartSize" [scheme]="colorScheme"
+              [results]="dataAnalyticsEventsDonation" [gradient]="gradient" [legend]="legend" legendTitle="Legenda"
+              [legendPosition]="legendPosition" [labels]="showLabels" [doughnut]="isDoughnut"
+              (select)="onSelect($event)" (activate)="onActivate($event)" (deactivate)="onDeactivate($event)">
+            </ngx-charts-pie-chart>
+          </div>
+        </div>
+        <div class="col-sm-4"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="modalPeriodSearch" tabindex="-1" role="dialog" aria-labelledby="modalPeriodSearchLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPeriodSearchLabel">Buscar por Período</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="dateBetweenFilterForm" novalidate>
+          <div class="form-row align-items-center alignContentInsideModal">
+            De &nbsp;
+            <div class="col-sm-5 my-1">
+              <input type="date" max="2999-12-31" class="form-control" formControlName="dateStart">
+            </div>&nbsp;&nbsp;
+            Até &nbsp;
+            <div class="col-sm-5 my-1">
+              <input type="date" max="2999-12-31" class="form-control" formControlName="dateFinish">
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button *ngIf="!dateBetweenFilterForm.pristine" type="submit" class="btn btn-outline-danger btn-sm"
+          (click)="onClickCleanInputFieldsDateSearch()"><b><i class="fa fa-eraser"></i></b></button>
+        <button #closeModal type="submit" class="btn btn-outline-info-dkblue btn-sm" data-dismiss="modal"
+          (click)="onClickFilterDate()" [disabled]="!dateBetweenFilterForm.valid"><b><i
+              class="fa fa-search"></i></b></button>
+      </div>
+    </div>
+  </div>
+</div>

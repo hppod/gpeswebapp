@@ -1,0 +1,20 @@
+<div *ngIf="!_router.url.includes('admin')" class="wrapper">
+  <app-header></app-header>
+  <div *ngIf="isShowingRouteLoadIndicator" class="router-load-indicator">
+    Carregando...
+  </div>
+  <router-outlet (activate)="onActivate($event)"></router-outlet>
+  <app-footer *ngIf="!isShowingRouteLoadIndicator"></app-footer>
+</div>
+<div *ngIf="_router.url.includes('admin')" class="wrapper">
+  <app-sidenav *ngIf="currentUser"
+    class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  </app-sidenav>
+  <div class="main-content" id="panel">
+    <app-header-admin *ngIf="currentUser"></app-header-admin>
+    <div *ngIf="isShowingRouteLoadIndicator" class="router-load-indicator">
+      Carregando...
+    </div>
+    <router-outlet (activate)="onActivate($event)"></router-outlet>
+  </div>
+</div>

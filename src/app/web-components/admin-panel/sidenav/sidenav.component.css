@@ -1,0 +1,43 @@
+.logo-image-sidenav {
+    width: 165px;
+    height: 165px;
+    margin-top: -40px;
+    margin-left: -12px;
+}
+
+.navbar-nav .nav-link .nav-link-text {
+    transition: 0.5s all;
+}
+
+.navbar-nav .nav-item.active {
+    border-bottom: 2px solid rgb(239, 84, 85);
+    margin-left: 15px;
+    border-radius: 0px;
+}
+
+.navbar-nav .nav-item:not(.active) .nav-link:hover {
+    border-bottom: 2px solid rgb(239, 84, 85);
+    margin-left: 15px;
+    border-radius: 0px;
+    transition: 0.5s all;
+}
+
+.navbar-nav .nav-item .nav-link:hover .nav-link-text {
+    margin-left: 15px;
+    transition: 1s all;
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        width: calc(100% - 1.4rem);
+        position: absolute;
+        top: auto;
+        left: 25px;
+        right: 0;
+        z-index: 1050;
+        margin: .7rem;
+        overflow-y: auto;
+        height: auto!important;
+        opacity: 1;
+    }
+}

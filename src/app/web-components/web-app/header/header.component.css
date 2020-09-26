@@ -1,0 +1,51 @@
+.nav-link:hover {
+    margin-top: -2px;
+    border-radius: 0px;
+    border-bottom: 2px solid rgb(239, 84, 85)
+}
+
+.active {
+    margin-top: -2px;
+    border-radius: 0px;
+    border-bottom: 2px solid rgb(239, 84, 85)
+}
+
+.bg-header-opaque {
+    background-color: rgb(43, 50, 82);
+    -webkit-box-shadow: 0px 6px 9px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 6px 9px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 6px 9px -6px rgba(0, 0, 0, 0.75);
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.navbar-brand, .navbar-toggler {
+    z-index: 1;
+}
+
+.navbar-wrapper {
+    position: relative;
+    margin-top: 20px;
+    z-index: 2;
+}
+
+.position-button-doe {
+    margin-top: 15px;
+}
+
+.navbar-brand img {
+    width: 150px;
+    height: 86.5px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+.nav-item-login {
+    margin-left: 85px;
+}

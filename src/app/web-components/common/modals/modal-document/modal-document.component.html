@@ -1,0 +1,6 @@
+<div class="modal-content">
+  <app-loading [condition]="isLoading"></app-loading>
+  <pdf-viewer [src]="documentPdf" [fit-to-page]="true" [original-size]="true" [autoresize]="true"
+    (after-load-complete)="loadingComplete()">
+  </pdf-viewer>
+</div>

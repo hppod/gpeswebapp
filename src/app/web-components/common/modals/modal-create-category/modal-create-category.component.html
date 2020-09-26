@@ -1,0 +1,53 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Adicionar categoria</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <form [formGroup]="_formCategoria" novalidate>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="nome" class="form-control-label">Nome <span class="required">*</span></label>
+            <input class="form-control" formControlName="nome" type="text" placeholder="Nome" id="nome" maxlength="50">
+            <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+              <div *ngIf="nome.errors.required">
+                Nome é obrigatório.
+              </div>
+              <div *ngIf="nome.errors.categoriaNomeAlreadyExists">
+                Já existe uma categoria com esse nome. Escolha outro nome.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
+            <textarea class="form-control" formControlName="descricao" type="text" placeholder="Descrição..."
+              id="descricao" [(ngModel)]="role" [maxLength]="maxChars"></textarea>
+            <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+              <div *ngIf="descricao.errors.required">
+                Descrição é obrigatório.
+              </div>
+            </small>
+          </div>
+          <span class="col-sm-12 countChars">
+            {{role.length}}/{{maxChars}}
+          </span>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!_formCategoria.valid"
+              (click)="addCategory()">Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

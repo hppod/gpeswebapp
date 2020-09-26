@@ -1,0 +1,308 @@
+/* You can add global styles to this file, and also import other style files */
+
+body {
+    color: #212529!important;
+}
+
+.marginTopBottomContentContainer {
+    margin-top: 150px;
+    margin-bottom: 15px;
+}
+
+.marginTopBottomContentContainerAdminPanel {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+#marginBottomCardsCol {
+    margin-bottom: 15px;
+}
+
+.titlePage {
+    text-align: center;
+}
+
+.pagination {
+    justify-content: center;
+}
+
+.btnPeriodSearch {
+    text-align: start;
+}
+
+.marginDropdown {
+    margin-right: 6px;
+}
+
+.alignContentInsideModal {
+    justify-content: center;
+}
+
+.marginClearFilter {
+    margin-left: 4px;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    padding-bottom: 150px;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    margin-bottom: -1000px;
+}
+
+.setPointer:hover {
+    cursor: pointer;
+}
+
+/* SET STYLES DEFAULT ARGON SYSTEM */
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    color: inherit;
+}
+
+.btn-danger:hover {
+    background-color: #da1b41;
+    border-color: #da1b41;
+}
+
+/* SET CUSTOM STYLE NGX-PAGINATION */
+
+.my-pagination .ngx-pagination .current {
+    background: rgb(239, 84, 85);
+    border-radius: 15px;
+}
+
+.my-pagination .ngx-pagination a {
+    border-radius: 15px;
+}
+
+.btn-outline-info-dkblue {
+    color: rgb(43, 50, 82);
+    border-color: rgb(43, 50, 82);
+}
+
+.btn-outline-info-dkblue:hover {
+    color: #fff;
+    background-color: rgb(43, 50, 82);
+    border-color: rgb(43, 50, 82);
+}
+
+.btn-outline-info-dkblue:focus, .btn-outline-info-dkblue.focus {
+    box-shadow: 0 0 0 0.2rem rgba(43, 50, 82, 0.5);
+}
+
+.btn-outline-info-dkblue.disabled, .btn-outline-info-dkblue:disabled {
+    color: rgb(43, 50, 82);
+    background-color: transparent;
+}
+
+.btn-outline-info-dkblue:not(:disabled):not(.disabled):active, .btn-outline-info-dkblue:not(:disabled):not(.disabled).active, .show>.btn-outline-info-dkblue.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(43, 50, 82);
+    border-color: rgb(43, 50, 82);
+}
+
+.btn-outline-info-dkblue:not(:disabled):not(.disabled):active:focus, .btn-outline-info-dkblue:not(:disabled):not(.disabled).active:focus, .show>.btn-outline-info-dkblue.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(43, 50, 82, 0.5);
+}
+
+.btn-outline-info-dkorange {
+    color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-outline-info-dkorange:hover {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-outline-info-dkorange:focus, .btn-outline-info-dkorange.focus {
+    box-shadow: 0 0 0 0.2rem rgba(239, 84, 85, 0.5);
+}
+
+.btn-outline-info-dkorange.disabled, .btn-outline-info-dkorange:disabled {
+    color: rgb(239, 84, 85);
+    background-color: transparent;
+}
+
+.btn-outline-info-dkorange:not(:disabled):not(.disabled):active, .btn-outline-info-dkorange:not(:disabled):not(.disabled).active, .show>.btn-outline-info-dkorange.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-outline-info-dkorange:not(:disabled):not(.disabled):active:focus, .btn-outline-info-dkorange:not(:disabled):not(.disabled).active:focus, .show>.btn-outline-info-dkorange.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(239, 84, 85, 0.5);
+}
+
+.btn-info-dkorange {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-info-dkorange:hover {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-info-dkorange:focus, .btn-info-dkorange.focus {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+    box-shadow: 0 0 0 0.2rem rgba(239, 84, 85, 0.5);
+}
+
+.btn-info-dkorange.disabled, .btn-info-dkorange:disabled {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-info-dkorange:not(:disabled):not(.disabled):active, .btn-info-dkorange:not(:disabled):not(.disabled).active, .show>.btn-info-dkorange.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(239, 84, 85);
+    border-color: rgb(239, 84, 85);
+}
+
+.btn-info-dkorange:not(:disabled):not(.disabled):active:focus, .btn-info-dkorange:not(:disabled):not(.disabled).active:focus, .show>.btn-info-dkorange.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(239, 84, 85, 0.5);
+}
+
+.pointer {
+    cursor: pointer;
+}
+
+.required {
+    color: #da1b41;
+}
+
+.positionButtons {
+    text-align: end;
+}
+
+.positionTitle {
+    text-align: start;
+}
+
+.hoverRowTable:hover {
+    background-color: rgb(245, 245, 245);
+    color: rgb(43, 50, 82)
+}
+
+.is-valid {
+    border: 2px solid rgba(105, 222, 172, 1);
+    border-radius: 4px;
+}
+
+.is-valid-label {
+    color: rgba(105, 222, 172, 1);
+    font-size: 11px;
+}
+
+.is-invalid {
+    border: 2px solid rgba(253, 160, 139, 1);
+    border-radius: 4px;
+}
+
+.is-invalid-label {
+    color: rgba(253, 160, 139, 1);
+    font-size: 11px;
+}
+
+.text-white {
+    color: rgb(255, 255, 255);
+}
+
+.positionRequired {
+    text-align: end;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #da1b41;
+    font-style: italic;
+}
+
+input.ng-touched.ng-invalid, select.ng-touched.ng-invalid, textarea.ng-touched.ng-invalid {
+    border-color: #dc3545 1px solid;
+    padding-right: calc(1.5em + .75rem);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23dc3545' viewBox='-2 -2 7 7'%3e%3cpath stroke='%23dc3545' d='M0 0l3 3m0-3L0 3'/%3e%3ccircle r='.5'/%3e%3ccircle cx='3' r='.5'/%3e%3ccircle cy='3' r='.5'/%3e%3ccircle cx='3' cy='3' r='.5'/%3e%3c/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center right calc(.375em + .1875rem);
+    background-size: calc(.75em + .375rem) calc(.75em + .375rem);
+    transition: 0s;
+}
+
+.ng-touched.ng-invalid>.ngx-editor {
+    border: #dc3545 1px solid;
+    transition: 0s;
+}
+
+.togglePassword {
+    font-size: 10px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.bg-dkorange {
+    background-color: #EF5455;
+}
+
+.infoPeriodSearch {
+    font-size: smaller;
+    font-style: italic;
+    color: rgb(149, 149, 149)
+}
+
+.positionTooltipCardStats {
+    text-align: end;
+    margin-right: 10px;
+}
+
+.logo-asilo {
+    width: 280px;
+    height: 173px;
+    margin: 0 auto;
+    padding-top: 8px;
+}
+
+input, textarea {
+    color: #6b7886 !important;
+}
+
+.fa-bars {
+    cursor: move;
+}
+
+.cursorMouse {
+    cursor: move;
+}
+
+.span-info-filter {
+    font-size: 11px;
+    color: rgb(105, 106, 107);
+    font-weight: bold;
+}
+
+.info-dragndrop {
+    color: #da1b41;
+}
+
+.countChars {
+    text-align: end;
+    font-size: small;
+    margin-top: -12px;
+    color: rgb(180, 180, 180);
+}

@@ -1,0 +1,9 @@
+<div class="modal-body">
+  <lottie-animation-view [options]="lottieConfig" [width]="200" [height]="200"></lottie-animation-view>
+  <p class="text-center">
+    {{message}}
+  </p>
+</div>
+<div *ngIf="withFooter" class="modal-footer">
+  <button type="button" class="btn btn-outline-danger btn-sm" (click)="ok()">Ok</button>
+</div>

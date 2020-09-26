@@ -1,0 +1,120 @@
+/* DIV COPYRIGHT CONFIGS */
+.version {
+    font-size: 9px;
+    margin-bottom: -10px;
+}
+
+.bg-footer {
+    background-color: rgb(43, 50, 82);
+    -webkit-box-shadow: 0px -3px 9px -6px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 0px -3px 9px -6px rgba(0, 0, 0, 0.5);
+    box-shadow: 0px -3px 9px -6px rgba(0, 0, 0, 0.5);
+}
+
+.copyright {
+    padding-top: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+/* DIVS REDE SOCIAL CONFIGS */
+i {
+    width: 20px;
+    height: 20px;
+}
+
+.marginBottom {
+    margin-bottom: 15px;
+}
+
+div a  {
+    /*color: whitesmoke;*/
+    color: rgba(255, 255, 255, 0.8);
+    /*font-weight: 550;*/
+}
+
+div a:hover {
+    color: rgb(239, 84, 85);
+}
+
+div small {
+    /*color: whitesmoke;*/
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 650;
+}
+
+p {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/*  DIV ESTRUTURAL CONFIGS */
+.fa-map-marker-alt, .fa-phone-alt, .fa-envelope,
+.fa-facebook-f, .fa-instagram, .fa-linkedin-in,
+.fa-twitter, .fa-external-link-alt {
+    color: whitesmoke;
+}
+
+.conteudo {
+    margin-bottom: 8px;
+}
+
+.conteudo-menor {
+    margin-bottom: 3px;
+}
+
+/*  AJUSTES DETALHADOS NA ESTRUTURAÇÃO DOS ITENS */
+.itemRedeSocialAll {
+    width: 200px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.itemEmailAll {
+    width: 230px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.itemTelefoneAll {
+    width: 150px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.itemEnderecoTwoItens {
+    width: 380px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.itemEnderecoThreeItens, .itemEnderecoFourItens {
+    width: 260px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.paddingOneItem {
+    padding-left: 35px;
+}
+
+.nav-link:hover {
+    margin-top: -2px;
+    border-radius: 0px;
+    border-bottom: 2px solid rgb(239, 84, 85)
+}
+
+.navbar {
+    position: absolute;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+}
+
+.navbar-wrapper {
+    position: relative;
+}
+
+.active {
+    margin-top: -2px;
+    border-radius: 0px;
+    border-bottom: 2px solid rgb(239, 84, 85)
+}

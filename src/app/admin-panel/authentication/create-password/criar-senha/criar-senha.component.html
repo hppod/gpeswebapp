@@ -1,0 +1,45 @@
+<div class="col-md-6 offset-md-3 mt-5">
+  <div class="card">
+    <!-- <h5 class="card-header">Asilo Web App - Criar senha</h5> -->
+    <img class="img-fluid logo-asilo" alt="Volte para a página inicial" src="../../../../assets/img/brand/logo2.png">
+    <div class="card-body">
+      <form [formGroup]="_formCreatePassword">
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input type="password" formControlName="senha" class="form-control" placeholder="Digite a nova senha"
+            togglePassword />
+          <small *ngIf="senha.invalid && (senha.dirty || senha.touched)" class="text-danger">
+            <div *ngIf="senha.errors.required">
+              Senha é obrigatório.
+            </div>
+            <div *ngIf="senha.errors.minlength">
+              A senha deve conter no mínimo 6 caracteres.
+            </div>
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="confirmaSenha">Confirme a senha</label>
+          <input type="password" formControlName="confirmaSenha" class="form-control" placeholder="Confirme a senha"
+            togglePassword />
+          <small *ngIf="confirmaSenha.invalid && (confirmaSenha.dirty || confirmaSenha.touched)" class="text-danger">
+            <div *ngIf="confirmaSenha.errors.required">
+              Senha é obrigatório.
+            </div>
+            <div *ngIf="confirmaSenha.errors.minlength">
+              A senha deve conter no mínimo 6 caracteres.
+            </div>
+            <div *ngIf="confirmaSenha.errors['compare']">
+              As senhas não conferem.
+            </div>
+          </small>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 loginButton">
+            <button type="button" class="btn btn-outline-info-dkorange btn-sm" (click)="setNewPassword()">Criar
+              senha</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

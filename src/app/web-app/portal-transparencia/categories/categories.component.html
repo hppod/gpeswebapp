@@ -1,0 +1,16 @@
+<div class="container-fluid marginTopBottomContentContainer">
+  <h2 class="titlePage">Portal da Transparência</h2>
+  <hr>
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading" class="row">
+    <div *ngFor="let item of categoryMenuItems" class="col-lg-4">
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title"><b>{{item.nome}}</b></h5>
+          <p class="card-text sizeTextCard">{{item.descricao}}</p>
+          <button (click)="navigateToDocs(item)" class="btn btn-outline-info-dkorange">Veja mais</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

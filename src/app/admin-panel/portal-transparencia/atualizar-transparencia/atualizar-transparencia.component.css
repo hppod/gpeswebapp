@@ -1,0 +1,29 @@
+.positionRequired {
+    text-align: end;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #da1b41;
+    font-style: italic;
+}
+
+.countChars {
+    text-align: end;
+    font-size: small;
+    margin-top: -12px;
+    color: rgb(180, 180, 180);
+}
+
+.nameFile {
+    font-size: 14px;
+}
+
+.linkToEditFile {
+    font-size: 12px;
+    color: rgb(250, 146, 10) !important;
+}
+
+.linkToEditFile:hover {
+    font-size: 12px;
+    color: rgb(209, 122, 9) !important;
+    text-decoration: underline !important;
+}

@@ -1,0 +1,48 @@
+.positionRequired {
+    text-align: end;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #da1b41;
+    font-style: italic;
+}
+
+.nameFile {
+    font-size: 14px;
+}
+
+.linkToEditFile {
+    font-size: 12px;
+    color: rgb(250, 146, 10) !important;
+}
+
+.linkToEditFile:hover {
+    font-size: 12px;
+    color: rgb(209, 122, 9) !important;
+    text-decoration: underline !important;
+}
+
+.linkToDeleteFile {
+    font-size: 12px;
+    color: rgb(240, 17, 17) !important;
+}
+
+.linkToDeleteFile:hover {
+    font-size: 12px;
+    color: rgb(212, 8, 8) !important;
+    text-decoration: underline !important;
+}
+
+.imagemSobre {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.imagem {
+    border-radius: 1%;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.actionsFileAtt {
+    margin-left: 1.3%;
+}

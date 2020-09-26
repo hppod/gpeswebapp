@@ -1,0 +1,45 @@
+/* td {
+    text-align: center;
+} */
+
+.positionButtons {
+    text-align: end;
+}
+
+.positionTitle {
+    text-align: start;
+}
+
+.dropdown-item.active {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(43, 50, 82);
+}
+
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: rgb(255, 255, 255);
+}
+
+.headTable:hover {
+    background-color: rgb(245, 245, 245);
+    color: rgb(43, 50, 82)
+}
+
+.rotate:before {
+    display: inline-block;
+    transition: 1s all;
+}
+
+.rotate:hover:before {
+    transform: rotate(180deg)
+}
+
+.i-active {
+    color: rgb(239, 84, 85);
+}
+
+.marginTop {
+    margin-top: 5px;
+}
