@@ -32,7 +32,6 @@
         "@ng-bootstrap/ng-bootstrap": "^7.0.0",
         "@swimlane/ngx-charts": "^16.0.0",
         "ajv": "^6.12.5",
-        "angular-validate-br": "0.1.0-beta",
         "blueimp-canvas-to-blob": "^3.28.0",
         "bootstrap": "^4.5.2",
         "core-js": "^3.6.5",

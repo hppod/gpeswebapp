@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef } from "@angular/core"
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/core"
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 import { HttpParams } from "@angular/common/http"
 import { Router } from "@angular/router"
@@ -61,7 +61,7 @@ export class PortalTransparenciaComponent implements OnInit {
     private _service: TransparenciaService,
     private _helperService: TransparenciaHelperService,
     private _router: Router,
-    private _render: Renderer,
+    private _render: Renderer2,
     private _formBuilder: FormBuilder,
     private _analytics: GoogleAnalyticsService,
     private categoryService: CategoryService
@@ -142,7 +142,7 @@ export class PortalTransparenciaComponent implements OnInit {
   setActiveMenuItem(event: any) {
     let oldClasses = event.target.getAttribute('class')
 
-    this._render.setElementAttribute(event.target, "class", `${oldClasses} active`)
+    this._render.setAttribute(event.target, "class", `${oldClasses} active`)
   }
 
   /**Função que busca os documentos do portal da transparência no banco de dados de acordo com os parâmetros informados e a página informada. */
