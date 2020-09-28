@@ -17,6 +17,11 @@ export class ModalFileUploadComponent {
     loop: false
   }
 
+  styles: Partial<CSSStyleDeclaration> = {
+    marginLeft: '30%',
+    marginTop: '0px'
+  }
+
   constructor(private _bsModalRef: BsModalRef) { }
 
   close() {

@@ -17,6 +17,11 @@ export class NoDataComponent implements OnInit {
     loop: false
   }
 
+  styles: Partial<CSSStyleDeclaration> = {
+    marginLeft: '41%',
+    marginTop: '0px'
+  }
+
   constructor() { }
 
   ngOnInit() {
