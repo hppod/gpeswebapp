@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LottieAnimationViewModule } from "ng-lottie"
+import { AnimationOptions } from "ngx-lottie"
 import { BsModalRef } from "ngx-bootstrap/modal"
 
 @Component({
@@ -10,17 +10,16 @@ import { BsModalRef } from "ngx-bootstrap/modal"
 export class ModalDialogComponent {
 
   @Input() message: string
+  @Input() condition: any
   @Output() action = new EventEmitter
-  lottieConfig: any
-
-  constructor(private _bsModalRef: BsModalRef) {
-    LottieAnimationViewModule.forRoot()
-    this.lottieConfig = {
-      path: 'assets/animations/alert.json',
-      autoplay: true,
-      loop: false
-    }
+  
+  options: AnimationOptions = {
+    path: 'assets/animations/alert.json',
+    autoplay: true,
+    loop: false
   }
+
+  constructor(private _bsModalRef: BsModalRef) { }
 
   decline() {
     this.action.emit(false)

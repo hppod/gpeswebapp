@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LottieAnimationViewModule } from "ng-lottie"
+import { Component, Input } from '@angular/core';
+import { AnimationOptions } from "ngx-lottie"
 import { BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
@@ -9,16 +9,15 @@ import { BsModalRef } from 'ngx-bootstrap/modal';
 })
 export class ModalUploadImagemComponent {
 
-  lottieConfig: any
+  @Input() condition: any
 
-  constructor(private _bsModalRef: BsModalRef) {
-    LottieAnimationViewModule.forRoot()
-    this.lottieConfig = {
-      path: 'assets/animations/loading.json',
-      autoplay: true,
-      loop: true
-    }
+  options: AnimationOptions = {
+    path: 'assets/animations/loading.json',
+    autoplay: true,
+    loop: false
   }
+
+  constructor(private _bsModalRef: BsModalRef) { }
 
   close() {
     this._bsModalRef.hide()
