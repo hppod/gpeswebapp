@@ -20,8 +20,10 @@ export class ModalDialogComponent {
   }
 
   styles: Partial<CSSStyleDeclaration> = {
-    marginLeft: '30%',
-    marginTop: '0px'
+    display: 'block',
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 
   constructor(private _bsModalRef: BsModalRef) { }

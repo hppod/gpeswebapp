@@ -18,8 +18,10 @@ export class NoDataComponent implements OnInit {
   }
 
   styles: Partial<CSSStyleDeclaration> = {
-    marginLeft: '41%',
-    marginTop: '0px'
+    display: 'block',
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   }
 
   constructor() { }
