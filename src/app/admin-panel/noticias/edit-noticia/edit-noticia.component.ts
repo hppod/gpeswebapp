@@ -14,6 +14,7 @@ import { FileSnippet } from 'src/app/web-components/common/file-uploader/FileSni
 import { FileUploaderService } from "./../../../web-components/common/file-uploader/file-uploader.service"
 import { toResponseBody } from 'src/app/shared/functions/to-response-body.function';
 import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-edit-noticia',
@@ -65,21 +66,25 @@ export class EditNoticiaComponent implements OnInit, ComponentCanDeactivate {
     return true
   }
 
-  editorConfig = {
+  editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
-    height: '10rem',
-    minHeight: '8rem',
+    height: '15rem',
+    minHeight: '10rem',
+    maxHeight: 'auto',
     width: '100%',
-    imageEndPoint: false,
-    translate: false,
-    placeholder: 'Informe a descrição!',
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strikeThrough'],
-      [],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
-      ['delete', 'removeFormat'],
-      ['paragraph', 'blockquote', 'removeBlockquote', 'orderedList', 'unorderedList']
+    minWidth: '0',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: "Descrição...",
+    translate: 'no',
+    sanitize: true,
+    outline: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['subscript', 'superscript'],
+      ['fontSize', 'textColor', 'backgroundColor', 'heading', 'fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo', 'toggleEditorMode']
     ]
   };
 

@@ -17,6 +17,7 @@ import { FileSnippet } from "./../../../web-components/common/file-uploader/File
 import { FileUploaderService } from "./../../../web-components/common/file-uploader/file-uploader.service"
 import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component';
 import { Ng2ImgMaxService } from 'ng2-img-max';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-create-sobre',
@@ -83,20 +84,25 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
     })
   }
 
-  editorConfig = {
+  editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
     height: '15rem',
     minHeight: '10rem',
+    maxHeight: 'auto',
     width: '100%',
-    imageEndPoint: false,
-    translate: false,
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strikeThrough'],
-      ['undo', 'redo'],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
-      ['delete', 'removeFormat'],
-      ['paragraph', 'blockquote', 'removeBlockquote', 'orderedList', 'unorderedList']
+    minWidth: '0',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: "Descrição...",
+    translate: 'no',
+    sanitize: true,
+    outline: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['subscript', 'superscript'],
+      ['fontSize', 'textColor', 'backgroundColor', 'heading', 'fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo', 'toggleEditorMode']
     ]
   };
 

@@ -15,6 +15,7 @@ import { FileSnippet } from 'src/app/web-components/common/file-uploader/FileSni
 import { FileUploaderService } from "./../../../web-components/common/file-uploader/file-uploader.service"
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component';
+import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'app-atualizar-sobre',
@@ -45,23 +46,27 @@ export class AtualizarSobreComponent implements OnInit, ComponentCanDeactivate {
     }
   }
 
-  editorConfig = {
+  editorConfig: AngularEditorConfig = {
     editable: true,
     spellcheck: false,
     height: '15rem',
     minHeight: '10rem',
+    maxHeight: 'auto',
     width: '100%',
-    imageEndPoint: false,
-    translate: false,
-    placeholder: 'Informe a descrição!',
-    toolbar: [
-      ['bold', 'italic', 'underline', 'strikeThrough'],
-      [],
-      ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull', 'indent', 'outdent'],
-      ['delete', 'removeFormat'],
-      ['paragraph', 'blockquote', 'removeBlockquote', 'orderedList', 'unorderedList']
+    minWidth: '0',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: "Descrição...",
+    translate: 'no',
+    sanitize: true,
+    outline: true,
+    toolbarPosition: 'top',
+    toolbarHiddenButtons: [
+      ['subscript', 'superscript'],
+      ['fontSize', 'textColor', 'backgroundColor', 'heading', 'fontName'],
+      ['link', 'unlink', 'insertImage', 'insertVideo', 'toggleEditorMode']
     ]
-  }
+  };
 
   constructor(
     private _router: Router,

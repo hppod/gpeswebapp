@@ -22,7 +22,7 @@
           </div>
           <div class="form-group col-sm-12">
             <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
-            <app-ngx-editor [config]="editorConfig" name="descricao" formControlName="descricao"></app-ngx-editor>
+            <angular-editor [config]="editorConfig" name="descricao" formControlName="descricao"></angular-editor>
             <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
               <div *ngIf="descricao.errors.required">
                 Descrição é obrigatório.
