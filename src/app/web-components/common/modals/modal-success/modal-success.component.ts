@@ -1,5 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { LottieAnimationViewModule } from "ng-lottie"
+import { AnimationOptions } from "ngx-lottie"
 import { BsModalRef } from 'ngx-bootstrap/modal'
 
 @Component({
@@ -11,17 +11,23 @@ export class ModalSuccessComponent {
 
   @Input() message: string
   @Input() withFooter: boolean = false
+  @Input() condition: any
   @Output() action = new EventEmitter
-  lottieConfig: any
 
-  constructor(private _bsModalRef: BsModalRef) {
-    LottieAnimationViewModule.forRoot()
-    this.lottieConfig = {
-      path: 'assets/animations/success.json',
-      autoplay: true,
-      loop: false
-    }
+  options: AnimationOptions = {
+    path: 'assets/animations/success.json',
+    autoplay: true,
+    loop: false
   }
+
+  styles: Partial<CSSStyleDeclaration> = {
+    display: 'block',
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+
+  constructor(private _bsModalRef: BsModalRef) { }
 
   close() {
     this._bsModalRef.hide()

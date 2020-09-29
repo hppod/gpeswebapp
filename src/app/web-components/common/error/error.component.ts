@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { LottieAnimationViewModule } from "ng-lottie"
+import { Component, OnInit, Input } from '@angular/core';
+import { AnimationOptions } from "ngx-lottie"
 
 @Component({
   selector: 'app-error',
@@ -8,16 +8,22 @@ import { LottieAnimationViewModule } from "ng-lottie"
 })
 export class ErrorComponent implements OnInit {
 
-  lottieConfig: any
+  @Input() condition: any
 
-  constructor() {
-    LottieAnimationViewModule.forRoot()
-    this.lottieConfig = {
-      path: 'assets/animations/error.json',
-      autoplay: true,
-      loop: false
-    }
+  options: AnimationOptions = {
+    path: 'assets/animations/error.json',
+    autoplay: true,
+    loop: false
   }
+
+  styles: Partial<CSSStyleDeclaration> = {
+    display: 'block',
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+
+  constructor() { }
 
   ngOnInit() {
   }

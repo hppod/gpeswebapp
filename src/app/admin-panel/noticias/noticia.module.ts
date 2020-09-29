@@ -4,7 +4,7 @@ import { RouterModule, Routes } from "@angular/router"
 import { FormsModule, ReactiveFormsModule } from "@angular/forms"
 import { ToastrModule } from "ngx-toastr"
 import { NgxPaginationModule } from "ngx-pagination"
-import { NgxEditorModule } from "ngx-editor"
+import { AngularEditorModule } from '@kolkov/angular-editor'
 import { ModalModule } from "ngx-bootstrap/modal"
 import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { BsDropdownModule } from "ngx-bootstrap/dropdown"
@@ -54,7 +54,7 @@ const ROUTES: Routes = [
         ToastrModule.forRoot({
             preventDuplicates: true
         }),
-        NgxEditorModule
+        AngularEditorModule
     ]
 })
 export class NoticiaModule { }

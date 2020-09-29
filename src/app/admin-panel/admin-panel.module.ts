@@ -7,7 +7,7 @@ import { ModalModule } from "ngx-bootstrap/modal"
 import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { OrderModule } from 'ngx-order-pipe'
 import { ToastrModule } from "ngx-toastr"
-import { NgxEditorModule } from "ngx-editor"
+import { AngularEditorModule } from '@kolkov/angular-editor'
 import { NgxChartsModule } from "@swimlane/ngx-charts"
 import { SharedModule } from "./../shared/shared.module"
 import { DragulaModule } from 'ng2-dragula'
@@ -34,7 +34,7 @@ import { AdminPanelRoutingModule } from "./admin-panel.routing"
         ToastrModule.forRoot({
             preventDuplicates: true
         }),
-        NgxEditorModule,
+        AngularEditorModule,
         SharedModule,
         NgxChartsModule,
         DragulaModule.forRoot()

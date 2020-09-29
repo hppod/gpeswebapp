@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { LottieAnimationViewModule } from "ng-lottie"
+import { LottieModule } from "ngx-lottie"
+import player from "lottie-web"
 import { PdfViewerModule } from "ng2-pdf-viewer"
 import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { Ng2ImgMaxModule } from "ng2-img-max"
@@ -31,17 +32,20 @@ import { ContatoService } from "./services/contato.service"
 import { TransparenciaService } from "./services/transparencia.service"
 import { UsuarioService } from "./services/usuario.service"
 import { DoacaoService } from "./services/doacao.service";
-import { ModalBoletoComponent } from "../web-components/common/modals/modal-boleto/modal-boleto.component";
 import { CardStatsComponent } from '../web-components/common/card-stats/card-stats.component'
 import { ModalUploadImagemComponent } from "../web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component";
 import { FileUploaderComponent } from '../web-components/common/file-uploader/file-uploader.component';
 import { ModalFileUploadComponent } from '../web-components/common/modals/modal-file-upload/modal-file-upload.component';
 import { ModalCreateCategoryComponent } from '../web-components/common/modals/modal-create-category/modal-create-category.component'
 
+export function playerFactory() {
+    return player
+}
+
 @NgModule({
     imports: [
         CommonModule,
-        LottieAnimationViewModule,
+        LottieModule.forRoot({ player: playerFactory }),
         PdfViewerModule,
         TooltipModule.forRoot(),
         Ng2ImgMaxModule,
@@ -56,7 +60,6 @@ import { ModalCreateCategoryComponent } from '../web-components/common/modals/mo
         ModalErrorComponent,
         ModalDocumentComponent,
         ModalSuccessComponent,
-        ModalBoletoComponent,
         ModalUploadImagemComponent,
         CardStatsComponent,
         NoSanitizeHtmlPipe,
@@ -79,7 +82,6 @@ import { ModalCreateCategoryComponent } from '../web-components/common/modals/mo
         ModalErrorComponent,
         ModalDocumentComponent,
         ModalSuccessComponent,
-        ModalBoletoComponent,
         CardStatsComponent,
         NoSanitizeHtmlPipe,
         StatusPipe,
@@ -95,13 +97,12 @@ import { ModalCreateCategoryComponent } from '../web-components/common/modals/mo
         ModalErrorComponent,
         ModalDocumentComponent,
         ModalSuccessComponent,
-        ModalBoletoComponent,
         ModalFileUploadComponent,
         ModalCreateCategoryComponent
     ]
 })
 export class SharedModule {
-    static forRoot(): ModuleWithProviders {
+    static forRoot(): ModuleWithProviders<SharedModule> {
         return {
             ngModule: SharedModule,
             providers: [

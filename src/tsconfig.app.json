@@ -7,5 +7,23 @@
   "exclude": [
     "test.ts",
     "**/*.spec.ts"
+  ],
+  "files": [
+    "./main.ts",
+    "./polyfills.ts",
+    "./app/admin-panel/analytics/analytics.module.ts",
+    "./app/web-app/sobre/sobre-web.module.ts",
+    "./app/web-app/portal-transparencia/transparencia-web.module.ts",
+    "./app/web-app/noticias/noticias-web.module.ts",
+    "./app/web-app/gpes/gpes-web.module.ts",
+    "./app/admin-panel/authentication/authentication.module.ts",
+    "./app/admin-panel/contato/contato.module.ts",
+    "./app/admin-panel/faq/faq.module.ts",
+    "./app/admin-panel/gpes/gpes.module.ts",
+    "./app/admin-panel/noticias/noticia.module.ts",
+    "./app/admin-panel/portal-transparencia/portal-transparencia.module.ts",
+    "./app/admin-panel/sobre/sobre.module.ts",
+    "./app/admin-panel/usuarios/usuario.module.ts",
+    "./app/web-app/faq/faq-web.module.ts"
   ]
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Renderer, ViewChild, ElementRef } from "@angular/core"
+import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/core"
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 import { Router } from "@angular/router"
 import { Subscription } from "rxjs"
@@ -49,7 +49,7 @@ export class NoticiasComponent implements OnInit {
   constructor(
     private _service: NoticiasService,
     private r: Router,
-    private render: Renderer,
+    private render: Renderer2,
     private fb: FormBuilder,
     private _analytics: GoogleAnalyticsService
   ) {
@@ -112,7 +112,7 @@ export class NoticiasComponent implements OnInit {
 
   setActiveMenuItem(event: any) {
     let oldClasses = event.target.getAttribute('class')
-    this.render.setElementAttribute(event.target, "class", `${oldClasses} active`)
+    this.render.setAttribute(event.target, "class", `${oldClasses} active`)
   }
 
   onClickCleanInputFieldsDateSearch() {
