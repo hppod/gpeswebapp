@@ -1,13 +1,13 @@
 import { NgModule } from "@angular/core"
 import { Routes, RouterModule } from "@angular/router"
 import { AuthGuard } from "./../shared/guards/auth.guard"
-import { DashboardComponent } from "./dashboard/dashboard.component"
+import { AnalyticsComponent } from "./analytics/analytics.component"
 
 export const AdminPanelRoutes: Routes = [
     {
         path: 'admin', children: [
-            { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-            { path: '', redirectTo: '/admin/dashboard', pathMatch: 'full' },
+            { path: 'analytics', component: AnalyticsComponent, canActivate: [AuthGuard] },
+            { path: '', redirectTo: '/admin/analytics', pathMatch: 'full' },
             { path: 'auth', loadChildren: './authentication/authentication.module#AuthModule' },
             {
                 path: 'faq', loadChildren: './faq/faq.module#FaqModule', canActivate: [AuthGuard]
@@ -28,7 +28,7 @@ export const AdminPanelRoutes: Routes = [
                 path: 'usuario', loadChildren: './usuarios/usuario.module#UsuarioModule', canActivate: [AuthGuard]
             },
             { path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] },
-            { path: 'analytics', loadChildren: './analytics/analytics.module#AnalyticsModule', canActivate: [AuthGuard] }
+            // { path: 'analytics', loadChildren: './analytics/analytics.module#AnalyticsModule', canActivate: [AuthGuard] }
         ]
     }
 ]
