@@ -31,7 +31,6 @@ import { NoticiasService } from "./services/noticias.service"
 import { ContatoService } from "./services/contato.service"
 import { TransparenciaService } from "./services/transparencia.service"
 import { UsuarioService } from "./services/usuario.service"
-import { DoacaoService } from "./services/doacao.service";
 import { CardStatsComponent } from '../web-components/common/card-stats/card-stats.component'
 import { ModalUploadImagemComponent } from "../web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component";
 import { FileUploaderComponent } from '../web-components/common/file-uploader/file-uploader.component';
@@ -112,8 +111,7 @@ export class SharedModule {
                 NoticiasService,
                 ContatoService,
                 TransparenciaService,
-                UsuarioService,
-                DoacaoService
+                UsuarioService
             ]
         }
     }

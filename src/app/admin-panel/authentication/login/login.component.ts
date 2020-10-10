@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
     if (this._service.currentUserValue && !this.isAdmin) {
       this._router.navigate(['/admin/sobre'])
     } else {
-      this._router.navigate(['/admin/dashboard'])
+      this._router.navigate(['/admin/analytics'])
     }
   }
 
@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
     setLastUrl(this._router.url)
 
     if (!this.isAdmin) {
-      this.returnUrl = this._activatedRoute.snapshot.queryParams['returnUrl'] || '/admin/dashboard'
+      this.returnUrl = this._activatedRoute.snapshot.queryParams['returnUrl'] || '/admin/analytics'
     } else {
       this.returnUrl = this._activatedRoute.snapshot.queryParams['returnUrl'] || '/admin/sobre'
     }
