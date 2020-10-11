@@ -20,6 +20,13 @@ export class ModalLoadingComponent {
     loop: false
   }
 
+  styles: Partial<CSSStyleDeclaration> = {
+    display: 'block',
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginRight: 'auto'
+  }
+
   constructor(private _bsModalRef: BsModalRef) { }
 
   close() {
