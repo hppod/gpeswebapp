@@ -10,13 +10,12 @@ export class ProcessoSeletivoService {
   constructor(private http: HttpClient) { }
 
   params = new HttpParams()
-  deleteParams = new HttpParams()
 
-  getSobreWithParams(modifier: string): Observable<HttpResponse<ProcessoSeletivo[]>> {
+  getProcessoSeletivoWithParams(modifier: string): Observable<HttpResponse<ProcessoSeletivo[]>> {
     return this.http.get<ProcessoSeletivo[]>(`${GPESWebApi}/${modifier}/processoSeletivo/listar-todos`, { params: this.params, observe: 'response' });
   }
 
-  postSobre(formData) {
+  postProcessoSeletivo(formData) {
     return this.http.post<any>(`${GPESWebApi}/authenticated/processoSeletivo/criar/`, formData, { reportProgress: true, observe: 'events' })
   }
 
