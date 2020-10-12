@@ -5,7 +5,7 @@ import { Subscription } from "rxjs"
 import { ModalLoadingComponent } from "../../../../web-components/common/modals/modal-loading/modal-loading.component"
 import { ModalErrorComponent } from "../../../../web-components/common/modals/modal-error/modal-error.component"
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal"
-import { AsiloWebApi } from "../../../../app.api"
+import { GPESWebApi } from "../../../../app.api"
 import { ModalDocumentComponent } from "../../../../web-components/common/modals/modal-document/modal-document.component"
 
 @Component({
@@ -53,7 +53,7 @@ export class DocumentsCollapseComponent {
 
   /**Função que abre um modal exibindo a visualização do documento escolhido. */
   openModalWithDocument() {
-    const file = `${AsiloWebApi}/public/transparencia/download/${this.document['file']['filename']}`
+    const file = `${GPESWebApi}/public/transparencia/download/${this.document['file']['filename']}`
     const initialState = { documentPdf: file }
     this.modalRef = this._modal.show(ModalDocumentComponent, { initialState })
   }

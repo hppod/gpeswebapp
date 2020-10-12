@@ -5,7 +5,7 @@ import { NoticiasService } from "../../../shared/services/noticias.service"
 import { Noticia } from "../../../shared/models/noticia.model"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
 import { __event_noticia, __category_institucional, __action_noticia } from "../../../shared/helpers/analytics.consts"
-import { AsiloWebApi } from "src/app/app.api"
+import { GPESWebApi } from "src/app/app.api"
 
 @Component({
   selector: 'app-noticia',
@@ -70,10 +70,10 @@ export class NoticiaComponent implements OnInit, OnDestroy {
     let index = this.noticia['mainfile_index']
     this.hasImage = this.noticia['file'].length > 0
     this.hasMultipleImages = this.noticia['file'].length > 1
-    this.source = `${AsiloWebApi}/public/download/thumbnail_mainpost/${this.noticia['file'][index].filename}`
+    this.source = `${GPESWebApi}/public/download/thumbnail_mainpost/${this.noticia['file'][index].filename}`
 
     for (let index = 0; index < this.noticia.file.length; index++) {
-      this.noticia.file[index].src = `${AsiloWebApi}/public/download/full_size/${this.noticia['file'][index].filename}`
+      this.noticia.file[index].src = `${GPESWebApi}/public/download/full_size/${this.noticia['file'][index].filename}`
     }
   }
 

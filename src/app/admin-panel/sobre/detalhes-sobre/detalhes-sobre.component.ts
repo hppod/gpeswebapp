@@ -8,7 +8,7 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 import { ModalLoadingComponent } from 'src/app/web-components/common/modals/modal-loading/modal-loading.component';
-import { AsiloWebApi } from 'src/app/app.api';
+import { GPESWebApi } from 'src/app/app.api';
 import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-detalhes-sobre',
@@ -73,7 +73,7 @@ export class DetalhesSobreComponent implements OnInit {
       this.messageApi = response.body['message']
       this.sobre = response.body['data']
       if (this.sobre['file'] != null) {
-        this.file = `${AsiloWebApi}/public/download/thumbnail_gallery/${this.sobre['file']['filename']}`
+        this.file = `${GPESWebApi}/public/download/thumbnail_gallery/${this.sobre['file']['filename']}`
         this.hasImage = true
       }
       this.isLoading = false

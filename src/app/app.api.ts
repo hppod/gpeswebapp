@@ -1,3 +1,3 @@
 import { environment } from "./../environments/environment"
 
-export const AsiloWebApi = environment.apiUrl
+export const GPESWebApi = environment.apiUrl
