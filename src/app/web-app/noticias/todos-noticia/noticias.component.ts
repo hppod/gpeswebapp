@@ -85,7 +85,7 @@ export class NoticiasComponent implements OnInit {
 
   getNoticiasWithParams() {
     this.isLoading = true
-    this.httpReq = this._service.getEventoWithParams('public', 'tmb_cd').subscribe(response => {
+    this.httpReq = this._service.getEventoWithParams('public').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {

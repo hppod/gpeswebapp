@@ -39,7 +39,7 @@ export class EventosComponent implements OnInit, OnDestroy {
       param: 'titulo'
     },
     {
-      option: 'Data Publicação',
+      option: 'Data do Evento',
       param: 'date'
     }
   ]
@@ -74,7 +74,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('page', getLastPage())
     this._service.params = this._service.params.set('limit', '10')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   ngOnDestroy() {
@@ -88,9 +88,9 @@ export class EventosComponent implements OnInit, OnDestroy {
     return this._auth.isAdmin
   }
 
-  getNoticiasWithParams() {
+  getEventosWithParams() {
     this.isLoading = true
-    this.httpReq = this._service.getEventoWithParams('authenticated', 'tmb_cd').subscribe(response => {
+    this.httpReq = this._service.getEventoWithParams('authenticated').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
@@ -112,7 +112,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     this.noticias = null
     scrollPageToTop(page)
     this._service.params = this._service.params.set('page', page.toString())
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   onClickSortTable(item: any) {
@@ -124,7 +124,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     } else {
       this._service.params = this._service.params.set('valueSort', 'descending')
     }
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   showEllipsisInTheText(text: string, limit: number): boolean {
@@ -139,11 +139,11 @@ export class EventosComponent implements OnInit, OnDestroy {
         this.modalRef = this.modal.show(ModalLoadingComponent, this.configLoadingModal)
         this._service.deleteNoticia(id).subscribe(response => {
           this._service.params = this._service.params.set('page', '1')
-          this.getNoticiasWithParams()
+          this.getEventosWithParams()
           this.modalRef.hide()
           this.showToastrSuccess()
         }, err => {
-          this.getNoticiasWithParams()
+          this.getEventosWithParams()
           this.modalRef.hide()
           this.showToastrError()
         })
