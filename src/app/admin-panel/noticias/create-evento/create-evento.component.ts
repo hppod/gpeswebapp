@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewEncapsulation, HostListener } from '@angular/core';
 import { EventosService } from 'src/app/shared/services/eventos.service';
-import { NoticiaValidator } from "../../../shared/validations/noticia.validator"
+import { EventoValidator } from "../../../shared/validations/evento.validator"
 import { Router } from '@angular/router';
 import { ModalDialogComponent } from "../../../web-components/common/modals/modal-dialog/modal-dialog.component"
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
 import { Ng2ImgMaxService } from 'ng2-img-max';
 import { toResponseBody } from 'src/app/shared/functions/to-response-body.function';
@@ -22,7 +22,9 @@ import { AngularEditorConfig } from '@kolkov/angular-editor';
   styleUrls: ['./create-evento.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
+export class CreateEventoComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+
+  private httpReq: Subscription
 
   public eventoForm: FormGroup
   modalRef: BsModalRef;
@@ -38,7 +40,7 @@ export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
     private _modal: BsModalService,
     private router: Router,
     private _toastr: ToastrService,
-    private _unique: NoticiaValidator,
+    private _unique: EventoValidator,
     private ng2ImgMax: Ng2ImgMaxService,
     private uploaderService: FileUploaderService
   ) { }
@@ -48,11 +50,18 @@ export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
     this.eventoForm = this.formBuilder.group({
       titulo: this.formBuilder.control('', [Validators.required], this._unique.checkUniqueTitulo()),
       descricao: this.formBuilder.control('', [Validators.required]),
-      files: [''],
-      imagem: [''],
-      status: this.formBuilder.control(true),
-      imagemPrincipal: this.formBuilder.control(null)
+      date: this.formBuilder.control('', [Validators.required])
+      // files: [''],
+      // imagem: [''],
+      // status: this.formBuilder.control(true),
+      // imagemPrincipal: this.formBuilder.control(null)
     })
+  }
+
+  ngOnDestroy(): void {
+    if (this.httpReq) {
+      this.httpReq.unsubscribe()
+    }
   }
 
   @HostListener('window:beforeunload')
@@ -107,25 +116,26 @@ export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
     }
   }
 
-  postEvento(): void {
+  addNewEvento(): void {
 
     this.modalUpload = this._modal.show(ModalUploadImagemComponent)
 
     this.setFiles()
     this.resize()
 
-    if (this.Files.length > 0) {
-      this.blobFiles.forEach(img => {
-        this.form.append("imagem", img, img.name);
-      })
-    }
+    // if (this.Files.length > 0) {
+    //   this.blobFiles.forEach(img => {
+    //     this.form.append("imagem", img, img.name);
+    //   })
+    // }
 
-    this.eventoForm.value.imagemPrincipal = this.blobFiles[this.uploaderService.mainFile].name
+    // this.eventoForm.value.imagemPrincipal = this.blobFiles[this.uploaderService.mainFile].name
 
     this.form.append("titulo", this.eventoForm.value.titulo);
     this.form.append("descricao", this.eventoForm.value.descricao);
-    this.form.append("imagemPrincipal", this.eventoForm.value.imagemPrincipal);
-    this.form.append("mainfile_index", this.uploaderService.mainFile.toString())
+    this.form.append("date", this.eventoForm.value.date);
+    // this.form.append("imagemPrincipal", this.eventoForm.value.imagemPrincipal);
+    // this.form.append("mainfile_index", this.uploaderService.mainFile.toString())
 
     this.eventoService.postEvento(this.form).pipe(
       toResponseBody()
@@ -142,26 +152,38 @@ export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
     })
   }
 
+  postEvento() {    
+    this.httpReq = this.eventoService.createNewEvento(this.eventoForm.value).subscribe(response => {
+      this.eventoForm.reset()    
+      this.showToastrSuccess()
+      this.router.navigate(['/admin/eventos'])
+    }, err => {
+      this.eventoForm.reset()      
+      this.showToastrError()
+      this.router.navigate(['/admin/eventos'])
+    })
+  }
+
   canCancel() {
-    const initialState = { message: "Deseja cancelar a inserção da notícia atual?" }
+    const initialState = { message: "Deseja cancelar a inserção do evento atual?" }
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
-        this.router.navigate(['/admin/noticias'])
+        this.router.navigate(['/admin/eventos'])
         this.eventoForm.reset()
       }
     })
   }
 
   showToastrSuccess() {
-    this._toastr.success('A notícia foi adicionada com sucesso', null, {
+    this._toastr.success('O evento foi adicionado com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
   }
 
   showToastrError() {
-    this._toastr.error('Houve um erro ao adicionar a notícia. Tente novamente.', null, {
+    this._toastr.error('Houve um erro ao adicionar o evento. Tente novamente.', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
@@ -170,5 +192,6 @@ export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
   /**Getters */
   get titulo() { return this.eventoForm.get('titulo') }
   get descricao() { return this.eventoForm.get('descricao') }
+  get date() { return this.eventoForm.get('date') }
   get imagemPrincipal() { return this.eventoForm.get('imagemPrincipal') }
 }

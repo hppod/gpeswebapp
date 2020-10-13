@@ -19,7 +19,7 @@
                             <div *ngIf="titulo.errors.required">
                                 Título é obrigatório.
                             </div>
-                            <div *ngIf="titulo.errors.noticiaTituloAlreadyExists">
+                            <div *ngIf="titulo.errors.eventoTituloAlreadyExists">
                                 Já existe um registro com esse título. Escolha outro título.
                             </div>
                         </small>
@@ -35,6 +35,12 @@
                             Descrição é obrigatório.
                         </div>
                     </small>
+                </div>
+                <div class="form-row">
+                    <div class="form-group-col-sm-12">
+                        <label for="data" class="form-control-label">Data do Evento <span class="text-danger">*</span></label>
+                        <input type="date" name="data" class="form-control" formControlName="date">
+                    </div>
                 </div>
                 <app-file-uploader [fileAccept]="'images'"></app-file-uploader>
                 <br>

@@ -26,10 +26,10 @@ export class ValidatorService {
     }
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/validators/unique/noticia/titulo”. A requisição possui um parâmetro obrigatório (title). */
-    checkUniqueNoticiaTitulo(titulo: string) {
+    checkUniqueEventoTitulo(titulo: string) {
         let params = new HttpParams()
         params = params.append('title', titulo)
-        return this.http.get<any>(`${AsiloWebApi}/authenticated/validators/unique/noticia/titulo`, { params: params })
+        return this.http.get<any>(`${AsiloWebApi}/authenticated/validators/unique/evento/titulo`, { params: params })
     }
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/validators/unique/contato/nome”. A requisição possui um parâmetro obrigatório (name). */
