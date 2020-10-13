@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NoticiasService } from '../../../shared/services/noticias.service';
+import { EventosService } from '../../../shared/services/eventos.service';
 import { AuthenticationService } from "../../../shared/services/authentication.service"
 import { Router } from '@angular/router';
-import { Noticia } from 'src/app/shared/models/noticia.model';
+import { Evento } from 'src/app/shared/models/evento.model';
 import { Subscription } from 'rxjs';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
@@ -20,7 +20,7 @@ export class EventosComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
-  noticias: Noticia[]
+  noticias: Evento[]
 
   isLoading: boolean = false
   messageApi: string
@@ -29,7 +29,7 @@ export class EventosComponent implements OnInit, OnDestroy {
   total: number
   limit: number
   sortedCollection: any[];
-  collection: Noticia[]
+  collection: Evento[]
   sortSelectedItem: any
   modalRef: BsModalRef
 
@@ -54,7 +54,7 @@ export class EventosComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private _service: NoticiasService,
+    private _service: EventosService,
     private r: Router,
     private modal: BsModalService,
     private toastr: ToastrService,

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { Noticia } from 'src/app/shared/models/noticia.model';
+import { Evento } from 'src/app/shared/models/evento.model';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { NoticiasService } from 'src/app/shared/services/noticias.service';
+import { EventosService } from 'src/app/shared/services/eventos.service';
 import { AuthenticationService } from "./../../../shared/services/authentication.service"
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,7 +19,7 @@ export class VisualizarNoticiaComponent implements OnInit {
 
   private httpReq: Subscription
 
-  noticia: Noticia
+  noticia: Evento
   imagens: any
   modalRef: BsModalRef
   statusResponse: number
@@ -29,7 +29,7 @@ export class VisualizarNoticiaComponent implements OnInit {
   hasImages: boolean = false
 
   constructor(
-    private _service: NoticiasService,
+    private _service: EventosService,
     private _activatedRoute: ActivatedRoute,
     private _auth: AuthenticationService,
     private modal: BsModalService,
@@ -72,11 +72,11 @@ export class VisualizarNoticiaComponent implements OnInit {
       this.messageApi = response.body['message']
       this.noticia = response.body['data']
       this.isLoading = false
-      this.imagens = this.noticia.file
-      if (this.noticia.file.length > 0) {
-        this.hasImages = true
-      }
-      this.bringUrlImage()
+      // this.imagens = this.noticia.file
+      // if (this.noticia.file.length > 0) {
+      //   this.hasImages = true
+      // }
+      // this.bringUrlImage()
     }, err => {
       this.messageApi = err.error['message']
       this.isLoading = false

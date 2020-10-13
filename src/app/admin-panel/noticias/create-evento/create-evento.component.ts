@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, HostListener } from '@angular/core';
-import { NoticiasService } from 'src/app/shared/services/noticias.service';
-import { NoticiaValidator } from "./../../../shared/validations/noticia.validator"
+import { EventosService } from 'src/app/shared/services/eventos.service';
+import { NoticiaValidator } from "../../../shared/validations/noticia.validator"
 import { Router } from '@angular/router';
-import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
+import { ModalDialogComponent } from "../../../web-components/common/modals/modal-dialog/modal-dialog.component"
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -17,14 +17,14 @@ import { FileUploaderService } from 'src/app/web-components/common/file-uploader
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
-  selector: 'app-create-noticia',
-  templateUrl: './create-noticia.component.html',
-  styleUrls: ['./create-noticia.component.css'],
+  selector: 'app-create-evento',
+  templateUrl: './create-evento.component.html',
+  styleUrls: ['./create-evento.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
+export class CreateEventoComponent implements OnInit, ComponentCanDeactivate {
 
-  public noticiaForm: FormGroup
+  public eventoForm: FormGroup
   modalRef: BsModalRef;
   modalUpload: BsModalRef;
   imagem: any = new Array();
@@ -33,7 +33,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
   blobFiles: File[] = new Array()
 
   constructor(
-    public noticiaService: NoticiasService,
+    public eventoService: EventosService,
     private formBuilder: FormBuilder,
     private _modal: BsModalService,
     private router: Router,
@@ -45,7 +45,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
 
   ngOnInit(): void {
     setLastUrl(this.router.url)
-    this.noticiaForm = this.formBuilder.group({
+    this.eventoForm = this.formBuilder.group({
       titulo: this.formBuilder.control('', [Validators.required], this._unique.checkUniqueTitulo()),
       descricao: this.formBuilder.control('', [Validators.required]),
       files: [''],
@@ -57,7 +57,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    if (this.noticiaForm.dirty) {
+    if (this.eventoForm.dirty) {
       return false
     }
     return true
@@ -107,7 +107,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
     }
   }
 
-  postNoticia(): void {
+  postEvento(): void {
 
     this.modalUpload = this._modal.show(ModalUploadImagemComponent)
 
@@ -120,22 +120,22 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
       })
     }
 
-    this.noticiaForm.value.imagemPrincipal = this.blobFiles[this.uploaderService.mainFile].name
+    this.eventoForm.value.imagemPrincipal = this.blobFiles[this.uploaderService.mainFile].name
 
-    this.form.append("titulo", this.noticiaForm.value.titulo);
-    this.form.append("descricao", this.noticiaForm.value.descricao);
-    this.form.append("imagemPrincipal", this.noticiaForm.value.imagemPrincipal);
+    this.form.append("titulo", this.eventoForm.value.titulo);
+    this.form.append("descricao", this.eventoForm.value.descricao);
+    this.form.append("imagemPrincipal", this.eventoForm.value.imagemPrincipal);
     this.form.append("mainfile_index", this.uploaderService.mainFile.toString())
 
-    this.noticiaService.postNoticia(this.form).pipe(
+    this.eventoService.postEvento(this.form).pipe(
       toResponseBody()
     ).subscribe(res => {
-      this.noticiaForm.reset()
+      this.eventoForm.reset()
       this.router.navigate(['/admin/noticias'])
       this.modalUpload.hide()
       this.showToastrSuccess()
     }, err => {
-      this.noticiaForm.reset()
+      this.eventoForm.reset()
       this.router.navigate(['/admin/noticias'])
       this.modalUpload.hide()
       this.showToastrError()
@@ -148,7 +148,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.router.navigate(['/admin/noticias'])
-        this.noticiaForm.reset()
+        this.eventoForm.reset()
       }
     })
   }
@@ -168,7 +168,7 @@ export class CreateNoticiaComponent implements OnInit, ComponentCanDeactivate {
   }
 
   /**Getters */
-  get titulo() { return this.noticiaForm.get('titulo') }
-  get descricao() { return this.noticiaForm.get('descricao') }
-  get imagemPrincipal() { return this.noticiaForm.get('imagemPrincipal') }
+  get titulo() { return this.eventoForm.get('titulo') }
+  get descricao() { return this.eventoForm.get('descricao') }
+  get imagemPrincipal() { return this.eventoForm.get('imagemPrincipal') }
 }

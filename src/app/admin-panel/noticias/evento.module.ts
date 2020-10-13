@@ -12,7 +12,7 @@ import { AdminPanelModule } from "../admin-panel.module"
 import { SharedModule } from "../../shared/shared.module"
 
 import { EventosComponent } from "./todos-evento/eventos.component"
-import { CreateNoticiaComponent } from "./create-noticia/create-noticia.component"
+import { CreateEventoComponent } from "./create-evento/create-evento.component"
 import { VisualizarNoticiaComponent } from "./visualizar-noticia/visualizar-noticia.component"
 import { EditNoticiaComponent } from "./edit-noticia/edit-noticia.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
@@ -20,20 +20,20 @@ import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard
 const ROUTES: Routes = [
     { path: '', component: EventosComponent },
     { path: 'detalhes/:title', component: VisualizarNoticiaComponent },
-    { path: 'create', component: CreateNoticiaComponent, canDeactivate: [PendingChangesGuard] },
+    { path: 'create', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: EditNoticiaComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
         EventosComponent,
-        CreateNoticiaComponent,
+        CreateEventoComponent,
         VisualizarNoticiaComponent,
         EditNoticiaComponent
     ],
     exports: [
         EventosComponent,
-        CreateNoticiaComponent,
+        CreateEventoComponent,
         VisualizarNoticiaComponent,
         EditNoticiaComponent
     ],
