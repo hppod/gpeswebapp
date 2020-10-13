@@ -2,14 +2,14 @@
     <div>
         <div class="row">
             <div class="col-sm-6 positionTitle">
-                <h5>Adicionar notícia</h5>
+                <h5>Adicionar evento</h5>
             </div>
             <p class="col-sm-6 positionRequired">
                 * Campos obrigatórios
             </p>
         </div>
         <div>
-            <form [formGroup]="noticiaForm" novalidates>
+            <form [formGroup]="eventoForm" novalidates>
                 <div class="form-row">
                     <div class="form-group col-sm-12">
                         <label for="titulo" class="form-control-label">Título <span class="text-danger">*</span></label>
@@ -40,10 +40,10 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-12 positionButtons">
-                        <button type="button" *ngIf="noticiaForm.dirty" class="btn btn-outline-danger btn-sm"
+                        <button type="button" *ngIf="eventoForm.dirty" class="btn btn-outline-danger btn-sm"
                             (click)="canCancel()">Cancelar</button>
-                        <button type="button" class="btn btn-outline-success btn-sm" [disabled]="noticiaForm.invalid"
-                            (click)="postNoticia()">Adicionar
+                        <button type="button" class="btn btn-outline-success btn-sm" [disabled]="eventoForm.invalid"
+                            (click)="postEvento()">Adicionar
                         </button>
                     </div>
                 </div>

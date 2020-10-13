@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from "@angular/core"
 import { HomeService } from "../../shared/services/home.service"
-import { Noticia } from "../../shared/models/noticia.model"
+import { Evento } from "../../shared/models/evento.model"
 import { Subscription } from "rxjs"
 import { GoogleAnalyticsService } from "./../../shared/services/google-analytics.service"
 import { __event_home, __category_institucional, __action_home } from "./../../shared/helpers/analytics.consts"
@@ -14,7 +14,7 @@ import { setLastUrl } from "src/app/shared/functions/last-pagination"
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public noticias: Noticia[];
+  public noticias: Evento[];
 
   private components: Subscription
 
@@ -49,22 +49,22 @@ export class HomeComponent implements OnInit, OnDestroy {
 
     this.components = this._service.getNoticiasThreeResults('public', 'tmb_ch').subscribe(result => {
       this.noticias = result.body['data'];
-      this.insertUrlImageNoticia()
+      // this.insertUrlImageNoticia()
     },
       error => console.log("Erro ao carregar as notícias: ", error)
     )
   }
 
-  insertUrlImageNoticia() {
-    this.noticias.forEach(element => {
-      if (element['sources'].length > 0) {
-        let index = element['mainfile_index']
-        element.imagemPrincipal = element['sources'][index]['src']
-      } else {
-        element.imagemPrincipal = 'assets/img/noticias-card/square_red.png'
-      }
-    })
-  }
+  // insertUrlImageNoticia() {
+  //   this.noticias.forEach(element => {
+  //     if (element['sources'].length > 0) {
+  //       let index = element['mainfile_index']
+  //       element.imagemPrincipal = element['sources'][index]['src']
+  //     } else {
+  //       element.imagemPrincipal = 'assets/img/noticias-card/square_red.png'
+  //     }
+  //   })
+  // }
 
   showEllipsisInTheText(text: string, limit: number): boolean {
     return text.length > limit;

@@ -27,7 +27,7 @@ import { DragDropDirective } from "./directives/drag-drop.directive"
 import { HomeService } from "./services/home.service"
 import { SobreService } from "./services/sobre.service"
 import { FAQService } from "./services/faq.service"
-import { NoticiasService } from "./services/noticias.service"
+import { EventosService } from "./services/eventos.service"
 import { ContatoService } from "./services/contato.service"
 import { TransparenciaService } from "./services/transparencia.service"
 import { UsuarioService } from "./services/usuario.service"
@@ -108,7 +108,7 @@ export class SharedModule {
                 HomeService,
                 SobreService,
                 FAQService,
-                NoticiasService,
+                EventosService,
                 ContatoService,
                 TransparenciaService,
                 UsuarioService

@@ -2,8 +2,8 @@ import { Component, OnInit, Renderer2, ViewChild, ElementRef } from "@angular/co
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 import { Router } from "@angular/router"
 import { Subscription } from "rxjs"
-import { NoticiasService } from "../../../shared/services/noticias.service"
-import { Noticia } from "../../../shared/models/noticia.model"
+import { EventosService } from "../../../shared/services/eventos.service"
+import { Evento } from "../../../shared/models/evento.model"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
 import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
 import { __event_noticias, __category_institucional, __action_noticias } from "../../../shared/helpers/analytics.consts"
@@ -21,7 +21,7 @@ export class NoticiasComponent implements OnInit {
   private httpReq: Subscription
 
   //Dataset
-  noticias: Noticia[]
+  noticias: Evento[]
 
   //Forms Set
   keywordFilterForm: FormGroup
@@ -47,7 +47,7 @@ export class NoticiasComponent implements OnInit {
   ]
 
   constructor(
-    private _service: NoticiasService,
+    private _service: EventosService,
     private r: Router,
     private render: Renderer2,
     private fb: FormBuilder,
