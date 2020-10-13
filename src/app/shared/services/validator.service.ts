@@ -53,6 +53,12 @@ export class ValidatorService {
         return this.http.get<any>(`${GPESWebApi}/authenticated/validators/unique/categoria/nome`, { params: params })
     }
 
+    checkUniqueIntegranteNome(nome: string) {
+        let params = new HttpParams()
+        params = params.append('nome', nome)
+        return this.http.get<any>(`${GPESWebApi}/authenticated/validators/unique/integrantes/nome`, { params: params })
+    }
+
     /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/validators/unique/usuario/nome”. A requisição possui um parâmetro obrigatório (name). */
     checkUniqueUsuarioNome(nome: string) {
         let params = new HttpParams()
