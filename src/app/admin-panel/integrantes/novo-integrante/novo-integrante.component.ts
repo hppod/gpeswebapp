@@ -45,7 +45,7 @@ export class NovoIntegranteComponent implements OnInit {
   ngOnInit(): void {
     setLastUrl(this.router.url)
     this.integranteForm = this.builder.group({
-      nome: this.builder.control('',[Validators.required, Validators.maxLength(150)], this._unique.checkUniqueTitulo()),
+      nome: this.builder.control('', [Validators.required, Validators.maxLength(150)], this._unique.checkUniqueTitulo()),
       contato: this.builder.control(''),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
@@ -54,21 +54,21 @@ export class NovoIntegranteComponent implements OnInit {
     });
   }
 
-  postIntegrante(form: Integrantes){
-    if(this.integranteForm.value.dataFim != null){
+  postIntegrante(form: Integrantes) {
+    if (this.integranteForm.value.dataFim != null) {
       this.integranteForm.value.situacao = true
     }
     this.success = false
     this.httpReq = this.service.postIntegrantes(form)
-    .subscribe(response => {
-      this.integranteForm.reset()
-      this.showToastrSuccess()
-      this.router.navigate(['/admin/integrantes'])
-    }, err => {
-      this.integranteForm.reset()
-      this.showToastrError()
-      this.router.navigate(['/admin/integrantes'])
-    })
+      .subscribe(response => {
+        this.integranteForm.reset()
+        this.showToastrSuccess()
+        this.router.navigate(['/admin/integrantes'])
+      }, err => {
+        this.integranteForm.reset()
+        this.showToastrError()
+        this.router.navigate(['/admin/integrantes'])
+      })
   }
 
   canCancel() {
