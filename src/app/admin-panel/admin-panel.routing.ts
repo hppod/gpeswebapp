@@ -28,11 +28,13 @@ export const AdminPanelRoutes: Routes = [
                 path: 'usuario', loadChildren: './usuarios/usuario.module#UsuarioModule', canActivate: [AuthGuard]
             },
             { 
-                path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] 
-            },
-            { 
                 path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo.module#ProcessoSeletivoModule', canActivate: [AuthGuard] 
-            }
+            },
+            {
+                path: 'integrantes', loadChildren: './integrantes/integrantes.module#IntegrantesModule', canActivate: [AuthGuard]
+            },
+            { path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] },
+            // { path: 'analytics', loadChildren: './analytics/analytics.module#AnalyticsModule', canActivate: [AuthGuard] }
         ]
     }
 ]
