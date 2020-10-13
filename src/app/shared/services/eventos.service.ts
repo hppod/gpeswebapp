@@ -12,7 +12,7 @@ export class EventosService {
 
     params = new HttpParams()
 
-    getNoticiasWithParams(modifier: string, size: string): Observable<HttpResponse<Evento[]>> {
+    getEventoWithParams(modifier: string, size: string): Observable<HttpResponse<Evento[]>> {
         return this.http.get<Evento[]>(`${GPESWebApi}/${modifier}/noticia/listar-todos/${size}`, { params: this.params, observe: 'response' })
     }
 
