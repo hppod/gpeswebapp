@@ -1,4 +1,4 @@
-export interface Transparencia {
+export interface Publicacoes {
     titulo: string,
     descricao: string,
     categoria: string,
