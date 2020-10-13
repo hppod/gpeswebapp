@@ -4,8 +4,8 @@ import { HttpParams } from '@angular/common/http'
 import { Subscription } from "rxjs"
 import { ToastrService } from "ngx-toastr"
 import { BsModalRef, BsModalService, ModalOptions } from "ngx-bootstrap/modal"
-import { Transparencia } from "../../../shared/models/transparencia.model"
-import { TransparenciaService } from "../../../shared/services/transparencia.service"
+import { Publicacoes } from "../../../shared/models/publicacoes.model"
+import { PublicacoesService } from "../../../shared/services/publicacoes.service"
 import { AuthenticationService } from "./../../../shared/services/authentication.service"
 import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
 import { ModalLoadingComponent } from "./../../../web-components/common/modals/modal-loading/modal-loading.component"
@@ -15,17 +15,17 @@ import { Category } from "src/app/shared/models/category.model"
 import { CategoryService } from "src/app/shared/services/categories.service"
 
 @Component({
-  selector: 'app-portal-transparencia',
-  templateUrl: './portal-transparencia.component.html',
-  styleUrls: ['./portal-transparencia.component.css']
+  selector: 'app-publicacoes',
+  templateUrl: './publicacoes.component.html',
+  styleUrls: ['./publicacoes.component.css']
 })
-export class PortalTransparenciaComponent implements OnInit {
+export class PublicacoesComponent implements OnInit {
 
   //Request
   private httpReq: Subscription
 
   //Dataset
-  documents: Transparencia[]
+  documents: Publicacoes[]
 
   //Control Variables
   p: number = 1
@@ -70,7 +70,7 @@ export class PortalTransparenciaComponent implements OnInit {
 
   constructor(
     private r: Router,
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _auth: AuthenticationService,
     private _modal: BsModalService,
     private _toastr: ToastrService,
