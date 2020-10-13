@@ -25,6 +25,7 @@
     "./app/admin-panel/sobre/sobre.module.ts",
     "./app/admin-panel/usuarios/usuario.module.ts",
     "./app/web-app/faq/faq-web.module.ts",
-    "./app/admin-panel/processo-seletivo/processo-seletivo.module.ts"
+    "./app/admin-panel/processo-seletivo/processo-seletivo.module.ts",
+    "./app/admin-panel/integrantes/integrantes.module.ts"
   ]
 }
