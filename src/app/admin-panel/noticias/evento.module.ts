@@ -20,7 +20,7 @@ import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard
 const ROUTES: Routes = [
     { path: '', component: EventosComponent },
     { path: 'detalhes/:title', component: VisualizarNoticiaComponent },
-    { path: 'create', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
+    { path: 'criar', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: EditNoticiaComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
