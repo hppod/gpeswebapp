@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpClient, HttpParams, HttpResponse } from "@angular/common/http"
 import { Observable } from "rxjs"
-import { AsiloWebApi } from "./../../app.api"
+import { GPESWebApi } from "./../../app.api"
 
 @Injectable({
     providedIn: 'root'
@@ -24,7 +24,7 @@ export class AnalyticsService {
 
     /**Função que realiza a requisição do tipo GET ao endpoint “/authenticated/analytics/data”. A requisição pode receber parâmetros. */
     getDataFromAnalytics(): Observable<HttpResponse<any>> {
-        return this.http.get<any>(`${AsiloWebApi}/authenticated/analytics/data`, { params: this.params, observe: 'response' })
+        return this.http.get<any>(`${GPESWebApi}/authenticated/analytics/data`, { params: this.params, observe: 'response' })
     }
 
 }

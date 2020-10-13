@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 import { ModalLoadingComponent } from 'src/app/web-components/common/modals/modal-loading/modal-loading.component';
-import { AsiloWebApi } from 'src/app/app.api';
+import { GPESWebApi } from 'src/app/app.api';
 
 @Component({
   selector: 'app-visualizar-noticia',
@@ -86,7 +86,7 @@ export class VisualizarNoticiaComponent implements OnInit {
   bringUrlImage() {
     for (let index = 0; index < this.imagens.length; index++) {
       let imagem = this.imagens[index]
-      this.imagens[index].src = `${AsiloWebApi}/public/download/thumbnail_gallery/${imagem['filename']}`
+      this.imagens[index].src = `${GPESWebApi}/public/download/thumbnail_gallery/${imagem['filename']}`
     }
   }
 
