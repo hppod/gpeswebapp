@@ -8,17 +8,17 @@ import { AngularEditorModule } from '@kolkov/angular-editor'
 import { ModalModule } from "ngx-bootstrap/modal"
 import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { BsDropdownModule } from "ngx-bootstrap/dropdown"
-import { AdminPanelModule } from "./../admin-panel.module"
-import { SharedModule } from "./../../shared/shared.module"
+import { AdminPanelModule } from "../admin-panel.module"
+import { SharedModule } from "../../shared/shared.module"
 
-import { NoticiasComponent } from "./todos-noticia/noticias.component"
+import { EventosComponent } from "./todos-evento/eventos.component"
 import { CreateNoticiaComponent } from "./create-noticia/create-noticia.component"
 import { VisualizarNoticiaComponent } from "./visualizar-noticia/visualizar-noticia.component"
 import { EditNoticiaComponent } from "./edit-noticia/edit-noticia.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
-    { path: '', component: NoticiasComponent },
+    { path: '', component: EventosComponent },
     { path: 'detalhes/:title', component: VisualizarNoticiaComponent },
     { path: 'create', component: CreateNoticiaComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: EditNoticiaComponent, canDeactivate: [PendingChangesGuard] }
@@ -26,13 +26,13 @@ const ROUTES: Routes = [
 
 @NgModule({
     declarations: [
-        NoticiasComponent,
+        EventosComponent,
         CreateNoticiaComponent,
         VisualizarNoticiaComponent,
         EditNoticiaComponent
     ],
     exports: [
-        NoticiasComponent,
+        EventosComponent,
         CreateNoticiaComponent,
         VisualizarNoticiaComponent,
         EditNoticiaComponent
@@ -57,4 +57,4 @@ const ROUTES: Routes = [
         AngularEditorModule
     ]
 })
-export class NoticiaModule { }
+export class EventoModule { }

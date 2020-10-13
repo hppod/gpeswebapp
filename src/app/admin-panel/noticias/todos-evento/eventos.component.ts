@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NoticiasService } from './../../../shared/services/noticias.service';
-import { AuthenticationService } from "./../../../shared/services/authentication.service"
+import { NoticiasService } from '../../../shared/services/noticias.service';
+import { AuthenticationService } from "../../../shared/services/authentication.service"
 import { Router } from '@angular/router';
 import { Noticia } from 'src/app/shared/models/noticia.model';
 import { Subscription } from 'rxjs';
@@ -12,11 +12,11 @@ import { scrollPageToTop } from 'src/app/shared/functions/scroll-top';
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-eventos',
+  templateUrl: './eventos.component.html',
+  styleUrls: ['./eventos.component.css']
 })
-export class NoticiasComponent implements OnInit, OnDestroy {
+export class EventosComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
