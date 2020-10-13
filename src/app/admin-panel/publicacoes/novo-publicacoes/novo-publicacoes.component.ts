@@ -21,10 +21,10 @@ import { ModalCreateCategoryComponent } from "./../../../web-components/common/m
 
 @Component({
   selector: 'app-novo-transparencia',
-  templateUrl: './novo-transparencia.component.html',
-  styleUrls: ['./novo-transparencia.component.css']
+  templateUrl: './novo-publicacoes.component.html',
+  styleUrls: ['./novo-publicacoes.component.css']
 })
-export class NovoTransparenciaComponent implements OnInit, ComponentCanDeactivate {
+export class NovoPublicacoesComponent implements OnInit, ComponentCanDeactivate {
 
   private httpReq: Subscription
 
