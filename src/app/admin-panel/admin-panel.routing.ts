@@ -13,7 +13,7 @@ export const AdminPanelRoutes: Routes = [
                 path: 'faq', loadChildren: './faq/faq.module#FaqModule', canActivate: [AuthGuard]
             },
             {
-                path: 'transparencia', loadChildren: './portal-transparencia/portal-transparencia.module#TransparenciaModule', canActivate: [AuthGuard]
+                path: 'publicacoes', loadChildren: './publicacoes/publicacoes.module#PublicacoesModule', canActivate: [AuthGuard]
             },
             {
                 path: 'sobre', loadChildren: './sobre/sobre.module#SobreModule', canActivate: [AuthGuard]
@@ -27,11 +27,11 @@ export const AdminPanelRoutes: Routes = [
             {
                 path: 'usuario', loadChildren: './usuarios/usuario.module#UsuarioModule', canActivate: [AuthGuard]
             },
-            { 
-                path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] 
+            {
+                path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard]
             },
-            { 
-                path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo.module#ProcessoSeletivoModule', canActivate: [AuthGuard] 
+            {
+                path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo.module#ProcessoSeletivoModule', canActivate: [AuthGuard]
             }
         ]
     }

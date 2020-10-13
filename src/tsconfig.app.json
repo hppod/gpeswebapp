@@ -21,7 +21,7 @@
     "./app/admin-panel/faq/faq.module.ts",
     "./app/admin-panel/gpes/gpes.module.ts",
     "./app/admin-panel/noticias/noticia.module.ts",
-    "./app/admin-panel/portal-transparencia/portal-transparencia.module.ts",
+    "./app/admin-panel/publicacoes/publicacoes.module.ts",
     "./app/admin-panel/sobre/sobre.module.ts",
     "./app/admin-panel/usuarios/usuario.module.ts",
     "./app/web-app/faq/faq-web.module.ts",
