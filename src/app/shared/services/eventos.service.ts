@@ -12,8 +12,9 @@ export class EventosService {
 
     params = new HttpParams()
 
-    getEventoWithParams(modifier: string, size: string): Observable<HttpResponse<Evento[]>> {
-        return this.http.get<Evento[]>(`${AsiloWebApi}/${modifier}/noticia/listar-todos/${size}`, { params: this.params, observe: 'response' })
+    getEventoWithParams(modifier: string): Observable<HttpResponse<Evento[]>> {
+        //return this.http.get<Evento[]>(`${AsiloWebApi}/${modifier}/noticia/listar-todos/${size}`, { params: this.params, observe: 'response' })
+        return this.http.get<Evento[]>(`${AsiloWebApi}/${modifier}/eventos/listar-todos`, { params: this.params, observe: 'response' })
     }
 
     getNoticiaByTitle(title: string, modifier: string): Observable<HttpResponse<Evento>> {
@@ -30,6 +31,10 @@ export class EventosService {
 
     getFilesByTitle(size: string, title: string): Observable<HttpResponse<FileSnippet>> {
         return this.http.get<FileSnippet>(`${AsiloWebApi}/authenticated/noticia/getfiles/${size}/${title}`, { observe: 'response' })
+    }
+
+    createNewEvento(body: Evento): Observable<HttpResponse<Evento>> {
+        return this.http.post<Evento>(`${AsiloWebApi}/authenticated/eventos/criar`, body, { observe: 'response' })
     }
 
     postEvento(formData: FormData) {
