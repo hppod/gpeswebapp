@@ -42,19 +42,19 @@ const ROUTES: Routes = [
     ],
     imports: [
         AdminPanelModule,
-        CommonModule,
-        SharedModule,
-        RouterModule.forChild(ROUTES),
-        NgxPaginationModule,
-        BsDropdownModule.forRoot(),
-        ModalModule.forRoot(),
-        TooltipModule.forRoot(),
-        FormsModule,
-        ReactiveFormsModule,
-        ToastrModule.forRoot({
-            preventDuplicates: true
-        }),
-        AngularEditorModule
+      CommonModule,
+      SharedModule,
+      RouterModule.forChild(ROUTES),
+      NgxPaginationModule,
+      BsDropdownModule.forRoot(),
+      ModalModule.forRoot(),
+      TooltipModule.forRoot(),
+      FormsModule,
+      ReactiveFormsModule,
+      ToastrModule.forRoot({
+          preventDuplicates: true
+      }),
+      AngularEditorModule
     ]
 })
 export class NoticiaModule { }
