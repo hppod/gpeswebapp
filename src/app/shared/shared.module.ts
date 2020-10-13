@@ -29,7 +29,7 @@ import { SobreService } from "./services/sobre.service"
 import { FAQService } from "./services/faq.service"
 import { NoticiasService } from "./services/noticias.service"
 import { ContatoService } from "./services/contato.service"
-import { TransparenciaService } from "./services/transparencia.service"
+import { PublicacoesService } from "./services/publicacoes.service"
 import { UsuarioService } from "./services/usuario.service"
 import { ProcessoSeletivoService } from "./services/processo-seletivo.service";
 import { CardStatsComponent } from '../web-components/common/card-stats/card-stats.component'
@@ -111,7 +111,7 @@ export class SharedModule {
                 FAQService,
                 NoticiasService,
                 ContatoService,
-                TransparenciaService,
+                PublicacoesService,
                 UsuarioService,
                 ProcessoSeletivoService
             ]

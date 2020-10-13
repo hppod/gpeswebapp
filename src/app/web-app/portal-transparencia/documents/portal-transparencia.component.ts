@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, Validators } from "@angular/forms"
 import { HttpParams } from "@angular/common/http"
 import { Router } from "@angular/router"
 import { Subscription } from "rxjs"
-import { Transparencia } from "../../../shared/models/transparencia.model"
-import { TransparenciaService } from "../../../shared/services/transparencia.service"
+import { Publicacoes } from "../../../shared/models/publicacoes.model"
+import { PublicacoesService } from "../../../shared/services/publicacoes.service"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
 import { TransparenciaHelperService } from "./../transparencia-helper.service"
 import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
@@ -26,7 +26,7 @@ export class PortalTransparenciaComponent implements OnInit {
   private httpReq: Subscription
 
   //Dataset
-  documents: Transparencia[]
+  documents: Publicacoes[]
 
   //Forms Set
   dateBetweenFilterForm: FormGroup
@@ -58,7 +58,7 @@ export class PortalTransparenciaComponent implements OnInit {
   categoryMenuItems: Category[] = new Array()
 
   constructor(
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _helperService: TransparenciaHelperService,
     private _router: Router,
     private _render: Renderer2,

@@ -4,7 +4,7 @@ import { Router } from "@angular/router"
 import { Observable, Subscription } from "rxjs"
 import { ToastrService } from "ngx-toastr"
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal"
-import { TransparenciaService } from "./../../../shared/services/transparencia.service"
+import { PublicacoesService } from "./../../../shared/services/publicacoes.service"
 import { TransparenciaValidator } from "./../../../shared/validations/transparencia.validator"
 import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
 import { ModalFileUploadComponent } from "./../../../web-components/common/modals/modal-file-upload/modal-file-upload.component"
@@ -49,7 +49,7 @@ export class NovoPublicacoesComponent implements OnInit, ComponentCanDeactivate 
   constructor(
     private _builder: FormBuilder,
     private _modal: BsModalService,
-    private transparenciaService: TransparenciaService,
+    private transparenciaService: PublicacoesService,
     private _router: Router,
     private _toastr: ToastrService,
     private _unique: TransparenciaValidator,
