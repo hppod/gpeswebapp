@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Transparencia } from "./../../../shared/models/transparencia.model"
-import { TransparenciaService } from "./../../../shared/services/transparencia.service"
+import { Publicacoes } from "./../../../shared/models/publicacoes.model"
+import { PublicacoesService } from "./../../../shared/services/publicacoes.service"
 import { AuthenticationService } from "./../../../shared/services/authentication.service"
 import { Subscription } from "rxjs"
 import { ActivatedRoute, Router } from "@angular/router"
@@ -14,14 +14,14 @@ import { ToastrService } from "ngx-toastr"
 
 @Component({
   selector: 'app-detalhes-transparencia',
-  templateUrl: './detalhes-transparencia.component.html',
-  styleUrls: ['./detalhes-transparencia.component.css']
+  templateUrl: './detalhes-publicacoes.component.html',
+  styleUrls: ['./detalhes-publicacoes.component.css']
 })
 export class DetalhesTransparenciaComponent implements OnInit {
 
   private httpReq: Subscription
 
-  document: Transparencia
+  document: Publicacoes
   file: string
 
   modalRef: BsModalRef
@@ -39,7 +39,7 @@ export class DetalhesTransparenciaComponent implements OnInit {
   }
 
   constructor(
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _activatedRoute: ActivatedRoute,
     private _auth: AuthenticationService,
     private _router: Router,
