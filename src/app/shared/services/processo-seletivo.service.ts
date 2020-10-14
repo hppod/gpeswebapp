@@ -15,8 +15,8 @@ export class ProcessoSeletivoService {
     return this.http.get<ProcessoSeletivo[]>(`${GPESWebApi}/${modifier}/processo-seletivo/listar-todos`, { params: this.params, observe: 'response' });
   }
 
-  postProcessoSeletivo(formData) {
-    return this.http.post<any>(`${GPESWebApi}/authenticated/processo-seletivo/criar/`, formData, { reportProgress: true, observe: 'events' })
+  postProcessoSeletivo(form: ProcessoSeletivo) {
+    return this.http.post<any>(`${GPESWebApi}/authenticated/processo-seletivo/criar`, form, { reportProgress: true, observe: 'events' })
   }
 
 }
