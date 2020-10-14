@@ -29,7 +29,11 @@ export class ValidatorService {
     checkUniqueEventoTitulo(titulo: string) {
         let params = new HttpParams()
         params = params.append('title', titulo)
+<<<<<<< HEAD
         return this.http.get<any>(`${GPESWebApi}/authenticated/validators/unique/evento/titulo`, { params: params })
+=======
+        return this.http.get<any>(`${AsiloWebApi}/authenticated/validators/unique/evento/titulo`, { params: params })
+>>>>>>> 597ccddab98af9ea0f7456d0fa98c84107e80867
     }
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/validators/unique/contato/nome”. A requisição possui um parâmetro obrigatório (name). */
