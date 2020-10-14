@@ -15,7 +15,7 @@ import { EventosComponent } from "./todos-evento/eventos.component"
 import { CreateEventoComponent } from "./create-evento/create-evento.component"
 import { VisualizarNoticiaComponent } from "./visualizar-noticia/visualizar-noticia.component"
 import { EditNoticiaComponent } from "./edit-noticia/edit-noticia.component"
-import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
+import { PendingChangesGuard } from "../../../../src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
     { path: '', component: EventosComponent },
