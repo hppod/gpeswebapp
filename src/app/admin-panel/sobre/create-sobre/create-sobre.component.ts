@@ -53,7 +53,7 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
     private _toastr: ToastrService,
     private _modal: BsModalService,
     private _unique: SobreValidator,
-    private uploaderService: FileUploaderService,
+   private uploaderService: FileUploaderService,
     private ng2ImgMax: Ng2ImgMaxService
   ) { }
 
@@ -134,7 +134,7 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
     }
   }
 
-  postSobre(form: Sobre) {
+  addNewSobre(form: Sobre) {
     this.success = false
     this.setFiles()
     if (this.blobFiles) {
@@ -173,6 +173,18 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
           this._router.navigate(['/admin/sobre'])
         })
     }
+  }
+
+  postSobre(){
+    this.httpReq = this._service.createNewSobre(this.sobreForm.value).subscribe(response =>{
+      this.sobreForm.reset()
+      this.showToastrSuccess()
+      this._router.navigate(['/admin/sobre'])
+    }, err =>{
+      this.sobreForm.reset()
+      this.showToastrError()
+      this._router.navigate(['/admin/sobre'])
+    })
   }
 
   showToastrSuccess() {

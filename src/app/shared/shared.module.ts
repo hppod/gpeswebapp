@@ -27,10 +27,11 @@ import { DragDropDirective } from "./directives/drag-drop.directive"
 import { HomeService } from "./services/home.service"
 import { SobreService } from "./services/sobre.service"
 import { FAQService } from "./services/faq.service"
-import { NoticiasService } from "./services/noticias.service"
+import { EventosService } from "./services/eventos.service"
 import { ContatoService } from "./services/contato.service"
-import { TransparenciaService } from "./services/transparencia.service"
+import { PublicacoesService } from "./services/publicacoes.service"
 import { UsuarioService } from "./services/usuario.service"
+import { ProcessoSeletivoService } from "./services/processo-seletivo.service";
 import { CardStatsComponent } from '../web-components/common/card-stats/card-stats.component'
 import { ModalUploadImagemComponent } from "../web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component";
 import { FileUploaderComponent } from '../web-components/common/file-uploader/file-uploader.component';
@@ -108,10 +109,11 @@ export class SharedModule {
                 HomeService,
                 SobreService,
                 FAQService,
-                NoticiasService,
+                EventosService,
                 ContatoService,
-                TransparenciaService,
-                UsuarioService
+                PublicacoesService,
+                UsuarioService,
+                ProcessoSeletivoService
             ]
         }
     }

@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { Transparencia } from "../../../../shared/models/transparencia.model"
-import { TransparenciaService } from "../../../../shared/services/transparencia.service"
+import { Publicacoes } from "../../../../shared/models/publicacoes.model"
+import { PublicacoesService } from "../../../../shared/services/publicacoes.service"
 import { Subscription } from "rxjs"
 import { ModalLoadingComponent } from "../../../../web-components/common/modals/modal-loading/modal-loading.component"
 import { ModalErrorComponent } from "../../../../web-components/common/modals/modal-error/modal-error.component"
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal"
-import { AsiloWebApi } from "../../../../app.api"
+import { GPESWebApi } from "../../../../app.api"
 import { ModalDocumentComponent } from "../../../../web-components/common/modals/modal-document/modal-document.component"
 
 @Component({
@@ -15,7 +15,7 @@ import { ModalDocumentComponent } from "../../../../web-components/common/modals
 })
 export class DocumentsCollapseComponent {
 
-  @Input() document: Transparencia
+  @Input() document: Publicacoes
 
   private httpReq: Subscription
 
@@ -41,7 +41,7 @@ export class DocumentsCollapseComponent {
   }
 
   constructor(
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _modal: BsModalService
   ) { }
 
@@ -53,7 +53,7 @@ export class DocumentsCollapseComponent {
 
   /**Função que abre um modal exibindo a visualização do documento escolhido. */
   openModalWithDocument() {
-    const file = `${AsiloWebApi}/public/transparencia/download/${this.document['file']['filename']}`
+    const file = `${GPESWebApi}/public/transparencia/download/${this.document['file']['filename']}`
     const initialState = { documentPdf: file }
     this.modalRef = this._modal.show(ModalDocumentComponent, { initialState })
   }

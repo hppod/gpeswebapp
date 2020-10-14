@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Noticia } from "../../../../shared/models/noticia.model"
+import { Evento } from "../../../../shared/models/evento.model"
 
 @Component({
   selector: 'app-noticia-card',
@@ -8,7 +8,7 @@ import { Noticia } from "../../../../shared/models/noticia.model"
 })
 export class NoticiaCardComponent implements OnInit {
 
-  @Input() noticia: Noticia[]
+  @Input() noticia: Evento[]
   hasImage: boolean = false
   mainfile_index: number
   source: any

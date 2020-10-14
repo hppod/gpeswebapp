@@ -4,6 +4,6 @@ export interface Sobre {
     descricao: string,
     imagem: string,
     ordenacao: number,
-    status: boolean,
+    principal: boolean,
     file
 }

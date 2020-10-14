@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from "@angular/common/http"
 import { Observable } from "rxjs"
-import { AsiloWebApi } from "./../../app.api"
+import { GPESWebApi } from "./../../app.api"
 import { AuthenticationService } from "./../services/authentication.service"
 
 @Injectable()
@@ -15,7 +15,7 @@ export class JwtInterceptor implements HttpInterceptor {
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         const currentUser = this._service.currentUserValue
         const isLoggedIn = currentUser && currentUser.token
-        const isApiUrl = request.url.startsWith(AsiloWebApi)
+        const isApiUrl = request.url.startsWith(GPESWebApi)
 
         if (isLoggedIn && isApiUrl) {
             request = request.clone({

@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { TransparenciaService } from "./../../shared/services/transparencia.service"
+import { PublicacoesService } from "./../../shared/services/publicacoes.service"
 import { Category } from "src/app/shared/models/category.model"
 
 @Injectable({
@@ -8,7 +8,7 @@ import { Category } from "src/app/shared/models/category.model"
 export class TransparenciaHelperService {
 
     constructor(
-        private _service: TransparenciaService
+        private _service: PublicacoesService
     ) { }
 
     categorySelectedItem: Category
