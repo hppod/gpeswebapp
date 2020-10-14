@@ -6,7 +6,7 @@ import { ValidatorService } from "./../services/validator.service"
 @Injectable({
     providedIn: 'root'
 })
-export class TransparenciaValidator {
+export class PublicacoesValidator {
 
     constructor(
         private _service: ValidatorService
@@ -18,12 +18,12 @@ export class TransparenciaValidator {
             .pipe(
                 debounceTime(400),
                 distinctUntilChanged(),
-                switchMap(value => this._service.checkUniqueTransparenciaTitulo(value)),
+                switchMap(value => this._service.checkUniquePublicacaoTitulo(value)),
                 map((response) => {
                     if (response['result'] == 0 && control.value != null && control.value != '') {
                         return null
                     } else {
-                        return { 'transparenciaTituloAlreadyExists': true }
+                        return { 'publicacoesTituloAlreadyExists': true }
                     }
                 }),
                 first())
