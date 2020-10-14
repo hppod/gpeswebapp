@@ -4,6 +4,6 @@ Log de alterações da aplicação
 
 ### Versão 
 * **Processo Seletivo:** Implementado o módulo de Processo Seletivo, os componentes de listar todos e criar,também o validador de título unico e alterações nos arquivos de rotas e módulos para acessar os componentes.
+* **Integrantes:** Implementado o módulo de Integrantes, os componentes de listar todos e criar,também o validador de nome unico e alterações nos arquivos de rotas e módulos para acessar os componentes.
 * **Publicações:** Refatorando o módulo de Portal-Transparencia para Publicações, o componente de listar todos e criar, validator de título único e alterações nos arquivos de rotas e
 módulos para acessar os componentes. Também foi alterado o nome das pastas detalhes-transparencia e atualizar-transparencia para detalhes-publicacoes e atualizar-publicacoes.
-* **Integrantes:** Implementado o módulo de Integrantes, os componentes de listar todos e criar,também o validador de nome unico e alterações nos arquivos de rotas e módulos para acessar os componentes.
