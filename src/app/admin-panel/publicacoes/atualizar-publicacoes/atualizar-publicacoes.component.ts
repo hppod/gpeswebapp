@@ -3,11 +3,11 @@ import { ToastrService } from "ngx-toastr"
 import { Component, OnInit, HostListener } from '@angular/core'
 import { Router, ActivatedRoute } from "@angular/router"
 import { FormBuilder, FormGroup, Validators } from "@angular/forms"
-import { Transparencia } from "./../../../shared/models/transparencia.model"
+import { Publicacoes } from "./../../../shared/models/publicacoes.model"
 import { BsModalRef, BsModalService, ModalOptions } from "ngx-bootstrap/modal"
 import { toFormData } from "./../../../shared/functions/to-form-data.function"
 import { toResponseBody } from "./../../../shared/functions/to-response-body.function"
-import { TransparenciaService } from "./../../../shared/services/transparencia.service"
+import { PublicacoesService } from "./../../../shared/services/publicacoes.service"
 import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
 import { ComponentCanDeactivate } from "src/app/shared/guards/pending-changes.guard"
 import { setLastUrl } from "src/app/shared/functions/last-pagination"
@@ -20,8 +20,8 @@ import { CategoryService } from "src/app/shared/services/categories.service"
 
 @Component({
   selector: 'app-atualizar-transparencia',
-  templateUrl: './atualizar-transparencia.component.html',
-  styleUrls: ['./atualizar-transparencia.component.css']
+  templateUrl: './atualizar-publicacoes.component.html',
+  styleUrls: ['./atualizar-publicacoes.component.css']
 })
 export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeactivate {
 
@@ -37,7 +37,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
   fileChanged: boolean = false
   selectedCategory: string = null
   olderSelectedCategory: string = null
-  Transparencia: Transparencia
+  Publicacoes: Publicacoes
   selectOptionCategory: Category[] = new Array()
   FileSnippet: FileSnippet[] = new Array()
   File: File
@@ -61,7 +61,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
     private _builder: FormBuilder,
     private _modal: BsModalService,
     private _toastr: ToastrService,
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _activatedRoute: ActivatedRoute,
     private uploaderService: FileUploaderService,
     private categoryService: CategoryService
@@ -106,8 +106,8 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
     this.httpReq = this._service.getDataByTitle(title).subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
-      this.Transparencia = response.body['data']
-      this.populateFormWithValuesToUpdate(this.Transparencia)
+      this.Publicacoes = response.body['data']
+      this.populateFormWithValuesToUpdate(this.Publicacoes)
     }, err => {
       this.statusResponse = err.status
       this.messageApi = err.error['message']
@@ -152,7 +152,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
   }
 
   /**Função que popula os inputs com os dados a serem atualizados. */
-  populateFormWithValuesToUpdate(document: Transparencia) {
+  populateFormWithValuesToUpdate(document: Publicacoes) {
     this._formTransparencia.patchValue({
       titulo: document['titulo'],
       descricao: document['descricao'],
@@ -181,7 +181,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
 
     this.success = false
     this.modalRef = this._modal.show(ModalFileUploadComponent)
-    this._service.updateDocument(this.Transparencia['titulo'], toFormData(this._formTransparencia.value)).pipe(
+    this._service.updateDocument(this.Publicacoes['titulo'], toFormData(this._formTransparencia.value)).pipe(
       toResponseBody()
     ).subscribe(res => {
       this.success = true
