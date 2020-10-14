@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core"
 import { HttpClient, HttpResponse } from "@angular/common/http"
 import { BehaviorSubject, Observable } from "rxjs"
 import { map } from "rxjs/operators"
-import { AsiloWebApi } from "./../../app.api"
+import { GPESWebApi } from "./../../app.api"
 import { User } from "./../models/auth/user"
 import { Role } from "./../models/auth/role"
 
@@ -31,7 +31,7 @@ export class AuthenticationService {
 
     /**Função que realiza a requisição do tipo POST ao endpoint “login”. A requisição não pode receber parâmetros. */
     login(email: string, senha: string) {
-        return this.http.post<any>(`${AsiloWebApi}/login`, { email, senha })
+        return this.http.post<any>(`${GPESWebApi}/login`, { email, senha })
             .pipe(map(user => {
                 if (user && user.token) {
                     sessionStorage.setItem('currentUser', JSON.stringify(user))
@@ -51,11 +51,11 @@ export class AuthenticationService {
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/public/authentication/esqueci-a-senha”. A requisição não pode receber parâmetros. */
     sendMailForgetPassword(email: string): Observable<HttpResponse<any>> {
-        return this.http.post(`${AsiloWebApi}/public/authentication/esqueci-a-senha`, { email }, { observe: 'response' })
+        return this.http.post(`${GPESWebApi}/public/authentication/esqueci-a-senha`, { email }, { observe: 'response' })
     }
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/public/authentication/esqueci-a-senha/token”. A requisição possui um parâmetro obrigatório (token). */
     setNewPassword(token: string, senha: string, confirmaSenha: string): Observable<HttpResponse<any>> {
-        return this.http.post(`${AsiloWebApi}/public/authentication/esqueci-a-senha/${token}`, { senha, confirmaSenha }, { observe: 'response' })
+        return this.http.post(`${GPESWebApi}/public/authentication/esqueci-a-senha/${token}`, { senha, confirmaSenha }, { observe: 'response' })
     }
 }

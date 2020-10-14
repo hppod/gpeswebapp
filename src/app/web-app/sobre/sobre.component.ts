@@ -5,7 +5,7 @@ import { Sobre } from "../../shared/models/sobre.model"
 import { SobreService } from "../../shared/services/sobre.service"
 import { GoogleAnalyticsService } from "./../../shared/services/google-analytics.service"
 import { __event_sobre, __category_institucional, __action_sobre } from "./../../shared/helpers/analytics.consts"
-import { AsiloWebApi } from "src/app/app.api"
+import { GPESWebApi } from "src/app/app.api"
 import { BsModalRef } from "ngx-bootstrap/modal"
 import { setLastUrl } from "src/app/shared/functions/last-pagination"
 
@@ -62,7 +62,7 @@ export class SobreComponent implements OnInit, OnDestroy {
         this.sobre = response.body['data']
         for (let position = 0; position < this.sobre.length; position++) {
           if (this.sobre[position]['file']) {
-            this.sobre[position]['imagem'] = `${AsiloWebApi}/public/download/thumbnail_mainpost/${this.sobre[position]['file']['filename']}`
+            this.sobre[position]['imagem'] = `${GPESWebApi}/public/download/thumbnail_mainpost/${this.sobre[position]['file']['filename']}`
           } else {
             this.sobre[position]['imagem'] = null
           }

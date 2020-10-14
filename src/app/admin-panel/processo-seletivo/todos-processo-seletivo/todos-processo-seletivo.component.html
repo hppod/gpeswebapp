@@ -1,0 +1,81 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <div>
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5>Processo Seletivo</h5>
+            </div>
+            <div class="col-sm-6 positionButtons">
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm">Ordenação</button>
+                <button type="button" class="btn btn-outline-success btn-sm"
+                    [routerLink]="['/admin/processo-seletivo/create']">Adicionar</button>
+            </div>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div class="table-responsive" id="marginTopTable">
+            <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let processoSeletivo of processoSeletivo | paginate: {itemsPerPage: limit, currentPage: page, totalItems: total}"
+                        class="pointer hoverRowTable">
+                        <th>{{processoSeletivo.titulo | slice: 0:50}}
+                            <span *ngIf="showEllipsisInTheText(processoSeletivo.titulo, 50)">...</span>
+                        </th>
+                        <td (click)="$event.stopPropagation()">
+                            <button class="btn btn-outline-warning btn-sm">Editar</button>
+                            <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-no-data *ngIf="!isLoading && statusResponse == 204 && !processoSeletivo"></app-no-data>
+        <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !processoSeletivo"></app-error>
+        <nav *ngIf="processoSeletivo">
+            <ul class="pagination">
+                <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+                    nextLabel="Próximo">
+                </pagination-controls>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<!-- <ng-template #template>
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title">Ordenar Sobre</h5>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div *ngIf="sobre && statusResponse == 200" class="modal-body">
+            <div class="table-responsive" id="marginTopTable">
+                <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                    <thead>
+                        <tr>
+                            <th class="info-dragndrop" scope="row">
+                                Clique e arraste para ordenar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody dragula="SOBRE" [(dragulaModel)]="sobre">
+                        <tr class="pointer hoverRowTable cursorMouse" *ngFor="let sobre of sobre">
+                            <th><i class="fa fa-bars"> &nbsp; {{sobre.titulo | slice: 0:50}} </i>
+                                <span *ngIf="showEllipsisInTheText(sobre.titulo, 50)">...</span>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <app-no-data *ngIf="!isLoading && statusResponse == 204 && !sobre"></app-no-data>
+            <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !sobre"></app-error>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="saveNewOrder()">Salvar</button>
+        </div>
+    </div>
+</ng-template> -->

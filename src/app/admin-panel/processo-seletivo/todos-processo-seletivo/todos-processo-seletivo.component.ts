@@ -1,0 +1,107 @@
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
+import { HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
+import { DragulaService } from 'ng2-dragula';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { ProcessoSeletivo } from "../../../shared/models/processo-seletivo.model";
+import { ProcessoSeletivoService } from '../../../shared/services/processo-seletivo.service';
+import { AuthenticationService } from "../../../shared/services/authentication.service"
+import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
+import { ModalLoadingComponent } from "./../../../web-components/common/modals/modal-loading/modal-loading.component"
+import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
+import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
+
+
+@Component({
+  selector: 'app-todos-processo-seletivo',
+  templateUrl: './todos-processo-seletivo.component.html',
+  styleUrls: ['./todos-processo-seletivo.component.css']
+})
+export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
+
+  private httpReq: Subscription
+
+  processoSeletivo: ProcessoSeletivo[]
+
+  page: number = 1
+  total: number
+  limit: number
+  isLoading: boolean
+  messageApi: string
+  statusResponse: number
+  modalRef: BsModalRef
+  modalOrder: BsModalRef
+
+  subs = new Subscription();
+
+  constructor(
+    private _router: Router,
+    private _service: ProcessoSeletivoService,
+    private _auth: AuthenticationService,
+    private _modal: BsModalService,
+    private _toastr: ToastrService,
+    private _dragula: DragulaService
+  ) {
+    checkUrlAndSetFirstPage(this._router.url)
+  }
+
+  ngOnInit() {
+    this._router.routeReuseStrategy.shouldReuseRoute = () => false
+    setLastUrl(this._router.url)
+
+    this._service.params = this._service.params.set('columnSort', 'ordenacao')
+    this._service.params = this._service.params.set('valueSort', 'ascending')
+    this._service.params = this._service.params.set('page', getLastPage())
+
+    this.getProcessoSeletivoWithParams()
+  }
+
+  ngOnDestroy() {
+    setLastPage(this.page)
+    if (this.httpReq) {
+      this.httpReq.unsubscribe()
+    }
+    this.subs.unsubscribe();
+  }
+
+  get isAdmin() {
+    return this._auth.isAdmin
+  }
+
+  getProcessoSeletivoWithParams() {
+    this._service.params = this._service.params.set('limit', '10')
+    this.isLoading = true
+    this.httpReq = this._service.getProcessoSeletivoWithParams('authenticated').subscribe(response => {
+      this.statusResponse = response.status
+
+      if (response.status == 200) {
+        this.messageApi = response.body['message']
+        this.processoSeletivo = response.body['data']
+        this.page = response.body['page']
+        this.total = response.body['count']
+        this.limit = response.body['limit']
+      }
+
+      this.isLoading = false
+    }, err => {
+      this.messageApi = err
+      this.isLoading = false
+    })
+  }
+
+  getPage(page: number) {
+    this.processoSeletivo = null
+    scrollPageToTop(page)
+    this._service.params = this._service.params.set('page', page.toString())
+    this.getProcessoSeletivoWithParams()
+  }
+
+  showEllipsisInTheText(text: string, limit: number): boolean {
+    return text.length > limit;
+  }
+
+
+
+}
