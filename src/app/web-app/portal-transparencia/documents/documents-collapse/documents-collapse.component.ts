@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Transparencia } from "../../../../shared/models/transparencia.model"
-import { TransparenciaService } from "../../../../shared/services/transparencia.service"
+import { Publicacoes } from "../../../../shared/models/publicacoes.model"
+import { PublicacoesService } from "../../../../shared/services/publicacoes.service"
 import { Subscription } from "rxjs"
 import { ModalLoadingComponent } from "../../../../web-components/common/modals/modal-loading/modal-loading.component"
 import { ModalErrorComponent } from "../../../../web-components/common/modals/modal-error/modal-error.component"
@@ -15,7 +15,7 @@ import { ModalDocumentComponent } from "../../../../web-components/common/modals
 })
 export class DocumentsCollapseComponent {
 
-  @Input() document: Transparencia
+  @Input() document: Publicacoes
 
   private httpReq: Subscription
 
@@ -41,7 +41,7 @@ export class DocumentsCollapseComponent {
   }
 
   constructor(
-    private _service: TransparenciaService,
+    private _service: PublicacoesService,
     private _modal: BsModalService
   ) { }
 

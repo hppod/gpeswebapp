@@ -10,29 +10,29 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { AdminPanelModule } from "./../admin-panel.module"
 import { SharedModule } from "./../../shared/shared.module"
 
-import { PortalTransparenciaComponent } from "./todos-transparencia/portal-transparencia.component"
-import { NovoTransparenciaComponent } from "./novo-transparencia/novo-transparencia.component"
-import { DetalhesTransparenciaComponent } from "./detalhes-transparencia/detalhes-transparencia.component"
-import { AtualizarTransparenciaComponent } from "./atualizar-transparencia/atualizar-transparencia.component"
+import { PublicacoesComponent } from "./todos-publicacoes/publicacoes.component"
+import { NovoPublicacoesComponent } from "./novo-publicacoes/novo-publicacoes.component"
+import { DetalhesTransparenciaComponent } from "./detalhes-publicacoes/detalhes-publicacoes.component"
+import { AtualizarTransparenciaComponent } from "./atualizar-publicacoes/atualizar-publicacoes.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
-    { path: '', component: PortalTransparenciaComponent },
+    { path: '', component: PublicacoesComponent },
     { path: 'detalhes/:title', component: DetalhesTransparenciaComponent },
-    { path: 'novo', component: NovoTransparenciaComponent, canDeactivate: [PendingChangesGuard] },
+    { path: 'novo', component: NovoPublicacoesComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: AtualizarTransparenciaComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
-        PortalTransparenciaComponent,
-        NovoTransparenciaComponent,
+        PublicacoesComponent,
+        NovoPublicacoesComponent,
         DetalhesTransparenciaComponent,
         AtualizarTransparenciaComponent
     ],
     exports: [
-        PortalTransparenciaComponent,
-        NovoTransparenciaComponent,
+        PublicacoesComponent,
+        NovoPublicacoesComponent,
         DetalhesTransparenciaComponent,
         AtualizarTransparenciaComponent
     ],
@@ -55,4 +55,4 @@ const ROUTES: Routes = [
         })
     ]
 })
-export class TransparenciaModule { }
+export class PublicacoesModule { }
