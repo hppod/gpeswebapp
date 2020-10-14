@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { NoticiasService } from './../../../shared/services/noticias.service';
-import { AuthenticationService } from "./../../../shared/services/authentication.service"
+import { EventosService } from '../../../shared/services/eventos.service';
+import { AuthenticationService } from "../../../shared/services/authentication.service"
 import { Router } from '@angular/router';
-import { Noticia } from 'src/app/shared/models/noticia.model';
+import { Evento } from 'src/app/shared/models/evento.model';
 import { Subscription } from 'rxjs';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 import { BsModalService, BsModalRef, ModalOptions } from 'ngx-bootstrap/modal';
@@ -12,15 +12,15 @@ import { scrollPageToTop } from 'src/app/shared/functions/scroll-top';
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-eventos',
+  templateUrl: './eventos.component.html',
+  styleUrls: ['./eventos.component.css']
 })
-export class NoticiasComponent implements OnInit, OnDestroy {
+export class EventosComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
-  noticias: Noticia[]
+  noticias: Evento[]
 
   isLoading: boolean = false
   messageApi: string
@@ -29,7 +29,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
   total: number
   limit: number
   sortedCollection: any[];
-  collection: Noticia[]
+  collection: Evento[]
   sortSelectedItem: any
   modalRef: BsModalRef
 
@@ -39,7 +39,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
       param: 'titulo'
     },
     {
-      option: 'Data Publicação',
+      option: 'Data do Evento',
       param: 'date'
     }
   ]
@@ -54,7 +54,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
   }
 
   constructor(
-    private _service: NoticiasService,
+    private _service: EventosService,
     private r: Router,
     private modal: BsModalService,
     private toastr: ToastrService,
@@ -74,7 +74,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('page', getLastPage())
     this._service.params = this._service.params.set('limit', '10')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   ngOnDestroy() {
@@ -88,9 +88,9 @@ export class NoticiasComponent implements OnInit, OnDestroy {
     return this._auth.isAdmin
   }
 
-  getNoticiasWithParams() {
+  getEventosWithParams() {
     this.isLoading = true
-    this.httpReq = this._service.getNoticiasWithParams('authenticated', 'tmb_cd').subscribe(response => {
+    this.httpReq = this._service.getEventoWithParams('authenticated').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
@@ -112,7 +112,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
     this.noticias = null
     scrollPageToTop(page)
     this._service.params = this._service.params.set('page', page.toString())
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   onClickSortTable(item: any) {
@@ -124,7 +124,7 @@ export class NoticiasComponent implements OnInit, OnDestroy {
     } else {
       this._service.params = this._service.params.set('valueSort', 'descending')
     }
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   showEllipsisInTheText(text: string, limit: number): boolean {
@@ -139,11 +139,11 @@ export class NoticiasComponent implements OnInit, OnDestroy {
         this.modalRef = this.modal.show(ModalLoadingComponent, this.configLoadingModal)
         this._service.deleteNoticia(id).subscribe(response => {
           this._service.params = this._service.params.set('page', '1')
-          this.getNoticiasWithParams()
+          this.getEventosWithParams()
           this.modalRef.hide()
           this.showToastrSuccess()
         }, err => {
-          this.getNoticiasWithParams()
+          this.getEventosWithParams()
           this.modalRef.hide()
           this.showToastrError()
         })

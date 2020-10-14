@@ -4,8 +4,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription, Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
-import { NoticiasService } from 'src/app/shared/services/noticias.service';
-import { Noticia } from 'src/app/shared/models/noticia.model';
+import { EventosService } from 'src/app/shared/services/eventos.service';
+import { Evento } from 'src/app/shared/models/evento.model';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
 import { Ng2ImgMaxService } from 'ng2-img-max';
@@ -26,13 +26,13 @@ export class EditNoticiaComponent implements OnInit, ComponentCanDeactivate {
 
   noticiaForm: FormGroup
   messageApi: string
-  noticia: Noticia
+  noticia: Evento
   httpReq: Subscription
   statusResponse: number
   modalRef: BsModalRef
   modalUpload: BsModalRef
 
-  Noticia: Noticia
+  Noticia: Evento
   FileSnippet: FileSnippet[] = new Array()
   UploadedFiles: FileSnippet[] = new Array()
   blobFiles: File[] = new Array()
@@ -43,7 +43,7 @@ export class EditNoticiaComponent implements OnInit, ComponentCanDeactivate {
     private builder: FormBuilder,
     private modal: BsModalService,
     private toastr: ToastrService,
-    private service: NoticiasService,
+    private service: EventosService,
     private activatedRoute: ActivatedRoute,
     private ng2ImgMax: Ng2ImgMaxService,
     private uploaderService: FileUploaderService
@@ -98,7 +98,7 @@ export class EditNoticiaComponent implements OnInit, ComponentCanDeactivate {
     })
   }
 
-  populateForm(data: Noticia) {
+  populateForm(data: Evento) {
     this.noticiaForm.patchValue({
       titulo: data['titulo'],
       descricao: data['descricao']

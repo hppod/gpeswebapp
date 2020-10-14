@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core"
 import { AsyncValidatorFn } from "@angular/forms"
 import { map, debounceTime, distinctUntilChanged, switchMap, first } from "rxjs/operators"
-import { ValidatorService } from "./../services/validator.service"
+import { ValidatorService } from "../services/validator.service"
 
 @Injectable({
     providedIn: 'root'
 })
-export class NoticiaValidator {
+export class EventoValidator {
 
     constructor(
         private _service: ValidatorService
@@ -18,12 +18,12 @@ export class NoticiaValidator {
             .pipe(
                 debounceTime(400),
                 distinctUntilChanged(),
-                switchMap(value => this._service.checkUniqueNoticiaTitulo(value)),
+                switchMap(value => this._service.checkUniqueEventoTitulo(value)),
                 map((response) => {
                     if (response['result'] == 0 && control.value != null && control.value != '') {
                         return null
                     } else {
-                        return { 'noticiaTituloAlreadyExists': true }
+                        return { 'eventoTituloAlreadyExists': true }
                     }
                 }),
                 first())
