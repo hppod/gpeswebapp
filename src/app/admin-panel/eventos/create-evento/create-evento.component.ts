@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ViewEncapsulation, HostListener } from '@angular/core';
-import { EventosService } from 'src/app/shared/services/eventos.service';
+import { EventosService } from './../../../shared/services/eventos.service';
 import { EventoValidator } from "../../../shared/validations/evento.validator"
 import { Router } from '@angular/router';
 import { ModalDialogComponent } from "../../../web-components/common/modals/modal-dialog/modal-dialog.component"
@@ -7,13 +7,13 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
-import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
+import { ComponentCanDeactivate } from './../../../../../src/app/shared/guards/pending-changes.guard';
 import { Ng2ImgMaxService } from 'ng2-img-max';
-import { toResponseBody } from 'src/app/shared/functions/to-response-body.function';
-import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component';
-import { setLastUrl } from 'src/app/shared/functions/last-pagination';
-import { FileSnippet } from 'src/app/web-components/common/file-uploader/FileSnippet.class';
-import { FileUploaderService } from 'src/app/web-components/common/file-uploader/file-uploader.service';
+import { toResponseBody } from './../../../../../src/app/shared/functions/to-response-body.function';
+import { ModalUploadImagemComponent } from './../../../../../src/app/web-components/common/modals/modal-upload-imagem/modal-upload-imagem.component';
+import { setLastUrl } from './../../../../../src/app/shared/functions/last-pagination';
+import { FileSnippet } from './../../../../../src/app/web-components/common/file-uploader/FileSnippet.class';
+import { FileUploaderService } from './../../../../../src/app/web-components/common/file-uploader/file-uploader.service';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
