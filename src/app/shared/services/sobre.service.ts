@@ -21,6 +21,10 @@ export class SobreService {
     return this.http.get<Sobre>(`${GPESWebApi}/authenticated/sobre/listar-um/${title}`, { observe: 'response' })
   }
 
+  createNewSobre(body: Sobre): Observable<HttpResponse<Sobre>> {
+    return this.http.post<Sobre>(`${AsiloWebApi}/authenticated/sobre/criar`, body, { observe: 'response'})
+  }
+
   postSobre(formData) {
     return this.http.post<any>(`${GPESWebApi}/authenticated/sobre/criar/`, formData, { reportProgress: true, observe: 'events' })
   }
