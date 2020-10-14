@@ -19,7 +19,7 @@ export const AdminPanelRoutes: Routes = [
                 path: 'sobre', loadChildren: './sobre/sobre.module#SobreModule', canActivate: [AuthGuard]
             },
             {
-                path: 'eventos', loadChildren: './noticias/evento.module#EventoModule', canActivate: [AuthGuard]
+                path: 'eventos', loadChildren: './eventos/evento.module#EventoModule', canActivate: [AuthGuard]
             },
             {
                 path: 'contato', loadChildren: './contato/contato.module#ContatoModule', canActivate: [AuthGuard]
