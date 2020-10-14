@@ -12,8 +12,8 @@ import { SharedModule } from "./../../shared/shared.module"
 
 import { PublicacoesComponent } from "./todos-publicacoes/publicacoes.component"
 import { NovoPublicacoesComponent } from "./novo-publicacoes/novo-publicacoes.component"
-import { DetalhesTransparenciaComponent } from "./detalhes-transparencia/detalhes-transparencia.component"
-import { AtualizarTransparenciaComponent } from "./atualizar-transparencia/atualizar-transparencia.component"
+import { DetalhesTransparenciaComponent } from "./detalhes-publicacoes/detalhes-publicacoes.component"
+import { AtualizarTransparenciaComponent } from "./atualizar-publicacoes/atualizar-publicacoes.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [

@@ -109,7 +109,7 @@ export class PublicacoesComponent implements OnInit {
   /**Função que busca os documentos do portal da transparência no banco de dados de acordo com os parâmetros informados. */
   getDocumentsWithParams() {
     this.isLoading = true
-    this.httpReq = this._service.getDocumentsWithParams('authenticated').subscribe(response => {
+    this.httpReq = this._service.getPublicacoesWithParams('authenticated').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
