@@ -19,15 +19,9 @@
     "./app/admin-panel/authentication/authentication.module.ts",
     "./app/admin-panel/contato/contato.module.ts",
     "./app/admin-panel/faq/faq.module.ts",
-<<<<<<< HEAD
     "./app/admin-panel/gpes/gpes.module.ts",    
     "./app/admin-panel/publicacoes/publicacoes.module.ts",
     "./app/admin-panel/eventos/evento.module.ts",    
-=======
-    "./app/admin-panel/gpes/gpes.module.ts",
-    "./app/admin-panel/eventos/evento.module.ts",
-    "./app/admin-panel/portal-transparencia/portal-transparencia.module.ts",
->>>>>>> 597ccddab98af9ea0f7456d0fa98c84107e80867
     "./app/admin-panel/sobre/sobre.module.ts",
     "./app/admin-panel/usuarios/usuario.module.ts",
     "./app/web-app/faq/faq-web.module.ts",
