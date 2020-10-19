@@ -4,6 +4,7 @@ import { Subscription } from "rxjs"
 import { TransparenciaHelperService } from "./../transparencia-helper.service"
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/categories.service';
+import { ToastrService } from "ngx-toastr"
 
 @Component({
   selector: 'app-categories',
@@ -19,7 +20,8 @@ export class CategoriesComponent implements OnInit {
   constructor(
     private _helperService: TransparenciaHelperService,
     private _router: Router,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private _toastr: ToastrService,
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,7 @@ export class CategoriesComponent implements OnInit {
       this.isLoading = false
       this.categoryMenuItems = response.body['data']
     }, err => {
-      console.log(err)
+      this.showToastrError(`${err.error['message']}`)
     })
   }
 
@@ -47,6 +49,14 @@ export class CategoriesComponent implements OnInit {
   navigateToDocs(item: any) {
     this.setParamsToSearch(item)
     this._router.navigate(['institucional/transparencia/arquivos'])
+  }
+
+  /**Função para exibir um toastr de erro. */
+  showToastrError(message: string) {
+    this._toastr.error(message, null, {
+    progressBar: true,
+    positionClass: 'toast-bottom-center'
+    })
   }
 
 }

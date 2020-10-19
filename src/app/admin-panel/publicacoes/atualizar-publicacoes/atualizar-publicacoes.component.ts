@@ -131,7 +131,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
       this.selectOptionCategory = response.body['data']
       this.selectOptionCategory.push({ nome: "Não encontrou a categoria desejada? Cadastre uma aqui" })
     }, err => {
-      console.log(err)
+      this.showToastrError(`${err.error['message']}`)
     })
   }
 
