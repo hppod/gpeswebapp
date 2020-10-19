@@ -40,7 +40,7 @@ export class NoticiaComponent implements OnInit, OnDestroy {
     const titulo: string = this.ar.snapshot.params['title']
 
     this.sendAnalytics(titulo)
-    this.getNoticiaByTitle(titulo)
+    this.getEventoByTitle(titulo)
   }
 
   ngOnDestroy() {
@@ -51,9 +51,9 @@ export class NoticiaComponent implements OnInit, OnDestroy {
     this._analytics.eventEmitter(`${__event_noticia}${titulo}`, __category_institucional, `${__action_noticia}${titulo}`)
   }
 
-  getNoticiaByTitle(title: string) {
+  getEventoByTitle(title: string) {
     this.isLoading = true
-    this.httpReq = this._service.getNoticiaByTitle(title, 'public').subscribe(response => {
+    this.httpReq = this._service.getEventoByTitle(title, 'public').subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.noticia = response.body['data']
