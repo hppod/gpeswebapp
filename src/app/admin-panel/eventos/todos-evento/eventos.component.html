@@ -24,26 +24,26 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let noticia of noticias | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
-            [routerLink]="['/admin/noticias/detalhes', noticia['titulo']]" class="pointer hoverRowTable">
-            <th scope="row">{{noticia.titulo | slice: 0:30}}
-              <span *ngIf="showEllipsisInTheText(noticia.titulo, 30)">...
+          <tr *ngFor="let evento of eventos | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
+            [routerLink]="['/admin/eventos/detalhes', evento['titulo']]" class="pointer hoverRowTable">
+            <th scope="row">{{evento.titulo | slice: 0:30}}
+              <span *ngIf="showEllipsisInTheText(evento.titulo, 30)">...
               </span>
             </th>
-            <td>{{noticia['date'] | date: 'dd/MM/yyyy'}}</td>
+            <td>{{evento['date'] | date: 'dd/MM/yyyy'}}</td>
             <td (click)="$event.stopPropagation()">
               <button class="btn btn-outline-warning btn-sm"
-                [routerLink]="['/admin/noticias/atualizar', noticia['titulo']]">Editar</button>
+                [routerLink]="['/admin/eventos/atualizar', evento['titulo']]">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
-                (click)="canDelete(noticia['titulo'], noticia['_id'])">Excluir</button>
+                (click)="canDelete(evento['titulo'], evento['_id'])">Excluir</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !noticias"></app-no-data>
-    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !noticias"></app-error>
-    <nav *ngIf="noticias">
+    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !eventos"></app-no-data>
+    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !eventos"></app-error>
+    <nav *ngIf="eventos">
       <ul class="pagination">
         <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
           nextLabel="Próximo">
