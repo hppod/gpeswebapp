@@ -99,7 +99,7 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
       this.selectOptionCategory = response.body['data']
       this.selectOptionCategory.push({ nome: "Não encontrou a categoria desejada? Cadastre uma aqui" })
     }, err => {
-      console.log(err)
+      this.showToastrError('Houve um erro ao listar as categorias. Serviço indisponível')
     })
   }
 
@@ -140,11 +140,11 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
       .subscribe(res => {
         this.success = true
         this._formPublicacoes.reset()
-        this.showToastrSuccess('O documento foi adicionado com sucesso')
+        this.showToastrSuccess('A publicação foi adicionada com sucesso')
         this._router.navigate(['/admin/publicacoes'])
       }, err => {
         this._formPublicacoes.reset()
-        this.showToastrError('Houve um erro ao adicionar o documento. Tente novamente.')
+        this.showToastrError('Houve um erro ao adicionar a publicação. Tente novamente.')
         this._router.navigate(['/admin/publicacoes'])
       })
   }
