@@ -137,7 +137,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.modalRef = this.modal.show(ModalLoadingComponent, this.configLoadingModal)
-        this._service.deleteNoticia(id).subscribe(response => {
+        this._service.deleteEvento(id).subscribe(response => {
           this._service.params = this._service.params.set('page', '1')
           this.getEventosWithParams()
           this.modalRef.hide()
