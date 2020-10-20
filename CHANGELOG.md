@@ -10,5 +10,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Refatorando o módulo de notícias para Eventos, o componente de listar todos e criar, validator de título único e alterações nos arquivos de rotas e módulos para acessar os componentes.
 
 ### Versão 5.1
-* **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos ao modelo de publicações e no componente create-publicação.
+* **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos autores, plataforma, cidade e dataPublicacao ao modelo de publicações e no componente create-publicação.
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
