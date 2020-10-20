@@ -94,7 +94,7 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
       autores: this._builder.control(null, [Validators.required]),
       plataforma: this._builder.control(null, [Validators.required]),
       cidade: this._builder.control(null, [Validators.required]),
-      ano: this._builder.control(null, [Validators.required])
+      dataPublicacao: this._builder.control(null, [Validators.required])
     })
   }
 
@@ -183,8 +183,6 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   /**Função que retorna o valor do input cidade. */
   get cidade() { return this._formPublicacoes.get('cidade') }
   /**Função que retorna o valor do input ano. */
-  get ano() { return this._formPublicacoes.get('ano') }
-
-  
+  get dataPublicacao() { return this._formPublicacoes.get('dataPublicacao') }
 
 }
