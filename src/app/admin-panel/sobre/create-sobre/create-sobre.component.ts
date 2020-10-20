@@ -147,7 +147,6 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
       this._service.postSobre(toFormData(this.sobreForm.value)).pipe(
         toResponseBody()
       ).subscribe(res => {
-        console.log(this.sobreForm.value)
         this.success = true
         this.sobreForm.reset()
         this.modalRef.hide()
@@ -161,7 +160,6 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
     } else {
       this._service.postSobre(toFormData(this.sobreForm.value))
         .subscribe(res => {
-          console.log(this.sobreForm.value)
           this.sobreForm.reset()
           this.modalRef.hide()
           this.showToastrSuccess()
