@@ -20,11 +20,11 @@ import { CategoryService } from "./../../../shared/services/categories.service"
 import { ModalCreateCategoryComponent } from "./../../../web-components/common/modals/modal-create-category/modal-create-category.component"
 
 @Component({
-  selector: 'app-novo-publicacoes',
-  templateUrl: './novo-publicacoes.component.html',
-  styleUrls: ['./novo-publicacoes.component.css']
+  selector: 'app-create-publicacoes',
+  templateUrl: './create-publicacoes.component.html',
+  styleUrls: ['./create-publicacoes.component.css']
 })
-export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
   private httpReq: Subscription
 
@@ -90,7 +90,11 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
     this._formPublicacoes = this._builder.group({
       titulo: this._builder.control(null, [Validators.required], this._unique.checkUniqueTitulo()),
       descricao: this._builder.control(null, [Validators.required]),
-      categoria: this._builder.control("Selecione", [Validators.required])
+      categoria: this._builder.control("Selecione", [Validators.required]),
+      autores: this._builder.control(null, [Validators.required]),
+      plataforma: this._builder.control(null, [Validators.required]),
+      cidade: this._builder.control(null, [Validators.required]),
+      ano: this._builder.control(null, [Validators.required])
     })
   }
 
@@ -136,7 +140,7 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
   /**Função que adiciona novos documentos ao banco de dados. */
   addNewDocuments() {
     this.success = false
-    this._service.postDocuments(this._formPublicacoes.value)
+    this._service.postPublicacoes(this._formPublicacoes.value)
       .subscribe(res => {
         this.success = true
         this._formPublicacoes.reset()
@@ -172,5 +176,15 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
   get descricao() { return this._formPublicacoes.get('descricao') }
   /**Função que retorna o valor do input “categoria”. */
   get categoria() { return this._formPublicacoes.get('categoria') }
+  /**Função que retorna o valor do input autores. */
+  get autores() { return this._formPublicacoes.get('autores') }
+  /**Função que retorna o valor do input plataforma. */
+  get plataforma() { return this._formPublicacoes.get('plataforma') }
+  /**Função que retorna o valor do input cidade. */
+  get cidade() { return this._formPublicacoes.get('cidade') }
+  /**Função que retorna o valor do input ano. */
+  get ano() { return this._formPublicacoes.get('ano') }
+
+  
 
 }
