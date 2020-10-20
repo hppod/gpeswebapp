@@ -11,7 +11,7 @@ import { AdminPanelModule } from "./../admin-panel.module"
 import { SharedModule } from "./../../shared/shared.module"
 
 import { PublicacoesComponent } from "./todos-publicacoes/publicacoes.component"
-import { NovoPublicacoesComponent } from "./novo-publicacoes/novo-publicacoes.component"
+import { CreatePublicacoesComponent } from "./create-publicacoes/create-publicacoes.component"
 import { DetalhesTransparenciaComponent } from "./detalhes-publicacoes/detalhes-publicacoes.component"
 import { AtualizarTransparenciaComponent } from "./atualizar-publicacoes/atualizar-publicacoes.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
@@ -19,20 +19,20 @@ import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard
 const ROUTES: Routes = [
     { path: '', component: PublicacoesComponent },
     { path: 'detalhes/:title', component: DetalhesTransparenciaComponent },
-    { path: 'novo', component: NovoPublicacoesComponent, canDeactivate: [PendingChangesGuard] },
+    { path: 'create', component: CreatePublicacoesComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: AtualizarTransparenciaComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
         PublicacoesComponent,
-        NovoPublicacoesComponent,
+        CreatePublicacoesComponent,
         DetalhesTransparenciaComponent,
         AtualizarTransparenciaComponent
     ],
     exports: [
         PublicacoesComponent,
-        NovoPublicacoesComponent,
+        CreatePublicacoesComponent,
         DetalhesTransparenciaComponent,
         AtualizarTransparenciaComponent
     ],

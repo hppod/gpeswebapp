@@ -20,11 +20,11 @@ import { CategoryService } from "./../../../shared/services/categories.service"
 import { ModalCreateCategoryComponent } from "./../../../web-components/common/modals/modal-create-category/modal-create-category.component"
 
 @Component({
-  selector: 'app-novo-publicacoes',
-  templateUrl: './novo-publicacoes.component.html',
-  styleUrls: ['./novo-publicacoes.component.css']
+  selector: 'app-create-publicacoes',
+  templateUrl: './create-publicacoes.component.html',
+  styleUrls: ['./create-publicacoes.component.css']
 })
-export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
   private httpReq: Subscription
 
@@ -90,7 +90,11 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
     this._formPublicacoes = this._builder.group({
       titulo: this._builder.control(null, [Validators.required], this._unique.checkUniqueTitulo()),
       descricao: this._builder.control(null, [Validators.required]),
-      categoria: this._builder.control("Selecione", [Validators.required])
+      categoria: this._builder.control("Selecione", [Validators.required]),
+      autores: this._builder.control(null, [Validators.required]),
+      plataforma: this._builder.control(null, [Validators.required]),
+      cidade: this._builder.control(null, [Validators.required]),
+      dataPublicacao: this._builder.control(null, [Validators.required])
     })
   }
 
@@ -99,7 +103,7 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
       this.selectOptionCategory = response.body['data']
       this.selectOptionCategory.push({ nome: "Não encontrou a categoria desejada? Cadastre uma aqui" })
     }, err => {
-      console.log(err)
+      this.showToastrError('Houve um erro ao listar as categorias. Serviço indisponível')
     })
   }
 
@@ -136,15 +140,15 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
   /**Função que adiciona novos documentos ao banco de dados. */
   addNewDocuments() {
     this.success = false
-    this._service.postDocuments(this._formPublicacoes.value)
+    this._service.postPublicacoes(this._formPublicacoes.value)
       .subscribe(res => {
         this.success = true
         this._formPublicacoes.reset()
-        this.showToastrSuccess('O documento foi adicionado com sucesso')
+        this.showToastrSuccess('A publicação foi adicionada com sucesso')
         this._router.navigate(['/admin/publicacoes'])
       }, err => {
         this._formPublicacoes.reset()
-        this.showToastrError('Houve um erro ao adicionar o documento. Tente novamente.')
+        this.showToastrError('Houve um erro ao adicionar a publicação. Tente novamente.')
         this._router.navigate(['/admin/publicacoes'])
       })
   }
@@ -172,5 +176,13 @@ export class NovoPublicacoesComponent implements OnInit, OnDestroy, ComponentCan
   get descricao() { return this._formPublicacoes.get('descricao') }
   /**Função que retorna o valor do input “categoria”. */
   get categoria() { return this._formPublicacoes.get('categoria') }
+  /**Função que retorna o valor do input autores. */
+  get autores() { return this._formPublicacoes.get('autores') }
+  /**Função que retorna o valor do input plataforma. */
+  get plataforma() { return this._formPublicacoes.get('plataforma') }
+  /**Função que retorna o valor do input cidade. */
+  get cidade() { return this._formPublicacoes.get('cidade') }
+  /**Função que retorna o valor do input ano. */
+  get dataPublicacao() { return this._formPublicacoes.get('dataPublicacao') }
 
 }

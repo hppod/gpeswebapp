@@ -14,7 +14,7 @@ export class PublicacoesService {
     deleteParams = new HttpParams()
 
     /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/transparencia/criar”. A requisição não pode receber parâmetros e deve ser do tipo Form Data. */
-    postDocuments(formData) {
+    postPublicacoes(formData) {
         return this.http.post<any>(`${GPESWebApi}/authenticated/publicacoes/criar/`, formData, { reportProgress: true, observe: 'events' })
     }
 

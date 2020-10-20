@@ -131,7 +131,7 @@ export class PublicacoesComponent implements OnInit {
     this.httpReq = this.categoryService.getExistingCategories(true).subscribe(response => {
       this.dropdownFilterMenuItems = response.body['data']
     }, err => {
-      console.log(err)
+      this.showToastrError(`${err.error['message']}`)
     })
   }
 
