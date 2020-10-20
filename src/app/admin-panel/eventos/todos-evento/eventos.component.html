@@ -30,7 +30,7 @@
               <span *ngIf="showEllipsisInTheText(evento.titulo, 30)">...
               </span>
             </th>
-            <td>{{evento['date'] | date: 'dd/MM/yyyy'}}</td>
+            <td>{{evento['date'] | date: 'dd/MM/yyyy' : "UTC"}}</td>
             <td (click)="$event.stopPropagation()">
               <button class="btn btn-outline-warning btn-sm"
                 [routerLink]="['/admin/eventos/atualizar', evento['titulo']]">Editar</button>
