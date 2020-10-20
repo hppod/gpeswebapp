@@ -19,7 +19,6 @@
               <span><i class="pull-right rotate fa"
                   [ngClass]="{'i-active': item === sortSelectedItem, 'fa-chevron-down': this.service.params.get('valueSort') == 'descending', 'fa-chevron-up': this.service.params.get('valueSort') == 'ascending'}"></i></span>
             </th>
-            <th>Contato</th>
             <th>Ações</th>
           </tr>
         </thead>
@@ -29,9 +28,8 @@
             class="pointer hoverRowTable">
             <th scope="row">{{ integrante.nome }}
             </th>
-            <td>{{integrante['dataInicio'] | date: 'dd/MM/yyyy'}}</td>
-            <td>{{integrante['dataFim'] | date: 'dd/MM/yyyy'}}</td>
-            <td>{{integrante['contato']}}</td>
+            <td>{{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
+            <td>{{integrante['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td (click)="$event.stopPropagation()">
               <button class="btn btn-outline-warning btn-sm">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm">Excluir</button>

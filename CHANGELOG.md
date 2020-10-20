@@ -14,3 +14,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos autores, plataforma, cidade e dataPublicacao ao modelo de publicações e no componente create-publicação.
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
 * **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
+* **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
