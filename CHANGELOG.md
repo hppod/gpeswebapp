@@ -11,6 +11,9 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.1
 * **Processo Seletivo:** Implementado o componente para visualizar os detalhes do processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a busca pelo título na API.
+<<<<<<< HEAD
 * **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos autores, plataforma, cidade e dataPublicacao ao modelo de publicações e no componente create-publicação.
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
+=======
+>>>>>>> 66cca37bbfc407427068b8ff39ef1a6b12d69d1e
 * **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
