@@ -13,29 +13,29 @@ import { SharedModule } from "../../shared/shared.module"
 
 import { EventosComponent } from "./todos-evento/eventos.component"
 import { CreateEventoComponent } from "./create-evento/create-evento.component"
-import { VisualizarNoticiaComponent } from "./visualizar-noticia/visualizar-noticia.component"
-import { EditNoticiaComponent } from "./edit-noticia/edit-noticia.component"
+import { VisualizarEventoComponent } from "./visualizar-evento/visualizar-evento.component"
+import { EditEventoComponent } from "./edit-evento/edit-evento.component"
 import { PendingChangesGuard } from "../../../../src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
     { path: '', component: EventosComponent },
-    { path: 'detalhes/:title', component: VisualizarNoticiaComponent },
+    { path: 'detalhes/:title', component: VisualizarEventoComponent },
     { path: 'criar', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
-    { path: 'atualizar/:title', component: EditNoticiaComponent, canDeactivate: [PendingChangesGuard] }
+    { path: 'atualizar/:title', component: EditEventoComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
         EventosComponent,
         CreateEventoComponent,
-        VisualizarNoticiaComponent,
-        EditNoticiaComponent
+        VisualizarEventoComponent,
+        EditEventoComponent
     ],
     exports: [
         EventosComponent,
         CreateEventoComponent,
-        VisualizarNoticiaComponent,
-        EditNoticiaComponent
+        VisualizarEventoComponent,
+        EditEventoComponent
     ],
     providers: [
         PendingChangesGuard

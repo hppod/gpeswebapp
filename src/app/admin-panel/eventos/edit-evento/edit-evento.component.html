@@ -2,14 +2,14 @@
   <div>
     <div class="row">
       <div class="col-sm-6 positionTitle">
-        <h5>Atualizar notícia</h5>
+        <h5>Atualizar evento</h5>
       </div>
       <p class="col-sm-6 positionRequired">
         * Campos obrigatórios
       </p>
     </div>
     <div>
-      <form [formGroup]="noticiaForm" novalidates>
+      <form [formGroup]="eventoForm" novalidates>
         <div class="form-row">
           <div class="form-group col-sm-12">
             <label for="titulo" class="form-control-label">Título <span class="text-danger">*</span></label>
@@ -35,7 +35,7 @@
         <div class="row">
           <div class="col-sm-12 positionButtons">
             <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
-            <button type="button" class="btn btn-outline-success btn-sm" (click)="updateNoticia()">Atualizar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="updateEvento()">Atualizar</button>
           </div>
         </div>
       </form>
