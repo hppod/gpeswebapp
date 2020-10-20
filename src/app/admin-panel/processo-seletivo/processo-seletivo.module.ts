@@ -20,7 +20,7 @@ import { DetalhesProcessoSeletivoComponent } from './detalhes-processo-seletivo/
 const ROUTES: Routes = [
   { path: '', component: TodosProcessoSeletivoComponent },
   { path: 'create', component: CreateProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] },
-  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] }
+  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent }
 ]
 
 @NgModule({
@@ -34,24 +34,24 @@ const ROUTES: Routes = [
     CreateProcessoSeletivoComponent
   ],
   providers: [
-      PendingChangesGuard
+    PendingChangesGuard
   ],
   imports: [
-      AdminPanelModule,
-      CommonModule,
-      SharedModule,
-      RouterModule.forChild(ROUTES),
-      NgxPaginationModule,
-      BsDropdownModule.forRoot(),
-      ModalModule.forRoot(),
-      TooltipModule.forRoot(),
-      FormsModule,
-      ReactiveFormsModule,
-      ToastrModule.forRoot({
-          preventDuplicates: true
-      }),
-      AngularEditorModule,
-      DragulaModule.forRoot()
+    AdminPanelModule,
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(ROUTES),
+    NgxPaginationModule,
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    AngularEditorModule,
+    DragulaModule.forRoot()
   ]
 })
 export class ProcessoSeletivoModule { }
