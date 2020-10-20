@@ -19,3 +19,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
 * **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
+* **Integrantes:** Adição do metodo getIntegranteByName.

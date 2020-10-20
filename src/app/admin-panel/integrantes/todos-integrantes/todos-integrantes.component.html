@@ -25,7 +25,7 @@
         <tbody>
           <tr
             *ngFor="let integrante of integrantes | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
-            class="pointer hoverRowTable">
+            [routerLink]="['/admin/integrantes/detalhes', integrante['nome']]" class="pointer hoverRowTable">
             <th scope="row">{{ integrante.nome }}
             </th>
             <td>{{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
