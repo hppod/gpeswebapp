@@ -85,7 +85,7 @@ export class TodosIntegrantesComponent implements OnInit {
     this.isLoading = true
     this.httpReq = this.service.getAllIntegrantesWithParams('authenticated').subscribe(response => {
       this.statusResponse = response.status
-
+      console.log(response.body)
       if (response.status == 200) {
         this.messageApi = response.body['message']
         this.integrantes = response.body['data']

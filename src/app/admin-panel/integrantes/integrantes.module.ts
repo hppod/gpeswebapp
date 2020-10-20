@@ -16,7 +16,7 @@ import { NovoIntegranteComponent } from './novo-integrante/novo-integrante.compo
 
 const ROUTES: Routes = [
   { path: '', component: TodosIntegrantesComponent },
-  { path: 'novo', component: NovoIntegranteComponent },
+  { path: 'novo', component: NovoIntegranteComponent, canDeactivate: [PendingChangesGuard]},
 ]
 
 @NgModule({
