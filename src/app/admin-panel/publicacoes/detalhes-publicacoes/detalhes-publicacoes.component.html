@@ -31,6 +31,36 @@
       <br>
       <div class="row">
         <div class="col-sm-6">
+          <label class="form-control-label">Autores</label>
+          <div>
+            {{document['autores']}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-control-label">Plataforma</label>
+          <div>
+            {{document['plataforma']}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
+          <label class="form-control-label">Cidade</label>
+          <div>
+            {{document['cidade']}}
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <label class="form-control-label">Data da publicação</label>
+          <div>
+            {{document['dataPublicacao'] | date: 'dd/MM/yyyy':"UTC"}}
+          </div>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-sm-6">
           <label class="form-control-label">Descrição</label>
           <div>
             {{document['descricao']}}
@@ -39,7 +69,8 @@
         <div class="col-sm-6">
           <label class="form-control-label">Arquivo</label>
           <div>
-            {{document['file']['originalname']}} &nbsp; <a class="pointer linkToFile" [href]="file" target="_blank">
+            <!--{{document['file']['originalname']}} &nbsp; --><a class="pointer linkToFile" [href]="file"
+              target="_blank">
               Ver arquivo <i class="fa fa-eye"></i></a>
           </div>
         </div>
