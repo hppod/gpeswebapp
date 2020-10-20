@@ -6,5 +6,5 @@ export interface Publicacoes {
     autores: String,
     plataforma: String,
     cidade: String,
-    ano: Number
+    dataPublicacao: Date
 }
