@@ -30,6 +30,14 @@
           </div>
         </div>
       </div>
+      <div class="row">
+          <div class="col-sm-6">
+              <label class="form-control-label">Data do Evento</label>
+              <div>
+                  {{evento['date'] | date: 'dd/MM/yyyy':"UTC"}}
+              </div>
+          </div>
+      </div>
       <br>
       <div class="row" *ngIf="evento && hasImages">
         <div class="col-sm-12">
