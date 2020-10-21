@@ -12,7 +12,7 @@ import { AdminPanelModule } from "./../admin-panel.module"
 import { SharedModule } from "./../../shared/shared.module"
 import { DragulaModule } from 'ng2-dragula'
 
-import { SobreComponent } from "./todos-sobre/sobre.component"
+import { SobreComponent } from "./todos-sobre/todos-sobre.component"
 import { CreateSobreComponent } from "./create-sobre/create-sobre.component"
 import { DetalhesSobreComponent } from "./detalhes-sobre/detalhes-sobre.component"
 import { AtualizarSobreComponent } from "./atualizar-sobre/atualizar-sobre.component"

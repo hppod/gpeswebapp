@@ -8,6 +8,8 @@ Log de alterações da aplicação
 * **Publicações:** Refatorando o módulo de Portal-Transparencia para Publicações, o componente de listar todos e criar, validator de título único e alterações nos arquivos de rotas e
 módulos para acessar os componentes. Também foi alterado o nome das pastas detalhes-transparencia e atualizar-transparencia para detalhes-publicacoes e atualizar-publicacoes.
 * **Eventos:** Refatorando o módulo de notícias para Eventos, o componente de listar todos e criar, validator de título único e alterações nos arquivos de rotas e módulos para acessar os componentes.
+* **Sobre:** Implementando módulo Sobre, metodo create e listar todos e validators.
+
 
 ### Versão 5.1
 * **Processo Seletivo:** Implementado o componente para visualizar os detalhes do processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a busca pelo título na API.
@@ -15,3 +17,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
 * **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
 * **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
+* **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
