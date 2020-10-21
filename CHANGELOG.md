@@ -15,7 +15,7 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado o componente para visualizar os detalhes do processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a busca pelo título na API.
 * **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos autores, plataforma, cidade e dataPublicacao ao modelo de publicações e no componente create-publicação.
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
-* **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
+* **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda, adicionando o campo de data no visualizar eventos.
 * **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
 * **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
