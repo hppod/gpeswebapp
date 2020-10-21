@@ -172,8 +172,9 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
         })
     }
   }
-
+  
   postSobre(){
+    this.sobreForm.value['ordenacao'] = this.total + 1  
     this.httpReq = this._service.createNewSobre(this.sobreForm.value).subscribe(response =>{
       this.sobreForm.reset()
       this.showToastrSuccess()
