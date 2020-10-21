@@ -20,3 +20,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários. Fazendo com que o campo ordenação receba o total de registros +1.  
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
+* **Sobre:** Implementado método de exibição de detalhes de um registro ao clicar e configurando para exibição no painel administrativo.
