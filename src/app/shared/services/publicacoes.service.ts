@@ -13,19 +13,19 @@ export class PublicacoesService {
     params = new HttpParams()
     deleteParams = new HttpParams()
 
-    /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/transparencia/criar”. A requisição não pode receber parâmetros e deve ser do tipo Form Data. */
+    /**Função que realiza a requisição do tipo POST ao endpoint “/authenticated/publicacoes/criar. A requisição não pode receber parâmetros e deve ser do tipo Form Data. */
     postPublicacoes(formData) {
         return this.http.post<any>(`${GPESWebApi}/authenticated/publicacoes/criar/`, formData, { reportProgress: true, observe: 'events' })
     }
 
-    /**Função que realiza a requisição do tipo GET ao endpoint “/modificador/transparencia/listar-todos”. O endpoint serve para o modificador público e privado. Ao chamar a função deve ser explicitado qual modificador será utilizado. A requisição pode receber parâmetros. */
+    /**Função que realiza a requisição do tipo GET ao endpoint “/modificador/publicacoes/listar-todos”. O endpoint serve para o modificador público e privado. Ao chamar a função deve ser explicitado qual modificador será utilizado. A requisição pode receber parâmetros. */
     getPublicacoesWithParams(modifier: string): Observable<HttpResponse<Publicacoes[]>> {
         return this.http.get<Publicacoes[]>(`${GPESWebApi}/${modifier}/publicacoes/listar-todos`, { params: this.params, observe: 'response' })
     }
 
-    /**Função que realiza a requisição do tipo GET ao endpoint “/authenticated/transparencia/listar-um/title”. A requisição possui um parâmetro obrigatório (title). */
-    getDocumentByTile(title: string): Observable<HttpResponse<Publicacoes>> {
-        return this.http.get<Publicacoes>(`${GPESWebApi}/authenticated/transparencia/listar-um/${title}`, { observe: 'response' })
+    /**Função que realiza a requisição do tipo GET ao endpoint “/authenticated/publicacoes/listar-um/title”. A requisição possui um parâmetro obrigatório (title). */
+    getPublicacaoByTitle(title: string): Observable<HttpResponse<Publicacoes>> {
+        return this.http.get<Publicacoes>(`${GPESWebApi}/authenticated/publicacoes/listar-um/${title}`, { observe: 'response' })
     }
 
     /**Função que realiza a requisição do tipo GET ao endpoint “/public/transparencia/download/filename”. A requisição não pode receber parâmetros e sua resposta é do tipo Blob. */
