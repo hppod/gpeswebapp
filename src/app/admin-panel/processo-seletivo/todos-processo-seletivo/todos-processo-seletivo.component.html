@@ -5,7 +5,8 @@
                 <h5>Processo Seletivo</h5>
             </div>
             <div class="col-sm-6 positionButtons">
-                <button type="button" class="btn btn-outline-info-dkblue btn-sm">Ordenação</button>
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm"
+                    (click)="openModal(template)">Ordenação</button>
                 <button type="button" class="btn btn-outline-success btn-sm"
                     [routerLink]="['/admin/processo-seletivo/create']">Adicionar</button>
             </div>
@@ -47,13 +48,13 @@
     </div>
 </div>
 
-<!-- <ng-template #template>
+<ng-template #template>
     <div>
         <div class="modal-header">
-            <h5 class="modal-title">Ordenar Sobre</h5>
+            <h5 class="modal-title">Ordenar Processo Seletivo</h5>
         </div>
         <app-loading [condition]="isLoading"></app-loading>
-        <div *ngIf="sobre && statusResponse == 200" class="modal-body">
+        <div *ngIf="processoSeletivo && statusResponse == 200" class="modal-body">
             <div class="table-responsive" id="marginTopTable">
                 <table *ngIf="!isLoading && statusResponse == 200" class="table">
                     <thead>
@@ -63,21 +64,21 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody dragula="SOBRE" [(dragulaModel)]="sobre">
-                        <tr class="pointer hoverRowTable cursorMouse" *ngFor="let sobre of sobre">
-                            <th><i class="fa fa-bars"> &nbsp; {{sobre.titulo | slice: 0:50}} </i>
-                                <span *ngIf="showEllipsisInTheText(sobre.titulo, 50)">...</span>
+                    <tbody dragula="PROCESSOSELETIVO" [(dragulaModel)]="processoSeletivo">
+                        <tr class="pointer hoverRowTable cursorMouse" *ngFor="let processoSeletivo of processoSeletivo">
+                            <th><i class="fa fa-bars"> &nbsp; {{processoSeletivo.titulo | slice: 0:50}} </i>
+                                <span *ngIf="showEllipsisInTheText(processoSeletivo.titulo, 50)">...</span>
                             </th>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <app-no-data *ngIf="!isLoading && statusResponse == 204 && !sobre"></app-no-data>
-            <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !sobre"></app-error>
+            <app-no-data *ngIf="!isLoading && statusResponse == 204 && !processoSeletivo"></app-no-data>
+            <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !processoSeletivo"></app-error>
         </div>
         <div class="modal-footer">
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="cancel()">Cancelar</button>
             <button type="button" class="btn btn-outline-success btn-sm" (click)="saveNewOrder()">Salvar</button>
         </div>
     </div>
-</ng-template> -->
+</ng-template>
