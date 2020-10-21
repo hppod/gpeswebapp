@@ -72,7 +72,6 @@ export class EventosComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('columnSort', 'date')
     this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('page', getLastPage())
-    this._service.params = this._service.params.set('limit', '10')
 
     this.getEventosWithParams()
   }
