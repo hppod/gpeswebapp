@@ -17,6 +17,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Categorias:** Ajustado campo recebido da API e removido console.log desnecessário.
 * **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
 * **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
-* **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
+* **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários. Fazendo com que o campo ordenação receba o total de registros +1.  
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
