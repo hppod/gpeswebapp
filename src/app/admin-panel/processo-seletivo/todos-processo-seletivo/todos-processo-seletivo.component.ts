@@ -13,7 +13,6 @@ import { ModalLoadingComponent } from "./../../../web-components/common/modals/m
 import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
-
 @Component({
   selector: 'app-todos-processo-seletivo',
   templateUrl: './todos-processo-seletivo.component.html',
@@ -34,6 +33,12 @@ export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef
   modalOrder: BsModalRef
 
+  configOrderModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false
+  }
+
+  MANY_ITEMS = "PROCESSOSELETIVO";
   subs = new Subscription();
 
   constructor(
@@ -44,6 +49,14 @@ export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
     private _toastr: ToastrService,
     private _dragula: DragulaService
   ) {
+    this.subs.add(this._dragula.dropModel(this.MANY_ITEMS)
+      .subscribe(({ targetModel }) => {
+        this.processoSeletivo = targetModel
+        for (let index = 0; index < this.processoSeletivo.length; index++) {
+          this.processoSeletivo[index].ordenacao = index + 1
+        }
+      })
+    );
     checkUrlAndSetFirstPage(this._router.url)
   }
 
@@ -102,6 +115,70 @@ export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
     return text.length > limit;
   }
 
+  getProcessoSeletivo() {
+    this._service.params = this._service.params.set('limit', 'null')
+    this.isLoading = true
+    this.httpReq = this._service.getProcessoSeletivoWithParams('authenticated').subscribe(response => {
+      this.statusResponse = response.status
+      this.messageApi = response.body['message']
+      this.processoSeletivo = response.body['data']
+      this.isLoading = false
+    }, err => {
+      this.statusResponse = err.status
+      this.messageApi = err.body['message']
+      this.isLoading = false
+    })
+  }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalOrder = this._modal.show(template, this.configOrderModal);
+    this.getProcessoSeletivo()
+  }
+
+  closeModal(modalId?: number){
+    this._modal.hide(modalId);
+  }
+
+  cancel() {
+    const initialState = { message: "Tem certeza que deseja cancelar a ordenação? Todas as alterações serão perdidas." }
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState, id: 1 })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+        this.modalRef.hide()
+        this.modalOrder.hide()
+        this.getProcessoSeletivoWithParams()
+      } else {
+        this.closeModal(1)
+      }
+    })
+  }
+
+  saveNewOrder() {
+    this.processoSeletivo.forEach(element => {
+      this.httpReq = this._service.updateOrder(element.titulo, element).subscribe(response => {
+        this.modalOrder.hide()
+        this.getProcessoSeletivoWithParams()
+        this.showToastrSuccessEditar()
+      }, err => {
+        this.modalOrder.hide()
+        this.getProcessoSeletivoWithParams()
+        this.showToastrErrorEditar()
+      })
+    })
+  }
+
+  showToastrSuccessEditar() {
+    this._toastr.success('A ordenação foi alterada com sucesso', null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
+  }
+
+  showToastrErrorEditar() {
+    this._toastr.error('Houve um erro ao alterar a ordenação. Tente novamente.', null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
+  }
 
 }
