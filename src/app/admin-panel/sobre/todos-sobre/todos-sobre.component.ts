@@ -15,8 +15,8 @@ import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 's
 
 @Component({
   selector: 'app-sobre',
-  templateUrl: './sobre.component.html',
-  styleUrls: ['./sobre.component.css']
+  templateUrl: './todos-sobre.component.html',
+  styleUrls: ['./todos-sobre.component.css']
 })
 export class SobreComponent implements OnInit, OnDestroy {
 
