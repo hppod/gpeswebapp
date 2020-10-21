@@ -20,4 +20,3 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
-* **Integrantes:** Adição do metodo getIntegranteByName.
