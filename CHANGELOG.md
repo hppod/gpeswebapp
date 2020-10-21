@@ -18,3 +18,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, problema de exibição de data errada foi corrigda.
 * **Integrantes:** Correção no problema de data inicial e final, adição do campo lattes na criação de integrantes.
 * **Sobre:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessários.
+* **Processo Seletivo:** Implementado reordenação via modal no componente.
