@@ -55,7 +55,7 @@ export class PublicacoesComponent implements OnInit {
     },
     {
       option: 'Postado em',
-      param: 'date'
+      param: 'dataPublicacao'
     }
   ]
 
@@ -86,7 +86,7 @@ export class PublicacoesComponent implements OnInit {
 
     this.sortSelectedItem = this.headTableItems[2]
 
-    this._service.params = this._service.params.set('columnSort', 'date')
+    this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
     this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('page', getLastPage())
 
@@ -108,13 +108,14 @@ export class PublicacoesComponent implements OnInit {
 
   /**Função que busca os documentos do portal da transparência no banco de dados de acordo com os parâmetros informados. */
   getDocumentsWithParams() {
+    this._service.params = this._service.params.set('limit', '10')
     this.isLoading = true
     this.httpReq = this._service.getPublicacoesWithParams('authenticated').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
-        this.documents = response.body['data']
         this.messageApi = response.body['message']
+        this.documents = response.body['data']
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
@@ -131,7 +132,7 @@ export class PublicacoesComponent implements OnInit {
     this.httpReq = this.categoryService.getExistingCategories(true).subscribe(response => {
       this.dropdownFilterMenuItems = response.body['data']
     }, err => {
-      console.log(err)
+      this.showToastrError(`${err.error['message']}`)
     })
   }
 
@@ -148,6 +149,8 @@ export class PublicacoesComponent implements OnInit {
     this.documents = null
     this.dropdownFilterSelectedItem = item
     this.filterCategory = true
+    this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
+    this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('category', item['nome'])
     this.getDocumentsWithParams()
   }

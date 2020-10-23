@@ -18,7 +18,10 @@ export class IntegrantesService {
   }
 
   postIntegrantes(form: Integrantes) {
-    console.log(form)
     return this.http.post<Integrantes>(`${GPESWebApi}/authenticated/integrantes/criar`, form, { observe: 'response' })
+  }
+
+  getIntegranteByName(nome: string): Observable<HttpResponse<Integrantes>> {
+    return this.http.get<Integrantes>(`${GPESWebApi}/authenticated/integrantes/listar-um/${nome}`, { observe: 'response' })
   }
 }

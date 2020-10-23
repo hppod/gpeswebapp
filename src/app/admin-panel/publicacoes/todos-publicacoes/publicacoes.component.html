@@ -22,7 +22,7 @@
           (click)="clearConditions()">Limpar
           filtros </button>
         <button type="button" class="btn btn-outline-success btn-sm"
-          [routerLink]="['/admin/publicacoes/novo']">Adicionar</button>
+          [routerLink]="['/admin/publicacoes/create']">Adicionar</button>
       </div>
     </div>
     <app-loading [condition]="isLoading"></app-loading>
@@ -41,13 +41,13 @@
         </thead>
         <tbody>
           <tr *ngFor="let document of documents | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
-            [routerLink]="['/admin/transparencia/detalhes', document['titulo']]" class="pointer hoverRowTable">
+            [routerLink]="['/admin/publicacoes/detalhes', document['titulo']]" class="pointer hoverRowTable">
             <th scope="row">{{document['titulo']}}</th>
             <td>{{document['categoria']}}</td>
-            <td>{{document['date'] | date: 'dd/MM/yyyy'}}</td>
+            <td>{{document['dataPublicacao'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td (click)="$event.stopPropagation()">
               <button class="btn btn-outline-warning btn-sm"
-                [routerLink]="['/admin/transparencia/atualizar', document['titulo']]">Editar</button>
+                [routerLink]="['/admin/publicacoes/atualizar', document['titulo']]">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
                 (click)="canDelete(document['titulo'], document['_id'], document['file']['filename'])">Excluir</button>
             </td>

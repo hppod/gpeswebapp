@@ -116,42 +116,6 @@ export class CreateEventoComponent implements OnInit, OnDestroy, ComponentCanDea
     }
   }
 
-  addNewEvento(): void {
-
-    this.modalUpload = this._modal.show(ModalUploadImagemComponent)
-
-    this.setFiles()
-    this.resize()
-
-    // if (this.Files.length > 0) {
-    //   this.blobFiles.forEach(img => {
-    //     this.form.append("imagem", img, img.name);
-    //   })
-    // }
-
-    // this.eventoForm.value.imagemPrincipal = this.blobFiles[this.uploaderService.mainFile].name
-
-    this.form.append("titulo", this.eventoForm.value.titulo);
-    this.form.append("descricao", this.eventoForm.value.descricao);
-    this.form.append("date", this.eventoForm.value.date);
-    // this.form.append("imagemPrincipal", this.eventoForm.value.imagemPrincipal);
-    // this.form.append("mainfile_index", this.uploaderService.mainFile.toString())
-
-    this.eventoService.postEvento(this.form).pipe(
-      toResponseBody()
-    ).subscribe(res => {
-      this.eventoForm.reset()
-      this.router.navigate(['/admin/noticias'])
-      this.modalUpload.hide()
-      this.showToastrSuccess()
-    }, err => {
-      this.eventoForm.reset()
-      this.router.navigate(['/admin/noticias'])
-      this.modalUpload.hide()
-      this.showToastrError()
-    })
-  }
-
   postEvento() {    
     this.httpReq = this.eventoService.createNewEvento(this.eventoForm.value).subscribe(response => {
       this.eventoForm.reset()    
@@ -165,7 +129,7 @@ export class CreateEventoComponent implements OnInit, OnDestroy, ComponentCanDea
   }
 
   canCancel() {
-    const initialState = { message: "Deseja cancelar a inserção do evento atual?" }
+    const initialState = { message: "Tem certeza que deseja cancelar a inserção do evento atual? Todos os dados serão perdidos." }
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
@@ -176,7 +140,7 @@ export class CreateEventoComponent implements OnInit, OnDestroy, ComponentCanDea
   }
 
   showToastrSuccess() {
-    this._toastr.success('O evento foi adicionado com sucesso', null, {
+    this._toastr.success('O Evento foi adicionado com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
