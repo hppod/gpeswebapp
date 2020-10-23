@@ -20,7 +20,7 @@ export class EventosComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
-  noticias: Evento[]
+  eventos: Evento[]
 
   isLoading: boolean = false
   messageApi: string
@@ -48,7 +48,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     backdrop: 'static',
     keyboard: false,
     initialState: {
-      message: "Excluindo notícia...",
+      message: "Excluindo evento...",
       withFooter: false
     }
   }
@@ -72,7 +72,6 @@ export class EventosComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('columnSort', 'date')
     this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('page', getLastPage())
-    this._service.params = this._service.params.set('limit', '10')
 
     this.getEventosWithParams()
   }
@@ -95,7 +94,7 @@ export class EventosComponent implements OnInit, OnDestroy {
 
       if (response.status == 200) {
         this.messageApi = response.body['message']
-        this.noticias = response.body['data']
+        this.eventos = response.body['data']
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
@@ -109,14 +108,14 @@ export class EventosComponent implements OnInit, OnDestroy {
   }
 
   getPage(page: number) {
-    this.noticias = null
+    this.eventos = null
     scrollPageToTop(page)
     this._service.params = this._service.params.set('page', page.toString())
     this.getEventosWithParams()
   }
 
   onClickSortTable(item: any) {
-    this.noticias = null
+    this.eventos = null
     this.sortSelectedItem = item
     this._service.params = this._service.params.set('columnSort', item['param'])
     if (this._service.params.get('valueSort') == 'descending') {
@@ -132,12 +131,12 @@ export class EventosComponent implements OnInit, OnDestroy {
   }
 
   canDelete(title: string, id: string) {
-    const initialState = { message: `Deseja excluir a noticia "${title}" ?` }
+    const initialState = { message: `Deseja excluir o evento "${title}" ?` }
     this.modalRef = this.modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.modalRef = this.modal.show(ModalLoadingComponent, this.configLoadingModal)
-        this._service.deleteNoticia(id).subscribe(response => {
+        this._service.deleteEvento(id).subscribe(response => {
           this._service.params = this._service.params.set('page', '1')
           this.getEventosWithParams()
           this.modalRef.hide()
@@ -152,14 +151,14 @@ export class EventosComponent implements OnInit, OnDestroy {
   }
 
   showToastrSuccess() {
-    this.toastr.success('A notícia foi excluida com sucesso', null, {
+    this.toastr.success('O evento foi excluido com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
   }
 
   showToastrError() {
-    this.toastr.error('Houve um erro ao excluir a notícia. Tente novamente.', null, {
+    this.toastr.error('Houve um erro ao excluir o evento. Tente novamente.', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })

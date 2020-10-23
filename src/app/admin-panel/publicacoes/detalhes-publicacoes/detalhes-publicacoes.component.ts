@@ -67,11 +67,10 @@ export class DetalhesTransparenciaComponent implements OnInit {
   /**Função que busca os documentos do portal da transparência no banco de dados de acordo com os parâmetros informados. */
   getDocumentWithTitle(title: string) {
     this.isLoading = true
-    this.httpReq = this._service.getDocumentByTile(title).subscribe(response => {
+    this.httpReq = this._service.getPublicacaoByTitle(title).subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.document = response.body['data']
-      this.file = `${GPESWebApi}/public/transparencia/download/${this.document['file']['filename']}`
       this.isLoading = false
     }, err => {
       this.messageApi = err.error['message']

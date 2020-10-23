@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { setLastUrl } from 'src/app/shared/functions/last-pagination';
+import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
 import { Integrantes } from 'src/app/shared/models/integrantes.model';
 import { IntegrantesService } from 'src/app/shared/services/integrantes.service';
 import { IntegrantesValidator } from 'src/app/shared/validations/integrantes.validator';
@@ -15,7 +16,7 @@ import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal
   templateUrl: './novo-integrante.component.html',
   styleUrls: ['./novo-integrante.component.css']
 })
-export class NovoIntegranteComponent implements OnInit {
+export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
 
   private httpReq: Subscription
 
@@ -47,11 +48,26 @@ export class NovoIntegranteComponent implements OnInit {
     this.integranteForm = this.builder.group({
       nome: this.builder.control('', [Validators.required, Validators.maxLength(150)], this._unique.checkUniqueTitulo()),
       contato: this.builder.control(''),
+      lattes: this.builder.control(''),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
       projetos: this.builder.control(''),
       situacao: this.builder.control(false)
     });
+  }
+
+  ngOnDestroy() {
+    if (this.httpReq) {
+      this.httpReq.unsubscribe()
+    }
+  }
+
+  @HostListener('window:beforeunload')
+  canDeactivate(): Observable<boolean> | boolean {
+    if (this.integranteForm.dirty) {
+      return false
+    }
+    return true
   }
 
   postIntegrante(form: Integrantes) {
@@ -100,6 +116,6 @@ export class NovoIntegranteComponent implements OnInit {
   get contato() { return this.integranteForm.get('contato') }
   get dataInicio() { return this.integranteForm.get('dataInicio') }
   get dataFim() { return this.integranteForm.get('dataFim') }
-
+  get lattes() { return this.integranteForm.get('lattes')}
 
 }

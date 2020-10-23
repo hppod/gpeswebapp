@@ -39,6 +39,52 @@
           </div>
         </div>
         <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="autores" class="form-control-label">Autores <span class="required">*</span></label>
+            <input class="form-control" formControlName="autores" type="text" placeholder="Autor/Autores" id="autores"
+              maxlength="250">
+            <small *ngIf="autores.invalid && (autores.dirty || autores.touched)" class="text-danger">
+              <div *ngIf="autores.errors.required">
+                Autores é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="plataforma" class="form-control-label">Plataforma <span class="required">*</span></label>
+            <input class="form-control" formControlName="plataforma" type="text" placeholder="Plataforma da publicação"
+              id="plataforma" maxlength="150">
+            <small *ngIf="plataforma.invalid && (plataforma.dirty || plataforma.touched)" class="text-danger">
+              <div *ngIf="plataforma.errors.required">
+                Plataforma é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="cidade" class="form-control-label">Cidade <span class="required">*</span></label>
+            <input class="form-control" formControlName="cidade" type="text" placeholder="Cidade" id="cidade"
+              maxlength="150">
+            <small *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)" class="text-danger">
+              <div *ngIf="cidade.errors.required">
+                Cidade é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="dataPublicacao" class="text-center">Data da publicação <span
+                class="text-danger">*</span></label><br>
+            <input type="date" name="dataPublicacao" class="form-control" placeholder="Data da publicação"
+              formControlName="dataPublicacao">
+            <small *ngIf="dataPublicacao.invalid && (dataPublicacao.dirty || dataPublicacao.touched)"
+              class="text-danger">
+              <div *ngIf="dataPublicacao.errors.required">
+                Data da publicação é obrigatória.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
           <div class="form-group col-sm-12">
             <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
             <textarea class="form-control" formControlName="descricao" type="text" placeholder="Descrição..."

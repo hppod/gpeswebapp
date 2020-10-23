@@ -19,4 +19,12 @@ export class ProcessoSeletivoService {
     return this.http.post<any>(`${GPESWebApi}/authenticated/processo-seletivo/criar`, form, { reportProgress: true, observe: 'events' })
   }
 
+  getProcessoSeletivoByTile(title: string): Observable<HttpResponse<ProcessoSeletivo>> {
+    return this.http.get<ProcessoSeletivo>(`${GPESWebApi}/authenticated/processo-seletivo/listar-um/${title}`, { observe: 'response' })
+  }
+
+  updateOrder(title: string, formData) {
+    return this.http.put<any>(`${GPESWebApi}/authenticated/processo-seletivo/atualizar-ordenacao/${title}`, formData, { observe: 'response' })
+  }
+
 }

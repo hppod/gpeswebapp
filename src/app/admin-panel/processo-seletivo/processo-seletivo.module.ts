@@ -14,41 +14,44 @@ import { DragulaModule } from 'ng2-dragula'
 
 import { TodosProcessoSeletivoComponent } from './todos-processo-seletivo/todos-processo-seletivo.component';
 import { CreateProcessoSeletivoComponent } from './create-processo-seletivo/create-processo-seletivo.component';
-import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
+import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard";
+import { DetalhesProcessoSeletivoComponent } from './detalhes-processo-seletivo/detalhes-processo-seletivo.component'
 
 const ROUTES: Routes = [
   { path: '', component: TodosProcessoSeletivoComponent },
-  { path: 'create', component: CreateProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] }
+  { path: 'create', component: CreateProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] },
+  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent }
 ]
 
 @NgModule({
   declarations: [
     TodosProcessoSeletivoComponent,
-    CreateProcessoSeletivoComponent
+    CreateProcessoSeletivoComponent,
+    DetalhesProcessoSeletivoComponent
   ],
   exports: [
     TodosProcessoSeletivoComponent,
     CreateProcessoSeletivoComponent
   ],
   providers: [
-      PendingChangesGuard
+    PendingChangesGuard
   ],
   imports: [
-      AdminPanelModule,
-      CommonModule,
-      SharedModule,
-      RouterModule.forChild(ROUTES),
-      NgxPaginationModule,
-      BsDropdownModule.forRoot(),
-      ModalModule.forRoot(),
-      TooltipModule.forRoot(),
-      FormsModule,
-      ReactiveFormsModule,
-      ToastrModule.forRoot({
-          preventDuplicates: true
-      }),
-      AngularEditorModule,
-      DragulaModule.forRoot()
+    AdminPanelModule,
+    CommonModule,
+    SharedModule,
+    RouterModule.forChild(ROUTES),
+    NgxPaginationModule,
+    BsDropdownModule.forRoot(),
+    ModalModule.forRoot(),
+    TooltipModule.forRoot(),
+    FormsModule,
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      preventDuplicates: true
+    }),
+    AngularEditorModule,
+    DragulaModule.forRoot()
   ]
 })
 export class ProcessoSeletivoModule { }

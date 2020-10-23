@@ -8,15 +8,15 @@ import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Sobre } from "../../../shared/models/sobre.model"
 import { SobreService } from '../../../shared/services/sobre.service';
 import { AuthenticationService } from "../../../shared/services/authentication.service"
-import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
-import { ModalLoadingComponent } from "./../../../web-components/common/modals/modal-loading/modal-loading.component"
-import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
+import { ModalDialogComponent } from "../../../web-components/common/modals/modal-dialog/modal-dialog.component"
+import { ModalLoadingComponent } from "../../../web-components/common/modals/modal-loading/modal-loading.component"
+import { scrollPageToTop } from "../../../shared/functions/scroll-top"
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
 @Component({
   selector: 'app-sobre',
-  templateUrl: './sobre.component.html',
-  styleUrls: ['./sobre.component.css']
+  templateUrl: './todos-sobre.component.html',
+  styleUrls: ['./todos-sobre.component.css']
 })
 export class SobreComponent implements OnInit, OnDestroy {
 

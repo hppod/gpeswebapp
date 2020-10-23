@@ -44,7 +44,7 @@ export class ModalCreateCategoryComponent implements OnInit {
 
   addCategory() {
     this.httpReq = this.categoryService.createNewCategory(this._formCategoria.value).subscribe(response => {
-      this.showToastrSuccess(`A categoria ${response.body['nome']} foi adicionada com sucesso!`)
+      this.showToastrSuccess(`A categoria ${response.body['data']['nome']} foi adicionada com sucesso!`)
       this.httpReq = this.categoryService.getExistingCategories(true).subscribe(response => {
         this.close(this._formCategoria.controls['nome'].value)
       })
