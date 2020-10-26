@@ -1,6 +1,5 @@
 //Events
 export const __event_home: string = "navigate_to_home"
-export const __event_duvidas: string = "navigate_to_duvidas"
 export const __event_sobre: string = "navigate_to_sobre"
 export const __event_transparencia: string = "navigate_to_transparencia"
 export const __event_noticias: string = "navigate_to_noticias"
@@ -13,7 +12,6 @@ export const __category_institucional: string = "Institucional"
 
 //Action
 export const __action_home: string = "Home"
-export const __action_duvidas: string = "Dúvidas Frequentes"
 export const __action_sobre: string = "Sobre"
 export const __action_transparencia: string = "Portal da Transparência"
 export const __action_noticias: string = "Notícias"
