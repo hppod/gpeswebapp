@@ -6,7 +6,7 @@ import { Subscription } from "rxjs"
 import { Publicacoes } from "../../../shared/models/publicacoes.model"
 import { PublicacoesService } from "../../../shared/services/publicacoes.service"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
-import { TransparenciaHelperService } from "./../transparencia-helper.service"
+import { PublicacoesHelperService } from "./../publicacoes-helper.service"
 import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
 import * as moment from "moment"
 import { __event_transparencia, __category_institucional, __action_transparencia } from "../../../shared/helpers/analytics.consts"
@@ -15,11 +15,11 @@ import { Category } from "src/app/shared/models/category.model"
 import { CategoryService } from "src/app/shared/services/categories.service"
 
 @Component({
-  selector: 'app-portal-transparencia',
-  templateUrl: './portal-transparencia.component.html',
-  styleUrls: ['./portal-transparencia.component.css']
+  selector: 'app-publicacoes',
+  templateUrl: './publicacoes.component.html',
+  styleUrls: ['./publicacoes.component.css']
 })
-export class PortalTransparenciaComponent implements OnInit {
+export class PublicacoesComponent implements OnInit {
 
   @ViewChild('closeModal') private closeModal: ElementRef
 
@@ -59,7 +59,7 @@ export class PortalTransparenciaComponent implements OnInit {
 
   constructor(
     private _service: PublicacoesService,
-    private _helperService: TransparenciaHelperService,
+    private _helperService: PublicacoesHelperService,
     private _router: Router,
     private _render: Renderer2,
     private _formBuilder: FormBuilder,
@@ -93,7 +93,7 @@ export class PortalTransparenciaComponent implements OnInit {
       this.getDocumentsWithParams()
       this.getCategories()
     } else {
-      this._router.navigate(['/institucional/transparencia'])
+      this._router.navigate(['/institucional/publicacoes'])
     }
 
   }
