@@ -33,6 +33,15 @@ export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef
   modalOrder: BsModalRef
 
+  configLoadingModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false,
+    initialState: {
+      message: "Excluindo registro...",
+      withFooter: false
+    }
+  }
+
   configOrderModal: ModalOptions = {
     backdrop: 'static',
     keyboard: false
@@ -179,6 +188,69 @@ export class TodosProcessoSeletivoComponent implements OnInit, OnDestroy {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
+  }
+
+  canDelete(title: string, _id: string) {
+    let posicao
+    for (let position = 0; position < this.processoSeletivo.length; position++) {
+      if (this.processoSeletivo[position]._id == _id) {
+        posicao = position
+      }
+    }
+
+    const initialState = { message: `Deseja excluir o "${title}" ?` }
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+          this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
+          this._service.delete(_id).subscribe(response => {
+            this._service.params = this._service.params.set('columnSort', 'ordenacao')
+            this._service.params = this._service.params.set('valueSort', 'ascending')
+            this._service.params = this._service.params.set('page', '1')
+            this.reorderAfterDelete(this.processoSeletivo[posicao].ordenacao)
+            this.getProcessoSeletivoWithParams()
+            this.modalRef.hide()
+            this.showToastrSuccess()
+          }, err => {
+            this.getProcessoSeletivoWithParams()
+            this.modalRef.hide()
+            this.showToastrError()
+          })
+      }
+    })
+  }
+
+  showToastrSuccess() {
+    this._toastr.success('O processo seletivo foi excluído com sucesso', null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
+  }
+
+  showToastrError() {
+    this._toastr.error('Houve um erro ao excluir o processo seletivo. Tente novamente.', null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
+  }
+
+  reorderAfterDelete(posicao) {
+
+    for (posicao; posicao < this.processoSeletivo.length; posicao++) {
+      this.processoSeletivo[posicao].ordenacao = posicao
+    }
+
+    this.processoSeletivo.forEach(element => {
+      this.httpReq = this._service.updateOrder(element.titulo, element).subscribe(response => {
+        this.statusResponse = response.status
+        this.messageApi = response.body['message']
+      }, err => {
+        this.statusResponse = err.status
+        this.messageApi = err.body['message']
+      })
+    })
+
+    this.getProcessoSeletivoWithParams()
   }
 
 }
