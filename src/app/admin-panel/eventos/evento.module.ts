@@ -11,30 +11,30 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { AdminPanelModule } from "../admin-panel.module"
 import { SharedModule } from "../../shared/shared.module"
 
-import { EventosComponent } from "./todos-evento/eventos.component"
+import { TodosEventosComponent } from "./todos-evento/todos-eventos.component"
 import { CreateEventoComponent } from "./create-evento/create-evento.component"
-import { VisualizarEventoComponent } from "./visualizar-evento/visualizar-evento.component"
+import { DetalhesEventoComponent } from "./detalhes-evento/detalhes-evento.component"
 import { EditEventoComponent } from "./edit-evento/edit-evento.component"
 import { PendingChangesGuard } from "../../../../src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
-    { path: '', component: EventosComponent },
-    { path: 'detalhes/:title', component: VisualizarEventoComponent },
+    { path: '', component: TodosEventosComponent },
+    { path: 'detalhes/:title', component: DetalhesEventoComponent },
     { path: 'criar', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
     { path: 'atualizar/:title', component: EditEventoComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
-        EventosComponent,
+        TodosEventosComponent,
         CreateEventoComponent,
-        VisualizarEventoComponent,
+        DetalhesEventoComponent,
         EditEventoComponent
     ],
     exports: [
-        EventosComponent,
+        TodosEventosComponent,
         CreateEventoComponent,
-        VisualizarEventoComponent,
+        DetalhesEventoComponent,
         EditEventoComponent
     ],
     providers: [

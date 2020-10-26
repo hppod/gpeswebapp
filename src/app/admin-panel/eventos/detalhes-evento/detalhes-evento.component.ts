@@ -11,11 +11,11 @@ import { ModalLoadingComponent } from 'src/app/web-components/common/modals/moda
 import { GPESWebApi } from 'src/app/app.api';
 
 @Component({
-  selector: 'app-visualizar-evento',
-  templateUrl: './visualizar-evento.component.html',
-  styleUrls: ['./visualizar-evento.component.css']
+  selector: 'app-detalhes-evento',
+  templateUrl: './detalhes-evento.component.html',
+  styleUrls: ['./detalhes-evento.component.css']
 })
-export class VisualizarEventoComponent implements OnInit {
+export class DetalhesEventoComponent implements OnInit {
 
   private httpReq: Subscription
 
