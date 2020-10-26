@@ -5,16 +5,16 @@ import { Subscription } from "rxjs"
 import { EventosService } from "../../../shared/services/eventos.service"
 import { Evento } from "../../../shared/models/evento.model"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
-import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
+import { scrollPageToTop } from "../../../shared/functions/scroll-top"
 import { __event_noticias, __category_institucional, __action_noticias } from "../../../shared/helpers/analytics.consts"
 import { setLastUrl, checkUrlAndSetFirstPage, setLastPage, getLastPage } from "src/app/shared/functions/last-pagination"
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-eventos',
+  templateUrl: './eventos.component.html',
+  styleUrls: ['./eventos.component.css']
 })
-export class NoticiasComponent implements OnInit {
+export class EventosComponent implements OnInit {
 
   @ViewChild('closeModal') private closeModal: ElementRef
 

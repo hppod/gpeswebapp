@@ -7,30 +7,30 @@ import { NgxPaginationModule } from "ngx-pagination"
 import { ModalModule } from "ngx-bootstrap/modal"
 import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { BsDropdownModule } from "ngx-bootstrap/dropdown"
-import { SharedModule } from "./../../shared/shared.module"
-import { WebAppModule } from "./../web-app.module"
+import { SharedModule } from "../../shared/shared.module"
+import { WebAppModule } from "../web-app.module"
 
-import { NoticiasComponent } from "./todos-noticia/noticias.component"
-import { NoticiaCardComponent } from "./todos-noticia/noticia-card/noticia-card.component"
-import { NoticiaComponent } from "./detalhes-noticia/noticia.component"
-import { GalleryComponent } from "./detalhes-noticia/gallery/gallery.component"
+import { EventosComponent } from "./todos-evento/eventos.component"
+import { EventoCardComponent } from "./todos-evento/evento-card/evento-card.component"
+import { EventoComponent } from "./detalhes-evento/evento.component"
+import { GalleryComponent } from "./detalhes-evento/gallery/gallery.component"
 
 const ROUTES: Routes = [
-    { path: '', component: NoticiasComponent },
-    { path: 'noticia/:title', component: NoticiaComponent }
+    { path: '', component: EventosComponent },
+    { path: 'evento/:title', component: EventoComponent }
 ]
 
 @NgModule({
     declarations: [
-        NoticiasComponent,
-        NoticiaCardComponent,
-        NoticiaComponent,
+        EventosComponent,
+        EventoCardComponent,
+        EventoComponent,
         GalleryComponent
     ],
     exports: [
-        NoticiasComponent,
-        NoticiaCardComponent,
-        NoticiaComponent,
+        EventosComponent,
+        EventoCardComponent,
+        EventoComponent,
         GalleryComponent
     ],
     imports: [
@@ -49,4 +49,4 @@ const ROUTES: Routes = [
         })
     ]
 })
-export class NoticiaWebModule { }
+export class EventoWebModule { }
