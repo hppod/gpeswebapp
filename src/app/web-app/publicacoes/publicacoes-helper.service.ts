@@ -5,7 +5,7 @@ import { Category } from "src/app/shared/models/category.model"
 @Injectable({
     providedIn: 'root'
 })
-export class TransparenciaHelperService {
+export class PublicacoesHelperService {
 
     constructor(
         private _service: PublicacoesService

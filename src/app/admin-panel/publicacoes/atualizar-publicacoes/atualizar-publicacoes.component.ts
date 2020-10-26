@@ -19,11 +19,11 @@ import { Category } from "src/app/shared/models/category.model"
 import { CategoryService } from "src/app/shared/services/categories.service"
 
 @Component({
-  selector: 'app-atualizar-transparencia',
+  selector: 'app-atualizar-publicacoes',
   templateUrl: './atualizar-publicacoes.component.html',
   styleUrls: ['./atualizar-publicacoes.component.css']
 })
-export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeactivate {
+export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeactivate {
 
   role = ''
   chars = 0
@@ -32,7 +32,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
   modalRef: BsModalRef
   httpReq: Subscription
   statusResponse: number
-  _formTransparencia: FormGroup
+  _formPublicacoes: FormGroup
   success: boolean = false
   fileChanged: boolean = false
   selectedCategory: string = null
@@ -86,7 +86,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
   /**Função ativada quando o usuário suja algum formulário e tenta sair da página sem ter salvo ele. Para sair da página ele deve confirmar a ação, evitando que ele perca dados digitados sem querer. */
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    if (this._formTransparencia.dirty) {
+    if (this._formPublicacoes.dirty) {
       return false
     }
     return true
@@ -94,7 +94,7 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
 
   /**Função que inicializa os formulários reativos do componente. */
   initForm() {
-    this._formTransparencia = this._builder.group({
+    this._formPublicacoes = this._builder.group({
       titulo: this._builder.control(null, [Validators.required]),
       descricao: this._builder.control(null, [Validators.required]),
       categoria: this._builder.control("Selecione", [Validators.required]),
@@ -143,17 +143,17 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
       if (data != null) {
         this.getCategories()
         this.selectedCategory = data
-        this._formTransparencia.controls['categoria'].setValue(this.selectedCategory)
+        this._formPublicacoes.controls['categoria'].setValue(this.selectedCategory)
       } else {
         this.selectedCategory = this.olderSelectedCategory
-        this._formTransparencia.controls['categoria'].setValue(this.selectedCategory)
+        this._formPublicacoes.controls['categoria'].setValue(this.selectedCategory)
       }
     })
   }
 
   /**Função que popula os inputs com os dados a serem atualizados. */
   populateFormWithValuesToUpdate(document: Publicacoes) {
-    this._formTransparencia.patchValue({
+    this._formPublicacoes.patchValue({
       titulo: document['titulo'],
       descricao: document['descricao'],
       categoria: document['categoria']
@@ -169,8 +169,8 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
 
   setDocumentOnForm() {
     this.File = this.FileSnippet[0].file
-    this._formTransparencia.controls['arquivo'].setValue(this.File)
-    this._formTransparencia.updateValueAndValidity()
+    this._formPublicacoes.controls['arquivo'].setValue(this.File)
+    this._formPublicacoes.updateValueAndValidity()
   }
 
   updateDocument() {
@@ -181,19 +181,19 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
 
     this.success = false
     this.modalRef = this._modal.show(ModalFileUploadComponent)
-    this._service.updateDocument(this.Publicacoes['titulo'], toFormData(this._formTransparencia.value)).pipe(
+    this._service.updateDocument(this.Publicacoes['titulo'], toFormData(this._formPublicacoes.value)).pipe(
       toResponseBody()
     ).subscribe(res => {
       this.success = true
-      this._formTransparencia.reset()
+      this._formPublicacoes.reset()
       this.modalRef.hide()
       this.showToastrSuccess('O documento foi atualizado com sucesso')
-      this._router.navigate(['/admin/transparencia'])
+      this._router.navigate(['/admin/publicacoes'])
     }, err => {
-      this._formTransparencia.reset()
+      this._formPublicacoes.reset()
       this.modalRef.hide()
       this.showToastrError('Houve um erro ao atualizar o documento. Tente novamente.')
-      this._router.navigate(['/admin/transparencia'])
+      this._router.navigate(['/admin/publicacoes'])
     })
   }
 
@@ -203,8 +203,8 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
-        this._formTransparencia.reset()
-        this._router.navigate(['/admin/transparencia'])
+        this._formPublicacoes.reset()
+        this._router.navigate(['/admin/publicacoes'])
       }
     })
   }
@@ -227,10 +227,10 @@ export class AtualizarTransparenciaComponent implements OnInit, ComponentCanDeac
 
   /**Getters */
   /**Função que retorna o valor do input “titulo”. */
-  get titulo() { return this._formTransparencia.get('titulo') }
+  get titulo() { return this._formPublicacoes.get('titulo') }
   /**Função que retorna o valor do input “descricao”. */
-  get descricao() { return this._formTransparencia.get('descricao') }
+  get descricao() { return this._formPublicacoes.get('descricao') }
   /**Função que retorna o valor do input “categoria”. */
-  get categoria() { return this._formTransparencia.get('categoria') }
+  get categoria() { return this._formPublicacoes.get('categoria') }
 
 }
