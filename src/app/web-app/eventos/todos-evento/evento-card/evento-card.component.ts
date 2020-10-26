@@ -2,11 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Evento } from "../../../../shared/models/evento.model"
 
 @Component({
-  selector: 'app-noticia-card',
-  templateUrl: './noticia-card.component.html',
-  styleUrls: ['./noticia-card.component.css']
+  selector: 'app-evento-card',
+  templateUrl: './evento-card.component.html',
+  styleUrls: ['./evento-card.component.css']
 })
-export class NoticiaCardComponent implements OnInit {
+export class EventoCardComponent implements OnInit {
 
   @Input() noticia: Evento[]
   hasImage: boolean = false

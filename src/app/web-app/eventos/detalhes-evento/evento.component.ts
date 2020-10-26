@@ -8,11 +8,11 @@ import { __event_noticia, __category_institucional, __action_noticia } from "../
 import { GPESWebApi } from "src/app/app.api"
 
 @Component({
-  selector: 'app-noticia',
-  templateUrl: './noticia.component.html',
-  styleUrls: ['./noticia.component.css']
+  selector: 'app-evento',
+  templateUrl: './evento.component.html',
+  styleUrls: ['./evento.component.css']
 })
-export class NoticiaComponent implements OnInit, OnDestroy {
+export class EventoComponent implements OnInit, OnDestroy {
 
   //Dataset
   noticia: Evento
