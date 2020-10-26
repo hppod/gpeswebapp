@@ -7,7 +7,8 @@ export const WebAppRoutes: Routes = [
     {
         path: 'institucional', children: [
             { path: 'home', component: HomeComponent },
-            { path: 'noticias', loadChildren: './noticias/noticias-web.module#NoticiaWebModule' },
+            { path: 'gpes', loadChildren: './gpes/gpes-web.module#GpesWebModule' },
+            { path: 'eventos', loadChildren: './eventos/eventos-web.module#EventoWebModule' },
             { path: 'sobre', loadChildren: './sobre/sobre-web.module#SobreWebModule' },
             { path: 'transparencia', loadChildren: './portal-transparencia/transparencia-web.module#TransparenciaWebModule' },
             { path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo-web.module#ProcessoSeletivoWebModule' },
