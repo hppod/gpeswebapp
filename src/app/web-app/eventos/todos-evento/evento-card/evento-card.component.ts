@@ -8,7 +8,7 @@ import { Evento } from "../../../../shared/models/evento.model"
 })
 export class EventoCardComponent implements OnInit {
 
-  @Input() evento: Evento[]
+  @Input() noticia: Evento[]
   hasImage: boolean = false
   mainfile_index: number
   source: any
@@ -16,10 +16,10 @@ export class EventoCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    // if (this.evento['sources'].length > 0) {
-    //   this.hasImage = true
-    //   this.mainfile_index = this.evento['mainfile_index']
-    //   this.source = this.evento['sources'][this.mainfile_index]['src']
-    // }
+    if (this.noticia['sources'].length > 0) {
+      this.hasImage = true
+      this.mainfile_index = this.noticia['mainfile_index']
+      this.source = this.noticia['sources'][this.mainfile_index]['src']
+    }
   }
 }

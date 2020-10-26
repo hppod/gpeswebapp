@@ -1,12 +1,12 @@
-<a [routerLink]="['/institucional/eventos/evento', evento['titulo']]">
+<a [routerLink]="['/institucional/noticias/noticia', noticia['titulo']]">
   <div class="card text-center responsividadeCard">
-    <img *ngIf="!hasImage" class="card-img" src="assets/img/eventos-card/square_red.png" [alt]="evento['titulo']">
-    <img *ngIf="hasImage" class="card-img" [src]="source" [alt]="evento['titulo']">
+    <img *ngIf="!hasImage" class="card-img" src="assets/img/noticias-card/square_red.png" [alt]="noticia['titulo']">
+    <img *ngIf="hasImage" class="card-img" [src]="source" [alt]="noticia['titulo']">
     <div class="card-img-overlay d-flex justify-content-center align-items-center" id="overlay">
-      <h5 class="card-title">{{evento['titulo']}}</h5>
+      <h5 class="card-title">{{noticia['titulo']}}</h5>
     </div>
     <div class="card-footer text-muted">
-      Data do Evento: {{evento['date'] | date: 'dd/MM/yyyy' : "UTC"}}
+      Publicado há {{noticia['createdAt'] | dateAgo}}
     </div>
   </div>
 </a>
