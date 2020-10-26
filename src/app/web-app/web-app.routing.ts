@@ -12,6 +12,7 @@ export const WebAppRoutes: Routes = [
             { path: 'noticias', loadChildren: './noticias/noticias-web.module#NoticiaWebModule' },
             { path: 'sobre', loadChildren: './sobre/sobre-web.module#SobreWebModule' },
             { path: 'transparencia', loadChildren: './portal-transparencia/transparencia-web.module#TransparenciaWebModule' },
+            { path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo-web.module#ProcessoSeletivoWebModule' },
             { path: '', redirectTo: '/institucional/home', pathMatch: 'full' },
             { path: '**', redirectTo: '/institucional/home', pathMatch: 'full' }
         ]
