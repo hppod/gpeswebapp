@@ -21,7 +21,8 @@ import { AtualizarProcessoSeletivoComponent } from './atualizar-processo-seletiv
 const ROUTES: Routes = [
   { path: '', component: TodosProcessoSeletivoComponent },
   { path: 'create', component: CreateProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] },
-  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent }
+  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent },
+  { path: 'atualizar/:title', component: AtualizarProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
