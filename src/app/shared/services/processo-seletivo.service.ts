@@ -31,4 +31,8 @@ export class ProcessoSeletivoService {
     return this.http.put<any>(`${GPESWebApi}/authenticated/processo-seletivo/atualizar-ordenacao/${title}`, formData, { observe: 'response' })
   }
 
+  delete(id: string): Observable<{}> {
+    return this.http.delete(`${GPESWebApi}/authenticated/processo-seletivo/apagar/${id}`, { observe: 'response' })
+  }
+
 }
