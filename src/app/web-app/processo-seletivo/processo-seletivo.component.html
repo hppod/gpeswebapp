@@ -1,1 +1,22 @@
-<p>processo-seletivo works!</p>
+<div class="container-fluid marginTopBottomContentContainer">
+    <h2 class="titlePage">Processo Seletivo</h2>
+    <hr>
+    <app-loading [condition]="isLoading"></app-loading>
+    <div *ngIf="processoSeletivo && statusResponse == 200">
+      <div *ngFor="let processoSeletivo of processoSeletivo">
+        <h3>{{processoSeletivo.titulo}}</h3>
+        <div>
+          <div class="conteudo">
+            <p [innerHTML]="processoSeletivo.descricao | noSanitizeHtml: 'html'"></p>
+          </div>
+        </div>
+        <br class="lineBreak">
+      </div>
+    </div>
+    <div *ngIf="!isLoading && statusResponse == 204 && !processoSeletivo">
+      <app-no-data></app-no-data>
+    </div>
+    <div *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !processoSeletivo">
+      <app-error></app-error>
+    </div>
+  </div>
