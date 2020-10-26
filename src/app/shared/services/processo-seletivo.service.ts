@@ -23,6 +23,10 @@ export class ProcessoSeletivoService {
     return this.http.get<ProcessoSeletivo>(`${GPESWebApi}/authenticated/processo-seletivo/listar-um/${title}`, { observe: 'response' })
   }
 
+  update(title: string, formData) {
+    return this.http.put<any>(`${GPESWebApi}/authenticated/processo-seletivo/atualizar/${title}`, formData, { observe: 'response' })
+  }
+
   updateOrder(title: string, formData) {
     return this.http.put<any>(`${GPESWebApi}/authenticated/processo-seletivo/atualizar-ordenacao/${title}`, formData, { observe: 'response' })
   }
