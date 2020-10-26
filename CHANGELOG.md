@@ -24,3 +24,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 
 ### Versão 5.2
+* **Processo Seletivo:** Implementado componenete que atualiza as informações de processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a atualização na API.
