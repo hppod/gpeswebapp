@@ -26,3 +26,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 ### Versão 5.2
 * **Processo Seletivo:** Implementado componenete que atualiza as informações de processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a atualização na API.
 * **Processo Seletivo:** Implementado componenete que deleta o registro e alteração do arquivo da service para adicionar a chamada ao método que faz a exclusão na API.
+* **Processo Seletivo:** Implementado componenete e módulo para exibir todos os registros no institucional (web-app).
