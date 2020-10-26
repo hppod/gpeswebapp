@@ -21,3 +21,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
 * **Sobre:** Implementado método de exibição de detalhes de um registro ao clicar e configurando para exibição no painel administrativo.
+
+
+### Versão 5.2
