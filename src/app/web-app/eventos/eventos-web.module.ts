@@ -10,27 +10,27 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { SharedModule } from "../../shared/shared.module"
 import { WebAppModule } from "../web-app.module"
 
-import { EventosComponent } from "./todos-evento/eventos.component"
+import { EventosComponent } from "./todos-evento/todos-eventos.component"
 import { EventoCardComponent } from "./todos-evento/evento-card/evento-card.component"
-import { EventoComponent } from "./detalhes-evento/evento.component"
+import { DetalhesEventoComponent } from "./detalhes-evento/detalhes-evento.component"
 import { GalleryComponent } from "./detalhes-evento/gallery/gallery.component"
 
 const ROUTES: Routes = [
     { path: '', component: EventosComponent },
-    { path: 'evento/:title', component: EventoComponent }
+    { path: 'evento/:title', component: DetalhesEventoComponent }
 ]
 
 @NgModule({
     declarations: [
         EventosComponent,
         EventoCardComponent,
-        EventoComponent,
+        DetalhesEventoComponent,
         GalleryComponent
     ],
     exports: [
         EventosComponent,
         EventoCardComponent,
-        EventoComponent,
+        DetalhesEventoComponent,
         GalleryComponent
     ],
     imports: [

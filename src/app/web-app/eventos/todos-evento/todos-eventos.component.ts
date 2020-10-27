@@ -10,9 +10,9 @@ import { __event_noticias, __category_institucional, __action_noticias } from ".
 import { setLastUrl, checkUrlAndSetFirstPage, setLastPage, getLastPage } from "src/app/shared/functions/last-pagination"
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.css']
+  selector: 'app-todos-eventos',
+  templateUrl: './todos-eventos.component.html',
+  styleUrls: ['./todos-eventos.component.css']
 })
 export class EventosComponent implements OnInit {
 
@@ -21,7 +21,7 @@ export class EventosComponent implements OnInit {
   private httpReq: Subscription
 
   //Dataset
-  noticias: Evento[]
+  eventos: Evento[]
 
   //Forms Set
   keywordFilterForm: FormGroup
@@ -66,7 +66,7 @@ export class EventosComponent implements OnInit {
     this._service.params = this._service.params.set('page', getLastPage())
     this._service.params = this._service.params.set('limit', '6')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()    
 
     //Init Form
     this.keywordFilterForm = this.fb.group({
@@ -83,14 +83,14 @@ export class EventosComponent implements OnInit {
     this._analytics.eventEmitter(__event_noticias, __category_institucional, __action_noticias)
   }
 
-  getNoticiasWithParams() {
+  getEventosWithParams() {
     this.isLoading = true
     this.httpReq = this._service.getEventoWithParams('public').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
         this.messageApi = response.body['message']
-        this.noticias = response.body['data']
+        this.eventos = response.body['data']
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
@@ -104,10 +104,10 @@ export class EventosComponent implements OnInit {
   }
 
   getPage(page: number) {
-    this.noticias = null
+    this.eventos = null
     scrollPageToTop(page)
     this._service.params = this._service.params.set('page', page.toString())
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   setActiveMenuItem(event: any) {
@@ -121,11 +121,11 @@ export class EventosComponent implements OnInit {
 
   onSelectOrderDropdownMenu(item: any) {
     this.filterOrder = true
-    this.noticias = null
+    this.eventos = null
     this.dropdownOrderSelectedItem = item
     this._service.params = this._service.params.set('valueSort', item['param'])
     this._service.params = this._service.params.set('columnSort', 'date')
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   onClickFilterKeyword() {
@@ -133,18 +133,18 @@ export class EventosComponent implements OnInit {
     let keyword = this.keywordFilterForm.value.keyword
     this.keyword = keyword
 
-    this.noticias = null
+    this.eventos = null
     this.filterKeyword = true
     this._service.params = this._service.params.set('keyword', keyword)
 
     this.closeModal.nativeElement.click()
     this.keywordFilterForm.reset()
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   clearConditions() {
-    this.noticias = null
+    this.eventos = null
 
     this._service.params = this._service.params.set('page', '1')
 
@@ -155,7 +155,7 @@ export class EventosComponent implements OnInit {
     this.filterKeyword = false
     this._service.params = this._service.params.delete('keyword')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
 }
