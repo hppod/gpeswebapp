@@ -8,14 +8,14 @@ import { __event_noticia, __category_institucional, __action_noticia } from "../
 import { GPESWebApi } from "src/app/app.api"
 
 @Component({
-  selector: 'app-evento',
-  templateUrl: './evento.component.html',
-  styleUrls: ['./evento.component.css']
+  selector: 'app-detalhes-evento',
+  templateUrl: './detalhes-evento.component.html',
+  styleUrls: ['./detalhes-evento.component.css']
 })
-export class EventoComponent implements OnInit, OnDestroy {
+export class DetalhesEventoComponent implements OnInit, OnDestroy {
 
   //Dataset
-  noticia: Evento
+  evento: Evento
 
   //Control Variables
   private httpReq: Subscription
@@ -56,7 +56,7 @@ export class EventoComponent implements OnInit, OnDestroy {
     this.httpReq = this._service.getEventoByTitle(title, 'public').subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
-      this.noticia = response.body['data']
+      this.evento = response.body['data']
       this.isLoading = false
       // this.setarUrlImagemPrincipal()
     }, err => {

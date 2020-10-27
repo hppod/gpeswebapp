@@ -1,17 +1,17 @@
-.conteudoNoticia {
+.conteudoEvento {
     text-align: justify;
     text-justify: inter-word;
     text-indent: 1%;
 }
 
-.dataNoticia {
+.dataEvento {
     text-align: center;
     font-size: 12px;
     font-style: italic;
     color: #bdbdbd
 }
 
-.imagemNoticia {
+.imagemEvento {
     display: block;
     margin-left: auto;
     margin-right: auto;
