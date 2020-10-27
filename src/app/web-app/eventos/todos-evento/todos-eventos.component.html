@@ -1,5 +1,5 @@
 <div class="container-fluid marginTopBottomContentContainer">
-  <h2 class="titlePage">Notícias</h2>
+  <h2 class="titlePage">Eventos</h2>
   <hr>
   <div>
     <div class="btnPeriodSearch">
@@ -66,20 +66,20 @@
 
     <br *ngIf="!filterKeyword && !filterOrder" />
     <app-loading [condition]="isLoading"></app-loading>
-    <div class="row" *ngIf="noticias && statusResponse == 200">
-      <div *ngFor="let noticia of noticias | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
+    <div class="row" *ngIf="eventos && statusResponse == 200">
+      <div *ngFor="let evento of eventos | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
         class="col-md-4" id="marginBottomCardsCol">
-        <app-noticia-card [noticia]="noticia"></app-noticia-card>
+        <app-evento-card [evento]="evento"></app-evento-card>
       </div>
     </div>
-    <div *ngIf="!isLoading && statusResponse == 204 && !noticias">
+    <div *ngIf="!isLoading && statusResponse == 204 && !eventos">
       <app-no-data></app-no-data>
     </div>
-    <div *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !noticias">
+    <div *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !eventos">
       <app-error></app-error>
     </div>
     <br />
-    <nav *ngIf="noticias">
+    <nav *ngIf="eventos">
       <ul class="pagination">
         <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
           nextLabel="Próximo">
