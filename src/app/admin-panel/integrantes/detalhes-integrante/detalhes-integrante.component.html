@@ -40,7 +40,7 @@
                     <div>
                         {{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}
                     </div>
-                    <label class="form-control-label" *ngIf="integrante['dataFim'] != null">Lattes</label>
+                    <label class="form-control-label" *ngIf="integrante['dataFim'] != null">Data Fim</label>
                     <div *ngIf="integrante['dataFim'] != null">
                         {{integrante['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}
                     </div>

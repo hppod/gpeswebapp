@@ -24,4 +24,16 @@ export class IntegrantesService {
   getIntegranteByName(nome: string): Observable<HttpResponse<Integrantes>> {
     return this.http.get<Integrantes>(`${GPESWebApi}/authenticated/integrantes/listar-um/${nome}`, { observe: 'response' })
   }
+
+  getIntegranteByNamePublic(nome: string): Observable<HttpResponse<Integrantes>> {
+    return this.http.get<Integrantes>(`${GPESWebApi}/public/integrantes/listar-um/${nome}`, { observe: 'response' })
+  }
+
+  getAtuaisIntegrantes():Observable<HttpResponse<Integrantes[]>> {
+    return this.http.get<Integrantes[]>(`${GPESWebApi}/public/integrantes/listar-atuais`, { params: this.params, observe: 'response' })
+  }
+
+  getExIntegrantes():Observable<HttpResponse<Integrantes[]>> {
+    return this.http.get<Integrantes[]>(`${GPESWebApi}/public/integrantes/listar-ex`, { params: this.params, observe: 'response' })
+  }
 }
