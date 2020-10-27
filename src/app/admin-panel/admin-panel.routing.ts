@@ -29,8 +29,7 @@ export const AdminPanelRoutes: Routes = [
             },
             {
                 path: 'integrantes', loadChildren: './integrantes/integrantes.module#IntegrantesModule', canActivate: [AuthGuard]
-            },
-            { path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] }
+            }
         ]
     }
 ]
