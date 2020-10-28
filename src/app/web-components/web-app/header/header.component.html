@@ -2,7 +2,8 @@
     <div class="container">
 
         <a class="navbar-brand" [routerLink]="['/institucional/home']">
-            <img class="img-fluid" alt="Volte para a página inicial" src="../../../../assets/img/brand/logoGPESbranca.png">
+            <img class="img-fluid" alt="Volte para a página inicial"
+                src="../../../../assets/img/brand/logoGPESbranca.png">
 
         </a>
         <button class="navbar-toggler" type="button" (click)="isCollapsed=!isCollapsed"
@@ -25,16 +26,8 @@
                 <li class="nav-item" routerLinkActive="active">
                     <a class="nav-link" [routerLink]="['/institucional/processo-seletivo']"><b>Processo Seletivo</b></a>
                 </li>
-                <li class="nav-item nav-item-login dropdown">
-                    <a class="nav-link pointer" id="navbar-default_dropdown_1" role="button" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        <b>Login</b>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbar-default_dropdown_1">
-                        <a class="dropdown-item" [routerLink]="['/admin/auth/login']">Painel Administrativo</a>
-                        <a class="dropdown-item" href="https://www.laribitinga.com.br/#/login" target="_blank">Doutor
-                            Vida</a>
-                    </div>
+                <li class="nav-item nav-item-login">
+                    <a class="nav-link " [routerLink]="['/admin/auth/login']"><b>Login</b></a>
                 </li>
             </ul>
         </div>
