@@ -15,7 +15,6 @@
     "./app/web-app/sobre/sobre-web.module.ts",
     "./app/web-app/portal-transparencia/transparencia-web.module.ts",
     "./app/web-app/eventos/eventos-web.module.ts",
-    "./app/web-app/gpes/gpes-web.module.ts",
     "./app/web-app/processo-seletivo/processo-seletivo-web.module.ts",
     "./app/web-app/integrantes/integrantes-web.module.ts",
     "./app/admin-panel/authentication/authentication.module.ts",
