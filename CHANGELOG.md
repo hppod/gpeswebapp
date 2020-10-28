@@ -33,3 +33,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Alterações Gerais:** Alterado logo no menu, na página de login, na página de criação de senha, na página de redefinição de senha, na página de send email, na aba e no painel admin. Alterado o título da aba. Removido dropdown do Login e o "Sobre o GPES" do painel admin e do institucional.
 * **Eventos:** Refatorando o modulo de notícias para Eventos e alterando o nome do componente visualizar eventos para detalhes-evento do admin-panel.
 * **Eventos:** Ajustando a visualização de todos registros no institucional (web-app).
+* **Eventos:** Alterando o nome do componente de evento para detalhes-evento no institucional, campo de exibição de data modificado.
