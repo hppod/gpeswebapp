@@ -29,3 +29,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado componenete e módulo para exibir todos os registros no institucional (web-app).
 * **Delete FAQ:** Remoção de todos os arquivos e referências ao módulo e componente de Dúvidas Frequentes/FAQ.
 * **Publicações:** Adequando o componente para visualizar todas as publicações com os dados corretos e separadas por categoria, ordenando por mais novo primeiro e por mais antigo primeiro e pondendo buscar por um período de tempo, e modificando o arquivo css de documents-collapse adicionando uma nova classe.
+* **Publicações:** Adequando o componente para visualizar todas as publicações com os dados corretos e separadas por categoria, ordenando por mais novo primeiro e por mais antigo primeiro e pondendo buscar por um período de tempo, e modificando o arquivo css de documents-collapse adicionando uma nova classe.
