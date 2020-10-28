@@ -80,7 +80,7 @@ export class PublicacoesComponent implements OnInit {
 
       this._helperService.setParamToCategory()
 
-      this._service.params = this._service.params.set('columnSort', 'date')
+      this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
       this._service.params = this._service.params.set('valueSort', 'descending')
       this._service.params = this._service.params.set('page', '1')
 
@@ -109,7 +109,7 @@ export class PublicacoesComponent implements OnInit {
     this._analytics.eventEmitter(__event_transparencia, __category_institucional, __action_transparencia)
   }
 
-  /**Função que busca os documentos do portal da transparência no banco de dados de acordo com os parâmetros informados. */
+  /**Função que busca os documentos de publicações no banco de dados de acordo com os parâmetros informados. */
   getDocumentsWithParams() {
     this.isLoading = true
     this.httpReq = this._service.getPublicacoesWithParams('public').subscribe(response => {
@@ -163,7 +163,7 @@ export class PublicacoesComponent implements OnInit {
     this.dropdownOrderSelectedItem = item
     this.documents = null
     this.filterOrder = true
-    this._service.params = this._service.params.set('columnSort', 'date')
+    this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
     this._service.params = this._service.params.set('valueSort', item['param'])
     this.getDocumentsWithParams()
   }
@@ -176,7 +176,7 @@ export class PublicacoesComponent implements OnInit {
     this.filterCategory = true
     this.filterOrder = false
     this.dropdownOrderSelectedItem = null
-    this._service.params = this._service.params.set('columnSort', 'date')
+    this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
     this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('category', item['nome'])
     this.getDocumentsWithParams()
@@ -219,7 +219,7 @@ export class PublicacoesComponent implements OnInit {
 
     this.filterOrder = false
     this.dropdownOrderSelectedItem = null
-    this._service.params = this._service.params.set('columnSort', 'date')
+    this._service.params = this._service.params.set('columnSort', 'dataPublicacao')
     this._service.params = this._service.params.set('valueSort', 'descending')
 
     this.getDocumentsWithParams()
