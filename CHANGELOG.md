@@ -28,15 +28,9 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado componenete que deleta o registro e alteração do arquivo da service para adicionar a chamada ao método que faz a exclusão na API.
 * **Processo Seletivo:** Implementado componenete e módulo para exibir todos os registros no institucional (web-app).
 * **Delete FAQ:** Remoção de todos os arquivos e referências ao módulo e componente de Dúvidas Frequentes/FAQ.
-<<<<<<< HEAD
 * **Integrantes:** Ajustes no metodo e html de todos integrantes e detalhes do integrantes no painel administrativo.
 * **Integrantes:** Adição do todos-integrantes institucional no tsconfig, criação do component, alteração no menu institucional, adição das rotas de integrantes, criação dos metodos getExIntegrantes, getAtuaisIntegrantes, getIntegranteByNamePublic
 * **Alterações Gerais:** Alterado logo no menu, na página de login, na página de criação de senha, na página de redefinição de senha, na página de send email, na aba e no painel admin. Alterado o título da aba. Removido dropdown do Login e o "Sobre o GPES" do painel admin e do institucional.
 * **Eventos:** Refatorando o modulo de notícias para Eventos e alterando o nome do componente visualizar eventos para detalhes-evento do admin-panel.
 * **Eventos:** Ajustando a visualização de todos registros no institucional (web-app).
 * **Eventos:** Alterando o nome do componente de evento para detalhes-evento no institucional, campo de exibição de data modificado.
-=======
-* **Eventos:** Refatorando o modulo de notícias para Eventos e alterando o nome do componente visualizar eventos para detalhes-evento do admin-panel.
-* **Eventos:** Ajustando a visualização de todos registros no institucional (web-app).
-* **Eventos:** Alterando o nome do componente de evento para detalhes-evento no institucional, campo de exibição de data modificado.
->>>>>>> 7640862c4cc64c806ea289e44251aef557833847
