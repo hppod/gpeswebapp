@@ -6,8 +6,9 @@
 
 .dataEvento {
     text-align: center;
-    font-size: 12px;
+    font-size: 15px;
     font-style: italic;
+    font-weight: bolder;
     color: #bdbdbd
 }
 
