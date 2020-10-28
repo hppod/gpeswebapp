@@ -2,9 +2,10 @@
     <div class="card">
         <div class="card-header" id="headingOne">
             <h5 class="mb-0">
-                <a class="btn btn-link w-100 text-primary text-left collapsed" data-toggle="collapse"
+                <a class="btnTitulo btn-link w-100 text-primary text-left collapsed" data-toggle="collapse"
                     [attr.data-target]="'#collapse'+document['_id']" aria-expanded="false" aria-controls="collapse">
-                    {{document['titulo']}}
+                    {{document['autores']}}. {{document['titulo']}} In: {{document['plataforma']}};
+                    {{document['dataPublicacao'] | date: 'yyyy':"UTC"}}; {{document['cidade']}}
                     <i class="fa fa-chevron-down pull-right pt-1"></i>
                 </a>
             </h5>
@@ -13,8 +14,13 @@
             <div class="card-body">
                 {{document['descricao']}}
                 <br>
+                <small class="infoDocs"><b>Autores: </b> {{document['autores']}}</small>&nbsp;
+                <small class="infoDocs"><b>Título: </b> {{document['titulo']}}</small>&nbsp;
+                <small class="infoDocs"><b>Plataforma: </b> {{document['plataforma']}}</small>&nbsp;
+                <small class="infoDocs"><b>Cidade: </b> {{document['cidade']}}</small>&nbsp;
                 <small class="infoDocs"><b>Categoria: </b> {{document['categoria']}}</small>&nbsp;
-                <small class="infoDocs"><b>Postado em: </b> {{document['date'] | date: 'dd/MM/yyyy'}}</small>
+                <small class="infoDocs"><b>Postado em: </b>
+                    {{document['dataPublicacao'] | date: 'dd/MM/yyyy':"UTC"}}</small>
                 <hr>
                 <button type="submit" class="btn btn-outline-success btn-sm float-right"
                     (click)="getDownloadDocument()">Download</button>
