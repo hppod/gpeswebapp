@@ -29,7 +29,6 @@ export class TodosIntegrantesComponent implements OnInit {
   sortedCollection: any[];
   sortSelectedItem: any
   modalRef: BsModalRef
-  teste1: Integrantes
 
   headTableItems: any[] = [
     {

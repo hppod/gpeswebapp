@@ -28,3 +28,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado componenete que deleta o registro e alteração do arquivo da service para adicionar a chamada ao método que faz a exclusão na API.
 * **Processo Seletivo:** Implementado componenete e módulo para exibir todos os registros no institucional (web-app).
 * **Delete FAQ:** Remoção de todos os arquivos e referências ao módulo e componente de Dúvidas Frequentes/FAQ.
+* **Integrantes:** Ajustes no metodo e html de todos integrantes e detalhes do integrantes no painel administrativo.
+* **Integrantes:** Adição do todos-integrantes institucional no tsconfig, criação do component, alteração no menu institucional, adição das rotas de integrantes, criação dos metodos getExIntegrantes, getAtuaisIntegrantes, getIntegranteByNamePublic
