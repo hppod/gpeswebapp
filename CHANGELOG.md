@@ -28,3 +28,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado componenete que deleta o registro e alteração do arquivo da service para adicionar a chamada ao método que faz a exclusão na API.
 * **Processo Seletivo:** Implementado componenete e módulo para exibir todos os registros no institucional (web-app).
 * **Delete FAQ:** Remoção de todos os arquivos e referências ao módulo e componente de Dúvidas Frequentes/FAQ.
+* **Alterações Gerais:** Alterado logo no menu, na página de login, na página de criação de senha, na página de redefinição de senha, na página de send email, na aba e no painel admin. Alterado o título da aba. Removido dropdown do Login e o "Sobre o GPES" do painel admin e do institucional.
