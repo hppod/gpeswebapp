@@ -61,8 +61,8 @@
         filtros </button>
     </div>
     <div *ngIf="filterDate" class="btnPeriodSearch">
-      <span class="span-info-filter">Exibindo resultados de {{dateStartText | date: 'dd/MM/yyyy'}} a
-        {{dateFinishText | date: 'dd/MM/yyyy'}}</span>
+      <span class="span-info-filter">Exibindo resultados de {{dateStartText | date: 'dd/MM/yyyy':"UTC"}} a
+        {{dateFinishText | date: 'dd/MM/yyyy':"UTC"}}</span>
     </div>
     <div *ngIf="filterOrder" class="btnPeriodSearch">
       <span class="span-info-filter">Ordenando arquivos por: {{dropdownOrderSelectedItem['option']}}</span>
