@@ -21,3 +21,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
 * **Sobre:** Implementado método de exibição de detalhes de um registro ao clicar e configurando para exibição no painel administrativo.
+
+* **Publicações:** Adequando o componente para visualizar todas as publicações com os dados corretos e separadas por categoria, ordenando por mais novo primeiro e por mais antigo primeiro e pondendo buscar por um período de tempo, e modificando o arquivo css de documents-collapse adicionando uma nova classe.
