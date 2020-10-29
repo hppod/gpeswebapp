@@ -9,7 +9,7 @@ export const WebAppRoutes: Routes = [
             { path: 'home', component: HomeComponent },
             { path: 'noticias', loadChildren: './noticias/noticias-web.module#NoticiaWebModule' },
             { path: 'sobre', loadChildren: './sobre/sobre-web.module#SobreWebModule' },
-            { path: 'transparencia', loadChildren: './portal-transparencia/transparencia-web.module#TransparenciaWebModule' },
+            { path: 'publicacoes', loadChildren: './publicacoes/publicacoes-web.module#PublicacoesWebModule' },
             { path: 'processo-seletivo', loadChildren: './processo-seletivo/processo-seletivo-web.module#ProcessoSeletivoWebModule' },
             { path: 'integrantes', loadChildren: './integrantes/integrantes-web.module#IntegrantesWebModule' },
             { path: '', redirectTo: '/institucional/home', pathMatch: 'full' },

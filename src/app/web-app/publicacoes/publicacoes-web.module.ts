@@ -10,24 +10,24 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { SharedModule } from "./../../shared/shared.module"
 import { WebAppModule } from "./../web-app.module"
 
-import { PortalTransparenciaComponent } from "./documents/portal-transparencia.component"
+import { PublicacoesComponent } from "./documents/publicacoes.component"
 import { DocumentsCollapseComponent } from "./documents/documents-collapse/documents-collapse.component";
 import { CategoriesComponent } from './categories/categories.component'
 
 const ROUTES: Routes = [
     { path: 'categorias', component: CategoriesComponent },
-    { path: '', redirectTo: '/institucional/transparencia/categorias', pathMatch: 'full' },
-    { path: 'arquivos', component: PortalTransparenciaComponent }
+    { path: '', redirectTo: '/institucional/publicacoes/categorias', pathMatch: 'full' },
+    { path: 'arquivos', component: PublicacoesComponent }
 ]
 
 @NgModule({
     declarations: [
-        PortalTransparenciaComponent,
+        PublicacoesComponent,
         DocumentsCollapseComponent,
         CategoriesComponent
     ],
     exports: [
-        PortalTransparenciaComponent,
+        PublicacoesComponent,
         DocumentsCollapseComponent
     ],
     imports: [
@@ -46,4 +46,4 @@ const ROUTES: Routes = [
         })
     ]
 })
-export class TransparenciaWebModule { }
+export class PublicacoesWebModule { }

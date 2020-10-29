@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router"
 import { Subscription } from "rxjs"
-import { TransparenciaHelperService } from "./../transparencia-helper.service"
+import { PublicacoesHelperService } from "./../publicacoes-helper.service"
 import { Category } from 'src/app/shared/models/category.model';
 import { CategoryService } from 'src/app/shared/services/categories.service';
 import { ToastrService } from "ngx-toastr"
@@ -18,7 +18,7 @@ export class CategoriesComponent implements OnInit {
   isLoading: boolean = false
 
   constructor(
-    private _helperService: TransparenciaHelperService,
+    private _helperService: PublicacoesHelperService,
     private _router: Router,
     private categoryService: CategoryService,
     private _toastr: ToastrService,
@@ -48,14 +48,14 @@ export class CategoriesComponent implements OnInit {
   /**Função que navega para os documentos de acordo com a categoria. */
   navigateToDocs(item: any) {
     this.setParamsToSearch(item)
-    this._router.navigate(['institucional/transparencia/arquivos'])
+    this._router.navigate(['institucional/publicacoes/arquivos'])
   }
 
   /**Função para exibir um toastr de erro. */
   showToastrError(message: string) {
     this._toastr.error(message, null, {
-    progressBar: true,
-    positionClass: 'toast-bottom-center'
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
     })
   }
 

@@ -53,7 +53,7 @@ export class DocumentsCollapseComponent {
 
   /**Função que abre um modal exibindo a visualização do documento escolhido. */
   openModalWithDocument() {
-    const file = `${GPESWebApi}/public/transparencia/download/${this.document['file']['filename']}`
+    const file = `${GPESWebApi}/public/publicacoes/download/${this.document['file']['filename']}`
     const initialState = { documentPdf: file }
     this.modalRef = this._modal.show(ModalDocumentComponent, { initialState })
   }
