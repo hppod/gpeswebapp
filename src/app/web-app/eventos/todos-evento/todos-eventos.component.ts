@@ -5,23 +5,23 @@ import { Subscription } from "rxjs"
 import { EventosService } from "../../../shared/services/eventos.service"
 import { Evento } from "../../../shared/models/evento.model"
 import { GoogleAnalyticsService } from "../../../shared/services/google-analytics.service"
-import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
+import { scrollPageToTop } from "../../../shared/functions/scroll-top"
 import { __event_noticias, __category_institucional, __action_noticias } from "../../../shared/helpers/analytics.consts"
 import { setLastUrl, checkUrlAndSetFirstPage, setLastPage, getLastPage } from "src/app/shared/functions/last-pagination"
 
 @Component({
-  selector: 'app-noticias',
-  templateUrl: './noticias.component.html',
-  styleUrls: ['./noticias.component.css']
+  selector: 'app-todos-eventos',
+  templateUrl: './todos-eventos.component.html',
+  styleUrls: ['./todos-eventos.component.css']
 })
-export class NoticiasComponent implements OnInit {
+export class EventosComponent implements OnInit {
 
   @ViewChild('closeModal') private closeModal: ElementRef
 
   private httpReq: Subscription
 
   //Dataset
-  noticias: Evento[]
+  eventos: Evento[]
 
   //Forms Set
   keywordFilterForm: FormGroup
@@ -66,7 +66,7 @@ export class NoticiasComponent implements OnInit {
     this._service.params = this._service.params.set('page', getLastPage())
     this._service.params = this._service.params.set('limit', '6')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()    
 
     //Init Form
     this.keywordFilterForm = this.fb.group({
@@ -83,14 +83,14 @@ export class NoticiasComponent implements OnInit {
     this._analytics.eventEmitter(__event_noticias, __category_institucional, __action_noticias)
   }
 
-  getNoticiasWithParams() {
+  getEventosWithParams() {
     this.isLoading = true
     this.httpReq = this._service.getEventoWithParams('public').subscribe(response => {
       this.statusResponse = response.status
 
       if (response.status == 200) {
         this.messageApi = response.body['message']
-        this.noticias = response.body['data']
+        this.eventos = response.body['data']
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
@@ -104,10 +104,10 @@ export class NoticiasComponent implements OnInit {
   }
 
   getPage(page: number) {
-    this.noticias = null
+    this.eventos = null
     scrollPageToTop(page)
     this._service.params = this._service.params.set('page', page.toString())
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   setActiveMenuItem(event: any) {
@@ -121,11 +121,11 @@ export class NoticiasComponent implements OnInit {
 
   onSelectOrderDropdownMenu(item: any) {
     this.filterOrder = true
-    this.noticias = null
+    this.eventos = null
     this.dropdownOrderSelectedItem = item
     this._service.params = this._service.params.set('valueSort', item['param'])
     this._service.params = this._service.params.set('columnSort', 'date')
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   onClickFilterKeyword() {
@@ -133,18 +133,18 @@ export class NoticiasComponent implements OnInit {
     let keyword = this.keywordFilterForm.value.keyword
     this.keyword = keyword
 
-    this.noticias = null
+    this.eventos = null
     this.filterKeyword = true
     this._service.params = this._service.params.set('keyword', keyword)
 
     this.closeModal.nativeElement.click()
     this.keywordFilterForm.reset()
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
   clearConditions() {
-    this.noticias = null
+    this.eventos = null
 
     this._service.params = this._service.params.set('page', '1')
 
@@ -155,7 +155,7 @@ export class NoticiasComponent implements OnInit {
     this.filterKeyword = false
     this._service.params = this._service.params.delete('keyword')
 
-    this.getNoticiasWithParams()
+    this.getEventosWithParams()
   }
 
 }

@@ -12,11 +12,11 @@ import { scrollPageToTop } from 'src/app/shared/functions/scroll-top';
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
 @Component({
-  selector: 'app-eventos',
-  templateUrl: './eventos.component.html',
-  styleUrls: ['./eventos.component.css']
+  selector: 'app-todos-eventos',
+  templateUrl: './todos-eventos.component.html',
+  styleUrls: ['./todos-eventos.component.css']
 })
-export class EventosComponent implements OnInit, OnDestroy {
+export class TodosEventosComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
@@ -72,6 +72,7 @@ export class EventosComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('columnSort', 'date')
     this._service.params = this._service.params.set('valueSort', 'descending')
     this._service.params = this._service.params.set('page', getLastPage())
+    this._service.params = this._service.params.set('limit', '10')
 
     this.getEventosWithParams()
   }
