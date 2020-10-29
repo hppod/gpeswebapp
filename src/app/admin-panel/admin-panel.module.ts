@@ -15,7 +15,6 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { HeaderComponent } from "./../web-components/admin-panel/header/header.component"
 import { SidenavComponent } from "./../web-components/admin-panel/sidenav/sidenav.component"
-import { AnalyticsComponent } from "./analytics/analytics.component"
 
 import { AdminPanelRoutingModule } from "./admin-panel.routing"
 
@@ -41,13 +40,11 @@ import { AdminPanelRoutingModule } from "./admin-panel.routing"
     ],
     declarations: [
         HeaderComponent,
-        SidenavComponent,
-        AnalyticsComponent
+        SidenavComponent
     ],
     exports: [
         HeaderComponent,
-        SidenavComponent,
-        AnalyticsComponent
+        SidenavComponent
     ]
 })
 export class AdminPanelModule { }
