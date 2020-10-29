@@ -13,11 +13,11 @@ import { ModalLoadingComponent } from "./../../../web-components/common/modals/m
 import { ToastrService } from "ngx-toastr"
 
 @Component({
-  selector: 'app-detalhes-transparencia',
+  selector: 'app-detalhes-publicacoes',
   templateUrl: './detalhes-publicacoes.component.html',
   styleUrls: ['./detalhes-publicacoes.component.css']
 })
-export class DetalhesTransparenciaComponent implements OnInit {
+export class DetalhesPublicacoesComponent implements OnInit {
 
   private httpReq: Subscription
 
@@ -80,7 +80,7 @@ export class DetalhesTransparenciaComponent implements OnInit {
 
   /**Função que abre um modal com a visualização do documento escolhido. */
   openModalWithDocument() {
-    const file = `${GPESWebApi}/transparencia/${this.document['file']['filename']}`
+    const file = `${GPESWebApi}/publicacoes/${this.document['file']['filename']}`
     const initialState = { documentPdf: file }
     this.modalRef = this._modal.show(ModalDocumentComponent, { initialState })
   }
@@ -111,12 +111,12 @@ export class DetalhesTransparenciaComponent implements OnInit {
         this._service.deleteParams = this._service.deleteParams.set('filename', filename)
         this._service.deleteParams = this._service.deleteParams.set('_id', _id)
         this.httpReq = this._service.deleteDocument().subscribe(response => {
-          this._router.navigate(['/admin/transparencia/'])
+          this._router.navigate(['/admin/publicacoes/'])
           this._service.deleteParams = new HttpParams()
           this.modalRef.hide()
           this.showToastrSuccess('O documento foi excluido com sucesso')
         }, err => {
-          this._router.navigate(['/admin/transparencia/'])
+          this._router.navigate(['/admin/publicacoes/'])
           this._service.deleteParams = new HttpParams()
           this.modalRef.hide()
           this.showToastrError('Houve um erro ao excluir o documento. Tente novamente.')

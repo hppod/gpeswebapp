@@ -12,29 +12,29 @@ import { SharedModule } from "./../../shared/shared.module"
 
 import { PublicacoesComponent } from "./todos-publicacoes/publicacoes.component"
 import { CreatePublicacoesComponent } from "./create-publicacoes/create-publicacoes.component"
-import { DetalhesTransparenciaComponent } from "./detalhes-publicacoes/detalhes-publicacoes.component"
-import { AtualizarTransparenciaComponent } from "./atualizar-publicacoes/atualizar-publicacoes.component"
+import { DetalhesPublicacoesComponent } from "./detalhes-publicacoes/detalhes-publicacoes.component"
+import { AtualizarPublicacoesComponent } from "./atualizar-publicacoes/atualizar-publicacoes.component"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
     { path: '', component: PublicacoesComponent },
-    { path: 'detalhes/:title', component: DetalhesTransparenciaComponent },
+    { path: 'detalhes/:title', component: DetalhesPublicacoesComponent },
     { path: 'create', component: CreatePublicacoesComponent, canDeactivate: [PendingChangesGuard] },
-    { path: 'atualizar/:title', component: AtualizarTransparenciaComponent, canDeactivate: [PendingChangesGuard] }
+    { path: 'atualizar/:title', component: AtualizarPublicacoesComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
     declarations: [
         PublicacoesComponent,
         CreatePublicacoesComponent,
-        DetalhesTransparenciaComponent,
-        AtualizarTransparenciaComponent
+        DetalhesPublicacoesComponent,
+        AtualizarPublicacoesComponent
     ],
     exports: [
         PublicacoesComponent,
         CreatePublicacoesComponent,
-        DetalhesTransparenciaComponent,
-        AtualizarTransparenciaComponent
+        DetalhesPublicacoesComponent,
+        AtualizarPublicacoesComponent
     ],
     providers: [
         PendingChangesGuard

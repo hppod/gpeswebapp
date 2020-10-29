@@ -7,7 +7,7 @@
       </div>
       <div class="col-sm-6 positionButtons">
         <button type="button" class="btn btn-outline-warning btn-sm"
-          [routerLink]="['/admin/transparencia/atualizar', document['titulo']]">Editar</button>
+          [routerLink]="['/admin/publicacoes/atualizar', document['titulo']]">Editar</button>
         <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
           (click)="canDelete(document['titulo'], document['_id'], document['file']['filename'])">Excluir</button>
       </div>

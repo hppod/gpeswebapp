@@ -1,0 +1,27 @@
+<div class="container-fluid marginTopBottomContentContainer">
+    <app-loading [condition]="isLoading"></app-loading>
+    <div *ngIf="evento">
+        <h2 class="titlePage">{{evento['titulo']}}</h2>
+        <div class="row">
+            <div class="col-sm"></div>
+            <div class="col-sm">
+                <p class="dataEvento">Data do Evento: {{evento['date'] | date: 'dd/MM/yyyy'}}</p>
+            </div>
+            <div class="col-sm compartilharFacebook">
+            </div>
+        </div>
+        <div *ngIf="hasImage">
+            <img class="imagemEvento" [src]="source">
+            <hr>
+        </div>
+        <p class="conteudoEvento" innerHTML="{{evento['descricao']}}"></p>
+    </div>
+    <div *ngIf="evento && hasMultipleImages">
+        <hr>
+        <h2 class="titlePage">Galeria</h2>
+        <app-gallery [images]="evento['file']"></app-gallery>
+    </div>
+    <div *ngIf="!isLoading && !evento">
+        <app-no-data [message]="messageApi"></app-no-data>
+    </div>
+</div>

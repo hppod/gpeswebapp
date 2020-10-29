@@ -15,19 +15,22 @@ import { DragulaModule } from 'ng2-dragula'
 import { TodosProcessoSeletivoComponent } from './todos-processo-seletivo/todos-processo-seletivo.component';
 import { CreateProcessoSeletivoComponent } from './create-processo-seletivo/create-processo-seletivo.component';
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard";
-import { DetalhesProcessoSeletivoComponent } from './detalhes-processo-seletivo/detalhes-processo-seletivo.component'
+import { DetalhesProcessoSeletivoComponent } from './detalhes-processo-seletivo/detalhes-processo-seletivo.component';
+import { AtualizarProcessoSeletivoComponent } from './atualizar-processo-seletivo/atualizar-processo-seletivo.component'
 
 const ROUTES: Routes = [
   { path: '', component: TodosProcessoSeletivoComponent },
   { path: 'create', component: CreateProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] },
-  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent }
+  { path: 'detalhes/:title', component: DetalhesProcessoSeletivoComponent },
+  { path: 'atualizar/:title', component: AtualizarProcessoSeletivoComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
   declarations: [
     TodosProcessoSeletivoComponent,
     CreateProcessoSeletivoComponent,
-    DetalhesProcessoSeletivoComponent
+    DetalhesProcessoSeletivoComponent,
+    AtualizarProcessoSeletivoComponent
   ],
   exports: [
     TodosProcessoSeletivoComponent,

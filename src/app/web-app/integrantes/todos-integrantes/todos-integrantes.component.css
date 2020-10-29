@@ -1,0 +1,36 @@
+img{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+button
+
+.card-integrante{
+    align-items: center;
+    text-align: center;
+}
+
+.margem{
+    padding-left: 3%;
+}
+
+.alinhar{
+    text-align: center;
+    font: verdana;
+    align-items: center;
+}
+
+.margemModal{
+    padding-left: 3%;
+    padding-bottom: 5%;
+}
+
+.margemImagem{
+    padding-left: 10%;
+}
+
+.margemNome{
+    position: relative;
+    padding-top: 7%;
+}

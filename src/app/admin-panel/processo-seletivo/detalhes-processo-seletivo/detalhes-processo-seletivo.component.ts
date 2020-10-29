@@ -26,6 +26,17 @@ export class DetalhesProcessoSeletivoComponent implements OnInit, OnDestroy {
   statusResponse: number
   messageApi: string
   isLoading: boolean
+  processoSeletivoForReorder: ProcessoSeletivo[]
+  total: number
+
+  configLoadingModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false,
+    initialState: {
+      message: "Excluindo registro...",
+      withFooter: false
+    }
+  }
 
   constructor(
     private _service: ProcessoSeletivoService,
@@ -40,6 +51,7 @@ export class DetalhesProcessoSeletivoComponent implements OnInit, OnDestroy {
     const titulo = this._activatedRoute.snapshot.params['title']
 
     this.getProcessoSeletivoWithTitle(titulo)
+    this.getProcessoSeletivoWithParams()
   }
 
   ngOnDestroy() {
@@ -65,19 +77,69 @@ export class DetalhesProcessoSeletivoComponent implements OnInit, OnDestroy {
     })
   }
 
-  /**Função para exibir um toastr de sucesso. */
-  showToastrSuccess(message: string) {
-    this._toastr.success(message, null, {
+
+  canDelete(title: string, _id: string) {
+    const initialState = { message: `Deseja excluir o "${title}" ?` }
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+          this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
+          this._service.delete(_id).subscribe(response => {
+            this.reorderAfterDelete(this.processoSeletivo.ordenacao)
+            this._router.navigate(['/admin/processo-seletivo/'])
+            this.modalRef.hide()
+            this.showToastrSuccess()
+          }, err => {
+            this._router.navigate(['/admin/processo-seletivo/'])
+            this.modalRef.hide()
+            this.showToastrError()
+          })
+        }
+    })
+  }
+
+  showToastrSuccess() {
+    this._toastr.success('O processo seletivo foi excluído com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
   }
 
-  /**Função para exibir um toastr de erro. */
-  showToastrError(message: string) {
-    this._toastr.error(message, null, {
+  showToastrError() {
+    this._toastr.error('Houve um erro ao excluir o processo seletivo. Tente novamente.', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
+    })
+  }
+
+  reorderAfterDelete(posicao) {
+
+    for (posicao; posicao < this.processoSeletivoForReorder.length; posicao++) {
+      this.processoSeletivoForReorder[posicao].ordenacao = posicao
+    }
+
+    this.processoSeletivoForReorder.forEach(element => {
+      this.httpReq = this._service.updateOrder(element.titulo, element).subscribe(response => {
+        this.statusResponse = response.status
+        this.messageApi = response.body['message']
+      }, err => {
+        this.statusResponse = err.status
+        this.messageApi = err.body['message']
+      })
+    })
+  }
+
+  getProcessoSeletivoWithParams() {
+    this.httpReq = this._service.getProcessoSeletivoWithParams('authenticated').subscribe(response => {
+      this.statusResponse = response.status
+
+      if (response.status == 200) {
+        this.messageApi = response.body['message']
+        this.processoSeletivoForReorder = response.body['data']
+        this.total = response.body['count']
+      }
+    }, err => {
+      this.messageApi = err
     })
   }
 

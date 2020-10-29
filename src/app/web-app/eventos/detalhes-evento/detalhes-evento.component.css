@@ -1,0 +1,61 @@
+.conteudoEvento {
+    text-align: justify;
+    text-justify: inter-word;
+    text-indent: 1%;
+}
+
+.dataEvento {
+    text-align: center;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: bolder;
+    color: #bdbdbd
+}
+
+.imagemEvento {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    height: 20%;
+}
+
+.compartilharFacebook {
+    text-align: end;
+}
+
+.btn-outline-info-faceblue {
+    color: rgb(24, 119, 242);
+    border-color: rgb(24, 119, 242);
+}
+
+.btn-outline-info-faceblue:hover {
+    color: #fff;
+    background-color: rgb(24, 119, 242);
+    border-color: rgb(24, 119, 242);
+}
+
+.btn-outline-info-faceblue:focus,
+.btn-outline-info-faceblue.focus {
+    box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.5);
+}
+
+.btn-outline-info-faceblue.disabled,
+.btn-outline-info-faceblue:disabled {
+    color: rgb(24, 119, 242);
+    background-color: transparent;
+}
+
+.btn-outline-info-faceblue:not(:disabled):not(.disabled):active,
+.btn-outline-info-faceblue:not(:disabled):not(.disabled).active,
+.show>.btn-outline-info-faceblue.dropdown-toggle {
+    color: #fff;
+    background-color: rgb(24, 119, 242);
+    border-color: rgb(24, 119, 242);
+}
+
+.btn-outline-info-faceblue:not(:disabled):not(.disabled):active:focus,
+.btn-outline-info-faceblue:not(:disabled):not(.disabled).active:focus,
+.show>.btn-outline-info-faceblue.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(24, 119, 242, 0.5);
+}
