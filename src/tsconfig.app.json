@@ -19,8 +19,6 @@
     "./app/web-app/integrantes/integrantes-web.module.ts",
     "./app/admin-panel/authentication/authentication.module.ts",
     "./app/admin-panel/contato/contato.module.ts",
-    "./app/admin-panel/faq/faq.module.ts",
-    "./app/admin-panel/gpes/gpes.module.ts",
     "./app/admin-panel/publicacoes/publicacoes.module.ts",
     "./app/admin-panel/eventos/evento.module.ts",
     "./app/admin-panel/sobre/sobre.module.ts",
