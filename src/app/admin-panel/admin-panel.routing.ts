@@ -10,9 +10,6 @@ export const AdminPanelRoutes: Routes = [
             { path: '', redirectTo: '/admin/analytics', pathMatch: 'full' },
             { path: 'auth', loadChildren: './authentication/authentication.module#AuthModule' },
             {
-                path: 'faq', loadChildren: './faq/faq.module#FaqModule', canActivate: [AuthGuard]
-            },
-            {
                 path: 'publicacoes', loadChildren: './publicacoes/publicacoes.module#PublicacoesModule', canActivate: [AuthGuard]
             },
             {
@@ -32,9 +29,7 @@ export const AdminPanelRoutes: Routes = [
             },
             {
                 path: 'integrantes', loadChildren: './integrantes/integrantes.module#IntegrantesModule', canActivate: [AuthGuard]
-            },
-            { path: 'gpes', loadChildren: './gpes/gpes.module#GpesModule', canActivate: [AuthGuard] },
-            // { path: 'analytics', loadChildren: './analytics/analytics.module#AnalyticsModule', canActivate: [AuthGuard] }
+            }
         ]
     }
 ]

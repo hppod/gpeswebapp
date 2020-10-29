@@ -80,10 +80,6 @@ export class FooterComponent implements OnInit, OnDestroy {
         this.redessociais.push(contatos[index])
       }
     }
-    /*console.log(this.enderecos)
-    console.log(this.telefones)
-    console.log(this.emails)
-    console.log(this.redessociais)*/
   }
 
   verifySecondColumn(){
