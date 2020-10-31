@@ -14,7 +14,7 @@ app.use(function (req, res, next) {
     next()
 })
 
-app.get('/*', (req, res, next) => {
+app.get('*', (req, res, next) => {
     if (req.headers['x-forwarded-proto'] != 'https') {
         res.redirect('http://' + req.headers.host + req.url)
     } else {
