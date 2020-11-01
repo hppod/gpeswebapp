@@ -35,3 +35,7 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Refatorando o modulo de notícias para Eventos e alterando o nome do componente visualizar eventos para detalhes-evento do admin-panel.
 * **Eventos:** Ajustando a visualização de todos registros no institucional (web-app).
 * **Eventos:** Alterando o nome do componente de evento para detalhes-evento no institucional, campo de exibição de data modificado.
+
+
+### Versão 5.3
+* **Eventos:** Trocando o rótulo da data do evento no evento-card e no detalhes-evento; Adicionando o texto explicativo no todos-evento.
