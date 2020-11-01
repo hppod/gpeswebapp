@@ -1,5 +1,6 @@
 export interface Integrantes {
     nome: string,
+    email:string,
     contato: string
     lattes: string
     situacao: boolean

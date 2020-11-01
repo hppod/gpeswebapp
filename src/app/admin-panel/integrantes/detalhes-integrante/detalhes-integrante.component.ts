@@ -54,6 +54,7 @@ export class DetalhesIntegranteComponent implements OnInit, OnDestroy {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.integrante = response.body['data']
+      console.log(response.body['data'])
       this.isLoading = false
     }, err => {
       this.messageApi = err.error['message']
