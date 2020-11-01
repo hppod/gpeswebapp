@@ -38,3 +38,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.3
 * **Integrantes:** alteração da model de integrantes para aceitar email, alteração de detalhes e novo integrante no painel administrativo para suportar campo email, alteração no todos integrantes no institucional para suportar o campo email e informações da integrante Daniela
+* **Eventos:** Trocando o rótulo da data do evento no evento-card e no detalhes-evento; Adicionando o texto explicativo no todos-evento.
