@@ -46,3 +46,9 @@ a.active:hover {
     text-decoration: none;
     background-color: rgb(255, 255, 255);
 }
+
+.alinhar{
+    text-align: center;
+    font: verdana;
+    align-items: center;
+}
