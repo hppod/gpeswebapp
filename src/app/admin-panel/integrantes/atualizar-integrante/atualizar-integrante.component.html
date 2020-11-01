@@ -1,0 +1,72 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <div>
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5>Adicionar integrante</h5>
+            </div>
+            <p class="col-sm-6 positionRequired">
+                * Campos obrigatórios
+            </p>
+        </div>
+        <div>
+            <form [formGroup]="integranteForm" novalidates>
+                <div class="form-row">
+                    <div class="form-group col-sm-12">
+                        <label for="nome" class="form-control-label">Nome <span class="text-danger">*</span></label>
+                        <input type="text" name="nome" class="form-control" placeholder="Nome" formControlName="nome">
+                        <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+                            <div *ngIf="nome.errors.required">
+                                Nome é obrigatório.
+                            </div>
+                        </small>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="email" class="form-control-label">Email</label>
+                        <input type="email" name="email" class="form-control" placeholder="Email"
+                            formControlName="email">
+                    </div>
+                    <div class="form-group col-sm-6">
+                        <label for="contato" class="form-control-label">Linkedin</label>
+                        <input type="text" name="contato" class="form-control" placeholder="Linkedin"
+                            formControlName="contato">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-sm-6">
+                        <label for="lattes" class="form-control-label">Lattes</label>
+                        <input type="text" name="lattes" class="form-control" placeholder="Lattes"
+                            formControlName="lattes">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="dataInicio" class="text-center">Data Início <span
+                                class="text-danger">*</span></label><br>
+                        <input type="date" name="dataInicio" class="form-control" formControlName="dataInicio">
+                        <small *ngIf="dataInicio.invalid && (dataInicio.dirty || dataInicio.touched)"
+                            class="text-danger">
+                            <div *ngIf="dataInicio.errors.required">
+                                Data de inicio é obrigatória.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="dataFim" class="text-center">Data Fim</label><br>
+                        <input type="date" name="dataFim" class="form-control" placeholder="Data Fim"
+                            formControlName="dataFim">
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 positionButtons">
+                        <button type="button" *ngIf="integranteForm.dirty" class="btn btn-outline-danger btn-sm"
+                            (click)="canCancel()">Cancelar</button>
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                            (click)="putIntegrante()">Salvar
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

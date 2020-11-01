@@ -36,4 +36,9 @@ export class IntegrantesService {
   getExIntegrantes():Observable<HttpResponse<Integrantes[]>> {
     return this.http.get<Integrantes[]>(`${GPESWebApi}/public/integrantes/listar-ex`, { params: this.params, observe: 'response' })
   }
+
+  update(nome: string, formData) {
+    return this.http.put<any>(`${GPESWebApi}/authenticated/integrantes/atualizar/${nome}`, formData, { observe: 'response' })
+  }
+
 }

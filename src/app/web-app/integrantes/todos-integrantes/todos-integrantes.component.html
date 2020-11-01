@@ -56,8 +56,8 @@
 
 <!-- modal -->
 <ng-template #template>
-    <app-loading [condition]="isLoading"></app-loading>
-    <div *ngIf="!isLoading && statusResponse == 200 && integrante != null">
+    <app-loading [condition]="isLoadingModal"></app-loading>
+    <div *ngIf="!isLoadingModal && statusResponse == 200 && integrante != null">
       <br>
       <div class="margemImagem row">
         <div class="col-sm-4">
@@ -75,7 +75,7 @@
       </div>
       <br>
       <div class="margemModal row">
-        <div class="col-sm-6" *ngIf="integrante['email'] != ''">
+        <div class="col-sm-6" *ngIf="integrante['email']">
           <label class="form-control-label">Email</label>
           <div>
             {{integrante['email']}}
@@ -111,6 +111,6 @@
         </div>
       </div>
     </div>
-    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !integrante"></app-no-data>
-    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !integrante"></app-error>
+    <app-no-data *ngIf="!isLoadingModal && statusResponse == 204 && !integrante"></app-no-data>
+    <app-error *ngIf="!isLoadingModal && statusResponse != 200 && statusResponse != 204 && !integrante"></app-error>
 </ng-template>
