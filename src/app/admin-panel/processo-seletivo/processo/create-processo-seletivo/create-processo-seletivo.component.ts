@@ -9,9 +9,9 @@ import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal
 import { ProcessoSeletivo } from 'src/app/shared/models/processo-seletivo.model';
 import { toFormData } from 'src/app/shared/functions/to-form-data.function';
 import { toResponseBody } from 'src/app/shared/functions/to-response-body.function';
-import { ProcessoSeletivoValidator } from "./../../../shared/validations/processo-seletivo.validator";
+import { ProcessoSeletivoValidator } from "./../../../../shared/validations/processo-seletivo.validator";
 import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
-import { requiredFileType } from "../../../shared/functions/upload-file-validator.function"
+import { requiredFileType } from "../../../../shared/functions/upload-file-validator.function"
 import { setLastUrl } from 'src/app/shared/functions/last-pagination';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
