@@ -42,7 +42,7 @@
         <tbody>
           <tr *ngFor="let document of documents | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
             [routerLink]="['/admin/publicacoes/detalhes', document['titulo']]" class="pointer hoverRowTable">
-            <th scope="row">{{document['titulo']}}</th>
+            <th scope="row">{{sliceTitle(document['titulo'])}}</th>
             <td>{{document['categoria']}}</td>
             <td>{{document['dataPublicacao'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td (click)="$event.stopPropagation()">
