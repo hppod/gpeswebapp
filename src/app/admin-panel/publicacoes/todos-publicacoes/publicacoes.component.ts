@@ -221,4 +221,8 @@ export class PublicacoesComponent implements OnInit {
     })
   }
 
+  sliceTitle(value: String): String {
+    return `${value.slice(0, 90)}...`
+  }
+
 }
