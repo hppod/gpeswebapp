@@ -60,7 +60,6 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.integrante = response.body['data']
-      console.log(response.body['data'])
       this.isLoading = false
       this.preencherForm(this.integrante)
     }, err => {
@@ -83,13 +82,27 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
   }
 
   formatDate(date) {
-    const d = new Date(date);
-    let month = '' + (d.getMonth() + 1);
-    let day = '' + d.getDate();
-    const year = d.getFullYear();
-    if (month.length < 2) month = '0' + month;
-    if (day.length < 2) day = '0' + day;
-    return [year, month, day].join('-');
+    if (date != null) {
+      let MesString
+      let DiaString
+      let data = new Date(date)
+      let dia = data.getUTCDate()
+      let mes = data.getUTCMonth() + 1
+      let ano = data.getUTCFullYear()
+
+      if (mes < 10) {
+        MesString = '0' + mes.toString()
+      } else {
+        MesString = mes.toString()
+      }
+      if (dia < 10) {
+        DiaString = '0' + dia.toString()
+      } else {
+        DiaString = dia.toString()
+      }
+      return [ano, MesString, DiaString].join('-');
+    }
+    return null
   }
 
   ngOnDestroy() {
@@ -119,7 +132,7 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
     return true
   }
 
-  putIntegrante(){
+  putIntegrante() {
     this.httpReq = this.service.update(this.integrante['nome'], this.integranteForm.value).subscribe(response => {
       this.integranteForm.reset()
       this.success = true
