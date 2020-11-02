@@ -38,3 +38,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.3
 * **Integrantes:** alteração da model de integrantes para aceitar email, alteração de detalhes e novo integrante no painel administrativo para suportar campo email, alteração no todos integrantes no institucional para suportar o campo email e informações da integrante Daniela
+* **Eventos:** Refatorando o componente de atualizar-evento: adicionando o campo de data para ser editado, modificando o método de updateEvento e chamando os métodos corretamente do arquivo service.
