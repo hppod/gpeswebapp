@@ -14,14 +14,14 @@ import { SharedModule } from "../../shared/shared.module"
 import { TodosEventosComponent } from "./todos-evento/todos-eventos.component"
 import { CreateEventoComponent } from "./create-evento/create-evento.component"
 import { DetalhesEventoComponent } from "./detalhes-evento/detalhes-evento.component"
-import { EditEventoComponent } from "./edit-evento/edit-evento.component"
+import { AtualizarEventoComponent } from "./atualizar-evento/atualizar-evento.component"
 import { PendingChangesGuard } from "../../../../src/app/shared/guards/pending-changes.guard"
 
 const ROUTES: Routes = [
     { path: '', component: TodosEventosComponent },
     { path: 'detalhes/:title', component: DetalhesEventoComponent },
     { path: 'criar', component: CreateEventoComponent, canDeactivate: [PendingChangesGuard] },
-    { path: 'atualizar/:title', component: EditEventoComponent, canDeactivate: [PendingChangesGuard] }
+    { path: 'atualizar/:title', component: AtualizarEventoComponent, canDeactivate: [PendingChangesGuard] }
 ]
 
 @NgModule({
@@ -29,13 +29,13 @@ const ROUTES: Routes = [
         TodosEventosComponent,
         CreateEventoComponent,
         DetalhesEventoComponent,
-        EditEventoComponent
+        AtualizarEventoComponent
     ],
     exports: [
         TodosEventosComponent,
         CreateEventoComponent,
         DetalhesEventoComponent,
-        EditEventoComponent
+        AtualizarEventoComponent
     ],
     providers: [
         PendingChangesGuard

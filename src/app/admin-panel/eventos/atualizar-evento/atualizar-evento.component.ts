@@ -17,12 +17,12 @@ import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
-  selector: 'app-edit-evento',
-  templateUrl: './edit-evento.component.html',
-  styleUrls: ['./edit-evento.component.css'],
+  selector: 'app-atualizar-evento',
+  templateUrl: './atualizar-evento.component.html',
+  styleUrls: ['./atualizar-evento.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
+export class AtualizarEventoComponent implements OnInit, ComponentCanDeactivate {
 
   eventoForm: FormGroup
   messageApi: string
