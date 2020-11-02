@@ -13,14 +13,6 @@
         <div [id]="'collapse'+document['_id']" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
             <div class="card-body">
                 {{document['descricao']}}
-                <br>
-                <small class="infoDocs"><b>Autores: </b> {{document['autores']}}</small>&nbsp;
-                <small class="infoDocs"><b>Título: </b> {{document['titulo']}}</small>&nbsp;
-                <small class="infoDocs"><b>Plataforma: </b> {{document['plataforma']}}</small>&nbsp;
-                <small class="infoDocs"><b>Cidade: </b> {{document['cidade']}}</small>&nbsp;
-                <small class="infoDocs"><b>Categoria: </b> {{document['categoria']}}</small>&nbsp;
-                <small class="infoDocs"><b>Postado em: </b>
-                    {{document['dataPublicacao'] | date: 'dd/MM/yyyy':"UTC"}}</small>
                 <hr>
                 <button type="submit" class="btn btn-outline-success btn-sm float-right"
                     (click)="getDownloadDocument()">Download</button>
