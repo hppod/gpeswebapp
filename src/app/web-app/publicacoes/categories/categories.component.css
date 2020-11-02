@@ -3,3 +3,10 @@
     text-align: center;
     text-justify: inter-word;
 }
+
+.alinhar{
+    text-align: center;
+    font: verdana;
+    align-items: center;
+    margin-bottom: 30px;
+}
