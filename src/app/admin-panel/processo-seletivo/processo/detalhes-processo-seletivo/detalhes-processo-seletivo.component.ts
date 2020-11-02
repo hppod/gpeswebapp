@@ -1,15 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ProcessoSeletivo } from "./../../../shared/models/processo-seletivo.model"
-import { ProcessoSeletivoService } from "./../../../shared/services/processo-seletivo.service"
-import { AuthenticationService } from "./../../../shared/services/authentication.service"
+import { ProcessoSeletivo } from "./../../../../shared/models/processo-seletivo.model"
+import { ProcessoSeletivoService } from "./../../../../shared/services/processo-seletivo.service"
+import { AuthenticationService } from "./../../../../shared/services/authentication.service"
 import { Subscription } from "rxjs"
 import { ActivatedRoute, Router } from "@angular/router"
-import { HttpParams } from '@angular/common/http'
 import { BsModalService, BsModalRef, ModalOptions } from "ngx-bootstrap/modal"
-import { ModalDocumentComponent } from "./../../../web-components/common/modals/modal-document/modal-document.component"
-import { GPESWebApi } from 'src/app/app.api'
-import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
-import { ModalLoadingComponent } from "./../../../web-components/common/modals/modal-loading/modal-loading.component"
+import { ModalDialogComponent } from "./../../../../web-components/common/modals/modal-dialog/modal-dialog.component"
+import { ModalLoadingComponent } from "./../../../../web-components/common/modals/modal-loading/modal-loading.component"
 import { ToastrService } from "ngx-toastr"
 
 @Component({

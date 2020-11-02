@@ -5,12 +5,12 @@ import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 import { DragulaService } from 'ng2-dragula';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
-import { ProcessoSeletivo } from "../../../shared/models/processo-seletivo.model";
-import { ProcessoSeletivoService } from '../../../shared/services/processo-seletivo.service';
-import { AuthenticationService } from "../../../shared/services/authentication.service"
-import { ModalDialogComponent } from "./../../../web-components/common/modals/modal-dialog/modal-dialog.component"
-import { ModalLoadingComponent } from "./../../../web-components/common/modals/modal-loading/modal-loading.component"
-import { scrollPageToTop } from "./../../../shared/functions/scroll-top"
+import { ProcessoSeletivo } from "../../../../shared/models/processo-seletivo.model";
+import { ProcessoSeletivoService } from '../../../../shared/services/processo-seletivo.service';
+import { AuthenticationService } from "../../../../shared/services/authentication.service"
+import { ModalDialogComponent } from "./../../../../web-components/common/modals/modal-dialog/modal-dialog.component"
+import { ModalLoadingComponent } from "./../../../../web-components/common/modals/modal-loading/modal-loading.component"
+import { scrollPageToTop } from "./../../../../shared/functions/scroll-top"
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 
 @Component({
