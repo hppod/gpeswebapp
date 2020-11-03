@@ -30,6 +30,12 @@
             </div>
           </small>
         </div>
+        <div class="form-row">
+          <div class="form-group-col-sm-12">
+            <label for="data" class="form-control-label">Data do Evento <span class="text-danger">*</span></label>
+            <input type="date" name="data" class="form-control" formControlName="date">
+          </div>
+        </div>
         <app-file-uploader [fileAccept]="'images'" [files]="FileSnippet"></app-file-uploader>
         <br />
         <div class="row">
