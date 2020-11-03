@@ -72,8 +72,8 @@ export class TodosIntegrantesComponent implements OnInit {
 
     this.sortSelectedItem = this.headTableItems[1]
 
-    this.service.params = this.service.params.set('columnSort', 'nome')
-    this.service.params = this.service.params.set('valueSort', 'ascending')
+    this.service.params = this.service.params.set('columnSort', 'dataInicio')
+    this.service.params = this.service.params.set('valueSort', 'descending')
     this.service.params = this.service.params.set('page', getLastPage())
     this.service.params = this.service.params.set('limit', '10')
     

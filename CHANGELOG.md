@@ -41,3 +41,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Integrantes:** alteração de todos integrantes e detalhes, criação do atualizar integrante adição do metodo na service. Correção de todos integrantes institucional
 * **Eventos:** Trocando o rótulo da data do evento no evento-card e no detalhes-evento; Adicionando o texto explicativo no todos-evento.
 * **Eventos:** Refatorando o componente de atualizar-evento: adicionando o campo de data para ser editado, modificando o método de updateEvento e chamando os métodos corretamente do arquivo service.
+* **Integrantes:** excluir integrantes metodo no componente listar todos e visualizar, metodo na service e correções no admin panel integrantes e institucional.
