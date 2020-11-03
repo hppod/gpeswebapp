@@ -31,7 +31,7 @@
             <td>{{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td>{{integrante['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td (click)="$event.stopPropagation()">
-              <button class="btn btn-outline-warning btn-sm">Editar</button>
+              <button class="btn btn-outline-warning btn-sm" [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm">Excluir</button>
             </td>
           </tr>
