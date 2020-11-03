@@ -52,7 +52,9 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
       email: this.builder.control(''),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
-      projetos: this.builder.control(''),
+      projetos: this.builder.control([
+        '5fa19ad7ee19c8220432b3d4'
+      ]),
       situacao: this.builder.control(false)
     });
   }
