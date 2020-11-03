@@ -6,9 +6,11 @@ import { IntegrantesService } from 'src/app/shared/services/integrantes.service'
 import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
 import { Subscription } from 'rxjs';
 import { Integrantes } from 'src/app/shared/models/integrantes.model';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { scrollPageToTop } from 'src/app/shared/functions/scroll-top';
 import { ToastrService } from 'ngx-toastr';
+import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
+import { ModalLoadingComponent } from 'src/app/web-components/common/modals/modal-loading/modal-loading.component';
 
 
 @Component({
@@ -44,6 +46,15 @@ export class TodosIntegrantesComponent implements OnInit {
       param: 'dataFim'
     }
   ]
+
+  configLoadingModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false,
+    initialState: {
+      message: "Excluindo registro...",
+      withFooter: false
+    }
+  }
 
   constructor(
     private service: IntegrantesService,
@@ -96,6 +107,29 @@ export class TodosIntegrantesComponent implements OnInit {
     }, err => {
       this.messageApi = err
       this.isLoading = false
+    })
+  }
+
+  delete(id, nome){
+
+    const initialState = { message: `Deseja excluir o "${nome}" ?` }
+    this.modalRef = this.modal.show(ModalDialogComponent, { initialState })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+          this.modalRef = this.modal.show(ModalLoadingComponent, this.configLoadingModal)
+          this.service.deleteIntegrante(id).subscribe(response => {
+            this.service.params = this.service.params.set('columnSort', 'nome')
+            this.service.params = this.service.params.set('valueSort', 'ascending')
+            this.service.params = this.service.params.set('page', '1')
+            this.getAllIntegrantes()
+            this.modalRef.hide()
+            this.showToastrSuccess()
+          }, err => {
+            this.getAllIntegrantes()
+            this.modalRef.hide()
+            this.showToastrError()
+          })
+      }
     })
   }
 
