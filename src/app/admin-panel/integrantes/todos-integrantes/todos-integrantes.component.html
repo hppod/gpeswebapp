@@ -5,7 +5,8 @@
         <h5>Integrantes</h5>
       </div>
       <div class="col-sm-6 positionButtons">
-        <button type="button" class="btn btn-outline-success btn-sm botao" [routerLink]="['/admin/integrantes/novo']">Adicionar</button>
+        <button type="button" class="btn btn-outline-success btn-sm botao"
+          [routerLink]="['/admin/integrantes/novo']">Adicionar</button>
       </div>
     </div>
     <app-loading [condition]="isLoading"></app-loading>
@@ -31,8 +32,10 @@
             <td>{{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td>{{integrante['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</td>
             <td (click)="$event.stopPropagation()">
-              <button class="btn btn-outline-warning btn-sm" [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
-              <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm">Excluir</button>
+              <button class="btn btn-outline-warning btn-sm"
+                [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
+              <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
+                (click)="delete(integrante['_id'], integrante['nome'])">Excluir</button>
             </td>
           </tr>
         </tbody>

@@ -41,4 +41,7 @@ export class IntegrantesService {
     return this.http.put<any>(`${GPESWebApi}/authenticated/integrantes/atualizar/${nome}`, formData, { observe: 'response' })
   }
 
+  deleteIntegrante(id):Observable<HttpResponse<Integrantes>>{
+    return this.http.delete<Integrantes>(`${GPESWebApi}/authenticated/integrantes/apagar/${id}`, { observe: 'response' })
+  }
 }

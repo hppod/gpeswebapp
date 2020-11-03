@@ -6,8 +6,10 @@
                 <h5>Integrante</h5>
             </div>
             <div class="col-sm-6 positionButtons">
-                <button type="button" class="btn btn-outline-warning btn-sm" [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
-                <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm">Excluir</button>
+                <button type="button" class="btn btn-outline-warning btn-sm"
+                    [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
+                <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
+                    (click)="delete(integrante['_id'], integrante['nome'])">Excluir</button>
             </div>
         </div>
         <br>
