@@ -41,8 +41,10 @@
         <div class="row">
           <div class="form-group col-sm-6">
             <label for="autores" class="form-control-label">Autores <span class="required">*</span></label>
-            <input class="form-control" formControlName="autores" type="text" placeholder="Autor/Autores" id="autores"
-              maxlength="250">
+            <ng-select2 class="form-control pointer my-ng-select2" formControlName="autores" id="autores" (value)="top"
+              (valueChanged)="onChangeAutor($event)" [(ngModel)]="selectedAutores" [data]="selectOptionAutores"
+              [placeholder]="'SOBRENOME, Nome Nome do Meio'">
+            </ng-select2>
             <small *ngIf="autores.invalid && (autores.dirty || autores.touched)" class="text-danger">
               <div *ngIf="autores.errors.required">
                 Autores é obrigatório.
