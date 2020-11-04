@@ -44,6 +44,7 @@
         "lottie-web": "^5.7.3",
         "moment": "^2.29.0",
         "ng-lottie": "^0.3.2",
+        "ng-select2": "^1.2.3",
         "ng2-dragula": "^2.1.1",
         "ng2-img-max": "^2.2.4",
         "ng2-pdf-viewer": "^6.3.2",
@@ -59,6 +60,7 @@
         "pace-js": "^1.0.2",
         "popper.js": "^1.16.1",
         "rxjs": "~6.6.3",
+        "select2": "^4.0.13",
         "zone.js": "~0.11.1"
     },
     "devDependencies": {

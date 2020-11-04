@@ -21300,15 +21300,15 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle {
 }
 
 .select2-container .select2-selection--single, .select2-container--default.select2-container--focus .select2-selection--multiple, .select2-container--default .select2-selection--multiple, .select2-container--default .select2-search--dropdown .select2-search__field {
-    font-size: 1rem;
-    line-height: 1.5;
+   /* font-size: 1rem;
+    line-height: 1.5;*/
     display: block;
     width: 100%;
     height: calc(1.5em + 1.25rem + 2px);
-    padding: .625rem .75rem;
+    padding: 0 0;
     transition: all .15s cubic-bezier(.68, -.55, .265, 1.55);
     color: #8898aa;
-    border: 1px solid #dee2e6;
+    border: none;
     border-radius: .25rem;
     background-color: #fff;
     background-clip: padding-box;
