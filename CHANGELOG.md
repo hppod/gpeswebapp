@@ -38,3 +38,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.3
 * **Integrantes:** alteração da model de integrantes para aceitar email, alteração de detalhes e novo integrante no painel administrativo para suportar campo email, alteração no todos integrantes no institucional para suportar o campo email e informações da integrante Daniela
+* **Publicações:** Troca dos rótulos "Plataforma" e "Descrição" para "Publicado Em" e "Resumo" realizada no cadastro e nos detalhes da publicação.
+* **Publicações:** Implementado slice no título da publicação na listagem das publicações no painel administrativo, e colocado texto explicativo do módulo publicações e retirado informações dos detalhes da publicação.
+* **Publicações:** Implementado modal de cadastro de autor, validador de nome único, e modificado o input autores para um dropdown e instalado o pacote ng-select2 (componente do dropdown).
