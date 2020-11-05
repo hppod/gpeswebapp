@@ -40,11 +40,11 @@ export class PublicacoesService {
 
     /**Função que realiza a requisição do tipo PUT ao endpoint “/authenticated/transparencia/atualizar/title”. A requisição possui um parâmetro obrigatório (title) e deve ser do tipo Form Data. */
     updateDocument(title: string, formData: FormData) {
-        return this.http.put<FormData>(`${GPESWebApi}/authenticated/transparencia/atualizar/${title}`, formData, { observe: 'response' })
+        return this.http.put<FormData>(`${GPESWebApi}/authenticated/publicacoes/atualizar/${title}`, formData, { observe: 'response' })
     }
 
     getDataByTitle(title: string): Observable<HttpResponse<Publicacoes>> {
-        return this.http.get<Publicacoes>(`${GPESWebApi}/authenticated/transparencia/getdata/${title}`, { observe: 'response' })
+        return this.http.get<Publicacoes>(`${GPESWebApi}/authenticated/publicacoes/getdata/${title}`, { observe: 'response' })
     }
 
     getFilesByTitle(title: string): Observable<HttpResponse<FileSnippet>> {
