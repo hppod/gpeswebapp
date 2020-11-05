@@ -17,6 +17,9 @@ import { ModalFileUploadComponent } from "src/app/web-components/common/modals/m
 import { ModalCreateCategoryComponent } from "src/app/web-components/common/modals/modal-create-category/modal-create-category.component"
 import { Category } from "src/app/shared/models/category.model"
 import { CategoryService } from "src/app/shared/services/categories.service"
+import { AutoresService } from "./../../../shared/services/autores.service"
+import { ModalCreateAutoresComponent } from "./../../../web-components/common/modals/modal-create-autores/modal-create-autores.component"
+import { Select2OptionData } from "ng-select2";
 
 @Component({
   selector: 'app-atualizar-publicacoes',
@@ -36,9 +39,12 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
   success: boolean = false
   fileChanged: boolean = false
   selectedCategory: string = null
+  selectedAutores: string = null
   olderSelectedCategory: string = null
+  olderSelectedAutores: String = null
   Publicacoes: Publicacoes
   selectOptionCategory: Category[] = new Array()
+  selectOptionAutores: Array<Select2OptionData>;
   FileSnippet: FileSnippet[] = new Array()
   File: File
 
@@ -64,16 +70,19 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
     private _service: PublicacoesService,
     private _activatedRoute: ActivatedRoute,
     private uploaderService: FileUploaderService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private autoresService: AutoresService
   ) {
     this.initForm()
   }
 
   ngOnInit() {
     const title = this._activatedRoute.snapshot.params['title']
+    this.initForm()
     this.getData(title)
-    this.getFiles(title)
+    //this.getFiles(title)
     this.getCategories()
+    this.getAutores()
     setLastUrl(this._router.url)
   }
 
@@ -98,7 +107,11 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
       titulo: this._builder.control(null, [Validators.required]),
       descricao: this._builder.control(null, [Validators.required]),
       categoria: this._builder.control("Selecione", [Validators.required]),
-      arquivo: this._builder.control(null, [Validators.required])
+      autores: this._builder.control(null, [Validators.required]),
+      plataforma: this._builder.control(null, [Validators.required]),
+      cidade: this._builder.control(null, [Validators.required]),
+      dataPublicacao: this._builder.control(null, [Validators.required])
+      //arquivo: this._builder.control(undefined)
     })
   }
 
@@ -131,7 +144,31 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
       this.selectOptionCategory = response.body['data']
       this.selectOptionCategory.push({ nome: "Não encontrou a categoria desejada? Cadastre uma aqui" })
     }, err => {
-      this.showToastrError(`${err.error['message']}`)
+      this.showToastrError('Houve um erro ao listar as categorias. Serviço indisponível')
+    })
+  }
+
+  getAutores() {
+    this.httpReq = this.autoresService.getExistingAutores().subscribe(response => {
+      this.selectOptionAutores = [{ id: '', text: '' }]
+      response.body['data'].forEach(element => {
+        this.selectOptionAutores.push({ id: element.nome, text: element.nome })
+      });
+      this.selectOptionAutores.splice(0, 1)
+      this.selectOptionAutores.push({ id: 'notFound', text: "Não encontrou o autor desejado? Cadastre um aqui" })
+    }, err => {
+      this.showToastrError('Houve um erro ao listar os autores. Serviço indisponível')
+    })
+  }
+
+  onChangeAutor($event) {
+    if ($event == "notFound") {
+      this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
+    }
+    this.modalRef.content.action.subscribe((data: string) => {
+      this.getAutores()
+      this.selectedAutores = data
+      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
     })
   }
 
@@ -156,9 +193,24 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
     this._formPublicacoes.patchValue({
       titulo: document['titulo'],
       descricao: document['descricao'],
-      categoria: document['categoria']
+      categoria: document['categoria'],
+      autores: document['autores'],
+      plataforma: document['plataforma'],
+      cidade: document['cidade'],
+      dataPublicacao: this.formatDate(document['dataPublicacao'])
     })
     this.olderSelectedCategory = document['categoria']
+    this.olderSelectedAutores = document['autores']
+  }
+
+  formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + (d.getDate() + 1);
+    const year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
   }
 
   setFiles() {
@@ -175,18 +227,18 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
 
   updateDocument() {
 
-    if (!this.fileChanged) {
-      this.setDocumentOnForm()
-    }
+    /* if (!this.fileChanged) {
+       this.setDocumentOnForm()
+     }*/
 
     this.success = false
-    this.modalRef = this._modal.show(ModalFileUploadComponent)
-    this._service.updateDocument(this.Publicacoes['titulo'], toFormData(this._formPublicacoes.value)).pipe(
+    //this.modalRef = this._modal.show(ModalFileUploadComponent)
+    this._service.updateDocument(this.Publicacoes['titulo'], this._formPublicacoes.value).pipe(
       toResponseBody()
     ).subscribe(res => {
       this.success = true
       this._formPublicacoes.reset()
-      this.modalRef.hide()
+      //this.modalRef.hide()
       this.showToastrSuccess('O documento foi atualizado com sucesso')
       this._router.navigate(['/admin/publicacoes'])
     }, err => {
@@ -232,5 +284,13 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
   get descricao() { return this._formPublicacoes.get('descricao') }
   /**Função que retorna o valor do input “categoria”. */
   get categoria() { return this._formPublicacoes.get('categoria') }
+  /**Função que retorna o valor do input autores. */
+  get autores() { return this._formPublicacoes.get('autores') }
+  /**Função que retorna o valor do input plataforma. */
+  get plataforma() { return this._formPublicacoes.get('plataforma') }
+  /**Função que retorna o valor do input cidade. */
+  get cidade() { return this._formPublicacoes.get('cidade') }
+  /**Função que retorna o valor do input ano. */
+  get dataPublicacao() { return this._formPublicacoes.get('dataPublicacao') }
 
 }
