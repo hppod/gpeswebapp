@@ -1,3 +1,63 @@
 <div class="container-fluid marginBottonTop">
     <h2 class="title">Inscrição</h2>
+    <div class="formInscricao">
+        <div class="row">
+            <p class="col-sm-12 requiredField">
+                * Campos obrigatórios
+            </p>
+        </div>
+        <div>
+            <form novalidate>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="titulo" class="form-control-label">Nome <span class="required">*</span></label>
+                        <input type="text" name="nome" class="form-control" placeholder="Nome" formControlName="nome">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="titulo" class="form-control-label">Telefone <span class="required">*</span></label>
+                        <input type="text" name="telefone" class="form-control" placeholder="Telefone"
+                            formControlName="telefone">
+                    </div>
+                    <div class="form-group col-sm-3">
+                        <label for="titulo" class="form-control-label">Cidade <span class="required">*</span></label>
+                        <input type="text" name="cidade" class="form-control" placeholder="Cidade"
+                            formControlName="cidade">
+                    </div>
+                    <div class="form-group col-sm-4">
+                        <label for="titulo" class="form-control-label">RA <span class="required">*</span></label>
+                        <input type="text" name="ra" class="form-control" placeholder="RA" formControlName="ra">
+                    </div>
+
+                    <div class="form-group col-sm-4">
+                        <label for="titulo" class="form-control-label">Curso <span class="required">*</span></label>
+                        <input type="text" name="curso" class="form-control" placeholder="Curso"
+                            formControlName="curso">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="titulo" class="form-control-label">Período <span class="required">*</span></label>
+                        <input type="text" name="período" class="form-control" placeholder="Período"
+                            formControlName="período">
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="titulo" class="form-control-label">Semestre <span class="required">*</span></label>
+                        <input type="text" name="semestre" class="form-control" placeholder="Semestre"
+                            formControlName="semestre">
+                    </div>
+                    <div class="form-group col-sm-12">
+                        <label for="titulo" class="form-control-label">Descrição <span class="required">*</span></label>
+                        <textarea class="form-control" formControlName="descricao" type="text"
+                            placeholder="Conte um pouco sobre você e o que te motiva a ingressar ao GPES..."
+                            id="descricao"></textarea>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-sm-12 positionButtonsMargin">
+                        <button type="button" class="btn btn-outline-danger btn-sm">Cancelar</button>
+                        <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button> &nbsp; &nbsp;
+                    </div> 
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
