@@ -3,7 +3,7 @@ export interface Publicacoes {
     titulo: string,
     descricao: string,
     categoria: string,
-    autores: String,
+    autores: string[],
     plataforma: String,
     cidade: String,
     dataPublicacao: Date
