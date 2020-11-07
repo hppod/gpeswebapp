@@ -83,11 +83,11 @@ export class DetalhesProcessoSeletivoComponent implements OnInit, OnDestroy {
           this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
           this._service.delete(_id).subscribe(response => {
             this.reorderAfterDelete(this.processoSeletivo.ordenacao)
-            this._router.navigate(['/admin/processo-seletivo/'])
+            this._router.navigate(['/admin/processo-seletivo/processo'])
             this.modalRef.hide()
             this.showToastrSuccess()
           }, err => {
-            this._router.navigate(['/admin/processo-seletivo/'])
+            this._router.navigate(['/admin/processo-seletivo/processo'])
             this.modalRef.hide()
             this.showToastrError()
           })
