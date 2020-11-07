@@ -108,11 +108,11 @@ export class CreateProcessoSeletivoComponent implements OnInit, OnDestroy, Compo
     .subscribe(response => {
       this.processoSeletivoForm.reset()
       this.showToastrSuccess()
-      this._router.navigate(['/admin/processo-seletivo'])
+      this._router.navigate(['/admin/processo-seletivo/processo'])
     }, err => {
       this.processoSeletivoForm.reset()
       this.showToastrError()
-      this._router.navigate(['/admin/processo-seletivo'])
+      this._router.navigate(['/admin/processo-seletivo/processo'])
     })
 
   }
@@ -122,7 +122,7 @@ export class CreateProcessoSeletivoComponent implements OnInit, OnDestroy, Compo
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
-        this._router.navigate(['/admin/processo-seletivo'])
+        this._router.navigate(['/admin/processo-seletivo/processo'])
         this.processoSeletivoForm.reset()
       }
     })
