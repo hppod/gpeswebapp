@@ -43,3 +43,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Refatorando o componente de atualizar-evento: adicionando o campo de data para ser editado, modificando o método de updateEvento e chamando os métodos corretamente do arquivo service.
 * **Integrantes:** excluir integrantes metodo no componente listar todos e visualizar, metodo na service e correções no admin panel integrantes e institucional.
 * **Sobre:** modificando o método de updateSobre e chamando os métodos corretamente do arquivo service.
+* **Publicações:** Troca dos rótulos "Plataforma" e "Descrição" para "Publicado Em" e "Resumo" realizada no cadastro e nos detalhes da publicação.
+* **Publicações:** Implementado slice no título da publicação na listagem das publicações no painel administrativo, e colocado texto explicativo do módulo publicações e retirado informações dos detalhes da publicação.
+* **Publicações:** Implementado modal de cadastro de autor, validador de nome único, e modificado o input autores para um dropdown e instalado o pacote ng-select2 (componente do dropdown).
