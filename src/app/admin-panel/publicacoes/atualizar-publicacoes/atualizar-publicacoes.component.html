@@ -19,6 +19,9 @@
               <div *ngIf="titulo.errors.required">
                 Título é obrigatório.
               </div>
+              <div *ngIf="titulo.errors.publicacoesTituloAlreadyExists">
+                Já existe um registro com esse título. Escolha outro título.
+              </div>
             </small>
           </div>
           <div class="form-group col-sm-6">
@@ -36,13 +39,61 @@
           </div>
         </div>
         <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="autores" class="form-control-label">Autores <span class="required">*</span></label>
+            <ngx-select formControlName="autores" id="autores" [multiple]="true" [items]="selectOptionAutores"
+              [disabled]="ngxDisabled" [(ngModel)]="selectedAutores" [autoClearSearch]="true" placeholder="Selecione"
+              (selectionChanges)="onChangeAutor($event)">
+            </ngx-select>
+            <small *ngIf="autores.invalid && (autores.dirty || autores.touched)" class="text-danger">
+              <div *ngIf="autores.errors.required">
+                Autores é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="plataforma" class="form-control-label">Publicado Em <span class="required">*</span></label>
+            <input class="form-control" formControlName="plataforma" type="text" placeholder="Local da publicação"
+              id="plataforma" maxlength="150">
+            <small *ngIf="plataforma.invalid && (plataforma.dirty || plataforma.touched)" class="text-danger">
+              <div *ngIf="plataforma.errors.required">
+                Local da publicação é obrigatório.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-sm-6">
+            <label for="cidade" class="form-control-label">Cidade <span class="required">*</span></label>
+            <input class="form-control" formControlName="cidade" type="text" placeholder="Cidade" id="cidade"
+              maxlength="150">
+            <small *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)" class="text-danger">
+              <div *ngIf="cidade.errors.required">
+                Cidade é obrigatório.
+              </div>
+            </small>
+          </div>
+          <div class="form-group col-sm-6">
+            <label for="dataPublicacao" class="text-center">Data da publicação <span
+                class="text-danger">*</span></label><br>
+            <input type="date" name="dataPublicacao" class="form-control" placeholder="Data da publicação"
+              formControlName="dataPublicacao">
+            <small *ngIf="dataPublicacao.invalid && (dataPublicacao.dirty || dataPublicacao.touched)"
+              class="text-danger">
+              <div *ngIf="dataPublicacao.errors.required">
+                Data da publicação é obrigatória.
+              </div>
+            </small>
+          </div>
+        </div>
+        <div class="row">
           <div class="form-group col-sm-12">
-            <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
-            <textarea class="form-control" formControlName="descricao" type="text" placeholder="Descrição..."
+            <label for="descricao" class="form-control-label">Resumo <span class="required">*</span></label>
+            <textarea class="form-control" formControlName="descricao" type="text" placeholder="Resumo..."
               id="descricao" [(ngModel)]="role" [maxLength]="maxChars"></textarea>
             <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
               <div *ngIf="descricao.errors.required">
-                Descrição é obrigatório.
+                Resumo é obrigatório.
               </div>
             </small>
           </div>
@@ -50,13 +101,14 @@
             {{role.length}}/{{maxChars}}
           </span>
         </div>
-        <app-file-uploader (uploaded)="setFiles()" [fileAccept]="'document'" [limitOnOne]="true" [files]="FileSnippet">
-        </app-file-uploader>
+        <app-file-uploader [fileAccept]="'document'"></app-file-uploader>
         <br>
         <div class="row">
           <div class="col-sm-12 positionButtons">
-            <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
-            <button type="button" class="btn btn-outline-success btn-sm" (click)="updateDocument()">Atualizar</button>
+            <button type="button" *ngIf="_formPublicacoes.dirty" class="btn btn-outline-danger btn-sm"
+              (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!_formPublicacoes.valid"
+              (click)="updateDocument()">Atualizar</button>
           </div>
         </div>
       </form>

@@ -20,7 +20,7 @@ import { CategoryService } from "./../../../shared/services/categories.service"
 import { ModalCreateCategoryComponent } from "./../../../web-components/common/modals/modal-create-category/modal-create-category.component"
 import { AutoresService } from "./../../../shared/services/autores.service"
 import { ModalCreateAutoresComponent } from "./../../../web-components/common/modals/modal-create-autores/modal-create-autores.component"
-import { Select2OptionData } from "ng-select2";
+import { INgxSelectOption } from "ngx-select-ex"
 
 @Component({
   selector: 'app-create-publicacoes',
@@ -41,7 +41,7 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   Files: FileSnippet[] = new Array()
   File: File
   selectOptionCategory: Category[] = new Array()
-  selectOptionAutores: Array<Select2OptionData>;
+  selectOptionAutores: string[]
   option: string
   selectedCategory: string = null
   selectedAutores: string = null
@@ -116,25 +116,27 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
 
   getAutores() {
     this.httpReq = this.autoresService.getExistingAutores().subscribe(response => {
-      this.selectOptionAutores = [{ id: '', text: '' }]
+      this.selectOptionAutores = ['initialize']
       response.body['data'].forEach(element => {
-        this.selectOptionAutores.push({ id: element.nome, text: element.nome })
+        this.selectOptionAutores.push(element.nome)
       });
+      this.selectOptionAutores.push("Não encontrou o autor desejado? Cadastre um aqui")
       this.selectOptionAutores.splice(0, 1)
-      this.selectOptionAutores.push({ id: 'notFound', text: "Não encontrou o autor desejado? Cadastre um aqui" })
     }, err => {
       this.showToastrError('Houve um erro ao listar os autores. Serviço indisponível')
     })
   }
 
-  onChangeAutor($event) {
-    if ($event == "notFound") {
-      this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
-    }
-    this.modalRef.content.action.subscribe((data: string) => {
-      this.getAutores()
-      this.selectedAutores = data
-      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
+  onChangeAutor(options: INgxSelectOption[]) {
+    options.forEach(element => {
+      if (element.value == "Não encontrou o autor desejado? Cadastre um aqui") {
+        this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
+      }
+      this.modalRef.content.action.subscribe((data: string) => {
+        this.getAutores()
+        this.selectedAutores = data
+        this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
+      })
     })
   }
 

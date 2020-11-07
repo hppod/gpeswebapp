@@ -13,7 +13,8 @@
         <div class="row">
           <div class="form-group col-sm-12">
             <label for="nome" class="form-control-label">Nome <span class="required">*</span></label>
-            <input class="form-control" formControlName="nome" type="text" placeholder="Nome" id="nome" maxlength="50">
+            <input class="form-control" formControlName="nome" type="text" placeholder="SOBRENOME, Nome Nome do Meio"
+              id="nome" maxlength="50">
             <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
               <div *ngIf="nome.errors.required">
                 Nome é obrigatório.
