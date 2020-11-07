@@ -35,3 +35,17 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Refatorando o modulo de notícias para Eventos e alterando o nome do componente visualizar eventos para detalhes-evento do admin-panel.
 * **Eventos:** Ajustando a visualização de todos registros no institucional (web-app).
 * **Eventos:** Alterando o nome do componente de evento para detalhes-evento no institucional, campo de exibição de data modificado.
+
+### Versão 5.3
+* **Integrantes:** alteração da model de integrantes para aceitar email, alteração de detalhes e novo integrante no painel administrativo para suportar campo email, alteração no todos integrantes no institucional para suportar o campo email e informações da integrante Daniela
+* **Integrantes:** alteração de todos integrantes e detalhes, criação do atualizar integrante adição do metodo na service. Correção de todos integrantes institucional
+* **Eventos:** Trocando o rótulo da data do evento no evento-card e no detalhes-evento; Adicionando o texto explicativo no todos-evento.
+* **Eventos:** Refatorando o componente de atualizar-evento: adicionando o campo de data para ser editado, modificando o método de updateEvento e chamando os métodos corretamente do arquivo service.
+* **Integrantes:** excluir integrantes metodo no componente listar todos e visualizar, metodo na service e correções no admin panel integrantes e institucional.
+* **Sobre:** modificando o método de updateSobre e chamando os métodos corretamente do arquivo service.
+* **Publicações:** Troca dos rótulos "Plataforma" e "Descrição" para "Publicado Em" e "Resumo" realizada no cadastro e nos detalhes da publicação.
+* **Publicações:** Implementado slice no título da publicação na listagem das publicações no painel administrativo, e colocado texto explicativo do módulo publicações e retirado informações dos detalhes da publicação.
+* **Publicações:** Implementado modal de cadastro de autor, validador de nome único, e modificado o input autores para um dropdown e instalado o pacote ng-select2 (componente do dropdown).
+* **Publicações:** Modificado atualização de transparência para atualizar publicações e  os métodos updateDocument e getDataByTitle de publicaçoes.service.
+* **Publicações:** Instalado o pacote NPM ngx-select-ex e refatoraro a listagem de autores ao criar e atualizar uma publicação. Modificado campo autores do model, placeholder ao criar autores, e modificado a listagem de autores da publicação no institucional.
+* **Processo Seletivo - Inscrição:** Separado os componentes de Processo Seletivo em  Informações (onde ficam os blocos de informações referentes ao processo seletivo) e Inscriçãp (onde é realizada efetivamente a inscrição e controle das inscrições). Criado e estilizado formulário de inscrição.

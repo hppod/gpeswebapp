@@ -122,11 +122,11 @@ export class AtualizarProcessoSeletivoComponent implements OnInit, ComponentCanD
       this.httpReq = this._service.update(this.processoSeletivo['titulo'], this.processoSeletivoForm.value).subscribe(response => {
         this.processoSeletivoForm.reset()
         this.success = true
-        this._router.navigate(['/admin/processo-seletivo'])
+        this._router.navigate(['/admin/processo-seletivo/processo'])
         this.showToastrSuccess()
       }, err => {
         this.processoSeletivoForm.reset()
-        this._router.navigate(['/admin/processo-seletivo'])
+        this._router.navigate(['/admin/processo-seletivo/processo'])
         this.showToastrError()
       })
   }
@@ -137,7 +137,7 @@ export class AtualizarProcessoSeletivoComponent implements OnInit, ComponentCanD
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.processoSeletivoForm.reset()
-        this._router.navigate(['/admin/processo-seletivo'])
+        this._router.navigate(['/admin/processo-seletivo/processo'])
       }
     })
   }

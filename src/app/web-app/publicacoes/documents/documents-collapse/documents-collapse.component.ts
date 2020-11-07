@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Publicacoes } from "../../../../shared/models/publicacoes.model"
 import { PublicacoesService } from "../../../../shared/services/publicacoes.service"
 import { Subscription } from "rxjs"
@@ -13,11 +13,12 @@ import { ModalDocumentComponent } from "../../../../web-components/common/modals
   templateUrl: './documents-collapse.component.html',
   styleUrls: ['./documents-collapse.component.css']
 })
-export class DocumentsCollapseComponent {
+export class DocumentsCollapseComponent implements OnInit {
 
   @Input() document: Publicacoes
 
   private httpReq: Subscription
+  documentsAutores: string
 
   modalRef: BsModalRef
 
@@ -44,6 +45,11 @@ export class DocumentsCollapseComponent {
     private _service: PublicacoesService,
     private _modal: BsModalService
   ) { }
+
+  ngOnInit() {
+    this.documentsAutores = this.document.autores.join("; ")
+    console.log(this.documentsAutores)
+  }
 
   ngOnDestroy() {
     if (this.httpReq) {

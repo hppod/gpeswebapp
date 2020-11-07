@@ -49,6 +49,7 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
       nome: this.builder.control('', [Validators.required, Validators.maxLength(150)], this._unique.checkUniqueTitulo()),
       contato: this.builder.control(''),
       lattes: this.builder.control(''),
+      email: this.builder.control(''),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
       projetos: this.builder.control(''),
@@ -117,5 +118,6 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
   get dataInicio() { return this.integranteForm.get('dataInicio') }
   get dataFim() { return this.integranteForm.get('dataFim') }
   get lattes() { return this.integranteForm.get('lattes')}
+  get email() {return this.integranteForm.get('email')}
 
 }

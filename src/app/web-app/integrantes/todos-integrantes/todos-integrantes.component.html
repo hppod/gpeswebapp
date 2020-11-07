@@ -1,56 +1,62 @@
 <div class="container-fluid marginTopBottomContentContainer">
   <h2 class="titlePage">Integrantes</h2>
-  <br><br>
-  <div class="alinhar">
-    <h5>Esta é a equipe do Grupo de Pesquisa em Engenharia de Software desde o início de suas atividades, tem por ele
-      passado diversos integrantes contribuindo e obtendo seus respectivos conhecimentos o qual utilizam no mercado de
-      trabalho.</h5>
-  </div>
-  <br><br>
-  <div class="col-sm-12 alinhar">
-    <img src="../../../../assets/img/brand/dani.png" alt="Dani">
+  <hr>
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading && statusResponse == 200">
+    <div class="alinhar">
+      <h5>Esta é a equipe do Grupo de Pesquisa em Engenharia de Software desde o início de suas atividades, tem por ele
+        passado diversos integrantes contribuindo e obtendo seus respectivos conhecimentos o qual utilizam no mercado de
+        trabalho.</h5>
+    </div>
     <br><br>
-    <p>Drª Daniela Gibertoni</p>
-  </div>
-  <br><br>
-  <div class="row margem">
-    <button class="btn btn-outline-info-dkblue btn-sm" (click)="getAtuaisIntegrantesButtom()">Atuais</button>
-    <button class="btn btn-outline-info-dkblue btn-sm" (click)="getExIntegrantesButtom()">Ex-Integrantes</button>
-  </div>
-  <br><br>
-  <div class="row card-integrante" *ngIf="integrantes && statusResponse == 200">
-    <div class="col-sm-2"
-      *ngFor="let integrante of integrantes | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}">
-      <div class="alinhar" (click)="openModal(template, integrante.nome)">
-        <img
-          src="https://conteudo.imguol.com.br/c/noticias/f1/2019/11/02/a-nasa-elegeu-como-foto-astronomica-do-dia-em-22-de-outubro-esta-imagem-da-via-lactea-capturada-por-jheison-huerta-no-salar-de-uyuni-na-bolivia-1572723035380_v2_976x549.jpg"
-          alt="teste">
-        <br><br>
-        <p>{{integrante.nome}}</p>
+    <div class="col-sm-12 alinhar" (click)="openModal(template, 'Drª Daniela Gibertoni')">
+      <p>Coordenadora</p>
+      <img src="../../../../assets/img/brand/dani.png" alt="Dani">
+      <br><br>
+      <p>Drª Daniela Gibertoni</p>
+    </div>
+    <br><br>
+    <div class="row margem">
+      <button class="btn btn-outline-info-dkblue btn-sm" (click)="getAtuaisIntegrantesButtom()">Atuais</button>
+      <button class="btn btn-outline-info-dkblue btn-sm" (click)="getExIntegrantesButtom()">Ex-Integrantes</button>
+    </div>
+    <br><br>
+    <div class="row card-integrante" *ngIf="integrantes && statusResponse == 200">
+      <div class="col-sm-2"
+        *ngFor="let integrante of integrantes | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}">
+        <div class="alinhar" (click)="openModal(template, integrante.nome)">
+          <img
+            src="https://conteudo.imguol.com.br/c/noticias/f1/2019/11/02/a-nasa-elegeu-como-foto-astronomica-do-dia-em-22-de-outubro-esta-imagem-da-via-lactea-capturada-por-jheison-huerta-no-salar-de-uyuni-na-bolivia-1572723035380_v2_976x549.jpg"
+            alt="teste">
+          <br><br>
+          <p>{{integrante.nome}}</p>
+        </div>
       </div>
     </div>
+    <br><br>
+    <nav *ngIf="integrantes && atuais">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul>
+    </nav>
+    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !integrantes"></app-no-data>
+    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !integrantes"></app-error>
+    <nav *ngIf="integrantes && !atuais">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPageEx($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul>
+    </nav>
   </div>
-  <br><br>
-  <nav *ngIf="integrantes && atuais">
-    <ul class="pagination">
-      <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
-        nextLabel="Próximo">
-      </pagination-controls>
-    </ul>
-  </nav>
-  <nav *ngIf="integrantes && !atuais">
-    <ul class="pagination">
-      <pagination-controls class="my-pagination" (pageChange)="getPageEx($event)" previousLabel="Anterior"
-        nextLabel="Próximo">
-      </pagination-controls>
-    </ul>
-  </nav>
 </div>
 
 <!-- modal -->
 <ng-template #template>
-    <app-loading [condition]="isLoading"></app-loading>
-    <div *ngIf="!isLoading && statusResponse == 200 && integrante != null">
+    <app-loading [condition]="isLoadingModal"></app-loading>
+    <div *ngIf="!isLoadingModal && statusResponse == 200 && integrante != null">
       <br>
       <div class="margemImagem row">
         <div class="col-sm-4">
@@ -68,6 +74,13 @@
       </div>
       <br>
       <div class="margemModal row">
+        <div class="col-sm-6" *ngIf="integrante['email']">
+          <label class="form-control-label">Email</label>
+          <div>
+            {{integrante['email']}}
+          </div>
+          <br><br>
+        </div>
         <div class="col-sm-6" *ngIf="integrante['contato'] != ''">
           <label class="form-control-label">Linkedin</label>
           <div>
@@ -97,6 +110,6 @@
         </div>
       </div>
     </div>
-    <app-no-data *ngIf="!isLoading && statusResponse == 204 && !integrante"></app-no-data>
-    <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !integrante"></app-error>
+    <app-no-data *ngIf="!isLoadingModal && statusResponse == 204 && !integrante"></app-no-data>
+    <app-error *ngIf="!isLoadingModal && statusResponse != 200 && statusResponse != 204 && !integrante"></app-error>
 </ng-template>

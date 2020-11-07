@@ -1,0 +1,39 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+  <div>
+    <div class="row">
+      <div class="col-sm-6 positionTitle">
+        <h5>Adicionar autor</h5>
+      </div>
+      <p class="col-sm-6 positionRequired">
+        * Campos obrigatórios
+      </p>
+    </div>
+    <div>
+      <form [formGroup]="_formAutores" novalidate>
+        <div class="row">
+          <div class="form-group col-sm-12">
+            <label for="nome" class="form-control-label">Nome <span class="required">*</span></label>
+            <input class="form-control" formControlName="nome" type="text" placeholder="SOBRENOME, Nome Nome do Meio"
+              id="nome" maxlength="50">
+            <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+              <div *ngIf="nome.errors.required">
+                Nome é obrigatório.
+              </div>
+              <div *ngIf="nome.errors.autorNomeAlreadyExists">
+                Já existe um autor com esse nome. Escolha outro nome.
+              </div>
+            </small>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+          <div class="col-sm-12 positionButtons">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" [disabled]="!_formAutores.valid"
+              (click)="addAutores()">Adicionar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,7 @@
     </div>
     <div>
       <app-loading [condition]="isLoading"></app-loading>
-      <form [formGroup]="sobreForm" (ngSubmit)="postSobre(sobreForm.value)" novalidate>
+      <form [formGroup]="sobreForm" (ngSubmit)="postSobre()" novalidate>
         <div class="form-row">
           <div class="form-group col-sm-12">
             <label for="titulo" class="form-control-label">Título <span class="required">*</span></label>

@@ -22,6 +22,7 @@ export class TodosIntegrantesComponent implements OnInit, OnDestroy {
   integrantes: Integrantes[]
   integrante: Integrantes
   isLoading: boolean = false
+  isLoadingModal: boolean = false
   messageApi: string
   statusResponse: number
   total: number
@@ -142,15 +143,15 @@ export class TodosIntegrantesComponent implements OnInit, OnDestroy {
   }
 
   getIntegranteByName(nome: string) {
-    this.isLoading = true
+    this.isLoadingModal = true
     this.httpReq = this.service.getIntegranteByNamePublic(nome).subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.integrante = response.body['data']
-      this.isLoading = false
+      this.isLoadingModal = false
     }, err => {
       this.messageApi = err.error['message']
-      this.isLoading = false
+      this.isLoadingModal = false
     })
   }
 

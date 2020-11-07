@@ -84,7 +84,7 @@ export class AtualizarSobreComponent implements OnInit, ComponentCanDeactivate {
   ngOnInit() {
     const title = this._activatedRoute.snapshot.params['title']
     this.getData(title)
-    this.getFiles('tmb_fu', title)
+    // this.getFiles('tmb_fu', title)
     setLastUrl(this._router.url)
   }
 
@@ -107,7 +107,7 @@ export class AtualizarSobreComponent implements OnInit, ComponentCanDeactivate {
       titulo: this._builder.control(null, Validators.required),
       descricao: this._builder.control(null, Validators.required),
       ordenacao: this._builder.control(null),
-      file: this._builder.control(null, validatorFileType())
+      // file: this._builder.control(null, validatorFileType())
     })
   }
 
@@ -120,7 +120,7 @@ export class AtualizarSobreComponent implements OnInit, ComponentCanDeactivate {
   }
 
   getData(title: string) {
-    this.httpReq = this._service.getDataByTitle(title).subscribe(response => {
+    this.httpReq = this._service.getSobreByTitle(title).subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.Sobre = response.body['data']
@@ -131,70 +131,17 @@ export class AtualizarSobreComponent implements OnInit, ComponentCanDeactivate {
     })
   }
 
-  getFiles(size: string, title: string) {
-    this.httpReq = this._service.getFilesByTitle(size, title).subscribe(response => {
-      this.statusResponse = response.status
-      this.messageApi = response.body['message']
-      this.FileSnippet = response.body['data']
-      this.uploaderService.updateSelectedFiles(this.FileSnippet)
-    }, err => {
-      this.statusResponse = err.status
-      this.messageApi = err.error['message']
-    })
-  }
-
-  setFiles() {
-    this.FileSnippet = this.uploaderService.selectedFiles
-  }
-
-  resize() {
-    let length = this.FileSnippet.length
-    for (let index = 0; index < length; index++) {
-      if (typeof this.FileSnippet[index].file['fieldname'] == "undefined") {
-        let image = this.FileSnippet[index].file
-        this.ng2ImgMax.resizeImage(image, 626, 417).subscribe(result => {
-          image = new File([result], result.name, {
-            type: 'image/jpeg'
-          })
-        })
-        this.blobFiles.push(image)
-      } else {
-        this.UploadedFiles.push(this.FileSnippet[index])
-      }
-    }
-  }
-
+ 
   updateSobre() {
-
-    this.modalUpload = this._modal.show(ModalUploadImagemComponent)
-
-    this.setFiles()
-    this.resize()
-
-    if (this.FileSnippet.length > 0) {
-      this.blobFiles.forEach(img => {
-        this.FormData.append("imagem", img, img.name)
-      })
-    }
-
-    this.FormData.append("titulo", this.sobreForm.value.titulo)
-    this.FormData.append("descricao", this.sobreForm.value.descricao)
-    this.FormData.append("uploadedfiles", JSON.stringify(this.UploadedFiles))
-
-    this._service.updateSobre(this.Sobre['titulo'], this.FormData).pipe(
-      toResponseBody()
-    ).subscribe(response => {
+    this.httpReq = this._service.updateSobre(this.Sobre['titulo'], this.sobreForm.value).subscribe(response => {
       this.sobreForm.reset()
       this._router.navigate(['/admin/sobre'])
-      this.modalUpload.hide()
       this.showToastrSuccess()
     }, err => {
       this.sobreForm.reset()
       this._router.navigate(['/admin/sobre'])
-      this.modalUpload.hide()
       this.showToastrError()
     })
-
   }
 
   showToastrSuccessDelete() {

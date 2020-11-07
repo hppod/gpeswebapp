@@ -22,6 +22,7 @@ export class DetalhesPublicacoesComponent implements OnInit {
   private httpReq: Subscription
 
   document: Publicacoes
+  documentAutores: string
   file: string
 
   modalRef: BsModalRef
@@ -71,6 +72,7 @@ export class DetalhesPublicacoesComponent implements OnInit {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.document = response.body['data']
+      this.documentAutores = this.document.autores.join("; ")
       this.isLoading = false
     }, err => {
       this.messageApi = err.error['message']

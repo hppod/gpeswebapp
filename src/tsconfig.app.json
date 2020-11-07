@@ -11,7 +11,6 @@
   "files": [
     "./main.ts",
     "./polyfills.ts",
-    "./app/admin-panel/analytics/analytics.module.ts",
     "./app/web-app/sobre/sobre-web.module.ts",
     "./app/web-app/publicacoes/publicacoes-web.module.ts",
     "./app/web-app/eventos/eventos-web.module.ts",

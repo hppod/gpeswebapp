@@ -10,7 +10,7 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { SharedModule } from "./../../shared/shared.module";
 import { WebAppModule } from "./../web-app.module";
 
-
+import { InscricaoComponent } from "./inscricao/inscricao.component";
 import { ProcessoSeletivoComponent } from './processo-seletivo.component';
 
 const ROUTES: Routes = [
@@ -19,10 +19,12 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [
-    ProcessoSeletivoComponent
+    ProcessoSeletivoComponent,
+    InscricaoComponent
   ],
   exports: [
-    ProcessoSeletivoComponent
+    ProcessoSeletivoComponent,
+    InscricaoComponent
   ],
   imports: [
     WebAppModule,
