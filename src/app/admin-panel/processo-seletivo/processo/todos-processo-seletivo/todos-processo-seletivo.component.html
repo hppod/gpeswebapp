@@ -8,7 +8,7 @@
                 <button type="button" class="btn btn-outline-info-dkblue btn-sm"
                     (click)="openModal(template)">Ordenação</button>
                 <button type="button" class="btn btn-outline-success btn-sm"
-                    [routerLink]="['/admin/processo-seletivo/create']">Adicionar</button>
+                    [routerLink]="['/admin/processo-seletivo/processo/create']">Adicionar</button>
             </div>
         </div>
         <app-loading [condition]="isLoading"></app-loading>
@@ -22,14 +22,14 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let processoSeletivo of processoSeletivo | paginate: {itemsPerPage: limit, currentPage: page, totalItems: total}"
-                        [routerLink]="['/admin/processo-seletivo/detalhes', processoSeletivo['titulo']]"
+                        [routerLink]="['/admin/processo-seletivo/processo/detalhes', processoSeletivo['titulo']]"
                         class="pointer hoverRowTable">
                         <th>{{processoSeletivo.titulo | slice: 0:50}}
                             <span *ngIf="showEllipsisInTheText(processoSeletivo.titulo, 50)">...</span>
                         </th>
                         <td (click)="$event.stopPropagation()">
                             <button class="btn btn-outline-warning btn-sm"
-                                [routerLink]="['/admin/processo-seletivo/atualizar', processoSeletivo['titulo']]">Editar</button>
+                                [routerLink]="['/admin/processo-seletivo/processo/atualizar', processoSeletivo['titulo']]">Editar</button>
                             <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
                                 (click)="canDelete(processoSeletivo['titulo'], processoSeletivo['_id'])">Excluir</button>
                         </td>
