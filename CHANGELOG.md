@@ -47,3 +47,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Implementado slice no título da publicação na listagem das publicações no painel administrativo, e colocado texto explicativo do módulo publicações e retirado informações dos detalhes da publicação.
 * **Publicações:** Implementado modal de cadastro de autor, validador de nome único, e modificado o input autores para um dropdown e instalado o pacote ng-select2 (componente do dropdown).
 * **Publicações:** Modificado atualização de transparência para atualizar publicações e  os métodos updateDocument e getDataByTitle de publicaçoes.service.
+* **Publicações:** Instalado o pacote NPM ngx-select-ex e refatoraro a listagem de autores ao criar e atualizar uma publicação. Modificado campo autores do model, placeholder ao criar autores, e modificado a listagem de autores da publicação no institucional.
