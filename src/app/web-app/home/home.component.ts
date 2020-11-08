@@ -25,10 +25,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getNoticias()
-    this.sendAnalytics()
-    setLastUrl(this._router.url)
-    this._router.routeReuseStrategy.shouldReuseRoute = () => false
+    // this.getNoticias()
+    // this.sendAnalytics()
+    // setLastUrl(this._router.url)
+    // this._router.routeReuseStrategy.shouldReuseRoute = () => false
   }
 
   ngOnDestroy() {
@@ -37,37 +37,37 @@ export class HomeComponent implements OnInit, OnDestroy {
     }
   }
 
-  sendAnalytics() {
-    this._analytics.eventEmitter(__event_home, __category_institucional, __action_home)
-  }
-
-  getNoticias() {
-    this._service.params = this._service.params.set('columnSort', 'date')
-    this._service.params = this._service.params.set('valueSort', 'descending')
-    this._service.params = this._service.params.set('page', '1')
-    this._service.params = this._service.params.set('limit', '3')
-
-    this.components = this._service.getNoticiasThreeResults('public', 'tmb_ch').subscribe(result => {
-      this.noticias = result.body['data'];
-      // this.insertUrlImageNoticia()
-    },
-      error => console.log("Erro ao carregar as notícias: ", error)
-    )
-  }
-
-  // insertUrlImageNoticia() {
-  //   this.noticias.forEach(element => {
-  //     if (element['sources'].length > 0) {
-  //       let index = element['mainfile_index']
-  //       element.imagemPrincipal = element['sources'][index]['src']
-  //     } else {
-  //       element.imagemPrincipal = 'assets/img/noticias-card/square_red.png'
-  //     }
-  //   })
+  // sendAnalytics() {
+  //   this._analytics.eventEmitter(__event_home, __category_institucional, __action_home)
   // }
 
-  showEllipsisInTheText(text: string, limit: number): boolean {
-    return text.length > limit;
-  }
+  // getNoticias() {
+  //   this._service.params = this._service.params.set('columnSort', 'date')
+  //   this._service.params = this._service.params.set('valueSort', 'descending')
+  //   this._service.params = this._service.params.set('page', '1')
+  //   this._service.params = this._service.params.set('limit', '3')
+
+  //   this.components = this._service.getNoticiasThreeResults('public', 'tmb_ch').subscribe(result => {
+  //     this.noticias = result.body['data'];
+  //     // this.insertUrlImageNoticia()
+  //   },
+  //     error => console.log("Erro ao carregar as notícias: ", error)
+  //   )
+  // }
+
+  // // insertUrlImageNoticia() {
+  // //   this.noticias.forEach(element => {
+  // //     if (element['sources'].length > 0) {
+  // //       let index = element['mainfile_index']
+  // //       element.imagemPrincipal = element['sources'][index]['src']
+  // //     } else {
+  // //       element.imagemPrincipal = 'assets/img/noticias-card/square_red.png'
+  // //     }
+  // //   })
+  // // }
+
+  // showEllipsisInTheText(text: string, limit: number): boolean {
+  //   return text.length > limit;
+  // }
 
 }
