@@ -9,9 +9,9 @@ import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal
 import { ProcessoSeletivo } from 'src/app/shared/models/processo-seletivo.model';
 import { toFormData } from 'src/app/shared/functions/to-form-data.function';
 import { toResponseBody } from 'src/app/shared/functions/to-response-body.function';
-import { ProcessoSeletivoValidator } from "./../../../shared/validations/processo-seletivo.validator";
+import { ProcessoSeletivoValidator } from "./../../../../shared/validations/processo-seletivo.validator";
 import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
-import { requiredFileType } from "../../../shared/functions/upload-file-validator.function"
+import { requiredFileType } from "../../../../shared/functions/upload-file-validator.function"
 import { setLastUrl } from 'src/app/shared/functions/last-pagination';
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
@@ -108,11 +108,11 @@ export class CreateProcessoSeletivoComponent implements OnInit, OnDestroy, Compo
     .subscribe(response => {
       this.processoSeletivoForm.reset()
       this.showToastrSuccess()
-      this._router.navigate(['/admin/processo-seletivo'])
+      this._router.navigate(['/admin/processo-seletivo/processo'])
     }, err => {
       this.processoSeletivoForm.reset()
       this.showToastrError()
-      this._router.navigate(['/admin/processo-seletivo'])
+      this._router.navigate(['/admin/processo-seletivo/processo'])
     })
 
   }
@@ -122,7 +122,7 @@ export class CreateProcessoSeletivoComponent implements OnInit, OnDestroy, Compo
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
-        this._router.navigate(['/admin/processo-seletivo'])
+        this._router.navigate(['/admin/processo-seletivo/processo'])
         this.processoSeletivoForm.reset()
       }
     })

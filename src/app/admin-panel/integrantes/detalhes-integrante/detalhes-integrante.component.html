@@ -6,8 +6,10 @@
                 <h5>Integrante</h5>
             </div>
             <div class="col-sm-6 positionButtons">
-                <button type="button" class="btn btn-outline-warning btn-sm">Editar</button>
-                <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm">Excluir</button>
+                <button type="button" class="btn btn-outline-warning btn-sm"
+                    [routerLink]="['/admin/integrantes/editar', integrante['nome']]">Editar</button>
+                <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
+                    (click)="delete(integrante['_id'], integrante['nome'])">Excluir</button>
             </div>
         </div>
         <br>
@@ -18,28 +20,41 @@
                     <div>
                         {{integrante['nome']}}
                     </div>
+                    <br>
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-sm-6">
-                    <label class="form-control-label">Linkedin</label>
-                    <div>
-                        {{integrante['contato']}}
+                    <div *ngIf="integrante['email']">
+                        <label class="form-control-label">Email</label>
+                        <div>
+                            {{integrante['email']}}
+                        </div>
+                        <br>
                     </div>
-                    <label class="form-control-label" *ngIf="integrante['lattes'] != ''">Lattes</label>
+                    <div *ngIf="integrante['contato'] != ''">
+                        <label class="form-control-label">Linkedin</label>
+                        <div>
+                            {{integrante['contato']}}
+                        </div>
+                        <br>
+                    </div>
                     <div *ngIf="integrante['lattes'] != ''">
-                        {{integrante['lattes']}}
+                        <label class="form-control-label">Lattes</label>
+                        <div *ngIf="integrante['lattes'] != ''">
+                            {{integrante['lattes']}}
+                        </div>
+                        <br>
                     </div>
                 </div>
             </div>
-            <br>
             <div class="row">
                 <div class="col-sm-6">
                     <label class="form-control-label">Data Inicio</label>
                     <div>
                         {{integrante['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}
                     </div>
+                    <br>
                     <label class="form-control-label" *ngIf="integrante['dataFim'] != null">Data Fim</label>
                     <div *ngIf="integrante['dataFim'] != null">
                         {{integrante['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}

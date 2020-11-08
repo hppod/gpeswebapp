@@ -9,6 +9,7 @@ import { TooltipModule } from "ngx-bootstrap/tooltip"
 import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { AdminPanelModule } from "./../admin-panel.module"
 import { SharedModule } from "./../../shared/shared.module"
+import { NgxSelectModule } from 'ngx-select-ex';
 
 import { PublicacoesComponent } from "./todos-publicacoes/publicacoes.component"
 import { CreatePublicacoesComponent } from "./create-publicacoes/create-publicacoes.component"
@@ -52,7 +53,8 @@ const ROUTES: Routes = [
         ReactiveFormsModule,
         ToastrModule.forRoot({
             preventDuplicates: true
-        })
+        }),
+        NgxSelectModule
     ]
 })
 export class PublicacoesModule { }

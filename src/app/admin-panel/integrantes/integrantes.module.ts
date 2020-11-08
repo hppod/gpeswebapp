@@ -13,19 +13,22 @@ import { SharedModule } from "./../../shared/shared.module"
 import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard";
 import { TodosIntegrantesComponent } from './todos-integrantes/todos-integrantes.component';
 import { NovoIntegranteComponent } from './novo-integrante/novo-integrante.component';
-import { DetalhesIntegranteComponent } from './detalhes-integrante/detalhes-integrante.component'
+import { DetalhesIntegranteComponent } from './detalhes-integrante/detalhes-integrante.component';
+import { AtualizarIntegranteComponent } from './atualizar-integrante/atualizar-integrante.component'
 
 const ROUTES: Routes = [
   { path: '', component: TodosIntegrantesComponent },
   { path: 'novo', component: NovoIntegranteComponent, canDeactivate: [PendingChangesGuard]},
   { path: 'detalhes/:nome', component: DetalhesIntegranteComponent},
+  { path: 'editar/:nome', component: AtualizarIntegranteComponent}
 ]
 
 @NgModule({
   declarations: [
     TodosIntegrantesComponent,
     NovoIntegranteComponent,
-    DetalhesIntegranteComponent
+    DetalhesIntegranteComponent,
+    AtualizarIntegranteComponent
   ],
   exports: [
 

@@ -17,12 +17,12 @@ import { ModalUploadImagemComponent } from 'src/app/web-components/common/modals
 import { AngularEditorConfig } from '@kolkov/angular-editor';
 
 @Component({
-  selector: 'app-edit-evento',
-  templateUrl: './edit-evento.component.html',
-  styleUrls: ['./edit-evento.component.css'],
+  selector: 'app-atualizar-evento',
+  templateUrl: './atualizar-evento.component.html',
+  styleUrls: ['./atualizar-evento.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
+export class AtualizarEventoComponent implements OnInit, ComponentCanDeactivate {
 
   eventoForm: FormGroup
   messageApi: string
@@ -55,7 +55,7 @@ export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
     const title = this.activatedRoute.snapshot.params['title']
     setLastUrl(this.router.url)
     this.getData(title)
-    this.getFiles('tmb_fu', title)
+    // this.getFiles('tmb_fu', title)
   }
 
   @HostListener('window:beforeunload')
@@ -93,20 +93,32 @@ export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
     this.eventoForm = this.builder.group({
       titulo: this.builder.control('', [Validators.required]),
       descricao: this.builder.control('', [Validators.required]),
-      imagemPrincipal: this.builder.control(''),
-      file: this.builder.control(''),
+      date: this.builder.control('', [Validators.required])
+      // imagemPrincipal: this.builder.control(''),
+      // file: this.builder.control(''),
     })
   }
 
   populateForm(data: Evento) {
     this.eventoForm.patchValue({
       titulo: data['titulo'],
-      descricao: data['descricao']
+      descricao: data['descricao'],
+      date: this.formatDate(data['date'])
     })
   }
 
+  formatDate(date) {
+    const d = new Date(date);
+    let month = '' + (d.getMonth() + 1);
+    let day = '' + (d.getDate() + 1);
+    const year = d.getFullYear();
+    if (month.length < 2) month = '0' + month;
+    if (day.length < 2) day = '0' + day;
+    return [year, month, day].join('-');
+  }
+
   getData(title: string) {
-    this.httpReq = this.service.getDataByTitle(title).subscribe(response => {
+    this.httpReq = this.service.getEventoByTitle(title, 'authenticated').subscribe(response => {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.Evento = response.body['data']
@@ -152,34 +164,13 @@ export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
   }
 
   updateEvento() {
-
-    this.modalUpload = this.modal.show(ModalUploadImagemComponent)
-
-    this.setFiles()
-    this.resize()
-
-    if (this.FileSnippet.length > 0) {
-      this.blobFiles.forEach(img => {
-        this.FormData.append("imagem", img, img.name)
-      })
-    }
-
-    this.FormData.append("titulo", this.eventoForm.value.titulo)
-    this.FormData.append("descricao", this.eventoForm.value.descricao)
-    this.FormData.append("mainfile_index", this.uploaderService.mainFile.toString())
-    this.FormData.append("uploadedfiles", JSON.stringify(this.UploadedFiles))
-
-    this.service.updateEvento(this.Evento['titulo'], this.FormData).pipe(
-      toResponseBody()
-    ).subscribe(res => {
+    this.httpReq = this.service.updateEvento(this.Evento['titulo'], this.eventoForm.value).subscribe(response => {
       this.eventoForm.reset()
       this.router.navigate(['/admin/eventos'])
-      this.modalUpload.hide()
       this.showToastrSuccess()
     }, err => {
       this.eventoForm.reset()
       this.router.navigate(['/admin/eventos'])
-      this.modalUpload.hide()
       this.showToastrError()
     })
   }
@@ -212,5 +203,6 @@ export class EditEventoComponent implements OnInit, ComponentCanDeactivate {
   /**Getters */
   get titulo() { return this.eventoForm.get('titulo') }
   get descricao() { return this.eventoForm.get('descricao') }
+  get date() { return this.eventoForm.get('date') }
 
 }

@@ -8,7 +8,8 @@
                 * Campos obrigatórios
             </p>
         </div>
-        <div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div *ngIf="!isLoading && statusResponse == 200">
             <form [formGroup]="integranteForm" novalidates>
                 <div class="form-row">
                     <div class="form-group col-sm-12">
@@ -17,9 +18,6 @@
                         <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
                             <div *ngIf="nome.errors.required">
                                 Nome é obrigatório.
-                            </div>
-                            <div *ngIf="nome.errors.integranteNameAlreadyExists">
-                                Já existe um registro com esse nome.
                             </div>
                         </small>
                     </div>
@@ -45,8 +43,7 @@
                     <div class="form-group col-sm-3">
                         <label for="dataInicio" class="text-center">Data Início <span
                                 class="text-danger">*</span></label><br>
-                        <input type="date" name="dataInicio" class="form-control" placeholder="Data de Início"
-                            formControlName="dataInicio">
+                        <input type="date" name="dataInicio" class="form-control" formControlName="dataInicio">
                         <small *ngIf="dataInicio.invalid && (dataInicio.dirty || dataInicio.touched)"
                             class="text-danger">
                             <div *ngIf="dataInicio.errors.required">
@@ -63,10 +60,10 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-12 positionButtons">
-                        <button type="button" *ngIf="integranteForm.dirty" class="btn btn-outline-danger btn-sm"
+                        <button type="button" class="btn btn-outline-danger btn-sm"
                             (click)="canCancel()">Cancelar</button>
-                        <button type="button" class="btn btn-outline-success btn-sm" [disabled]="integranteForm.invalid"
-                            (click)="postIntegrante(integranteForm.value)">Adicionar
+                        <button type="button" class="btn btn-outline-success btn-sm"
+                            (click)="putIntegrante()">Salvar
                         </button>
                     </div>
                 </div>

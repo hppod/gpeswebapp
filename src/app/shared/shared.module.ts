@@ -36,6 +36,7 @@ import { ModalUploadImagemComponent } from "../web-components/common/modals/moda
 import { FileUploaderComponent } from '../web-components/common/file-uploader/file-uploader.component';
 import { ModalFileUploadComponent } from '../web-components/common/modals/modal-file-upload/modal-file-upload.component';
 import { ModalCreateCategoryComponent } from '../web-components/common/modals/modal-create-category/modal-create-category.component'
+import { ModalCreateAutoresComponent } from "../web-components/common/modals/modal-create-autores/modal-create-autores.component"
 
 export function playerFactory() {
     return player
@@ -69,7 +70,8 @@ export function playerFactory() {
         DragDropDirective,
         FileUploaderComponent,
         ModalFileUploadComponent,
-        ModalCreateCategoryComponent
+        ModalCreateCategoryComponent,
+        ModalCreateAutoresComponent
     ],
     exports: [
         LoadingComponent,
@@ -97,7 +99,8 @@ export function playerFactory() {
         ModalDocumentComponent,
         ModalSuccessComponent,
         ModalFileUploadComponent,
-        ModalCreateCategoryComponent
+        ModalCreateCategoryComponent,
+        ModalCreateAutoresComponent
     ]
 })
 export class SharedModule {

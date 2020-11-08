@@ -18,6 +18,9 @@ import { FileUploaderService } from "./../../../web-components/common/file-uploa
 import { Category } from "./../../../shared/models/category.model"
 import { CategoryService } from "./../../../shared/services/categories.service"
 import { ModalCreateCategoryComponent } from "./../../../web-components/common/modals/modal-create-category/modal-create-category.component"
+import { AutoresService } from "./../../../shared/services/autores.service"
+import { ModalCreateAutoresComponent } from "./../../../web-components/common/modals/modal-create-autores/modal-create-autores.component"
+import { INgxSelectOption } from "ngx-select-ex"
 
 @Component({
   selector: 'app-create-publicacoes',
@@ -38,8 +41,10 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   Files: FileSnippet[] = new Array()
   File: File
   selectOptionCategory: Category[] = new Array()
+  selectOptionAutores: string[]
   option: string
   selectedCategory: string = null
+  selectedAutores: string = null
   total: Number = 0
 
   configModal: ModalOptions = {
@@ -54,13 +59,15 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
     private _router: Router,
     private _toastr: ToastrService,
     private _unique: PublicacoesValidator,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private autoresService: AutoresService
   ) { }
 
   ngOnInit() {
     setLastUrl(this._router.url)
     this.initForm()
     this.getCategories()
+    this.getAutores()
   }
 
   ngOnDestroy() {
@@ -104,6 +111,32 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
       this.selectOptionCategory.push({ nome: "Não encontrou a categoria desejada? Cadastre uma aqui" })
     }, err => {
       this.showToastrError('Houve um erro ao listar as categorias. Serviço indisponível')
+    })
+  }
+
+  getAutores() {
+    this.httpReq = this.autoresService.getExistingAutores().subscribe(response => {
+      this.selectOptionAutores = ['initialize']
+      response.body['data'].forEach(element => {
+        this.selectOptionAutores.push(element.nome)
+      });
+      this.selectOptionAutores.push("Não encontrou o autor desejado? Cadastre um aqui")
+      this.selectOptionAutores.splice(0, 1)
+    }, err => {
+      this.showToastrError('Houve um erro ao listar os autores. Serviço indisponível')
+    })
+  }
+
+  onChangeAutor(options: INgxSelectOption[]) {
+    options.forEach(element => {
+      if (element.value == "Não encontrou o autor desejado? Cadastre um aqui") {
+        this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
+      }
+      this.modalRef.content.action.subscribe((data: string) => {
+        this.getAutores()
+        this.selectedAutores = data
+        this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
+      })
     })
   }
 
