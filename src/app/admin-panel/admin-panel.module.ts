@@ -18,6 +18,7 @@ import { SidenavComponent } from "./../web-components/admin-panel/sidenav/sidena
 
 import { AdminPanelRoutingModule } from "./admin-panel.routing";
 import { AnalyticsComponent } from "./analytics/analytics.component";
+import { ListarTodosComponent } from './projetos/listar-todos/listar-todos.component';
 
 @NgModule({
     imports: [
@@ -42,7 +43,8 @@ import { AnalyticsComponent } from "./analytics/analytics.component";
     declarations: [
         HeaderComponent,
         SidenavComponent,
-        AnalyticsComponent
+        AnalyticsComponent,
+        ListarTodosComponent
     ],
     exports: [
         HeaderComponent,
