@@ -221,8 +221,7 @@ export class PublicacoesComponent implements OnInit {
     })
   }
 
-  sliceTitle(value: String): String {
-    return `${value.slice(0, 50)}...`
+  showEllipsisInTheText(text: string, limit: number): boolean {
+    return text.length > limit;
   }
-
 }
