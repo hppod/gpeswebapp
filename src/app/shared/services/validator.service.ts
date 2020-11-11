@@ -86,4 +86,25 @@ export class ValidatorService {
         params = params.append('name', name)
         return this.http.get<any>(`${GPESWebApi}/authenticated/validators/unique/autores/nome`, { params: params })
     }
+
+     /**Função que realiza a requisição do tipo POST ao endpoint “/public/validators/unique/inscricao/nome". A requisição possui um parâmetro obrigatório (name). */
+     checkUniqueInscricaoNome(name: string) {
+        let params = new HttpParams()
+        params = params.append('name', name)
+        return this.http.get<any>(`${GPESWebApi}/public/validators/unique/inscricao/nome`, { params: params })
+    }
+
+     /**Função que realiza a requisição do tipo POST ao endpoint “/public/validators/unique/inscricao/email". A requisição possui um parâmetro obrigatório (email). */
+     checkUniqueInscricaoEmail(email: string) {
+        let params = new HttpParams()
+        params = params.append('email', email)
+        return this.http.get<any>(`${GPESWebApi}/public/validators/unique/inscricao/email`, { params: params })
+    }
+
+      /**Função que realiza a requisição do tipo POST ao endpoint “/public/validators/unique/inscricao/ra". A requisição possui um parâmetro obrigatório (ra). */
+      checkUniqueInscricaoRa(ra: string) {
+        let params = new HttpParams()
+        params = params.append('ra', ra)
+        return this.http.get<any>(`${GPESWebApi}/public/validators/unique/inscricao/ra`, { params: params })
+    }
 }
