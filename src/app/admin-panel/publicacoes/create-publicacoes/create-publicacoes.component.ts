@@ -44,7 +44,7 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   selectOptionAutores: string[]
   option: string
   selectedCategory: string = null
-  selectedAutores: string = null
+  selectedAutores: string[] = null
   total: Number = 0
 
   configModal: ModalOptions = {
@@ -128,15 +128,17 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   }
 
   onChangeAutor(options: INgxSelectOption[]) {
-    options.forEach(element => {
-      if (element.value == "Não encontrou o autor desejado? Cadastre um aqui") {
+    for (var index in options) {
+      if (options[index].value == "Não encontrou o autor desejado? Cadastre um aqui") {
         this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
       }
-      this.modalRef.content.action.subscribe((data: string) => {
-        this.getAutores()
-        this.selectedAutores = data
-        this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
-      })
+    }
+    this.modalRef.content.action.subscribe((data: string) => {
+      this.getAutores()
+      this.selectedAutores = this._formPublicacoes.controls['autores'].value
+      this.selectedAutores.pop()
+      this.selectedAutores.push(data)
+      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
     })
   }
 
