@@ -49,3 +49,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Modificado atualização de transparência para atualizar publicações e  os métodos updateDocument e getDataByTitle de publicaçoes.service.
 * **Publicações:** Instalado o pacote NPM ngx-select-ex e refatoraro a listagem de autores ao criar e atualizar uma publicação. Modificado campo autores do model, placeholder ao criar autores, e modificado a listagem de autores da publicação no institucional.
 * **Processo Seletivo - Inscrição:** Separado os componentes de Processo Seletivo em  Informações (onde ficam os blocos de informações referentes ao processo seletivo) e Inscriçãp (onde é realizada efetivamente a inscrição e controle das inscrições). Criado e estilizado formulário de inscrição.
+
+### Versão 5.4
+* **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
