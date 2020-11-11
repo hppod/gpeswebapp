@@ -51,7 +51,7 @@
               <button class="btn btn-outline-warning btn-sm"
                 [routerLink]="['/admin/publicacoes/atualizar', document['titulo']]">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
-                (click)="canDelete(document['titulo'], document['_id'], document['file']['filename'])">Excluir</button>
+                (click)="canDelete(document['titulo'], document['_id'])">Excluir</button>
             </td>
           </tr>
         </tbody>
