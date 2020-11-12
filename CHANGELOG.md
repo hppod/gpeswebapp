@@ -49,3 +49,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Modificado atualização de transparência para atualizar publicações e  os métodos updateDocument e getDataByTitle de publicaçoes.service.
 * **Publicações:** Instalado o pacote NPM ngx-select-ex e refatoraro a listagem de autores ao criar e atualizar uma publicação. Modificado campo autores do model, placeholder ao criar autores, e modificado a listagem de autores da publicação no institucional.
 * **Processo Seletivo - Inscrição:** Separado os componentes de Processo Seletivo em  Informações (onde ficam os blocos de informações referentes ao processo seletivo) e Inscriçãp (onde é realizada efetivamente a inscrição e controle das inscrições). Criado e estilizado formulário de inscrição.
+* **Integrantes:** alterações nos componentes de editar e adicionar integrantes. Alteração nas exibições de um integrante.
+* **Projetos:** service, rotas e componente do excluir, visualizar todos e visualizar um no painel administrativo.

@@ -18,7 +18,6 @@ import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal
 })
 export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
 
-
   private httpReq: Subscription
 
   integrante: Integrantes
@@ -76,8 +75,7 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
       lattes: integrante['lattes'],
       situacao: integrante['situacao'],
       dataInicio: this.formatDate(integrante['dataInicio']),
-      dataFim: this.formatDate(integrante['dataFim']),
-      projetos: integrante['projetos']
+      dataFim: this.formatDate(integrante['dataFim'])
     })
   }
 
@@ -119,7 +117,6 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
       email: this.builder.control(''),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
-      projetos: this.builder.control(''),
       situacao: this.builder.control(false)
     });
   }
@@ -133,7 +130,7 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
   }
 
   putIntegrante() {
-    this.httpReq = this.service.update(this.integrante['nome'], this.integranteForm.value).subscribe(response => {
+    this.httpReq = this.service.update(this.integrante.nome, this.integranteForm.value).subscribe(response => {
       this.integranteForm.reset()
       this.success = true
       this.router.navigate(['/admin/integrantes'])
@@ -176,6 +173,4 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
   get dataFim() { return this.integranteForm.get('dataFim') }
   get lattes() { return this.integranteForm.get('lattes') }
   get email() { return this.integranteForm.get('email') }
-
-
 }
