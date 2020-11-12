@@ -43,8 +43,7 @@ import { ListarTodosComponent } from './projetos/listar-todos/listar-todos.compo
     declarations: [
         HeaderComponent,
         SidenavComponent,
-        AnalyticsComponent,
-        ListarTodosComponent
+        AnalyticsComponent
     ],
     exports: [
         HeaderComponent,

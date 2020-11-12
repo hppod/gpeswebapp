@@ -11,15 +11,20 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown"
 import { AdminPanelModule } from "./../admin-panel.module"
 import { SharedModule } from "./../../shared/shared.module"
 
-import { ListarTodosComponent } from "./listar-todos/listar-todos.component"
+import { ListarTodosComponent } from "./listar-todos/listar-todos.component";
+import { DetalhesProjetoComponent } from './detalhes-projeto/detalhes-projeto.component';
+import { CreateProjetoComponent } from './create-projeto/create-projeto.component'
 
 const ROUTES: Routes = [
- 
+  { path: '', component: ListarTodosComponent },
+  { path: 'detalhes/:titulo', component: DetalhesProjetoComponent },
 ]
 
 @NgModule({
   declarations: [
-    ListarTodosComponent
+    ListarTodosComponent,
+    DetalhesProjetoComponent,
+    CreateProjetoComponent
   ],
   exports: [
     ListarTodosComponent
