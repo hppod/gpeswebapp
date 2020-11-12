@@ -65,7 +65,8 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
       descricao: this._builder.control('', Validators.required),
       file: this._builder.control(null, validatorFileType()),
       ordenacao: this._builder.control(null),
-      status: this._builder.control(true)
+      status: this._builder.control(true),
+      principal: this._builder.control(null)
     });
   }
 
@@ -175,6 +176,7 @@ export class CreateSobreComponent implements OnInit, OnDestroy, ComponentCanDeac
   
   postSobre(){
     this.sobreForm.value['ordenacao'] = this.total + 1  
+    this.sobreForm.value['principal'] = false
     this.httpReq = this._service.createNewSobre(this.sobreForm.value).subscribe(response =>{
       this.sobreForm.reset()
       this.showToastrSuccess()

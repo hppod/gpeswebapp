@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
@@ -24,6 +25,7 @@ export class SobreComponent implements OnInit, OnDestroy {
 
   sobre: Sobre[]
 
+  principalModel: any;
   p: number = 1
   total: number
   limit: number
@@ -32,6 +34,9 @@ export class SobreComponent implements OnInit, OnDestroy {
   statusResponse: number
   modalRef: BsModalRef
   modalOrder: BsModalRef
+  sobreForm: FormGroup
+
+  selectOptionPrincipal: Sobre[] = new Array()
 
   configLoadingModal: ModalOptions = {
     backdrop: 'static',
@@ -52,6 +57,7 @@ export class SobreComponent implements OnInit, OnDestroy {
 
   constructor(
     private _router: Router,
+    private _builder: FormBuilder,
     private _service: SobreService,
     private _auth: AuthenticationService,
     private _modal: BsModalService,
@@ -243,23 +249,41 @@ export class SobreComponent implements OnInit, OnDestroy {
     this.sobre.forEach(element => {
       this.httpReq = this._service.updateOrder(element.titulo, element).subscribe(response => {
         this.modalOrder.hide()
-        this.showToastrSuccessEditar()
+        this.showToastrSuccessEditar('A ordenação foi alterada com sucesso')
       }, err => {
         this.modalOrder.hide()
-        this.showToastrErrorEditar()
+        this.showToastrErrorEditar('Houve um erro ao alterar a ordenação. Tente novamente.')
       })
     })
   }
 
-  showToastrSuccessEditar() {
-    this._toastr.success('A ordenação foi alterada com sucesso', null, {
+  initForm() {
+    this.sobreForm = this._builder.group({
+      principal: this._builder.control(null)
+      // file: this._builder.control(null, validatorFileType())
+    })
+  }
+
+  saveNewPrincipal() {    
+    this.httpReq = this._service.updatePrincipal(this.principalModel).subscribe(response => {
+      this.modalOrder.hide()
+      this.showToastrSuccessEditar('O principal foi alterado com sucesso')
+    }, err => {
+      this.modalOrder.hide()
+      this.showToastrErrorEditar('Houve um erro ao alterar o principal. Tente novamente.')
+    })
+    
+  }
+
+  showToastrSuccessEditar(mensagem: string) {
+    this._toastr.success(mensagem, null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
   }
 
-  showToastrErrorEditar() {
-    this._toastr.error('Houve um erro ao alterar a ordenação. Tente novamente.', null, {
+  showToastrErrorEditar(mensagem: string) {
+    this._toastr.error(mensagem, null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
