@@ -1,13 +1,13 @@
 <div class="container-fluid marginTopBottomContentContainer">
   <h2 class="titlePage">Publicações</h2>
   <hr>
-  <br><br>
   <app-loading [condition]="isLoading"></app-loading>
   <div *ngIf="!isLoading" class="row">
     <div class="alinhar">
       <h5>Estas são as publicações do Grupo de Pesquisa em Engenharia de Software , tendo como responsável a
         Coordenadora Dra. Daniela Gibertoni. Já foram publicados artigos em eventos nacionais e internacionais de renome
         na área, sendo que elas possuem padrões internacionais de qualidade.</h5>
+      <br><br>
     </div>
     <div *ngFor="let item of categoryMenuItems" class="col-lg-4">
       <div class="card text-center">

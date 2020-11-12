@@ -42,11 +42,8 @@
           <div class="form-group col-sm-6">
             <label for="autores" class="form-control-label">Autores <span class="required">*</span></label>
             <ngx-select formControlName="autores" id="autores" [multiple]="true" [items]="selectOptionAutores"
-               [(ngModel)]="selectedAutores" [autoClearSearch]="true" placeholder="Selecione"
+              [(ngModel)]="selectedAutores" [autoClearSearch]="true" placeholder="Selecione"
               (selectionChanges)="onChangeAutor($event)">
-
-              <!-- [disabled]="ngxDisabled" -->
-
             </ngx-select>
             <small *ngIf="autores.invalid && (autores.dirty || autores.touched)" class="text-danger">
               <div *ngIf="autores.errors.required">
