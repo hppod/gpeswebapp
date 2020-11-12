@@ -35,7 +35,7 @@ export class PublicacoesService {
 
     /**Função que realiza a requisição do tipo DELETE ao endpoint “/authenticated/transparencia/apagar”. A requisição pode receber parâmetros. */
     deleteDocument(): Observable<HttpResponse<Publicacoes>> {
-        return this.http.delete<Publicacoes>(`${GPESWebApi}/authenticated/transparencia/apagar`, { params: this.deleteParams, observe: 'response' })
+        return this.http.delete<Publicacoes>(`${GPESWebApi}/authenticated/publicacoes/apagar`, { params: this.deleteParams, observe: 'response' })
     }
 
     /**Função que realiza a requisição do tipo PUT ao endpoint “/authenticated/transparencia/atualizar/title”. A requisição possui um parâmetro obrigatório (title) e deve ser do tipo Form Data. */

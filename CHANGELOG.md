@@ -53,3 +53,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Projetos:** service, rotas e componente do excluir, visualizar todos e visualizar um no painel administrativo.
 * **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
 **Sobre:** Implementando serviço de update principal. Criando a função newPrincipal para chamada do serviço.
+* **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
+* **Publicações** Implementando o método delete na listagem de todas a publicações e nos detalhes de cada uma, no Painel Administrativo.
