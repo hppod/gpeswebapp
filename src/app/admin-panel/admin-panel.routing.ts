@@ -29,6 +29,9 @@ export const AdminPanelRoutes: Routes = [
             },
             {
                 path: 'integrantes', loadChildren: './integrantes/integrantes.module#IntegrantesModule', canActivate: [AuthGuard]
+            },
+            {
+                path: 'projetos', loadChildren: './projetos/projetos.module#ProjetosModule', canActivate: [AuthGuard]
             }
         ]
     }

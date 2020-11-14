@@ -1,0 +1,71 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <app-loading [condition]="isLoading"></app-loading>
+    <div *ngIf="!isLoading && statusResponse == 200">
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5>Projetos</h5>
+            </div>
+            <div class="col-sm-6 positionButtons">
+                <button type="button" class="btn btn-outline-warning btn-sm">Editar</button>
+                <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
+                    (click)="delete(projeto['_id'], projeto['titulo'])">Excluir</button>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <label class="form-control-label">Título</label>
+                    <div>
+                        {{projeto['titulo']}}
+                    </div>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div *ngIf="projeto['descricao']">
+                        <label class="form-control-label">Descrição</label>
+                        <div>
+                            {{projeto['descricao']}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div *ngIf="projeto['dataInicio']">
+                        <label class="form-control-label">Data Inicio</label>
+                        <div>
+                            {{projeto['dataInicio']}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div *ngIf="projeto['dataFim']">
+                        <label class="form-control-label">Data Fim</label>
+                        <div>
+                            {{projeto['dataFim']}}
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="row" *ngIf="projeto['integrantes'].length != 0">
+                <div class="col-sm-12">
+                    <label class="form-control-label">Integrantes do Projeto</label>
+                </div>
+            </div>
+            <div class="row margem" *ngIf="projeto['integrantes'].length != 0">
+                <div *ngFor="let integrante of projeto.integrantes">
+                    <div *ngIf="projeto['integrantes'][projeto['integrantes'].length - 1].nome != integrante.nome">
+                        {{integrante.nome}} -&nbsp;</div>
+                    <div *ngIf="projeto['integrantes'][projeto['integrantes'].length - 1].nome == integrante.nome">
+                        {{integrante.nome}} </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

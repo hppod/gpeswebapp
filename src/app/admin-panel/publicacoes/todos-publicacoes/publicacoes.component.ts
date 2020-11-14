@@ -196,20 +196,19 @@ export class PublicacoesComponent implements OnInit {
   }
 
   /**Função que exibe um modal de pergunta ao usuário se ele permite que o documento seja excluído do banco de dados. */
-  canDelete(titleDocument: string, _id: string, filename: string) {
-    const initialState = { message: `Deseja excluir o documento "${titleDocument}" ?` }
+  canDelete(titleDocument: string, _id: string) {
+    const initialState = { message: `Deseja excluir a publicação "${titleDocument}" ?` }
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
-        this._service.deleteParams = this._service.deleteParams.set('filename', filename)
-        this._service.deleteParams = this._service.deleteParams.set('_id', _id)
+        this._service.deleteParams = this._service.deleteParams.set('id', _id)
         this.httpReq = this._service.deleteDocument().subscribe(response => {
           this.documents = null
           this.getDocumentsWithParams()
           this._service.deleteParams = new HttpParams()
           this.modalRef.hide()
-          this.showToastrSuccess('O documento foi excluido com sucesso')
+          this.showToastrSuccess('A publicação foi excluida com sucesso')
         }, err => {
           this.documents = null
           this._service.deleteParams = new HttpParams()
@@ -221,8 +220,7 @@ export class PublicacoesComponent implements OnInit {
     })
   }
 
-  sliceTitle(value: String): String {
-    return `${value.slice(0, 50)}...`
+  showEllipsisInTheText(text: string, limit: number): boolean {
+    return text.length > limit;
   }
-
 }

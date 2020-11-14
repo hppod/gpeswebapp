@@ -49,4 +49,9 @@ export class SobreService {
     return this.http.get<FileSnippet>(`${GPESWebApi}/authenticated/sobre/getfiles/${size}/${title}`, { observe: 'response' })
   }
 
+  updatePrincipal(id: string){
+    return this.http.put<any>(`${GPESWebApi}/authenticated/sobre/atualizar-principal/${id}`, {params: id, observe: 'response' });
+  }
+
 }
+

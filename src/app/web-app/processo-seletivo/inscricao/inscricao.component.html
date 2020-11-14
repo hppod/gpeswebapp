@@ -7,55 +7,132 @@
             </p>
         </div>
         <div>
-            <form novalidate>
+            <form [formGroup]="formInscricao" (ngSubmit)="postInscricao(formInscricao.value)" novalidate>
                 <div class="form-row">
-                    <div class="form-group col-sm-6">
-                        <label for="titulo" class="form-control-label">Nome <span class="required">*</span></label>
+                    <div class="form-group col-sm-4">
+                        <label for="nome" class="form-control-label">Nome <span class="required">*</span></label>
                         <input type="text" name="nome" class="form-control" placeholder="Nome" formControlName="nome">
+                        <small *ngIf="nome.invalid && (nome.dirty || nome.touched)" class="text-danger">
+                            <div *ngIf="nome.errors.required">
+                                Nome é obrigatório.
+                            </div>
+                            <div *ngIf="nome.errors.inscricaoNomeAlreadyExists">
+                                Já existe um registro com esse Nome.
+                            </div>
+                        </small>
                     </div>
-                    <div class="form-group col-sm-3">
-                        <label for="titulo" class="form-control-label">Telefone <span class="required">*</span></label>
+                    <div class="form-group col-sm-4">
+                        <label for="email" class="form-control-label">Email <span class="required">*</span></label>
+                        <input type="text" name="email" class="form-control" placeholder="Email"
+                            formControlName="email">
+                        <small *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+                            <div *ngIf="email.errors.required">
+                                Email é obrigatório.
+                            </div>
+                            <div *ngIf="nome.errors.inscricaoEmailAlreadyExists">
+                                Já existe um registro com esse Email.
+                            </div>
+                        </small>
+                    </div>
+                    <div class="form-group col-sm-2">
+                        <label for="telefone" class="form-control-label">Telefone </label>
                         <input type="text" name="telefone" class="form-control" placeholder="Telefone"
                             formControlName="telefone">
                     </div>
-                    <div class="form-group col-sm-3">
-                        <label for="titulo" class="form-control-label">Cidade <span class="required">*</span></label>
+                    <div class="form-group col-sm-2">
+                        <label for="cidade" class="form-control-label">Cidade <span class="required">*</span></label>
                         <input type="text" name="cidade" class="form-control" placeholder="Cidade"
                             formControlName="cidade">
+                        <small *ngIf="cidade.invalid && (cidade.dirty || cidade.touched)" class="text-danger">
+                            <div *ngIf="cidade.errors.required">
+                                Cidade é obrigatório.
+                            </div>
+                        </small>
                     </div>
                     <div class="form-group col-sm-4">
-                        <label for="titulo" class="form-control-label">RA <span class="required">*</span></label>
+                        <label for="ra" class="form-control-label">RA <span class="required">*</span></label>
                         <input type="text" name="ra" class="form-control" placeholder="RA" formControlName="ra">
+                        <small *ngIf="ra.invalid && (ra.dirty || ra.touched)" class="text-danger">
+                            <div *ngIf="ra.errors.required">
+                                RA é obrigatório.
+                            </div>
+                            <div *ngIf="nome.errors.inscricaoRaAlreadyExists">
+                                Já existe um registro com esse RA.
+                            </div>
+                        </small>
                     </div>
 
                     <div class="form-group col-sm-4">
-                        <label for="titulo" class="form-control-label">Curso <span class="required">*</span></label>
-                        <input type="text" name="curso" class="form-control" placeholder="Curso"
-                            formControlName="curso">
+                        <label for="curso" class="form-control-label">Curso <span class="required">*</span></label>
+                        <select class="form-control pointer" formControlName="curso" id="curso">
+                            <option [ngValue]="null" disabled>Selecione</option>
+                            <option>Análise e Desenvolvimento de Sistemas</option>
+                            <option>Sistemas para Internet</option>
+                        </select>
+                        <small *ngIf="curso.invalid && (curso.dirty || curso.touched)" class="text-danger">
+                            <div *ngIf="curso.errors.required">
+                                Curso é obrigatório.
+                            </div>
+                        </small>
+                    </div>
+
+                    <div class="form-group col-sm-2">
+                        <label for="periodo" class="form-control-label">Período <span class="required">*</span></label>
+                        <select class="form-control pointer" formControlName="periodo" id="periodo">
+                            <option [ngValue]="null" disabled>Selecione</option>
+                            <option>Matutino</option>
+                            <option>Vespertino</option>
+                            <option>Noturno</option>
+                        </select>
+                        <small *ngIf="periodo.invalid && (periodo.dirty || periodo.touched)" class="text-danger">
+                            <div *ngIf="periodo.errors.required">
+                                Período é obrigatório.
+                            </div>
+                        </small>
                     </div>
                     <div class="form-group col-sm-2">
-                        <label for="titulo" class="form-control-label">Período <span class="required">*</span></label>
-                        <input type="text" name="período" class="form-control" placeholder="Período"
-                            formControlName="período">
-                    </div>
-                    <div class="form-group col-sm-2">
-                        <label for="titulo" class="form-control-label">Semestre <span class="required">*</span></label>
-                        <input type="text" name="semestre" class="form-control" placeholder="Semestre"
-                            formControlName="semestre">
+                        <label for="semestre" class="form-control-label">Semestre <span
+                                class="required">*</span></label>
+                        <select class="form-control pointer" formControlName="semestre" id="semestre">
+                            <option [ngValue]="null" disabled>Selecione</option>
+                            <option>1º semestre</option>
+                            <option>2º semestre</option>
+                            <option>3º semestre</option>
+                            <option>4º semestre</option>
+                            <option>5º semestre</option>
+                            <option>6º semestre</option>
+                            <option>7º semestre</option>
+                            <option>8º semestre</option>
+                            <option>9º semestre</option>
+                            <option>10º semestre</option>
+                        </select>
+                        <small *ngIf="semestre.invalid && (semestre.dirty || semestre.touched)" class="text-danger">
+                            <div *ngIf="semestre.errors.required">
+                                Semestre é obrigatório.
+                            </div>
+                        </small>
                     </div>
                     <div class="form-group col-sm-12">
-                        <label for="titulo" class="form-control-label">Descrição <span class="required">*</span></label>
+                        <label for="descricao" class="form-control-label">Descrição <span
+                                class="required">*</span></label>
                         <textarea class="form-control" formControlName="descricao" type="text"
                             placeholder="Conte um pouco sobre você e o que te motiva a ingressar ao GPES..."
                             id="descricao"></textarea>
+                        <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+                            <div *ngIf="descricao.errors.required">
+                                Descrição é obrigatório.
+                            </div>
+                        </small>
                     </div>
                 </div>
                 <br>
                 <div class="row">
                     <div class="col-sm-12 positionButtonsMargin">
-                        <button type="button" class="btn btn-outline-danger btn-sm">Cancelar</button>
-                        <button type="submit" class="btn btn-outline-success btn-sm">Enviar</button> &nbsp; &nbsp;
-                    </div> 
+                        <button type="button" *ngIf="formInscricao.dirty" class="btn btn-outline-danger btn-sm"
+                            (click)="canCancel()">Cancelar</button>
+                        <button type="submit" [disabled]="!formInscricao.valid"
+                            class="btn btn-outline-success btn-sm">Enviar</button> &nbsp; &nbsp;
+                    </div>
                 </div>
             </form>
         </div>

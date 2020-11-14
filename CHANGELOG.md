@@ -10,7 +10,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Eventos:** Refatorando o módulo de notícias para Eventos, o componente de listar todos e criar, validator de título único e alterações nos arquivos de rotas e módulos para acessar os componentes.
 * **Sobre:** Implementando módulo Sobre, metodo create e listar todos e validators.
 
-
 ### Versão 5.1
 * **Processo Seletivo:** Implementado o componente para visualizar os detalhes do processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a busca pelo título na API.
 * **Publicações:** Padronizado mensagens nos toastr e nomeação de variáveis e componente, removido console.log desnecessário e adicionando campos autores, plataforma, cidade e dataPublicacao ao modelo de publicações e no componente create-publicação, implementado o componente para visualizar os detalhes da publicação e implementado filtro por categoria na listagem de publicações com alterações nos parâmetros de ordenação de Postado em.
@@ -21,7 +20,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Implementado reordenação via modal no componente.
 * **Integrantes:** Adição do metodo getIntegranteByName.
 * **Sobre:** Implementado método de exibição de detalhes de um registro ao clicar e configurando para exibição no painel administrativo.
-
 
 ### Versão 5.2
 * **Processo Seletivo:** Implementado componenete que atualiza as informações de processo seletivo e alteração do arquivo da service para adicionar a chamada ao método que faz a atualização na API.
@@ -49,3 +47,12 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Modificado atualização de transparência para atualizar publicações e  os métodos updateDocument e getDataByTitle de publicaçoes.service.
 * **Publicações:** Instalado o pacote NPM ngx-select-ex e refatoraro a listagem de autores ao criar e atualizar uma publicação. Modificado campo autores do model, placeholder ao criar autores, e modificado a listagem de autores da publicação no institucional.
 * **Processo Seletivo - Inscrição:** Separado os componentes de Processo Seletivo em  Informações (onde ficam os blocos de informações referentes ao processo seletivo) e Inscriçãp (onde é realizada efetivamente a inscrição e controle das inscrições). Criado e estilizado formulário de inscrição.
+
+### Versão 5.4
+* **Integrantes:** alterações nos componentes de editar e adicionar integrantes. Alteração nas exibições de um integrante.
+* **Projetos:** service, rotas e componente do excluir, visualizar todos e visualizar um no painel administrativo.
+* **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
+**Sobre:** Implementando serviço de update principal. Criando a função newPrincipal para chamada do serviço.
+* **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
+* **Publicações** Implementando o método delete na listagem de todas a publicações e nos detalhes de cada uma, no Painel Administrativo.
+* **Processo Seletivo - Inscrição:** Implementado componente e chamadas a API para a criação de uma inscrição.

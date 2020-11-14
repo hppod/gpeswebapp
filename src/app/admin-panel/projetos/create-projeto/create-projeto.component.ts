@@ -1,26 +1,25 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
 import { setLastUrl } from 'src/app/shared/functions/last-pagination';
-import { ComponentCanDeactivate } from 'src/app/shared/guards/pending-changes.guard';
-import { Integrantes } from 'src/app/shared/models/integrantes.model';
-import { IntegrantesService } from 'src/app/shared/services/integrantes.service';
-import { IntegrantesValidator } from 'src/app/shared/validations/integrantes.validator';
+import { Projetos } from 'src/app/shared/models/projetos.model';
+import { ProjetosService } from 'src/app/shared/services/projetos.service';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 
 @Component({
-  selector: 'app-novo-integrante',
-  templateUrl: './novo-integrante.component.html',
-  styleUrls: ['./novo-integrante.component.css']
+  selector: 'app-create-projeto',
+  templateUrl: './create-projeto.component.html',
+  styleUrls: ['./create-projeto.component.css']
 })
-export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanDeactivate {
+export class CreateProjetoComponent implements OnInit {
+
 
   private httpReq: Subscription
 
-  integranteForm: FormGroup
+  projetoForm: FormGroup
   modalRef: BsModalRef
 
   total: number = 0
@@ -36,26 +35,25 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
 
   constructor(
     private router: Router,
-    private service: IntegrantesService,
+    private service: ProjetosService,
     private builder: FormBuilder,
     private toastr: ToastrService,
     private modal: BsModalService,
-    private _unique: IntegrantesValidator
+    // private _unique: ProjetosValidator
   ) { }
+
 
   ngOnInit(): void {
     setLastUrl(this.router.url)
-    this.integranteForm = this.builder.group({
-      nome: this.builder.control('', [Validators.required, Validators.maxLength(150)], this._unique.checkUniqueTitulo()),
-      contato: this.builder.control(''),
-      lattes: this.builder.control(''),
-      email: this.builder.control(''),
+    this.projetoForm = this.builder.group({
+      titulo: this.builder.control('', [Validators.required, Validators.maxLength(150)]),
+      descricao: this.builder.control('', [Validators.required, Validators.maxLength(150)]),
       dataInicio: this.builder.control(null, [Validators.required]),
       dataFim: this.builder.control(null),
+      integrantes: this.builder.control(null),
       situacao: this.builder.control(false)
     });
   }
-
   ngOnDestroy() {
     if (this.httpReq) {
       this.httpReq.unsubscribe()
@@ -64,26 +62,26 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
 
   @HostListener('window:beforeunload')
   canDeactivate(): Observable<boolean> | boolean {
-    if (this.integranteForm.dirty) {
+    if (this.projetoForm.dirty) {
       return false
     }
     return true
   }
 
-  postIntegrante(form: Integrantes) {
-    if (this.integranteForm.value.dataFim != null) {
-      this.integranteForm.value.situacao = true
+  postIntegrante(form: Projetos) {
+    if (this.projetoForm.value.dataFim != null) {
+      this.projetoForm.value.situacao = true
     }
     this.success = false
-    this.httpReq = this.service.postIntegrantes(form)
+    this.httpReq = this.service.postProjeto(form)
       .subscribe(response => {
-        this.integranteForm.reset()
+        this.projetoForm.reset()
         this.showToastrSuccess()
-        this.router.navigate(['/admin/integrantes'])
+        this.router.navigate(['/admin/projetos'])
       }, err => {
-        this.integranteForm.reset()
+        this.projetoForm.reset()
         this.showToastrError()
-        this.router.navigate(['/admin/integrantes'])
+        this.router.navigate(['/admin/projetos'])
       })
   }
 
@@ -93,13 +91,13 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.router.navigate(['/admin/integrantes'])
-        this.integranteForm.reset()
+        this.projetoForm.reset()
       }
     })
   }
 
   showToastrSuccess() {
-    this.toastr.success('Integrante foi adicionado com sucesso', null, {
+    this.toastr.success('Projeto foi adicionado com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
@@ -112,11 +110,10 @@ export class NovoIntegranteComponent implements OnInit, OnDestroy, ComponentCanD
     })
   }
 
-  get nome() { return this.integranteForm.get('nome') }
-  get contato() { return this.integranteForm.get('contato') }
-  get dataInicio() { return this.integranteForm.get('dataInicio') }
-  get dataFim() { return this.integranteForm.get('dataFim') }
-  get lattes() { return this.integranteForm.get('lattes')}
-  get email() {return this.integranteForm.get('email')}
+  get titulo() { return this.projetoForm.get('titulo') }
+  get descricao() { return this.projetoForm.get('descricao') }
+  get dataInicio() { return this.projetoForm.get('dataInicio') }
+  get dataFim() { return this.projetoForm.get('dataFim') }
+  get integrantes() { return this.projetoForm.get('integrantes') }
 
 }

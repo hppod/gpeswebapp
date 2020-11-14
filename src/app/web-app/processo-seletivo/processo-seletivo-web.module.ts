@@ -12,6 +12,7 @@ import { WebAppModule } from "./../web-app.module";
 
 import { InscricaoComponent } from "./inscricao/inscricao.component";
 import { ProcessoSeletivoComponent } from './processo-seletivo.component';
+import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard";
 
 const ROUTES: Routes = [
   { path: '', component: ProcessoSeletivoComponent }

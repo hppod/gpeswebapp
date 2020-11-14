@@ -39,7 +39,7 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
   success: boolean = false
   fileChanged: boolean = false
   selectedCategory: string = null
-  selectedAutores: string = null
+  selectedAutores: string[] = null
   olderSelectedCategory: string = null
   olderSelectedAutores: string[] = null
   Publicacoes: Publicacoes
@@ -162,15 +162,17 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
   }
 
   onChangeAutor(options: INgxSelectOption[]) {
-    options.forEach(element => {
-      if (element.value == "Não encontrou o autor desejado? Cadastre um aqui") {
+    for (var index in options) {
+      if (options[index].value == "Não encontrou o autor desejado? Cadastre um aqui") {
         this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
       }
-      this.modalRef.content.action.subscribe((data: string) => {
-        this.getAutores()
-        this.selectedAutores = data
-        this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
-      })
+    }
+    this.modalRef.content.action.subscribe((data: string) => {
+      this.getAutores()
+      this.selectedAutores = this._formPublicacoes.controls['autores'].value
+      this.selectedAutores.pop()
+      this.selectedAutores.push(data)
+      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
     })
   }
 
