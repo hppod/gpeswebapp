@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { GPESWebApi } from '../../app.api';
 import { ProcessoSeletivo } from '../models/processo-seletivo.model';
+import { Inscricao } from '../models/inscricao.model';
 
 @Injectable()
 export class ProcessoSeletivoService {
@@ -34,5 +35,9 @@ export class ProcessoSeletivoService {
   delete(id: string): Observable<{}> {
     return this.http.delete(`${GPESWebApi}/authenticated/processo-seletivo/apagar/${id}`, { observe: 'response' })
   }
+
+  postInscricao(form: Inscricao) {
+    return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
+}
 
 }
