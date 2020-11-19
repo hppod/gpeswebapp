@@ -59,3 +59,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.5
 * **Processo Seletivo - Inscrição:** Alterando quantia de semestres para 8 no formulário de inscrição.
+* **Sobre:** Padronizando modal do Principal e modificando exibir principal para que informe o atual principal no select

@@ -32,7 +32,7 @@
               <button class="btn btn-outline-warning btn-sm"
                 [routerLink]="['/admin/sobre/atualizar', sobre['titulo']]">Editar</button>
               <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
-                (click)="canDelete(sobre['titulo'], sobre['_id'])">Excluir</button>                           
+                (click)="canDelete(sobre['titulo'], sobre['_id'])">Excluir</button>
             </td>
           </tr>
         </tbody>
@@ -87,17 +87,16 @@
 
 <ng-template #template2>
   <div>
-    <div calss="modal-reader">
-      <h5 class="modal-title">Selecione o Principal</h5>
-    </div>
     <app-loading [condition]="isLoading"></app-loading>
     <div *ngIf="sobre && statusResponse == 200" class="modal-body">
       <div class="table-responsive" id="marginTopTable">
-        <label for="principal" class="form-control-label">Sobre</label>
-            <select class="form-control pointer" [(ngModel)]="principalModel" id="principal">
-              <option [ngValue]="null" selected>Selecione</option>
-              <option *ngFor="let option of sobre" [ngValue]="option._id">{{option.titulo}}</option>
-            </select>
+        <div class="form-group">
+          <label for="principal" class="form-control-label">Selecione o Principal</label>
+          <select class="form-control pointer" [(ngModel)]="principalModel" id="principal">
+            <option [ngValue]="null">Selecione o Principal</option>
+            <option *ngFor="let option of sobre" [ngValue]="option._id">{{option.titulo}}</option>
+          </select>
+        </div>
       </div>
     </div>
     <div class="modal-footer">
