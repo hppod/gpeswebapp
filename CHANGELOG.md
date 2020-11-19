@@ -56,3 +56,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações** Padronizado contador de caracteres do título no Painel Administrativo, removendo o método sliceTitle e adicionando o showEllipsisInTheText. Retirado a propriedade "ngxDisabled" do HTMl do create e atualizar. Padronizado a formatação do texto explicativo de publicações no Institucional. Refatorado o método onChangeAutor em create e atualizar.
 * **Publicações** Implementando o método delete na listagem de todas a publicações e nos detalhes de cada uma, no Painel Administrativo.
 * **Processo Seletivo - Inscrição:** Implementado componente e chamadas a API para a criação de uma inscrição.
+* **Sobre:** Padronizando modal do Principal e modificando exibir principal para que informe o atual principal no select
