@@ -1,4 +1,5 @@
 export interface Integrantes {
+    _id: string,
     nome: string,
     email:string,
     contato: string

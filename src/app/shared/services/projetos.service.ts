@@ -28,4 +28,8 @@ export class ProjetosService {
   postProjeto(form: Projetos) {
     return this.http.post<Projetos>(`${GPESWebApi}/authenticated/projetos/criar`, form, { observe: 'response' })
   }
+
+  putProjeto(form, titulo: string){
+    return this.http.put<Projetos>(`${GPESWebApi}/authenticated/projetos/atualizar/${titulo}`, form, { observe: 'response' })
+  }
 }

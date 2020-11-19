@@ -17,6 +17,10 @@ export class IntegrantesService {
     return this.http.get<Integrantes[]>(`${GPESWebApi}/${modifier}/integrantes/listar-todos`, { params: this.params, observe: 'response' })
   }
 
+  getAll(modifier: string): Observable<HttpResponse<Integrantes[]>> {
+    return this.http.get<Integrantes[]>(`${GPESWebApi}/${modifier}/integrantes/listar-todos-sem-parametros`, { observe: 'response' })
+  }
+
   postIntegrantes(form: Integrantes) {
     return this.http.post<Integrantes>(`${GPESWebApi}/authenticated/integrantes/criar`, form, { observe: 'response' })
   }
