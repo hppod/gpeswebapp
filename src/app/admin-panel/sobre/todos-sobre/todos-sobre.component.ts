@@ -102,11 +102,18 @@ export class SobreComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('limit', '10')
     this.isLoading = true
     this.httpReq = this._service.getSobreWithParams('authenticated').subscribe(response => {
-      this.statusResponse = response.status
+    this.statusResponse = response.status
 
       if (response.status == 200) {
         this.messageApi = response.body['message']
         this.sobre = response.body['data']
+        this.sobre.forEach((e: any)=>{
+          if(e.principal){
+            this.principalModel=e._id;
+            return;
+          }
+
+        });
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
