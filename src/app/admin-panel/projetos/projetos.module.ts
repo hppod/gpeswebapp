@@ -14,20 +14,32 @@ import { SharedModule } from "./../../shared/shared.module"
 import { ListarTodosComponent } from "./listar-todos/listar-todos.component";
 import { DetalhesProjetoComponent } from './detalhes-projeto/detalhes-projeto.component';
 import { CreateProjetoComponent } from './create-projeto/create-projeto.component'
+import { PendingChangesGuard } from "src/app/shared/guards/pending-changes.guard"
+import { NgxSelectModule } from "ngx-select-ex";
+import { AtualizarProjetosComponent } from './atualizar-projetos/atualizar-projetos.component'
 
 const ROUTES: Routes = [
   { path: '', component: ListarTodosComponent },
   { path: 'detalhes/:titulo', component: DetalhesProjetoComponent },
+  { path: 'create', component: CreateProjetoComponent },
+  { path: 'atualizar/:titulo', component: AtualizarProjetosComponent }
 ]
 
 @NgModule({
   declarations: [
     ListarTodosComponent,
     DetalhesProjetoComponent,
-    CreateProjetoComponent
+    CreateProjetoComponent,
+    AtualizarProjetosComponent
   ],
   exports: [
-    ListarTodosComponent
+    ListarTodosComponent,
+    DetalhesProjetoComponent,
+    CreateProjetoComponent,
+    AtualizarProjetosComponent
+  ],
+  providers: [
+    PendingChangesGuard
   ],
   imports: [
     AdminPanelModule,
@@ -43,7 +55,8 @@ const ROUTES: Routes = [
     ToastrModule.forRoot({
       preventDuplicates: true
     }),
-    AngularEditorModule
+    AngularEditorModule,
+    NgxSelectModule
   ]
 })
 export class ProjetosModule { }

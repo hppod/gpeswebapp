@@ -14,15 +14,12 @@
                     <div class="form-group col-sm-12">
                         <label for="titulo" class="form-control-label">Titulo <span class="text-danger">*</span></label>
                         <input type="text" name="titulo" class="form-control" placeholder="Título"
-                            formControlName="titulo">
-                        <small *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="text-danger">
+                            formControlName="titulo" id="titulo">
+                        <!-- <small *ngIf="titulo.invalid && (titulo.dirty || titulo.touched)" class="text-danger">
                             <div *ngIf="titulo.errors.required">
                                 Título é obrigatório.
                             </div>
-                            <div *ngIf="titulo.errors.projetoTituloAlreadyExists">
-                                Já existe um registro com esse título.
-                            </div>
-                        </small>
+                        </small> -->
                     </div>
                 </div>
                 <div class="form-row">
@@ -31,11 +28,11 @@
                                 class="text-danger">*</span></label>
                         <input type="text" name="descricao" class="form-control" placeholder="Descrição"
                             formControlName="descricao">
-                        <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+                        <!-- <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
                             <div *ngIf="descricao.errors.required">
                                 Descrição é obrigatório.
                             </div>
-                        </small>
+                        </small> -->
                     </div>
                 </div>
                 <div class="row">
@@ -44,12 +41,12 @@
                                 class="text-danger">*</span></label><br>
                         <input type="date" name="dataInicio" class="form-control" placeholder="Data de Início"
                             formControlName="dataInicio">
-                        <small *ngIf="dataInicio.invalid && (dataInicio.dirty || dataInicio.touched)"
+                        <!-- <small *ngIf="dataInicio.invalid && (dataInicio.dirty || dataInicio.touched)"
                             class="text-danger">
                             <div *ngIf="dataInicio.errors.required">
                                 Data inicio é obrigatório.
                             </div>
-                        </small>
+                        </small> -->
                     </div>
                     <div class="form-group col-sm-3">
                         <label for="dataFim" class="text-center">Data Fim</label><br>
@@ -68,10 +65,9 @@
                 <br>
                 <div class="row">
                     <div class="col-sm-12 positionButtons">
-                        <button type="button" class="btn btn-outline-danger btn-sm" *ngIf="projetoForm.dirty"
+                        <button type="button" class="btn btn-outline-danger btn-sm"
                             (click)="canCancel()">Cancelar</button>
-                        <button type="button" class="btn btn-outline-success btn-sm" [disabled]="projetoForm.invalid"
-                            (click)="postProjetos(projetoForm.value)">Adicionar
+                        <button type="button" class="btn btn-outline-success btn-sm" (click)="putProjeto()">Salvar
                         </button>
                     </div>
                 </div>

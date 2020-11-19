@@ -38,7 +38,7 @@
                     <div *ngIf="projeto['dataInicio']">
                         <label class="form-control-label">Data Inicio</label>
                         <div>
-                            {{projeto['dataInicio']}}
+                            {{projeto['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}
                         </div>
                         <br>
                     </div>
@@ -47,7 +47,7 @@
                     <div *ngIf="projeto['dataFim']">
                         <label class="form-control-label">Data Fim</label>
                         <div>
-                            {{projeto['dataFim']}}
+                            {{projeto['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}
                         </div>
                         <br>
                     </div>
