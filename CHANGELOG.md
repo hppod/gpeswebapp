@@ -61,3 +61,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo - Inscrição:** Alterando quantia de semestres para 8 no formulário de inscrição.
 * **Sobre:** Padronizando modal do Principal e modificando exibir principal para que informe o atual principal no select
 * **Projeto:** Metodos create projeto e atualizar projeto component e service
+
+### Versão 5.6
