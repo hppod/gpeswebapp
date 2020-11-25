@@ -61,12 +61,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="integrante['projetosIntegrante'].length != 0">
+            <div class="row" *ngIf="integrante['projetosIntegrante'] != null && integrante['projetosIntegrante'].length != 0">
                 <div class="col-sm-12">
                     <label class="form-control-label">Projetos</label>
                 </div>
             </div>
-            <div class="row margem" *ngIf="integrante['projetosIntegrante'].length != 0">
+            <div class="row margem" *ngIf="integrante['projetosIntegrante'] != null && integrante['projetosIntegrante'].length != 0">
                 <div *ngFor="let projeto of integrante.projetosIntegrante">
                     <div
                         *ngIf="integrante['projetosIntegrante'][integrante['projetosIntegrante'].length - 1].titulo != projeto.titulo">

@@ -130,6 +130,15 @@ export class AtualizarIntegranteComponent implements OnInit, OnDestroy {
   }
 
   putIntegrante() {
+    if(Boolean(this.integranteForm.value.dataFim) == false){
+      this.integranteForm.value.situacao = false
+      this.integranteForm.value.dataFim = null
+    }else if (this.integranteForm.value.dataFim != null) {
+      this.integranteForm.value.situacao = true
+    }else{
+      this.integranteForm.value.situacao = false
+    }
+    
     this.httpReq = this.service.update(this.integrante.nome, this.integranteForm.value).subscribe(response => {
       this.integranteForm.reset()
       this.success = true

@@ -64,3 +64,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.6
 * **Sobre:** Correção do Modal Ordenação e do Modal principal para quando clicar na opção "não" de cancelar retornar ao estado inicial do Modal.
+* **Projeto:** Refatoração do editar projetos, visualizar um ou varios e criar projeto.
+* **Integrante:** Refatoração do visualizar integrantes no institucional e no paine administrativo, alterações no editar integrantes.
