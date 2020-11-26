@@ -6,7 +6,7 @@
                 * Campos obrigatórios
             </p>
         </div>
-        <div>
+        <fieldset [disabled]="isLoading">
             <form [formGroup]="formInscricao" (ngSubmit)="postInscricao(formInscricao.value)" novalidate>
                 <div class="form-row">
                     <div class="form-group col-sm-4">
@@ -61,7 +61,6 @@
                             </div>
                         </small>
                     </div>
-
                     <div class="form-group col-sm-4">
                         <label for="curso" class="form-control-label">Curso <span class="required">*</span></label>
                         <select class="form-control pointer" formControlName="curso" id="curso">
@@ -75,7 +74,6 @@
                             </div>
                         </small>
                     </div>
-
                     <div class="form-group col-sm-2">
                         <label for="periodo" class="form-control-label">Período <span class="required">*</span></label>
                         <select class="form-control pointer" formControlName="periodo" id="periodo">
@@ -133,6 +131,7 @@
                     </div>
                 </div>
             </form>
-        </div>
+        </fieldset>
+
     </div>
 </div>
