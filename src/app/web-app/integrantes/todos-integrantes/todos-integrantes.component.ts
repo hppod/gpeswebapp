@@ -109,6 +109,7 @@ export class TodosIntegrantesComponent implements OnInit, OnDestroy {
       if (response.status == 200) {
         this.messageApi = response.body['message']
         this.integrantes = response.body['data']
+        console.log(response.body['data'])
         this.p = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']

@@ -65,6 +65,7 @@ export class AtualizarProjetosComponent implements OnInit {
 
   initForm() {
     this.projetoForm = this.builder.group({
+      _id: this.builder.control(null),
       titulo: this.builder.control('', [Validators.required, Validators.maxLength(150)]),
       descricao: this.builder.control('', [Validators.required, Validators.maxLength(150)]),
       dataInicio: this.builder.control(null, [Validators.required]),
@@ -79,9 +80,11 @@ export class AtualizarProjetosComponent implements OnInit {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.projeto = response.body['data']
-      response.body['data']['integrantes'].forEach(element => {
-        this.projetoIntegrantesSelecionados.push(element.nome)
-      });
+      if(response.body['data']['integrantes'] != null){
+        response.body['data']['integrantes'].forEach(element => {
+          this.projetoIntegrantesSelecionados.push(element.nome)
+        });
+      }
       this.preencheForm(this.projeto)
     }, err => {
       this.statusResponse = err.status
@@ -90,7 +93,16 @@ export class AtualizarProjetosComponent implements OnInit {
   }
 
   preencheForm(projeto: Projetos) {
+    if(Boolean(this.projetoForm.value.dataFim) == false){
+      this.projetoForm.value.situacao = false
+      this.projetoForm.value.dataFim = null
+    }else if (this.projetoForm.value.dataFim != null) {
+      this.projetoForm.value.situacao = true
+    }else{
+      this.projetoForm.value.situacao = false
+    }
     this.projetoForm.patchValue({
+      _id: projeto['_id'],
       titulo: projeto['titulo'],
       descricao: projeto['descricao'],
       situacao: projeto['situacao'],

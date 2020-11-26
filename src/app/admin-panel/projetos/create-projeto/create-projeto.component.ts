@@ -95,7 +95,9 @@ export class CreateProjetoComponent implements OnInit {
   }
 
   postProjetos(form: Projetos) {
-    this.substituirId()
+    if(this.projetoForm.value.integrantes != null){
+      this.substituirId()
+    }
     if (this.projetoForm.value.dataFim != null) {
       this.projetoForm.value.situacao = true
     }
