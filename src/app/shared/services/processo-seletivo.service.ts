@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GPESWebApi } from '../../app.api';
 import { ProcessoSeletivo } from '../models/processo-seletivo.model';
 import { Inscricao } from '../models/inscricao.model';
+import { Selecao } from '../models/selecao.model';
 
 @Injectable()
 export class ProcessoSeletivoService {
@@ -38,6 +39,10 @@ export class ProcessoSeletivoService {
 
   postInscricao(form: Inscricao) {
     return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
-}
+  }
+
+  getSelecaoAberta(): Observable<HttpResponse<Selecao[]>> {
+    return this.http.get<Selecao[]>(`${GPESWebApi}/public/processo-seletivo/selecao-aberta`, { params: this.params, observe: 'response' });
+  }
 
 }
