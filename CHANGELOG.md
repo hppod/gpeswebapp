@@ -63,3 +63,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Projeto:** Metodos create projeto e atualizar projeto component e service
 
 ### Versão 5.6
+* **Sobre:** Correção do Modal Ordenação e do Modal principal para quando clicar na opção "não" de cancelar retornar ao estado inicial do Modal.
