@@ -1,3 +1,5 @@
+import { Selecao } from './selecao.model';
+
 export interface Inscricao {
     _id: string,
     nome: string,
@@ -8,5 +10,6 @@ export interface Inscricao {
     curso: string,
     periodo: string,
     semestre: string,
-    descricao: string
+    descricao: string,
+    selecao: Selecao
 }

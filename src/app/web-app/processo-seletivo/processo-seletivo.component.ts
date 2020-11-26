@@ -22,6 +22,7 @@ export class ProcessoSeletivoComponent implements OnInit, OnDestroy {
   isLoading: boolean
   messageApi: string
   statusResponse: number
+  selecaoAberta: boolean = false
 
   modalRef: BsModalRef
 
@@ -40,6 +41,7 @@ export class ProcessoSeletivoComponent implements OnInit, OnDestroy {
     this._service.params = this._service.params.set('valueSort', 'ascending')
 
     this.getProcessoSeletivoWithParams()
+    this.getSelecaoAberta()
   }
 
   ngOnDestroy() {
@@ -65,6 +67,49 @@ export class ProcessoSeletivoComponent implements OnInit, OnDestroy {
       this.messageApi = err
       this.isLoading = false
     })
+  }
+
+  getSelecaoAberta() {
+    this.httpReq = this._service.getSelecaoAberta().subscribe(response => {
+      this.statusResponse = response.status;
+      if (response.status == 200 && response.body['data'].length == 1) {
+        if (response.body['data'][0].status == true) {
+          let dataInicio = this.formatDate(response.body['data'][0].dataInicio);
+          let dataFim = this.formatDate(response.body['data'][0].dataFim);
+          let dataAtual = this.formatDate(new Date());
+          if (dataInicio <= dataAtual && dataFim >= dataAtual) {
+            this.messageApi = response.body['message'];
+            this.selecaoAberta = true;
+          }
+        }
+      }
+    }, err => {
+      this.messageApi = err
+    })
+  }
+
+  formatDate(date) {
+    if (date != null) {
+      let MesString
+      let DiaString
+      let data = new Date(date)
+      let dia = data.getUTCDate()
+      let mes = data.getUTCMonth() + 1
+      let ano = data.getUTCFullYear()
+
+      if (mes < 10) {
+        MesString = '0' + mes.toString()
+      } else {
+        MesString = mes.toString()
+      }
+      if (dia < 10) {
+        DiaString = '0' + dia.toString()
+      } else {
+        DiaString = dia.toString()
+      }
+      return [ano, MesString, DiaString].join('-');
+    }
+    return null
   }
 
 }
