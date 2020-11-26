@@ -15,6 +15,13 @@
     font-style: italic;
 
     margin-left: 1%;
+}
+
+.titulo {
+    text-align: start;
+    margin-top: 5px;
+
+    margin-left: 1%;
     margin-top: 1%;
 }
 

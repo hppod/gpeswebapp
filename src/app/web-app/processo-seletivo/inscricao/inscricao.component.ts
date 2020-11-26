@@ -7,6 +7,7 @@ import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal
 import { ProcessoSeletivoService } from "../../../shared/services/processo-seletivo.service";
 import { Inscricao } from 'src/app/shared/models/inscricao.model';
 import { Observable, Subscription } from 'rxjs';
+import { Selecao } from "../../../shared/models/selecao.model";
 
 @Component({
   selector: 'app-inscricao',
@@ -24,6 +25,7 @@ export class InscricaoComponent implements OnInit {
   messageApi: string;
   statusResponse: number;
   idSelecao: any;
+  selecaoInf: Selecao
 
   constructor(
     private _builder: FormBuilder,
@@ -74,7 +76,7 @@ export class InscricaoComponent implements OnInit {
       this.formInscricao.reset()
       this.showToastrError('Houve um erro ao realizar a inscrição. Tente novamente.')
     })
-    
+
   }
 
   getSelecaoAberta() {
@@ -88,6 +90,7 @@ export class InscricaoComponent implements OnInit {
           if (dataInicio <= dataAtual && dataFim >= dataAtual) {
             this.messageApi = response.body['message'];
             this.idSelecao = response.body['data'][0]._id;
+            this.selecaoInf = response.body['data'][0];
           }
         }
       }
@@ -147,14 +150,14 @@ export class InscricaoComponent implements OnInit {
     })
   }
 
-    /**Getters */
-    get nome() { return this.formInscricao.get('nome') };
-    get email() { return this.formInscricao.get('email') };
-    get telefone() { return this.formInscricao.get('telefone') };
-    get cidade() { return this.formInscricao.get('cidade') };
-    get ra() { return this.formInscricao.get('ra') };
-    get curso() { return this.formInscricao.get('curso') };
-    get periodo() { return this.formInscricao.get('periodo') };
-    get semestre() { return this.formInscricao.get('semestre') };
-    get descricao() { return this.formInscricao.get('descricao') };
+  /**Getters */
+  get nome() { return this.formInscricao.get('nome') };
+  get email() { return this.formInscricao.get('email') };
+  get telefone() { return this.formInscricao.get('telefone') };
+  get cidade() { return this.formInscricao.get('cidade') };
+  get ra() { return this.formInscricao.get('ra') };
+  get curso() { return this.formInscricao.get('curso') };
+  get periodo() { return this.formInscricao.get('periodo') };
+  get semestre() { return this.formInscricao.get('semestre') };
+  get descricao() { return this.formInscricao.get('descricao') };
 }
