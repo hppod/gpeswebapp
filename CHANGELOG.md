@@ -67,3 +67,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Projeto:** Refatoração do editar projetos, visualizar um ou varios e criar projeto.
 * **Integrante:** Refatoração do visualizar integrantes no institucional e no paine administrativo, alterações no editar integrantes.
 * **Processo Seletivo - Inscrição:** Implementando chamada ao método da API que valida status e data da selecao para saber se há alguma em aberto para assim exibir o formulário de inscrição. Exibindo título, data de início e data de fim da seleção e bloqueando os campos do formulário enquanto processa a requisição da craição da inscrição.
+
+### Versão 5.7
