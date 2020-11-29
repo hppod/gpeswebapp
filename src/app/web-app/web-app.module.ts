@@ -21,7 +21,7 @@ import { HomeComponent } from "./../web-app/home/home.component"
 import { CarouselComponent } from "./../web-app/home/carousel/carousel.component"
 
 //Import Routes
-import { WebAppRoutingModule } from "./web-app.routing"
+import { WebAppRoutingModule } from "./web-app.routing";
 
 export const options: Partial<IConfig> | (() => Partial<IConfig>) = null;
 @NgModule({
