@@ -34,3 +34,11 @@ button
     position: relative;
     padding-top: 7%;
 }
+
+.margem{
+    margin-left: 0%;
+}
+
+.margemProjetos{
+    margin-left: 3%;
+}

@@ -61,3 +61,9 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo - Inscrição:** Alterando quantia de semestres para 8 no formulário de inscrição.
 * **Sobre:** Padronizando modal do Principal e modificando exibir principal para que informe o atual principal no select
 * **Projeto:** Metodos create projeto e atualizar projeto component e service
+
+### Versão 5.6
+* **Sobre:** Correção do Modal Ordenação e do Modal principal para quando clicar na opção "não" de cancelar retornar ao estado inicial do Modal.
+* **Projeto:** Refatoração do editar projetos, visualizar um ou varios e criar projeto.
+* **Integrante:** Refatoração do visualizar integrantes no institucional e no paine administrativo, alterações no editar integrantes.
+* **Processo Seletivo - Inscrição:** Implementando chamada ao método da API que valida status e data da selecao para saber se há alguma em aberto para assim exibir o formulário de inscrição. Exibindo título, data de início e data de fim da seleção e bloqueando os campos do formulário enquanto processa a requisição da craição da inscrição.

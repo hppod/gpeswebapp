@@ -240,14 +240,20 @@ export class SobreComponent implements OnInit, OnDestroy {
     this.getSobre()
   }
 
+closeModal(modalId?: number){
+  this._modal.hide(modalId)
+}
+
   Cancel() {
     const initialState = { message: "Tem certeza que deseja cancelar a ordenação? Todas as alterações serão perdidas." }
-    this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState, id: 1 })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
         this.modalRef.hide()
         this.modalOrder.hide()
         this.getSobreWithParams()
+      }else {
+        this.closeModal(1)
       }
     })
   }

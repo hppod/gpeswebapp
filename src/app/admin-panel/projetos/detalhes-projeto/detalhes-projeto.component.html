@@ -6,7 +6,8 @@
                 <h5>Projetos</h5>
             </div>
             <div class="col-sm-6 positionButtons">
-                <button type="button" class="btn btn-outline-warning btn-sm">Editar</button>
+                <button type="button" class="btn btn-outline-warning btn-sm"
+                    [routerLink]="['/admin/projetos/atualizar', projeto['titulo']]">Editar</button>
                 <button *ngIf="isAdmin" type="button" class="btn btn-outline-danger btn-sm"
                     (click)="delete(projeto['_id'], projeto['titulo'])">Excluir</button>
             </div>
@@ -53,12 +54,12 @@
                     </div>
                 </div>
             </div>
-            <div class="row" *ngIf="projeto['integrantes'].length != 0">
+            <div class="row" *ngIf="projeto['integrantes'] != null && projeto['integrantes'].length != 0">
                 <div class="col-sm-12">
                     <label class="form-control-label">Integrantes do Projeto</label>
                 </div>
             </div>
-            <div class="row margem" *ngIf="projeto['integrantes'].length != 0">
+            <div class="row margem" *ngIf="projeto['integrantes'] != null && projeto['integrantes'].length != 0">
                 <div *ngFor="let integrante of projeto.integrantes">
                     <div *ngIf="projeto['integrantes'][projeto['integrantes'].length - 1].nome != integrante.nome">
                         {{integrante.nome}} -&nbsp;</div>
