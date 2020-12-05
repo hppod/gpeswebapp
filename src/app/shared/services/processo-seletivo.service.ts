@@ -51,10 +51,14 @@ export class ProcessoSeletivoService {
     return this.http.get<Selecao[]>(`${GPESWebApi}/authenticated/selecao/listar-todos`, { params: this.params, observe: 'response' });
   }
 
+  getInscritoSelecaoByTitle(title: string): Observable<HttpResponse<Selecao>> {
+    return this.http.get<Selecao>(`${GPESWebApi}/authenticated/selecao/listar-um/${title}`, { observe: 'response' })
+  }
+
   updateStatusSelecao(title: string, formData) {
     return this.http.put<any>(`${GPESWebApi}/authenticated/selecao/atualizar/${title}`, formData, { observe: 'response' })
   }
-  
+
   deleteSelecao(id: string): Observable<{}> {
     return this.http.delete(`${GPESWebApi}/authenticated/selecao/apagar/${id}`, { observe: 'response' })
   }
