@@ -16,6 +16,7 @@
     "./app/web-app/eventos/eventos-web.module.ts",
     "./app/web-app/processo-seletivo/processo-seletivo-web.module.ts",
     "./app/web-app/integrantes/integrantes-web.module.ts",
+    "./app/web-app/projetos/projetos-web.module.ts",
     "./app/admin-panel/authentication/authentication.module.ts",
     "./app/admin-panel/contato/contato.module.ts",
     "./app/admin-panel/publicacoes/publicacoes.module.ts",
