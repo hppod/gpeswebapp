@@ -41,8 +41,14 @@ export class ProcessoSeletivoService {
     return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
   }
 
+  // REQUISIÇÕES DA SELEÇÃO
+
   getSelecaoAberta(): Observable<HttpResponse<Selecao[]>> {
     return this.http.get<Selecao[]>(`${GPESWebApi}/public/processo-seletivo/selecao-aberta`, { params: this.params, observe: 'response' });
+  }
+
+  getSelecaoWithParams(): Observable<HttpResponse<Selecao[]>> {
+    return this.http.get<Selecao[]>(`${GPESWebApi}/authenticated/selecao/listar-todos`, { params: this.params, observe: 'response' });
   }
 
 }

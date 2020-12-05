@@ -1,0 +1,55 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <div>
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5>Processo Seletivo - Seleções</h5>
+            </div>
+            <div class="col-sm-6 positionButtons">
+                <button type="button" class="btn btn-outline-success btn-sm"
+                    [routerLink]="['/admin/processo-seletivo/selecao/create']">Adicionar</button>
+            </div>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div class="table-responsive" id="marginTopTable">
+            <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                <thead>
+                    <tr>
+                        <th *ngFor="let item of headTableItems" scope="col" class="pointer headTable"
+                            (click)="onClickSortTable(item)" tooltip="Ordenar por {{item['option']}}" placement="top"
+                            [delay]="750">
+                            {{item['option']}}
+                            <span><i class="pull-right rotate fa"
+                                    [ngClass]="{'i-active': item === sortSelectedItem, 'fa-chevron-down': this._service.params.get('valueSort') == 'descending', 'fa-chevron-up': this._service.params.get('valueSort') == 'ascending'}"></i></span>
+                        </th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let selecao of selecao | paginate: {itemsPerPage: limit, currentPage: page, totalItems: total}"
+                        [routerLink]="['/admin/processo-seletivo/selecao/detalhes', selecao['titulo']]"
+                        class="pointer hoverRowTable">
+                        <th>{{selecao.titulo | slice: 0:50}}
+                            <span *ngIf="showEllipsisInTheText(selecao.titulo, 50)">...</span>
+                        </th>
+                        <td>{{selecao['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
+                        <td>{{selecao['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</td>
+                        <td (click)="$event.stopPropagation()">
+                            <button class="btn btn-outline-warning btn-sm">Editar</button>
+                            <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-no-data *ngIf="!isLoading && statusResponse == 204 && !selecao"></app-no-data>
+        <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !selecao">
+        </app-error>
+        <nav *ngIf="selecao">
+            <ul class="pagination">
+                <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+                    nextLabel="Próximo">
+                </pagination-controls>
+            </ul>
+        </nav>
+    </div>
+</div>
