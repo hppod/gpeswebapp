@@ -191,44 +191,37 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
     return text.length > limit;
   }
 
-  // canDelete(title: string, _id: string) {
-  //   let posicao
-  //   for (let position = 0; position < this.processoSeletivo.length; position++) {
-  //     if (this.processoSeletivo[position]._id == _id) {
-  //       posicao = position
-  //     }
-  //   }
-
-  //   const initialState = { message: `Deseja excluir o "${title}" ?` }
-  //   this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
-  //   this.modalRef.content.action.subscribe((answer) => {
-  //     if (answer) {
-  //         this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
-  //         this._service.delete(_id).subscribe(response => {
-  //           this._service.params = this._service.params.set('columnSort', 'ordenacao')
-  //           this._service.params = this._service.params.set('valueSort', 'ascending')
-  //           this._service.params = this._service.params.set('page', '1')
-  //           this.getProcessoSeletivoWithParams()
-  //           this.modalRef.hide()
-  //           this.showToastrSuccess()
-  //         }, err => {
-  //           this.getProcessoSeletivoWithParams()
-  //           this.modalRef.hide()
-  //           this.showToastrError()
-  //         })
-  //     }
-  //   })
-  // }
+  canDelete(title: string, _id: string) {
+    const initialState = { message: `Deseja excluir o "${title}" ?` }
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+        this.modalRef = this._modal.show(ModalLoadingComponent, this.configLoadingModal)
+        this._service.deleteSelecao(_id).subscribe(response => {
+          this._service.params = this._service.params.set('columnSort', 'dataInicio')
+          this._service.params = this._service.params.set('valueSort', 'descending')
+          this._service.params = this._service.params.set('page', '1')
+          this.getSelecaoWithParams()
+          this.modalRef.hide()
+          this.showToastrSuccess()
+        }, err => {
+          this.getSelecaoWithParams()
+          this.modalRef.hide()
+          this.showToastrError()
+        })
+      }
+    })
+  }
 
   showToastrSuccess() {
-    this._toastr.success('O processo seletivo foi excluído com sucesso', null, {
+    this._toastr.success('A seleção foi excluída com sucesso', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
   }
 
   showToastrError() {
-    this._toastr.error('Houve um erro ao excluir o processo seletivo. Tente novamente.', null, {
+    this._toastr.error('Houve um erro exluir a Seleção. Tente novamente.', null, {
       progressBar: true,
       positionClass: 'toast-bottom-center'
     })
