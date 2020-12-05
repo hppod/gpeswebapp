@@ -23,17 +23,18 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
-  selecao: Selecao[]
+  selecao: Selecao[];
 
-  page: number = 1
-  total: number
-  limit: number
-  isLoading: boolean
-  messageApi: string
-  statusResponse: number
+  page: number = 1;
+  total: number;
+  limit: number;
+  isLoading: boolean;
+  messageApi: string;
+  statusResponse: number;
   sortedCollection: any[];
-  sortSelectedItem: any
-  modalRef: BsModalRef
+  sortSelectedItem: any;
+  modalRef: BsModalRef;
+  openEdit: boolean = false
 
   headTableItems: any[] = [
     {
@@ -106,20 +107,64 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
     this.isLoading = true
     this.httpReq = this._service.getSelecaoWithParams().subscribe(response => {
       this.statusResponse = response.status
-
       if (response.status == 200) {
         this.messageApi = response.body['message']
         this.selecao = response.body['data']
         this.page = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
+        for (let i = 0; i < response.body['data'].length; i++) {
+          if (response.body['data'][i].status == true) {
+            let dataInicio = this.formatDate(response.body['data'][i].dataInicio);
+            let dataFim = this.formatDate(response.body['data'][i].dataFim);
+            let dataAtual = this.formatDate(new Date());
+            if (dataInicio <= dataAtual && dataFim >= dataAtual) {
+              this.openEdit = true;
+            } else {
+              this.openEdit = false;
+              this.selecao.forEach(element => {
+                if (element.status == true) {
+                  element.status = false
+                  this.httpReq = this._service.updateStatusSelecao(element.titulo, element).subscribe(response => {
+                    this.messageApi = response.body['message'];
+                  }, err => {
+                    this.messageApi = err;
+                  })
+                }
+              })
+            }
+          }
+        }
       }
-
       this.isLoading = false
     }, err => {
       this.messageApi = err
       this.isLoading = false
     })
+  }
+
+  formatDate(date) {
+    if (date != null) {
+      let MesString
+      let DiaString
+      let data = new Date(date)
+      let dia = data.getUTCDate()
+      let mes = data.getUTCMonth() + 1
+      let ano = data.getUTCFullYear()
+
+      if (mes < 10) {
+        MesString = '0' + mes.toString()
+      } else {
+        MesString = mes.toString()
+      }
+      if (dia < 10) {
+        DiaString = '0' + dia.toString()
+      } else {
+        DiaString = dia.toString()
+      }
+      return [ano, MesString, DiaString].join('-');
+    }
+    return null
   }
 
   getPage(page: number) {
