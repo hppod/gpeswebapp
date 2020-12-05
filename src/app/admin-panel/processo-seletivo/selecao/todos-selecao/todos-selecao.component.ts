@@ -34,7 +34,6 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
   sortedCollection: any[];
   sortSelectedItem: any;
   modalRef: BsModalRef;
-  openEdit: boolean = false
 
   headTableItems: any[] = [
     {
@@ -113,28 +112,19 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
         this.page = response.body['page']
         this.total = response.body['count']
         this.limit = response.body['limit']
-        for (let i = 0; i < response.body['data'].length; i++) {
-          if (response.body['data'][i].status == true) {
-            let dataInicio = this.formatDate(response.body['data'][i].dataInicio);
-            let dataFim = this.formatDate(response.body['data'][i].dataFim);
-            let dataAtual = this.formatDate(new Date());
-            if (dataInicio <= dataAtual && dataFim >= dataAtual) {
-              this.openEdit = true;
-            } else {
-              this.openEdit = false;
-              this.selecao.forEach(element => {
-                if (element.status == true) {
-                  element.status = false
-                  this.httpReq = this._service.updateStatusSelecao(element.titulo, element).subscribe(response => {
-                    this.messageApi = response.body['message'];
-                  }, err => {
-                    this.messageApi = err;
-                  })
-                }
-              })
-            }
+        this.selecao.forEach(element => {
+          let dataFim = this.formatDate(element.dataFim);
+          let dataAtual = this.formatDate(new Date());
+          if (element.status == true && dataFim < dataAtual) {
+            element.status = false
+            this.httpReq = this._service.updateStatusSelecao(element.titulo, element).subscribe(response => {
+              this.messageApi = response.body['message'];
+            }, err => {
+              this.messageApi = err;
+            })
+
           }
-        }
+        })
       }
       this.isLoading = false
     }, err => {

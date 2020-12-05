@@ -34,7 +34,7 @@
                         <td>{{selecao['dataInicio'] | date: 'dd/MM/yyyy':"UTC"}}</td>
                         <td>{{selecao['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</td>
                         <td (click)="$event.stopPropagation()">
-                            <button *ngIf="openEdit" class="btn btn-outline-warning btn-sm">Editar</button>
+                            <button *ngIf="selecao.status == true" class="btn btn-outline-warning btn-sm">Editar</button>
                             <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
                                 (click)="canDelete(selecao['titulo'], selecao['_id'])">Excluir</button>
                         </td>
