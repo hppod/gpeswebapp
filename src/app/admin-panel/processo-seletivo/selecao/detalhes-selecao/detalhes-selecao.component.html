@@ -26,7 +26,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let inscrito of selecao.inscritos"
-                        [routerLink]="['/admin/processo-seletivo/selecao/detalhes-inscrito', selecao['inscritos']['nome']]"
+                        [routerLink]="['/admin/processo-seletivo/selecao/detalhes-inscrito', inscrito['nome']]"
                         class="pointer hoverRowTable">
                         <th>{{inscrito.nome | slice: 0:50}}
                             <span *ngIf="showEllipsisInTheText(inscrito.nome, 50)">...</span>

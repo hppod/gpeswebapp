@@ -20,6 +20,7 @@ import { AtualizarProcessoSeletivoComponent } from './processo/atualizar-process
 
 import { TodosSelecaoComponent } from './selecao/todos-selecao/todos-selecao.component';
 import { DetalhesSelecaoComponent } from './selecao/detalhes-selecao/detalhes-selecao.component';
+import { DetalhesInscritoComponent } from './selecao/detalhes-inscrito/detalhes-inscrito.component';
 
 const ROUTES: Routes = [
   {
@@ -34,6 +35,7 @@ const ROUTES: Routes = [
     path: 'selecao', children: [
       { path: '', component: TodosSelecaoComponent },
       { path: 'detalhes/:title', component: DetalhesSelecaoComponent },
+      { path: 'detalhes-inscrito/:name', component: DetalhesInscritoComponent },
     ]
   }
 
@@ -46,7 +48,8 @@ const ROUTES: Routes = [
     DetalhesProcessoSeletivoComponent,
     AtualizarProcessoSeletivoComponent,
     TodosSelecaoComponent,
-    DetalhesSelecaoComponent
+    DetalhesSelecaoComponent,
+    DetalhesInscritoComponent
   ],
   exports: [
     TodosProcessoSeletivoComponent,

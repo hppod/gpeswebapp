@@ -37,10 +37,6 @@ export class ProcessoSeletivoService {
     return this.http.delete(`${GPESWebApi}/authenticated/processo-seletivo/apagar/${id}`, { observe: 'response' })
   }
 
-  postInscricao(form: Inscricao) {
-    return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
-  }
-
   // REQUISIÇÕES DA SELEÇÃO
 
   getSelecaoAberta(): Observable<HttpResponse<Selecao[]>> {
@@ -63,4 +59,14 @@ export class ProcessoSeletivoService {
     return this.http.delete(`${GPESWebApi}/authenticated/selecao/apagar/${id}`, { observe: 'response' })
   }
 
+
+  // REQUISIÇÕES DE INSCRIÇÃO
+
+  getInscritoByName(name: string): Observable<HttpResponse<Selecao>> {
+    return this.http.get<Selecao>(`${GPESWebApi}/authenticated/selecao/listar-um-inscrito/${name}`, { observe: 'response' })
+  }
+
+  postInscricao(form: Inscricao) {
+    return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
+  }
 }
