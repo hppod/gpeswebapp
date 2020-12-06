@@ -1,0 +1,76 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <app-loading [condition]="isLoading"></app-loading>
+    <div *ngIf="!isLoading && statusResponse == 200">
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5 *ngIf="inscrito"> Detalhes - {{inscrito['nome']}}</h5>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="form-control-label">Nome</label>
+                    <div>
+                        {{inscrito.nome}}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form-control-label">Email</label>
+                    <div>
+                        {{inscrito['email']}}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-label">Telefone</label>
+                    <div>
+                        {{inscrito['telefone']}}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-label">RA</label>
+                    <div>
+                        {{inscrito['ra']}}
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-4">
+                    <label class="form-control-label">Cidade</label>
+                    <div>
+                        {{inscrito['cidade']}}
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <label class="form-control-label">Curso</label>
+                    <div>
+                        {{inscrito['curso']}}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-label">Período</label>
+                    <div>
+                        {{inscrito['periodo']}}
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <label class="form-control-label">Semestre</label>
+                    <div>
+                        {{inscrito['semestre']}}
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    <label class="form-control-label">Motivação</label>
+                    <div>
+                        {{inscrito['descricao']}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,46 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <div>
+        <div class="row">
+            <div class="col-sm-1 positionTitle">
+                <h5>Inscritos</h5>
+            </div>
+            <div class="col-sm-5 positionTitle">
+                <h5 *ngIf="selecao">&nbsp; - &nbsp; {{selecao.titulo}} </h5>
+            </div>
+            <div class="col-sm-6 positionButtons">
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm">Enviar Email</button>
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm">Exportar Planilha</button>
+            </div>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div class="table-responsive" id="marginTopTable">
+            <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Nome</th>
+                        <th scope="col">Curso</th>
+                        <th scope="col">Semestre</th>
+                        <th scope="col">Período</th>
+                        <th scope="col">Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let inscrito of selecao.inscritos"
+                        [routerLink]="['/admin/processo-seletivo/selecao/detalhes-inscrito', inscrito['nome']]"
+                        class="pointer hoverRowTable">
+                        <th>{{inscrito.nome | slice: 0:50}}
+                            <span *ngIf="showEllipsisInTheText(inscrito.nome, 50)">...</span>
+                        </th>
+                        <td>{{inscrito.curso}}</td>
+                        <td>{{inscrito.semestre}}</td>
+                        <td>{{inscrito.periodo}}</td>
+                        <td>{{inscrito.email}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-no-data *ngIf="!isLoading && statusResponse == 204 && !selecao"></app-no-data>
+        <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !selecao">
+        </app-error>
+    </div>
+</div>
