@@ -113,4 +113,10 @@ export class ValidatorService {
         params = params.append('ra', ra)
         return this.http.get<any>(`${GPESWebApi}/public/validators/unique/inscricao/ra`, { params: params })
     }
+
+    checkUniqueSelecaoTitulo(titulo: string) {
+        let params = new HttpParams()
+        params = params.append('title', titulo)
+        return this.http.get<any>(`${GPESWebApi}/authenticated/validators/unique/selecao/titulo`, { params: params })
+    }
 }

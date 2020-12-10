@@ -117,7 +117,7 @@ export class TodosSelecaoComponent implements OnInit, OnDestroy {
           let dataAtual = this.formatDate(new Date());
           if (element.status == true && dataFim < dataAtual) {
             element.status = false
-            this.httpReq = this._service.updateStatusSelecao(element.titulo, element).subscribe(response => {
+            this.httpReq = this._service.updateSelecao(element.titulo, element).subscribe(response => {
               this.messageApi = response.body['message'];
             }, err => {
               this.messageApi = err;
