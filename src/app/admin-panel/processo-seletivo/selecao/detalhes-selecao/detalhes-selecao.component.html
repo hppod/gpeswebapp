@@ -5,11 +5,11 @@
                 <h5>Inscritos</h5>
             </div>
             <div class="col-sm-5 positionTitle">
-                <h5 *ngIf="selecao">&nbsp; - &nbsp; {{selecao.titulo}} </h5>
+                <h5 *ngIf="selecao">&nbsp; - &nbsp; {{selecao['titulo']}} </h5>
             </div>
             <div class="col-sm-6 positionButtons">
                 <button type="button" class="btn btn-outline-info-dkblue btn-sm">Enviar Email</button>
-                <button type="button" class="btn btn-outline-info-dkblue btn-sm">Exportar Planilha</button>
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm" (click)="exportExcel()">Exportar Planilha</button>
             </div>
         </div>
         <app-loading [condition]="isLoading"></app-loading>
@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let inscrito of selecao.inscritos"
+                    <tr *ngFor="let inscrito of selecao['inscritos']"
                         [routerLink]="['/admin/processo-seletivo/selecao/detalhes-inscrito', inscrito['nome']]"
                         class="pointer hoverRowTable">
                         <th>{{inscrito.nome | slice: 0:50}}
