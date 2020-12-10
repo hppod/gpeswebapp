@@ -68,15 +68,15 @@ export class CreateSelecaoComponent implements OnInit, OnDestroy, ComponentCanDe
   postSelecao(form: Selecao) {
     this.success = false
     this.httpReq = this._service.postSelecao(form)
-    .subscribe(response => {
-      this.selecaoForm.reset()
-      this.showToastrSuccess()
-      this._router.navigate(['/admin/processo-seletivo/selecao'])
-    }, err => {
-      this.selecaoForm.reset()
-      this.showToastrError()
-      this._router.navigate(['/admin/processo-seletivo/selecao'])
-    })
+      .subscribe(response => {
+        this.selecaoForm.reset()
+        this.showToastrSuccess()
+        this._router.navigate(['/admin/processo-seletivo/selecao'])
+      }, err => {
+        this.selecaoForm.reset()
+        this.showToastrError()
+        this._router.navigate(['/admin/processo-seletivo/selecao'])
+      })
 
   }
 
@@ -109,5 +109,6 @@ export class CreateSelecaoComponent implements OnInit, OnDestroy, ComponentCanDe
   get titulo() { return this.selecaoForm.get('titulo') }
   get dataInicio() { return this.selecaoForm.get('dataInicio') }
   get dataFim() { return this.selecaoForm.get('dataFim') }
+  get status() { return this.selecaoForm.get('status') }
 
 }

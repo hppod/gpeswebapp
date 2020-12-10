@@ -22,6 +22,7 @@ import { TodosSelecaoComponent } from './selecao/todos-selecao/todos-selecao.com
 import { CreateSelecaoComponent } from './selecao/create-selecao/create-selecao.component';
 import { DetalhesSelecaoComponent } from './selecao/detalhes-selecao/detalhes-selecao.component';
 import { DetalhesInscritoComponent } from './selecao/detalhes-inscrito/detalhes-inscrito.component';
+import { AtualizarSelecaoComponent } from './selecao/atualizar-selecao/atualizar-selecao.component';
 
 const ROUTES: Routes = [
   {
@@ -38,6 +39,7 @@ const ROUTES: Routes = [
       { path: 'create', component: CreateSelecaoComponent, canDeactivate: [PendingChangesGuard] },
       { path: 'detalhes/:title', component: DetalhesSelecaoComponent },
       { path: 'detalhes-inscrito/:name', component: DetalhesInscritoComponent },
+      { path: 'atualizar/:title', component: AtualizarSelecaoComponent, canDeactivate: [PendingChangesGuard] }
     ]
   }
 
@@ -52,7 +54,8 @@ const ROUTES: Routes = [
     TodosSelecaoComponent,
     DetalhesSelecaoComponent,
     DetalhesInscritoComponent,
-    CreateSelecaoComponent
+    CreateSelecaoComponent,
+    AtualizarSelecaoComponent
   ],
   exports: [
     TodosProcessoSeletivoComponent,
