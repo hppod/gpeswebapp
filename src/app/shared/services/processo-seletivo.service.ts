@@ -55,7 +55,7 @@ export class ProcessoSeletivoService {
     return this.http.post<any>(`${GPESWebApi}/authenticated/selecao/criar`, form, { reportProgress: true, observe: 'events' })
   }
 
-  updateStatusSelecao(title: string, formData) {
+  updateSelecao(title: string, formData) {
     return this.http.put<any>(`${GPESWebApi}/authenticated/selecao/atualizar/${title}`, formData, { observe: 'response' })
   }
 
