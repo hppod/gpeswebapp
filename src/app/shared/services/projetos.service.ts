@@ -20,6 +20,14 @@ export class ProjetosService {
   getProjetoByName(titulo: string): Observable<HttpResponse<Projetos>> {
     return this.http.get<Projetos>(`${GPESWebApi}/authenticated/projetos/listar-um/${titulo}`, { observe: 'response' })
   }
+
+  getProjetosAtuais(): Observable<HttpResponse<Projetos[]>> {
+    return this.http.get<Projetos[]>(`${GPESWebApi}/public/projetos/listar-atuais`, { params: this.params, observe: 'response' });
+  }
+
+  getProjetosConcluidos(): Observable<HttpResponse<Projetos[]>> {
+    return this.http.get<Projetos[]>(`${GPESWebApi}/public/projetos/listar-concluidos`, { params: this.params, observe: 'response' });
+  } 
   
   deleteProjeto(id):Observable<HttpResponse<Projetos>>{
     return this.http.delete<Projetos>(`${GPESWebApi}/authenticated/projetos/apagar/${id}`, { observe: 'response' })

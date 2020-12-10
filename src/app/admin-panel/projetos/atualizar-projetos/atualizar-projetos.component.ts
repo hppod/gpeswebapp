@@ -114,6 +114,11 @@ export class AtualizarProjetosComponent implements OnInit {
 
   putProjeto() {
     this.substituirId()
+    if (this.projetoForm.value.dataFim != null) {
+      this.projetoForm.value.situacao = true
+    }else{
+      this.projetoForm.value.situacao = false
+    }
     this.httpReq = this.service.putProjeto(this.projetoForm.value, this.titulo).subscribe(response => {
       this.projetoForm.reset()
       this.showToastrSuccess()
