@@ -19,6 +19,7 @@ import { DetalhesProcessoSeletivoComponent } from './processo/detalhes-processo-
 import { AtualizarProcessoSeletivoComponent } from './processo/atualizar-processo-seletivo/atualizar-processo-seletivo.component';
 
 import { TodosSelecaoComponent } from './selecao/todos-selecao/todos-selecao.component';
+import { CreateSelecaoComponent } from './selecao/create-selecao/create-selecao.component';
 import { DetalhesSelecaoComponent } from './selecao/detalhes-selecao/detalhes-selecao.component';
 import { DetalhesInscritoComponent } from './selecao/detalhes-inscrito/detalhes-inscrito.component';
 
@@ -34,6 +35,7 @@ const ROUTES: Routes = [
   {
     path: 'selecao', children: [
       { path: '', component: TodosSelecaoComponent },
+      { path: 'create', component: CreateSelecaoComponent, canDeactivate: [PendingChangesGuard] },
       { path: 'detalhes/:title', component: DetalhesSelecaoComponent },
       { path: 'detalhes-inscrito/:name', component: DetalhesInscritoComponent },
     ]
@@ -49,7 +51,8 @@ const ROUTES: Routes = [
     AtualizarProcessoSeletivoComponent,
     TodosSelecaoComponent,
     DetalhesSelecaoComponent,
-    DetalhesInscritoComponent
+    DetalhesInscritoComponent,
+    CreateSelecaoComponent
   ],
   exports: [
     TodosProcessoSeletivoComponent,
