@@ -6,7 +6,6 @@ import { Subscription } from 'rxjs';
 import { checkUrlAndSetFirstPage, getLastPage, setLastPage, setLastUrl } from 'src/app/shared/functions/last-pagination';
 import { scrollPageToTop } from 'src/app/shared/functions/scroll-top';
 import { Integrantes } from 'src/app/shared/models/integrantes.model';
-import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { IntegrantesService } from 'src/app/shared/services/integrantes.service';
 
 @Component({

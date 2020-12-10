@@ -72,3 +72,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo - Inscrição:** Implementando componente e chamadas aos métodos da API para listar todas as seleções; listar os detalhes de uma seleção, ou seja, seus inscritos; exibir os detalhes do inscrito; excluir uma seleção; mostrar ou não o botão de edição, verificando se a seleção já foi fechada ou não, nessa mesma função verifica se uma seleção que já foi fechada ainda está com status "true" e atualizada para status "false".
 
 ### Versão 5.8
+* **Projeto:** Ajustes no painel administrativo, listagem de projetos no institucional, criação dos componentes e metodos na service.

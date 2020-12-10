@@ -1,10 +1,109 @@
 <div class="container-fluid marginTopBottomContentContainer">
-    <h2 class="titlePage">Projetos</h2>
-    <hr>
-    <div>
-        <div class="conteudo">
-          
-        </div>
+  <h2 class="titlePage">Projetos</h2>
+  <hr>
+  <app-loading [condition]="isLoading"></app-loading>
+  <div *ngIf="!isLoading && statusResponse == 200">
+    <div class="alinhar">
+      <h5>Estes são os projetos que tem como objetivo investigar e desenvolver pesquisas em torno de metodologias
+        e estratégias de ensino de Engenharia de Software (ES), com o intuito de facilitar e ampliar o
+        conhecimento dos integrantes no desenvolvimento da sua capacidade de elaboração de software mais
+        complexos e próximos aos utilizados na indústria. Estas pesquisas fornecem aos parceiros qualidade no
+        desenvolvimento e correspondem as expectativas de usabilidade dos respectivos projetos.</h5>
     </div>
-    <br class="lineBreak">
+    <br><br>
+    <div>
+      <button class="btn btn-outline-info-dkblue btn-sm" (click)="getAtuaisProjetosButtom()">Em andamento</button>
+      <button class="btn btn-outline-info-dkblue btn-sm" (click)="getProjetosConcluidosButtom()">Concluídos</button>
+    </div>
+    <br><br>
+    <div class="row">
+      <div class="col-sm-3" *ngFor="let projeto of projetos" data-toggle="modal" data-target="#exampleModalCenter"
+        (click)="getProjeto(projeto.titulo)">
+        <div class="card" style="width: 18rem;">
+          <div class="card-footer text-muted row alinharCentro">
+            <div *ngIf="projeto.dataFim == null">Em andamento</div>
+            <div *ngIf="projeto.dataFim != null">Inicio: {{projeto.dataInicio | date: 'dd/MM/yyyy':"UTC"}}</div>&nbsp;
+            <div *ngIf="projeto.dataFim != null">Fim: {{projeto.dataFim | date: 'dd/MM/yyyy':"UTC"}}</div>
+          </div>
+          <img class="card-img-top" src="assets/img/eventos-card/square_red.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-text">{{projeto.titulo}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <nav *ngIf="projetos && atuais && total > limit">
+    <ul class="pagination">
+      <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+        nextLabel="Próximo">
+      </pagination-controls>
+    </ul>
+  </nav>
+  <app-no-data *ngIf="!isLoading && statusResponse == 204 && !projetos"></app-no-data>
+  <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !projetos"></app-error>
+  <nav *ngIf="projetos && !atuais && total > limit">
+    <ul class="pagination">
+      <pagination-controls class="my-pagination" (pageChange)="getPageEx($event)" previousLabel="Anterior"
+        nextLabel="Próximo">
+      </pagination-controls>
+    </ul>
+  </nav>
+</div>
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" *ngIf="ProjetoVisualizar != null">
+  <div aria-labelledby="exampleModalCenterTitle">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">{{ProjetoVisualizar.titulo}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="alinharCentro imagem">
+            <img class="card-img-top" src="assets/img/eventos-card/square_red.png" alt="Card image cap">
+          </div><br>
+          <div class="row">
+            <div class="col-sm-12">
+              <label class="form-control-label">Descrição</label>
+              <div>
+                {{ProjetoVisualizar.descricao}}
+              </div>
+              <br>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label class="form-control-label">Data Inicio</label>
+              <div>
+                {{ProjetoVisualizar.dataInicio | date: 'dd/MM/yyyy':"UTC"}}
+              </div>
+            </div>
+            <div class="col-sm-6" *ngIf="ProjetoVisualizar.dataFim != null">
+              <label class="form-control-label">Data Fim</label>
+              <div>
+                {{ProjetoVisualizar.dataFim | date: 'dd/MM/yyyy':"UTC"}}
+              </div>
+            </div>
+          </div>
+          <br>
+          <div class="row" *ngIf="ProjetoVisualizar.integrantes != null">
+            <div class="col-sm-12">
+              <label class="form-control-label">Integrantes</label>
+            </div>
+            <div *ngFor="let integrante of ProjetoVisualizar.integrantes" class="margem">
+              <div
+                *ngIf="ProjetoVisualizar['integrantes'][ProjetoVisualizar['integrantes'].length - 1].nome != integrante.nome">
+                {{integrante.nome}}; &nbsp;</div>
+              <div class=""
+                *ngIf="ProjetoVisualizar['integrantes'][ProjetoVisualizar['integrantes'].length - 1].nome == integrante.nome">
+                {{integrante.nome}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
