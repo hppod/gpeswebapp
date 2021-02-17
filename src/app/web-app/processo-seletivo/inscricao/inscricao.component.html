@@ -3,8 +3,8 @@
     <div class="formInscricao">
         <div class="row" *ngIf="selecaoInf">
             <p class="col-sm-12 titulo">
-                {{selecaoInf.titulo}} - De: {{selecaoInf.dataInicio | date: 'dd/MM/yyyy':"UTC"}} a
-                {{selecaoInf.dataFim | date: 'dd/MM/yyyy':"UTC"}}
+               <b> {{selecaoInf.titulo}} - de <u>{{selecaoInf.dataInicio | date: 'dd/MM/yyyy':"UTC"}}</u> a
+                <u>{{selecaoInf.dataFim | date: 'dd/MM/yyyy':"UTC"}}</u> </b>
             </p>
             <p class="col-sm-6 requiredField">
                 * Campos obrigatórios
@@ -33,7 +33,7 @@
                             <div *ngIf="email.errors.required">
                                 Email é obrigatório.
                             </div>
-                            <div *ngIf="nome.errors.inscricaoEmailAlreadyExists">
+                            <div *ngIf="email.errors.inscricaoEmailAlreadyExists">
                                 Já existe um registro com esse Email.
                             </div>
                         </small>
@@ -60,7 +60,7 @@
                             <div *ngIf="ra.errors.required">
                                 RA é obrigatório.
                             </div>
-                            <div *ngIf="nome.errors.inscricaoRaAlreadyExists">
+                            <div *ngIf="ra.errors.inscricaoRaAlreadyExists">
                                 Já existe um registro com esse RA.
                             </div>
                         </small>

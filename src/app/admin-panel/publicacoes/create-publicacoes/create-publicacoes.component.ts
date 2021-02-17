@@ -44,7 +44,7 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
   selectOptionAutores: string[]
   option: string
   selectedCategory: string = null
-  selectedAutores: string[] = null
+  selectedAutores: string[]
   total: Number = 0
 
   configModal: ModalOptions = {
@@ -121,7 +121,7 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
         this.selectOptionAutores.push(element.nome)
       });
       this.selectOptionAutores.push("Não encontrou o autor desejado? Cadastre um aqui")
-      this.selectOptionAutores.splice(0, 1)
+      this.selectOptionAutores.shift()
     }, err => {
       this.showToastrError('Houve um erro ao listar os autores. Serviço indisponível')
     })
@@ -133,12 +133,17 @@ export class CreatePublicacoesComponent implements OnInit, OnDestroy, ComponentC
         this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
       }
     }
+
     this.modalRef.content.action.subscribe((data: string) => {
       this.getAutores()
       this.selectedAutores = this._formPublicacoes.controls['autores'].value
       this.selectedAutores.pop()
-      this.selectedAutores.push(data)
-      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
+
+      if (data != null) {
+        this.selectedAutores.push(data)
+      }
+
+      this._formPublicacoes.value.autores = this.selectedAutores
     })
   }
 

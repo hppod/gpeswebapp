@@ -167,12 +167,17 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
         this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
       }
     }
+
     this.modalRef.content.action.subscribe((data: string) => {
       this.getAutores()
       this.selectedAutores = this._formPublicacoes.controls['autores'].value
       this.selectedAutores.pop()
-      this.selectedAutores.push(data)
-      this._formPublicacoes.controls['autores'].setValue(this.selectedAutores)
+
+      if (data != null) {
+        this.selectedAutores.push(data)
+      }
+
+      this._formPublicacoes.value.autores = this.selectedAutores
     })
   }
 
