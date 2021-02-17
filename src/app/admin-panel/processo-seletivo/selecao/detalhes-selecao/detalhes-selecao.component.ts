@@ -1,16 +1,12 @@
-import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ToastrService } from 'ngx-toastr';
-import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { Selecao } from 'src/app/shared/models/selecao.model';
 import { ProcessoSeletivoService } from '../../../../shared/services/processo-seletivo.service';
 import { AuthenticationService } from "../../../../shared/services/authentication.service"
-import { ModalDialogComponent } from "./../../../../web-components/common/modals/modal-dialog/modal-dialog.component"
-import { ModalLoadingComponent } from "./../../../../web-components/common/modals/modal-loading/modal-loading.component"
-import { checkUrlAndSetFirstPage, setLastUrl, getLastPage, setLastPage } from 'src/app/shared/functions/last-pagination';
-
+import { checkUrlAndSetFirstPage } from 'src/app/shared/functions/last-pagination';
+import { ExportExcelService } from 'src/app/shared/services/export-excel.service';
 
 @Component({
   selector: 'app-detalhes-selecao',
@@ -21,7 +17,10 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
 
   private httpReq: Subscription
 
-  selecao: Selecao;
+  selecao: Selecao[];
+  inscritos = []
+
+  dataForExcel = []
 
   page: number = 1;
   total: number;
@@ -37,9 +36,8 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
     private _router: Router,
     private _service: ProcessoSeletivoService,
     private _auth: AuthenticationService,
-    private _modal: BsModalService,
-    private _toastr: ToastrService,
     private _activatedRoute: ActivatedRoute,
+    public _serviceExcel: ExportExcelService
   ) {
     checkUrlAndSetFirstPage(this._router.url)
   }
@@ -65,6 +63,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
       this.statusResponse = response.status
       this.messageApi = response.body['message']
       this.selecao = response.body['data']
+      this.inscritos = response.body['data']['inscritos']
       this.isLoading = false
     }, err => {
       this.messageApi = err.error['message']
@@ -74,6 +73,21 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
 
   showEllipsisInTheText(text: string, limit: number): boolean {
     return text.length > limit;
+  }
+
+  exportExcel() {
+    this.inscritos.forEach((row: any) => {
+      this.inscritos['_id'] = 0
+      this.dataForExcel.push(Object.values(row))
+    })
+
+    let reportData = {
+      title: 'Inscritos Processo Seletivo' + ' - ' + this.selecao['titulo'],
+      data: this.dataForExcel,
+      headers: Object.keys(this.inscritos[0])
+    }
+
+    this._serviceExcel.exportExcel(reportData)
   }
 }
 

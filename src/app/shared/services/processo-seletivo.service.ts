@@ -51,7 +51,11 @@ export class ProcessoSeletivoService {
     return this.http.get<Selecao>(`${GPESWebApi}/authenticated/selecao/listar-um/${title}`, { observe: 'response' })
   }
 
-  updateStatusSelecao(title: string, formData) {
+  postSelecao(form: Selecao) {
+    return this.http.post<any>(`${GPESWebApi}/authenticated/selecao/criar`, form, { reportProgress: true, observe: 'events' })
+  }
+
+  updateSelecao(title: string, formData) {
     return this.http.put<any>(`${GPESWebApi}/authenticated/selecao/atualizar/${title}`, formData, { observe: 'response' })
   }
 

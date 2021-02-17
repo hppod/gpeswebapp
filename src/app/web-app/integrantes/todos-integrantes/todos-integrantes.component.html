@@ -34,7 +34,7 @@
       </div>
     </div>
     <br><br>
-    <nav *ngIf="integrantes && atuais">
+    <nav *ngIf="integrantes && atuais && total > limit ">
       <ul class="pagination">
         <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
           nextLabel="Próximo">
@@ -43,7 +43,7 @@
     </nav>
     <app-no-data *ngIf="!isLoading && statusResponse == 204 && !integrantes"></app-no-data>
     <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !integrantes"></app-error>
-    <nav *ngIf="integrantes && !atuais">
+    <nav *ngIf="integrantes && !atuais && total > limit">
       <ul class="pagination">
         <pagination-controls class="my-pagination" (pageChange)="getPageEx($event)" previousLabel="Anterior"
           nextLabel="Próximo">
