@@ -48,7 +48,17 @@
                     </div>
                 </small>
             </div>
-          </div>
+              <div class="form-group col-sm-12">
+                <label for="descricao" class="form-control-label">Descrição <span class="required">*</span></label>
+                <textarea class="form-control" formControlName="descricao" type="text" placeholder="Descrição do processo seletivo..."
+                  id="descricao"></textarea>
+                <small *ngIf="descricao.invalid && (descricao.dirty || descricao.touched)" class="text-danger">
+                  <div *ngIf="descricao.errors.required">
+                    Descrição é obrigatória.
+                  </div>
+                </small>
+              </div>
+            </div>
           <br>
           <div class="row">
             <div class="col-sm-12 positionButtons">
