@@ -79,3 +79,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.9
 * **Processo Seletivo - Seleção:** Inserido campo descrição de uma seleção e exibindo tanto no painel admin quanto no institucional e também inserido as informações de data de início, data de fim e descrição da seleção na exportação da planilha.
+* **Projeto:** criação da função de cancelar a edição de um projeto.
