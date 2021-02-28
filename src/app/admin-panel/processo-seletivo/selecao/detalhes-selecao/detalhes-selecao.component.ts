@@ -7,6 +7,7 @@ import { ProcessoSeletivoService } from '../../../../shared/services/processo-se
 import { AuthenticationService } from "../../../../shared/services/authentication.service"
 import { checkUrlAndSetFirstPage } from 'src/app/shared/functions/last-pagination';
 import { ExportExcelService } from 'src/app/shared/services/export-excel.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-detalhes-selecao',
@@ -75,18 +76,23 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
     return text.length > limit;
   }
 
+
   exportExcel() {
     this.inscritos.forEach((row: any) => {
       this.inscritos['_id'] = 0
       this.dataForExcel.push(Object.values(row))
     })
 
-    let reportData = {
-      title: 'Inscritos Processo Seletivo' + ' - ' + this.selecao['titulo'],
-      data: this.dataForExcel,
-      headers: Object.keys(this.inscritos[0])
-    }
+    let dataInicio = formatDate(this.selecao['dataInicio'], 'dd/MM/yyyy', 'en-US', 'UTC');
+    let dataFim = formatDate(this.selecao['dataFim'], 'dd/MM/yyyy', 'en-US', 'UTC');
 
+    let reportData = {
+      title: 'Inscritos' + ' - ' + this.selecao['titulo'] + ' - ' + dataInicio + ' - ' + dataFim,
+      data: this.dataForExcel,
+      headers: Object.keys(this.inscritos[0]),
+      description: this.selecao['descricao']
+
+    }
     this._serviceExcel.exportExcel(reportData)
   }
 }
