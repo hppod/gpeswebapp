@@ -76,3 +76,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo - Inscrição:** Implemantando componetes e chamadas aos métodos da API para crianção de uma seleção e edição, permitindo que edite a data de início apenas se a mesma for maior que a data atual, ou seja, contanto que a seleção não esteja correndo ainda.
 * **Publicações:** Padronizado espaçamento de margem do texto de publicações no Institucional. Refatorado o método onChangeAutor no create-publicacoes e atualizar-publicacoes. 
 * **Processo Seletivo:** Implementada função para exportar os dados dos inscritos de determinada seleção para uma planilha excel.
+
+### Versão 5.9
+* **Processo Seletivo - Seleção:** Inserido campo descrição de uma seleção e exibindo tanto no painel admin quanto no institucional e também inserido as informações de data de início, data de fim e descrição da seleção na exportação da planilha.
