@@ -4,12 +4,19 @@
             <div class="col-sm-1 positionTitle">
                 <h5>Inscritos</h5>
             </div>
-            <div class="col-sm-5 positionTitle">
-                <h5 *ngIf="selecao">&nbsp; - &nbsp; {{selecao['titulo']}} </h5>
+            <div class="col-sm-7 positionTitle">
+                <h5 *ngIf="selecao"> - &nbsp; {{selecao['titulo']}} - {{selecao['dataInicio'] |
+                    date: 'dd/MM/yyyy':"UTC"}} a {{selecao['dataFim'] | date: 'dd/MM/yyyy':"UTC"}}</h5>
             </div>
-            <div class="col-sm-6 positionButtons">
+            <div class="col-sm-4 positionButtons">
                 <button type="button" class="btn btn-outline-info-dkblue btn-sm">Enviar Email</button>
-                <button type="button" class="btn btn-outline-info-dkblue btn-sm" (click)="exportExcel()">Exportar Planilha</button>
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm" (click)="exportExcel()">Exportar
+                    Planilha</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <p *ngIf="selecao">{{selecao['descricao']}}</p>
             </div>
         </div>
         <app-loading [condition]="isLoading"></app-loading>
