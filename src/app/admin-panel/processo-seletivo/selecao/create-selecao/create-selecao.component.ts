@@ -45,6 +45,7 @@ export class CreateSelecaoComponent implements OnInit, OnDestroy, ComponentCanDe
     setLastUrl(this._router.url)
     this.selecaoForm = this._builder.group({
       titulo: this._builder.control('', [Validators.required], this._unique.checkUniqueTitulo()),
+      descricao: this._builder.control(null, [Validators.required]),
       dataInicio: this._builder.control(null, [Validators.required]),
       dataFim: this._builder.control(null, [Validators.required]),
       status: this._builder.control(true)
@@ -107,6 +108,7 @@ export class CreateSelecaoComponent implements OnInit, OnDestroy, ComponentCanDe
 
   /**Getters */
   get titulo() { return this.selecaoForm.get('titulo') }
+  get descricao() { return this.selecaoForm.get('descricao') }
   get dataInicio() { return this.selecaoForm.get('dataInicio') }
   get dataFim() { return this.selecaoForm.get('dataFim') }
   get status() { return this.selecaoForm.get('status') }

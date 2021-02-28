@@ -71,6 +71,7 @@ export class AtualizarSelecaoComponent implements OnInit, ComponentCanDeactivate
   initForm() {
     this.selecaoForm = this._builder.group({
       titulo: this._builder.control('', [Validators.required]),
+      descricao: this._builder.control(null, [Validators.required]),
       dataInicio: this._builder.control(null, [Validators.required]),
       dataFim: this._builder.control(null, [Validators.required]),
       status: this._builder.control(true)
@@ -97,6 +98,7 @@ export class AtualizarSelecaoComponent implements OnInit, ComponentCanDeactivate
   preencheForm(selecao: Selecao) {
     this.selecaoForm.patchValue({
       titulo: selecao['titulo'],
+      descricao: selecao['descricao'],
       dataInicio: this.formatDate(selecao['dataInicio']),
       dataFim: this.formatDate(selecao['dataFim']),
       status: selecao['status'],
@@ -168,6 +170,7 @@ export class AtualizarSelecaoComponent implements OnInit, ComponentCanDeactivate
 
   /**Getters */
   get titulo() { return this.selecaoForm.get('titulo') }
+  get descricao() { return this.selecaoForm.get('descricao') }
   get dataInicio() { return this.selecaoForm.get('dataInicio') }
   get dataFim() { return this.selecaoForm.get('dataFim') }
   get status() { return this.selecaoForm.get('status') }
