@@ -154,24 +154,18 @@ export class AtualizarPublicacoesComponent implements OnInit, ComponentCanDeacti
       response.body['data'].forEach(element => {
         this.selectOptionAutores.push(element.nome)
       });
-      this.selectOptionAutores.push("Não encontrou o autor desejado? Cadastre um aqui")
       this.selectOptionAutores.splice(0, 1)
     }, err => {
       this.showToastrError('Houve um erro ao listar os autores. Serviço indisponível')
     })
   }
 
-  onChangeAutor(options: INgxSelectOption[]) {
-    for (var index in options) {
-      if (options[index].value == "Não encontrou o autor desejado? Cadastre um aqui") {
-        this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
-      }
-    }
+  addNewAutor(){
+    this.modalRef = this._modal.show(ModalCreateAutoresComponent, this.configModal)
 
     this.modalRef.content.action.subscribe((data: string) => {
       this.getAutores()
       this.selectedAutores = this._formPublicacoes.controls['autores'].value
-      this.selectedAutores.pop()
 
       if (data != null) {
         this.selectedAutores.push(data)
