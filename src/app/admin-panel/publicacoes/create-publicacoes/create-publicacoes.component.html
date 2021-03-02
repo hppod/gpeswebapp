@@ -41,6 +41,7 @@
         <div class="row">
           <div class="form-group col-sm-6">
             <label for="autores" class="form-control-label">Autores <span class="required">*</span></label>
+            <label for="autores" class="form-control-label form-label-register" (click)="addNewAutor()">Não encontrou o autor desejado? Cadastre um aqui</label>
             <ngx-select formControlName="autores" id="autores" [multiple]="true" [items]="selectOptionAutores"
               [(ngModel)]="selectedAutores" [autoClearSearch]="true" placeholder="Selecione"
               (selectionChanges)="onChangeAutor($event)">
@@ -74,7 +75,7 @@
             </small>
           </div>
           <div class="form-group col-sm-6">
-            <label for="dataPublicacao" class="text-center">Data da publicação <span
+            <label for="dataPublicacao" class="form-control-label">Data da publicação <span
                 class="text-danger">*</span></label><br>
             <input type="date" name="dataPublicacao" class="form-control" placeholder="Data da publicação"
               formControlName="dataPublicacao">
