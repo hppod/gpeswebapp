@@ -10,6 +10,7 @@ import { Projetos } from 'src/app/shared/models/projetos.model';
 import { IntegrantesService } from 'src/app/shared/services/integrantes.service';
 import { ProjetosService } from 'src/app/shared/services/projetos.service';
 import { ProjetosValidator } from 'src/app/shared/validations/projetos.validator';
+import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
 
 @Component({
   selector: 'app-atualizar-projetos',
@@ -140,6 +141,17 @@ export class AtualizarProjetosComponent implements OnInit {
       })
     });
     this.projetoForm.value.integrantes = idIntegrantes
+  }
+
+  canCancel() {
+    const initialState = { message: "Tem certeza que deseja cancelar a inserção do registro atual? Todos os dados serão perdidos." }
+    this.modalRef = this.modal.show(ModalDialogComponent, { initialState })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+        this.router.navigate(['/admin/projetos'])
+        this.projetoForm.reset()
+      }
+    })
   }
 
   formatDate(date) {

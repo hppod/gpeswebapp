@@ -27,3 +27,10 @@
     color: rgb(209, 122, 9) !important;
     text-decoration: underline !important;
 }
+
+.form-label-register {
+    font-size: smaller;
+    color: #7e87a0;
+    margin-left: 6px;
+    cursor: pointer;
+}

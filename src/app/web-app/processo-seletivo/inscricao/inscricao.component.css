@@ -25,6 +25,11 @@
     margin-top: 1%;
 }
 
+.descricao {
+    text-align: start;
+    margin-left: 1%;
+}
+
 .formInscricao {
     width: 100%;
     height: 100%;
