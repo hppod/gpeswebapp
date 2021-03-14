@@ -11,6 +11,7 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { AdminPanelModule } from "./../admin-panel.module";
 import { SharedModule } from "./../../shared/shared.module";
 import { DragulaModule } from 'ng2-dragula';
+import { NgxMaskModule } from "ngx-mask";
 
 import { TodosProcessoSeletivoComponent } from './processo/todos-processo-seletivo/todos-processo-seletivo.component';
 import { CreateProcessoSeletivoComponent } from './processo/create-processo-seletivo/create-processo-seletivo.component';
@@ -79,7 +80,8 @@ const ROUTES: Routes = [
       preventDuplicates: true
     }),
     AngularEditorModule,
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    NgxMaskModule
   ]
 })
 export class ProcessoSeletivoModule { }
