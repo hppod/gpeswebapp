@@ -84,3 +84,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 
 ### Versão 5.10
 * **Processo Seletivo:** Alterado o nome do campo 'Descrição' no formulário de inscrição para 'Carta de Apresentação', adicionado máscara no telefone e validação se o campo email está recebendo um email.
+* **Processo Seletivo - Seleção (Envio Emails):** Implementando o botão enviar e-mail para que exiba um modal com dois campos para poder enviar e-mail para os inscritos.

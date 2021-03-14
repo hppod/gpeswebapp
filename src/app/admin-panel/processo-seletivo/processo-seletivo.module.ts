@@ -39,6 +39,7 @@ const ROUTES: Routes = [
       { path: '', component: TodosSelecaoComponent },
       { path: 'create', component: CreateSelecaoComponent, canDeactivate: [PendingChangesGuard] },
       { path: 'detalhes/:title', component: DetalhesSelecaoComponent },
+      { path: 'detalhes/:title/enviar-email', component: DetalhesSelecaoComponent },
       { path: 'detalhes-inscrito/:name', component: DetalhesInscritoComponent },
       { path: 'atualizar/:title', component: AtualizarSelecaoComponent, canDeactivate: [PendingChangesGuard] }
     ]
