@@ -51,7 +51,7 @@ export class InscricaoComponent implements OnInit {
   initForm() {
     this.formInscricao = this._builder.group({
       nome: this._builder.control(null, [Validators.required], this._unique.checkUniqueNome()),
-      email: this._builder.control(null, [Validators.required], this._unique.checkUniqueEmail()),
+      email: this._builder.control(null, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")], this._unique.checkUniqueEmail()),
       telefone: this._builder.control(null),
       cidade: this._builder.control(null, [Validators.required]),
       ra: this._builder.control(null, [Validators.required], this._unique.checkUniqueRa()),

@@ -9,6 +9,7 @@ import { TooltipModule } from "ngx-bootstrap/tooltip";
 import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { SharedModule } from "./../../shared/shared.module";
 import { WebAppModule } from "./../web-app.module";
+import { NgxMaskModule } from "ngx-mask";
 
 import { InscricaoComponent } from "./inscricao/inscricao.component";
 import { ProcessoSeletivoComponent } from './processo-seletivo.component';
@@ -40,7 +41,8 @@ const ROUTES: Routes = [
     ReactiveFormsModule,
     ToastrModule.forRoot({
       preventDuplicates: true
-    })
+    }),
+    NgxMaskModule
   ]
 })
 
