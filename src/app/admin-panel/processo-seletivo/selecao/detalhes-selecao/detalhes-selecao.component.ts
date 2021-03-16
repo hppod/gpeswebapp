@@ -9,7 +9,7 @@ import { checkUrlAndSetFirstPage } from 'src/app/shared/functions/last-paginatio
 import { ExportExcelService } from 'src/app/shared/services/export-excel.service';
 import { formatDate } from '@angular/common';
 import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -108,7 +108,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   }
   
   Cancel() {
-    const initialState = { message: "Tem certeza que deseja cancelar a ordenação? Todas as alterações serão perdidas." }
+    const initialState = { message: "Tem certeza que deseja cancelar o envio de e-mail para os inscritos?" }
     this.modalRef = this._modal.show(ModalDialogComponent, { initialState, id: 1 })
     this.modalRef.content.action.subscribe((answer) => {
       if (answer) {
@@ -122,8 +122,8 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.emailForm = this._builder.group({
-      assunto: this._builder.control(null),
-      mensagem: this._builder.control(null)
+      assunto: this._builder.control(null, [Validators.required]),
+      mensagem:this._builder.control(null, [Validators.required])
       // file: this._builder.control(null, validatorFileType())
     })
   }

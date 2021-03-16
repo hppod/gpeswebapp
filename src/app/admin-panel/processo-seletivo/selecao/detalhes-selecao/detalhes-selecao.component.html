@@ -58,18 +58,17 @@
         <form [formGroup]="emailForm">
             <div class="table-responsive" id="marginTopTable">
                 <div class="form-group">
-                    <label for="principal" class="form-control-label">Digite o Assunto</label>
-                    <input type="text" name="assunto" id="assunto" class="form-control" placeholder="Assunto" formControlName="assunto">
+                    <label for="principal" class="form-control-label">Assunto</label>
+                    <input type="text" name="assunto" id="assunto" class="form-control"  formControlName="assunto">
                 </div>
             </div>
             <div class="form-group">
-            <label for="principal" class="form-control-label">Digite a Mensagem</label>
-            <textarea class="form-control" type="text" placeholder="Mensagem para enviar aos inscritos..."
-                name="mensagem" id="mensagem" formControlName="mensagem"></textarea>
+                <label for="principal" class="form-control-label">Mensagem</label>
+                <textarea class="form-control" type="text" name="mensagem" id="mensagem" formControlName="mensagem"></textarea>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
-              <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()">Salvar</button>
+              <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()">Enviar</button>
             </div>
         </form>
       </div>
