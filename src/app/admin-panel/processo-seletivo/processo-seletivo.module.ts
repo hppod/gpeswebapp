@@ -11,7 +11,10 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { AdminPanelModule } from "./../admin-panel.module";
 import { SharedModule } from "./../../shared/shared.module";
 import { DragulaModule } from 'ng2-dragula';
+<<<<<<< HEAD
 import { NgxMaskModule } from "ngx-mask";
+=======
+>>>>>>> 59c38a6728413eb49935608ae42609063e0bd3ce
 import { NgxChartsModule } from "@swimlane/ngx-charts"
 import { FlexLayoutModule } from '@angular/flex-layout';
 
