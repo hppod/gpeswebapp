@@ -73,10 +73,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const titulo = this._activatedRoute.snapshot.params['title']
     this.getInscritoSelecaoByTitle(titulo)
-<<<<<<< HEAD
     this.initForm()
-=======
->>>>>>> 59c38a6728413eb49935608ae42609063e0bd3ce
     this.getDataForChart(titulo)
   }
 
