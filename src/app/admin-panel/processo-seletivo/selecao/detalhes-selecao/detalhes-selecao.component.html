@@ -46,6 +46,49 @@
                 </tbody>
             </table>
         </div>
+        <br>
+
+        <div fxLayout="row" fxLayoutAlign="space-around none" >  
+            <ngx-charts-bar-horizontal
+            [view]="[700,300]"
+            [results]="cursoData"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [showDataLabel]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [yAxisLabel]= "'Curso'"
+            ></ngx-charts-bar-horizontal>
+                   
+            <ngx-charts-bar-horizontal
+                [view]="[700,300]"
+                [results]="periodoData"
+                [gradient]="false"
+                [xAxis]="true"
+                [yAxis]="true"
+                [legend]="false"
+                [showDataLabel]="true"
+                [showXAxisLabel]="true"
+                [showYAxisLabel]="true"
+                [yAxisLabel]= "'Periodo'">
+            </ngx-charts-bar-horizontal>
+        </div> 
+        <div fxLayout="row" fxLayoutAlign="space-around none"> 
+            <ngx-charts-bar-horizontal
+            [view]="[700,300]"
+            [results]="semestreData"
+            [gradient]="false"
+            [xAxis]="true"
+            [yAxis]="true"
+            [legend]="false"
+            [showDataLabel]="true"
+            [showXAxisLabel]="true"
+            [showYAxisLabel]="true"
+            [yAxisLabel]= "'Semestre'">
+            </ngx-charts-bar-horizontal>               
+        </div> 
         <app-no-data *ngIf="!isLoading && statusResponse == 204 && !selecao"></app-no-data>
         <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !selecao">
         </app-error>

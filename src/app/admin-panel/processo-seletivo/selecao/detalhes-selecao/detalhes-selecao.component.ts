@@ -33,6 +33,10 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
 
   subs = new Subscription();
 
+  cursoData = [];
+  periodoData = [];
+  semestreData = [];  
+
   constructor(
     private _router: Router,
     private _service: ProcessoSeletivoService,
@@ -46,6 +50,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const titulo = this._activatedRoute.snapshot.params['title']
     this.getInscritoSelecaoByTitle(titulo)
+    this.getDataForChart(titulo)
   }
 
   ngOnDestroy() {
@@ -66,6 +71,21 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
       this.selecao = response.body['data']
       this.inscritos = response.body['data']['inscritos']
       this.isLoading = false
+    }, err => {
+      this.messageApi = err.error['message']
+      this.isLoading = false
+    })
+  }
+
+  getDataForChart(title: string) {
+    this.isLoading = true
+    this.httpReq = this._service.getInscritosForChart(title).subscribe(response => {
+      this.statusResponse = response.status
+      this.cursoData = response.body['data']['cursoData']
+      this.periodoData = response.body['data']['periodoData']
+      this.semestreData = response.body['data']['semestreData']
+
+      console.log(response.body['data'])
     }, err => {
       this.messageApi = err.error['message']
       this.isLoading = false

@@ -83,3 +83,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Publicações:** Alterado a chamada do Modal de cadastro de Autores em create-publicacoes e atualiar-publicacoes, para uma label.
 
 ### Versão 5.10
+* **Processo Seletivo-Seleção(Gráficos):** Usando a biblioteca ngx charts para gerar gráficos dos registros dos inscritos de um processo seletivo e instalando o flex layout para configurar a exibição. 
