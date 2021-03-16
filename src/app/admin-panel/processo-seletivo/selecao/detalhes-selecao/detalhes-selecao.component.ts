@@ -1,13 +1,16 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, TemplateRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { Selecao } from 'src/app/shared/models/selecao.model';
 import { ProcessoSeletivoService } from '../../../../shared/services/processo-seletivo.service';
 import { AuthenticationService } from "../../../../shared/services/authentication.service"
 import { checkUrlAndSetFirstPage } from 'src/app/shared/functions/last-pagination';
 import { ExportExcelService } from 'src/app/shared/services/export-excel.service';
 import { formatDate } from '@angular/common';
+import { ModalDialogComponent } from 'src/app/web-components/common/modals/modal-dialog/modal-dialog.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-detalhes-selecao',
@@ -30,6 +33,23 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   messageApi: string;
   statusResponse: number;
   modalRef: BsModalRef;
+  modalEmail: BsModalRef
+  emailForm: FormGroup
+  
+
+  configLoadingModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false,
+    initialState: {
+      message: "Excluindo registro...",
+      withFooter: false
+    }
+  }
+
+  configOrderModal: ModalOptions = {
+    backdrop: 'static',
+    keyboard: false
+  }
 
   subs = new Subscription();
 
@@ -38,7 +58,10 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
     private _service: ProcessoSeletivoService,
     private _auth: AuthenticationService,
     private _activatedRoute: ActivatedRoute,
-    public _serviceExcel: ExportExcelService
+    private _modal: BsModalService,
+    private _builder: FormBuilder,
+    public _serviceExcel: ExportExcelService,
+    private _toastr: ToastrService
   ) {
     checkUrlAndSetFirstPage(this._router.url)
   }
@@ -46,6 +69,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   ngOnInit() {
     const titulo = this._activatedRoute.snapshot.params['title']
     this.getInscritoSelecaoByTitle(titulo)
+    this.initForm()
   }
 
   ngOnDestroy() {
@@ -76,6 +100,33 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
     return text.length > limit;
   }
 
+  openModal(template: TemplateRef<any>) {
+    this.modalEmail = this._modal.show(template, this.configOrderModal);
+  }
+  closeModal(modalId?: number){
+    this._modal.hide(modalId)
+  }
+  
+  Cancel() {
+    const initialState = { message: "Tem certeza que deseja cancelar o envio de e-mail para os inscritos?" }
+    this.modalRef = this._modal.show(ModalDialogComponent, { initialState, id: 1 })
+    this.modalRef.content.action.subscribe((answer) => {
+      if (answer) {
+        this.modalEmail.hide()
+        this.emailForm.reset()
+      }else {
+        this.closeModal(1)
+      }
+    })
+  }
+
+  initForm() {
+    this.emailForm = this._builder.group({
+      assunto: this._builder.control(null, [Validators.required]),
+      mensagem:this._builder.control(null, [Validators.required])
+      // file: this._builder.control(null, validatorFileType())
+    })
+  }
 
   exportExcel() {
     this.inscritos.forEach((row: any) => {
@@ -91,9 +142,40 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
       data: this.dataForExcel,
       headers: Object.keys(this.inscritos[0]),
       description: this.selecao['descricao']
-
     }
     this._serviceExcel.exportExcel(reportData)
+  }
+
+  sendEmail(){
+    const titulo = this._activatedRoute.snapshot.params['title']
+    let message = {
+      assunto:  this.emailForm.value["assunto"],
+      conteudo: this.emailForm.value["mensagem"]
+    }
+    console.log(message);
+    this.httpReq = this._service.postEmailInscritos(titulo, message).subscribe(response => {
+      this.emailForm.reset()
+      this.modalEmail.hide()
+      this.showToastrSuccess()
+    }, err => {
+      this.messageApi = err.error['message']
+      this.showToastrError(this.messageApi)
+    })
+  }
+
+  /**Função para exibir um toastr de sucesso. */
+  showToastrSuccess() {
+    this._toastr.success('E-mail enviado com sucesso.', null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
+  }
+  /**Função para exibir um toastr de error. */
+  showToastrError(mensagem: string) {
+    this._toastr.error(mensagem, null, {
+      progressBar: true,
+      positionClass: 'toast-bottom-center'
+    })
   }
 }
 
