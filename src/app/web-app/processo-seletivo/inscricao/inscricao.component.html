@@ -3,8 +3,8 @@
     <div class="formInscricao">
         <div class="row" *ngIf="selecaoInf">
             <p class="col-sm-12 titulo">
-               <b> {{selecaoInf.titulo}} - de <u>{{selecaoInf.dataInicio | date: 'dd/MM/yyyy':"UTC"}}</u> a
-                <u>{{selecaoInf.dataFim | date: 'dd/MM/yyyy':"UTC"}}</u> </b>
+                <b> {{selecaoInf.titulo}} - de <u>{{selecaoInf.dataInicio | date: 'dd/MM/yyyy':"UTC"}}</u> a
+                    <u>{{selecaoInf.dataFim | date: 'dd/MM/yyyy':"UTC"}}</u> </b>
             </p>
             <p class="col-sm-12 descricao">
                 {{selecaoInf.descricao}}
@@ -30,8 +30,8 @@
                     </div>
                     <div class="form-group col-sm-4">
                         <label for="email" class="form-control-label">Email <span class="required">*</span></label>
-                        <input type="text" name="email" class="form-control" placeholder="Email"
-                            formControlName="email">
+                        <input id="email" class="form-control" formControlName="email" type="email" placeholder="Email"
+                            >
                         <small *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
                             <div *ngIf="email.errors.required">
                                 Email é obrigatório.
@@ -44,7 +44,7 @@
                     <div class="form-group col-sm-2">
                         <label for="telefone" class="form-control-label">Telefone </label>
                         <input type="text" name="telefone" class="form-control" placeholder="Telefone"
-                            formControlName="telefone">
+                            formControlName="telefone" mask="(00) 00000-0000 || (00) 0000-0000">
                     </div>
                     <div class="form-group col-sm-2">
                         <label for="cidade" class="form-control-label">Cidade <span class="required">*</span></label>
@@ -116,7 +116,7 @@
                         </small>
                     </div>
                     <div class="form-group col-sm-12">
-                        <label for="descricao" class="form-control-label">Descrição <span
+                        <label for="descricao" class="form-control-label">Carta de Apresentação<span
                                 class="required">*</span></label>
                         <textarea class="form-control" formControlName="descricao" type="text"
                             placeholder="Conte um pouco sobre você e o que te motiva a ingressar ao GPES..."
