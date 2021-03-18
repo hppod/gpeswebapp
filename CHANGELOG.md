@@ -86,3 +86,5 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo:** Alterado o nome do campo 'Descrição' no formulário de inscrição para 'Carta de Apresentação', adicionado máscara no telefone e validação se o campo email está recebendo um email.
 * **Processo Seletivo - Seleção (Envio Emails):** Implementando o botão enviar e-mail para que exiba um modal com dois campos para poder enviar e-mail para os inscritos.
 * **Processo Seletivo-Seleção(Gráficos):** Usando a biblioteca ngx charts para gerar gráficos dos registros dos inscritos de um processo seletivo e instalando o flex layout para configurar a exibição. 
+
+### Versão 5.11
