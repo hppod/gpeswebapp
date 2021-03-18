@@ -81,3 +81,8 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo - Seleção:** Inserido campo descrição de uma seleção e exibindo tanto no painel admin quanto no institucional e também inserido as informações de data de início, data de fim e descrição da seleção na exportação da planilha.
 * **Projeto:** criação da função de cancelar a edição de um projeto.
 * **Publicações:** Alterado a chamada do Modal de cadastro de Autores em create-publicacoes e atualiar-publicacoes, para uma label.
+
+### Versão 5.10
+* **Processo Seletivo:** Alterado o nome do campo 'Descrição' no formulário de inscrição para 'Carta de Apresentação', adicionado máscara no telefone e validação se o campo email está recebendo um email.
+* **Processo Seletivo - Seleção (Envio Emails):** Implementando o botão enviar e-mail para que exiba um modal com dois campos para poder enviar e-mail para os inscritos.
+* **Processo Seletivo-Seleção(Gráficos):** Usando a biblioteca ngx charts para gerar gráficos dos registros dos inscritos de um processo seletivo e instalando o flex layout para configurar a exibição. 

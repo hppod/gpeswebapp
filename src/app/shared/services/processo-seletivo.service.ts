@@ -63,6 +63,9 @@ export class ProcessoSeletivoService {
     return this.http.delete(`${GPESWebApi}/authenticated/selecao/apagar/${id}`, { observe: 'response' })
   }
 
+  postEmailInscritos(title: string, message: any) {
+    return this.http.post<any>(`${GPESWebApi}/authenticated/selecao/listar-um/${title}/enviar-email`, message, {observe: 'response'})
+  }
 
   // REQUISIÇÕES DE INSCRIÇÃO
 
@@ -72,5 +75,9 @@ export class ProcessoSeletivoService {
 
   postInscricao(form: Inscricao) {
     return this.http.post<any>(`${GPESWebApi}/public/processo-seletivo/criar`, form, { observe: 'response' })
+  }
+
+  getInscritosForChart(title: String): Observable<HttpResponse<any>> {
+    return this.http.get<any>(`${GPESWebApi}/authenticated/selecao/listar-um/${title}/chart`, {observe: 'response'})
   }
 }

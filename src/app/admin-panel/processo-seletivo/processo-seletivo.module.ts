@@ -11,6 +11,9 @@ import { BsDropdownModule } from "ngx-bootstrap/dropdown";
 import { AdminPanelModule } from "./../admin-panel.module";
 import { SharedModule } from "./../../shared/shared.module";
 import { DragulaModule } from 'ng2-dragula';
+import { NgxMaskModule } from "ngx-mask";
+import { NgxChartsModule } from "@swimlane/ngx-charts"
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { TodosProcessoSeletivoComponent } from './processo/todos-processo-seletivo/todos-processo-seletivo.component';
 import { CreateProcessoSeletivoComponent } from './processo/create-processo-seletivo/create-processo-seletivo.component';
@@ -38,6 +41,7 @@ const ROUTES: Routes = [
       { path: '', component: TodosSelecaoComponent },
       { path: 'create', component: CreateSelecaoComponent, canDeactivate: [PendingChangesGuard] },
       { path: 'detalhes/:title', component: DetalhesSelecaoComponent },
+      { path: 'detalhes/:title/enviar-email', component: DetalhesSelecaoComponent },
       { path: 'detalhes-inscrito/:name', component: DetalhesInscritoComponent },
       { path: 'atualizar/:title', component: AtualizarSelecaoComponent, canDeactivate: [PendingChangesGuard] }
     ]
@@ -75,11 +79,14 @@ const ROUTES: Routes = [
     TooltipModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
+    NgxChartsModule,
+    FlexLayoutModule,
     ToastrModule.forRoot({
       preventDuplicates: true
     }),
     AngularEditorModule,
-    DragulaModule.forRoot()
+    DragulaModule.forRoot(),
+    NgxMaskModule
   ]
 })
 export class ProcessoSeletivoModule { }
