@@ -47,47 +47,57 @@
             </table>
         </div>
         <br>
-
-        <div fxLayout="row" fxLayoutAlign="space-around none" >  
+        <div fxLayout="column" fxLayoutAlign="center center" > <h5>Gráficos</h5></div>
+        <br>
+        <br>
+        <div fxLayout="column" fxLayoutAlign="space-between start" >   
+            <h5>Curso</h5>
             <ngx-charts-bar-horizontal
-            [view]="[700,300]"
+            [view]="[700,250]"
             [results]="cursoData"
             [gradient]="false"
-            [xAxis]="true"
+            [xAxis]="false"
             [yAxis]="true"
             [legend]="false"
             [showDataLabel]="true"
             [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
+            [showYAxisLabel]="false"
             [yAxisLabel]= "'Curso'"
             ></ngx-charts-bar-horizontal>
-                   
+        <div>
+             <br>  
+             <br>   
+        <div fxLayout="column" fxLayoutAlign="space-between start" >
+            <h5>Período</h5>   
             <ngx-charts-bar-horizontal
-                [view]="[700,300]"
+                [view]="[700,250]"
                 [results]="periodoData"
                 [gradient]="false"
-                [xAxis]="true"
+                [xAxis]="false"
                 [yAxis]="true"
                 [legend]="false"
                 [showDataLabel]="true"
                 [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
+                [showYAxisLabel]="false"
                 [yAxisLabel]= "'Periodo'">
             </ngx-charts-bar-horizontal>
-        </div> 
-        <div fxLayout="row" fxLayoutAlign="space-around none"> 
+        </div>
+            <br>
+            <br>
+        <div fxLayout="column" fxLayoutAlign="space-between start" > 
+            <h5>Semestre</h5>
             <ngx-charts-bar-horizontal
-            [view]="[700,300]"
+            [view]="[700,250]"
             [results]="semestreData"
             [gradient]="false"
-            [xAxis]="true"
+            [xAxis]="false"
             [yAxis]="true"
             [legend]="false"
             [showDataLabel]="true"
             [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
+            [showYAxisLabel]="false"
             [yAxisLabel]= "'Semestre'">
-            </ngx-charts-bar-horizontal>               
+            </ngx-charts-bar-horizontal>       
         </div> 
         <app-no-data *ngIf="!isLoading && statusResponse == 204 && !selecao"></app-no-data>
         <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !selecao">
