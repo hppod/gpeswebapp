@@ -88,5 +88,9 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo-Seleção(Gráficos):** Usando a biblioteca ngx charts para gerar gráficos dos registros dos inscritos de um processo seletivo e instalando o flex layout para configurar a exibição. 
 
 ### Versão 5.11
+<<<<<<< HEAD
 * **Processo Seletivo-Seleção(Gráficos):** Alterando a forma de exibição dos gráficos para serem exibidos à esquerda. Remoção da legenda que leva o nome do gráfico do eixo Y e inserindo título acima de cada gráfico. Remoção do brackground do eixo x. Inserindo o título "Gráficos" ao centro.
 *  **Processo Seletivo - Seleção (Envio Email):** Colocando título no modal de enviar email e deixando o botão de enviar desabilitado enquanto os campos não forem preenchidos.
+=======
+*  **Processo Seletivo - Seleção (Envio Email):** Colocando título no modal de enviar email e deixando o botão de enviar desabilitado enquanto os campos não forem preenchidos.
+>>>>>>> 979fe48a603b1ae58fb9a9edfa0456686fe7f167
