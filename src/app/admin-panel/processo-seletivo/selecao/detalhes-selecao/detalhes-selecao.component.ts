@@ -142,8 +142,8 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
 
   initForm() {
     this.emailForm = this._builder.group({
-      assunto: this._builder.control(null, [Validators.required]),
-      mensagem:this._builder.control(null, [Validators.required])
+      assunto:  this._builder.control(null, [Validators.required]),
+      mensagem: this._builder.control(null, [Validators.required])
       // file: this._builder.control(null, validatorFileType())
     })
   }

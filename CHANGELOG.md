@@ -88,3 +88,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 * **Processo Seletivo-Seleção(Gráficos):** Usando a biblioteca ngx charts para gerar gráficos dos registros dos inscritos de um processo seletivo e instalando o flex layout para configurar a exibição. 
 
 ### Versão 5.11
+*  **Processo Seletivo - Seleção (Envio Email):** Colocando título no modal de enviar email e deixando o botão de enviar desabilitado enquanto os campos não forem preenchidos.
