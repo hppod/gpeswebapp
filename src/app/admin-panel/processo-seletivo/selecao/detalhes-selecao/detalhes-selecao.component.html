@@ -107,23 +107,30 @@
 
 <ng-template #template1>
     <div>
+      <div class="modal-header">
+        <h5 class="modal-title">Enviar e-mail aos Inscritos</h5>
+      </div>
       <div class="modal-body">
-        <form [formGroup]="emailForm">
-            <div class="table-responsive" id="marginTopTable">
-                <div class="form-group">
-                    <label for="principal" class="form-control-label">Assunto</label>
-                    <input type="text" name="assunto" id="assunto" class="form-control"  formControlName="assunto">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="principal" class="form-control-label">Mensagem</label>
-                <textarea class="form-control" type="text" name="mensagem" id="mensagem" formControlName="mensagem"></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
-              <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()">Enviar</button>
-            </div>
+        <form [formGroup]="emailForm" novalidates>
+          <div class="form-group">
+            <label for="assunto" class="form-control-label">Assunto <span class="text-danger">*</span></label>
+            <input type="text" name="assunto" class="form-control" placeholder="Digite o Assunto"
+            formControlName="assunto">            
+          </div>
+          <div class="form-group">
+            <label for="mensagem" class="form-control-label">Mensagem <span class="text-danger">*</span></label>
+            <textarea class="form-control" type="text" name="mensagem" id="mensagem" placeholder="Digite a mensagem" formControlName="mensagem"></textarea>
+            <small *ngIf="emailForm.invalid && (emailForm.dirty || emailForm.touched)" class="text-danger">
+              <div>
+                Os campos acima são obrigatórios.
+              </div>
+            </small>
+          </div>
         </form>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()" [disabled]="emailForm.invalid">Enviar</button>
+      </div>
     </div>
-  </ng-template>
+</ng-template>
