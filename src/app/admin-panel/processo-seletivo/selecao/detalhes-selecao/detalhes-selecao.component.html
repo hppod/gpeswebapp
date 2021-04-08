@@ -47,47 +47,57 @@
             </table>
         </div>
         <br>
-
-        <div fxLayout="row" fxLayoutAlign="space-around none" >  
+        <div fxLayout="column" fxLayoutAlign="center center" > <h5>Gráficos</h5></div>
+        <br>
+        <br>
+        <div fxLayout="column" fxLayoutAlign="space-between start" >   
+            <h5>Curso</h5>
             <ngx-charts-bar-horizontal
-            [view]="[700,300]"
+            [view]="[700,250]"
             [results]="cursoData"
             [gradient]="false"
-            [xAxis]="true"
+            [xAxis]="false"
             [yAxis]="true"
             [legend]="false"
             [showDataLabel]="true"
             [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
+            [showYAxisLabel]="false"
             [yAxisLabel]= "'Curso'"
             ></ngx-charts-bar-horizontal>
-                   
+        <div>
+             <br>  
+             <br>   
+        <div fxLayout="column" fxLayoutAlign="space-between start" >
+            <h5>Período</h5>   
             <ngx-charts-bar-horizontal
-                [view]="[700,300]"
+                [view]="[700,250]"
                 [results]="periodoData"
                 [gradient]="false"
-                [xAxis]="true"
+                [xAxis]="false"
                 [yAxis]="true"
                 [legend]="false"
                 [showDataLabel]="true"
                 [showXAxisLabel]="true"
-                [showYAxisLabel]="true"
+                [showYAxisLabel]="false"
                 [yAxisLabel]= "'Periodo'">
             </ngx-charts-bar-horizontal>
-        </div> 
-        <div fxLayout="row" fxLayoutAlign="space-around none"> 
+        </div>
+            <br>
+            <br>
+        <div fxLayout="column" fxLayoutAlign="space-between start" > 
+            <h5>Semestre</h5>
             <ngx-charts-bar-horizontal
-            [view]="[700,300]"
+            [view]="[700,250]"
             [results]="semestreData"
             [gradient]="false"
-            [xAxis]="true"
+            [xAxis]="false"
             [yAxis]="true"
             [legend]="false"
             [showDataLabel]="true"
             [showXAxisLabel]="true"
-            [showYAxisLabel]="true"
+            [showYAxisLabel]="false"
             [yAxisLabel]= "'Semestre'">
-            </ngx-charts-bar-horizontal>               
+            </ngx-charts-bar-horizontal>       
         </div> 
         <app-no-data *ngIf="!isLoading && statusResponse == 204 && !selecao"></app-no-data>
         <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !selecao">
@@ -97,23 +107,30 @@
 
 <ng-template #template1>
     <div>
+      <div class="modal-header">
+        <h5 class="modal-title">Enviar e-mail aos Inscritos</h5>
+      </div>
       <div class="modal-body">
-        <form [formGroup]="emailForm">
-            <div class="table-responsive" id="marginTopTable">
-                <div class="form-group">
-                    <label for="principal" class="form-control-label">Assunto</label>
-                    <input type="text" name="assunto" id="assunto" class="form-control"  formControlName="assunto">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="principal" class="form-control-label">Mensagem</label>
-                <textarea class="form-control" type="text" name="mensagem" id="mensagem" formControlName="mensagem"></textarea>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
-              <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()">Enviar</button>
-            </div>
+        <form [formGroup]="emailForm" novalidates>
+          <div class="form-group">
+            <label for="assunto" class="form-control-label">Assunto <span class="text-danger">*</span></label>
+            <input type="text" name="assunto" class="form-control" placeholder="Digite o Assunto"
+            formControlName="assunto">            
+          </div>
+          <div class="form-group">
+            <label for="mensagem" class="form-control-label">Mensagem <span class="text-danger">*</span></label>
+            <textarea class="form-control" type="text" name="mensagem" id="mensagem" placeholder="Digite a mensagem" formControlName="mensagem"></textarea>
+            <small *ngIf="emailForm.invalid && (emailForm.dirty || emailForm.touched)" class="text-danger">
+              <div>
+                Os campos acima são obrigatórios.
+              </div>
+            </small>
+          </div>
         </form>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger btn-sm" (click)="Cancel()">Cancelar</button>
+        <button type="button" class="btn btn-outline-success btn-sm" (click)="sendEmail()" [disabled]="emailForm.invalid">Enviar</button>
+      </div>
     </div>
-  </ng-template>
+</ng-template>
