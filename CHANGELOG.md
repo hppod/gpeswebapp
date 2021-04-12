@@ -90,3 +90,6 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 ### Versão 5.11
 * **Processo Seletivo-Seleção(Gráficos):** Alterando a forma de exibição dos gráficos para serem exibidos à esquerda. Remoção da legenda que leva o nome do gráfico do eixo Y e inserindo título acima de cada gráfico. Remoção do brackground do eixo x. Inserindo o título "Gráficos" ao centro.
 *  **Processo Seletivo - Seleção (Envio Email):** Colocando título no modal de enviar email e deixando o botão de enviar desabilitado enquanto os campos não forem preenchidos.
+
+### Versão 5.12
+* **Home:** Criação das páginas e implementação do CRUD da home no painel administrativo, implementação da exibição das informações em cards na home e exibição do sobre principal.
