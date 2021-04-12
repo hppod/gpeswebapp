@@ -10,6 +10,9 @@ export const AdminPanelRoutes: Routes = [
             { path: '', redirectTo: '/admin/analytics', pathMatch: 'full' },
             { path: 'auth', loadChildren: './authentication/authentication.module#AuthModule' },
             {
+                path: 'home', loadChildren: './home/home.module#HomeModule', canActivate: [AuthGuard]
+            },
+            {
                 path: 'publicacoes', loadChildren: './publicacoes/publicacoes.module#PublicacoesModule', canActivate: [AuthGuard]
             },
             {

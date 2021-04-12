@@ -10,7 +10,12 @@
         <ul class="navbar-nav">
           <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active">
             <a class="nav-link" [routerLink]="['/admin/analytics']">
-              <span class="nav-link-text">Início</span>
+              <span class="nav-link-text">Estatísticas do Site</span>
+            </a>
+          </li>
+          <li *ngIf="isAdmin" class="nav-item" routerLinkActive="active">
+            <a class="nav-link" [routerLink]="['/admin/home']">
+              <span class="nav-link-text">Página Incial</span>
             </a>
           </li>
           <li class="nav-item" routerLinkActive="active">

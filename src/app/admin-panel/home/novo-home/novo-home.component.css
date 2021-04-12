@@ -1,0 +1,15 @@
+.positionTitle {
+    text-align: start;
+}
+
+.positionButtons {
+    text-align: end;
+}
+
+.positionRequired {
+    text-align: end;
+    font-size: 11px;
+    margin-top: 5px;
+    color: #da1b41;
+    font-style: italic;
+}
