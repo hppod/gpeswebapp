@@ -32,7 +32,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let inscrito of selecao['inscritos']"
+                    <tr *ngFor="let inscrito of selecao['inscritos'] | slice:0:limiteValor"
                         [routerLink]="['/admin/processo-seletivo/selecao/detalhes-inscrito', inscrito['nome']]"
                         class="pointer hoverRowTable">
                         <th>{{inscrito.nome | slice: 0:50}}
@@ -46,6 +46,7 @@
                 </tbody>
             </table>
         </div>
+        <div fxLayout="column" fxLayoutAlign="center center" *ngIf="botaoAtivo"><button (click)="carregarMais()">Carregar Mais</button></div>
         <br>
         <div fxLayout="column" fxLayoutAlign="center center" > <h5>Gráficos</h5></div>
         <br>
