@@ -35,7 +35,13 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
   modalRef: BsModalRef;
   modalEmail: BsModalRef
   emailForm: FormGroup
+  botaoAtivo: boolean = true;
+  totalItem: number;
   
+  valInicial = 10;
+  valAtualiza = 10;
+  valAtual = this.valInicial;
+  limiteValor: number = this.valAtual;
 
   configLoadingModal: ModalOptions = {
     backdrop: 'static',
@@ -94,6 +100,7 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
       this.messageApi = response.body['message']
       this.selecao = response.body['data']
       this.inscritos = response.body['data']['inscritos']
+      this.totalItem = this.inscritos.length
       this.isLoading = false
     }, err => {
       this.messageApi = err.error['message']
@@ -181,6 +188,15 @@ export class DetalhesSelecaoComponent implements OnInit, OnDestroy {
       this.messageApi = err.error['message']
       this.showToastrError(this.messageApi)
     })
+  }
+
+  carregarMais() {
+    this.valAtual += this.valAtualiza;
+    this.limiteValor = this.valAtual;
+    if (this.valAtual >= this.totalItem) {
+      this.botaoAtivo = false;
+      return;
+    }
   }
 
   /**Função para exibir um toastr de sucesso. */
