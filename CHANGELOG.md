@@ -92,4 +92,4 @@ módulos para acessar os componentes. Também foi alterado o nome das pastas det
 *  **Processo Seletivo - Seleção (Envio Email):** Colocando título no modal de enviar email e deixando o botão de enviar desabilitado enquanto os campos não forem preenchidos.
 
 ### Versão 5.12
-* **Home:** Criação das páginas e implementação do CRUD da home no painel administrativo, implementação da exibição das informações em cards na home e exibição do sobre principal.
+* **Home:** Criação das páginas e implementação do CRUD da home no painel administrativo, implementação da exibição das informações em cards na home e exibição do sobre principal, projetos em andamento e integrantes atuais.
