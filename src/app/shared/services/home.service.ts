@@ -5,6 +5,7 @@ import { GPESWebApi } from 'src/app/app.api';
 import { Home } from "./../models/home.model";
 import { Sobre } from "../../shared/models/sobre.model"
 import { Projetos } from '../models/projetos.model';
+import { Integrantes } from '../models/integrantes.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,6 +47,10 @@ export class HomeService {
 
   getProjetosAtuais(): Observable<HttpResponse<Projetos[]>> {
     return this.http.get<Projetos[]>(`${GPESWebApi}/public/projetos/listar-atuais`, { params: this.params, observe: 'response' });
+  }
+
+  getAtuaisIntegrantes():Observable<HttpResponse<Integrantes[]>> {
+    return this.http.get<Integrantes[]>(`${GPESWebApi}/public/integrantes/listar-atuais`, { params: this.params, observe: 'response' })
   }
 
 }

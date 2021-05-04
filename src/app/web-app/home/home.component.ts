@@ -8,6 +8,8 @@ import { Router } from "@angular/router";
 import { setLastUrl } from "src/app/shared/functions/last-pagination";
 import { Home } from "src/app/shared/models/home.model";
 import { scrollPageToTop } from "../../shared/functions/scroll-top";
+import { Projetos } from "src/app/shared/models/projetos.model";
+import { Integrantes } from "src/app/shared/models/integrantes.model";
 
 @Component({
   selector: 'app-home',
@@ -20,6 +22,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public sobre: Sobre;
   public home: Home[];
+  public projetos: Projetos[];
+  public integrantes: Integrantes[];
 
   p: number = 1
   total: number
@@ -35,8 +39,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sendAnalytics();
-    this.getInfoToCardsHome();
+    this.getInfoToCardsHome();  
     this.getSobrePrincipal();
+    this.getProjetosAtuais();
+    this.getIntegrantesAtuais();
     setLastUrl(this._router.url)
     this._router.routeReuseStrategy.shouldReuseRoute = () => false
   }
@@ -81,6 +87,36 @@ export class HomeComponent implements OnInit, OnDestroy {
     scrollPageToTop(page);
     this._service.params = this._service.params.set('page', page.toString());
     this.getInfoToCardsHome();
+  }
+ 
+  getProjetosAtuais() {
+    this._service.params = this._service.deleteParams
+    this._service.params = this._service.params.set('columnSort', 'dataInicio')
+    this._service.params = this._service.params.set('valueSort', 'descending')
+      this.components = this._service.getProjetosAtuais().subscribe(response => {
+        this.statusResponse = response.status
+        if (response.status == 200) {
+          this.messageApi = response.body['message']
+          this.projetos = response.body['data']
+        }
+      }, err => {
+        this.messageApi = err
+      })
+  }
+
+  getIntegrantesAtuais() {
+    this._service.params = this._service.deleteParams
+    this._service.params = this._service.params.set('columnSort', 'nome')
+    this._service.params = this._service.params.set('valueSort', 'descending')
+    this.components = this._service.getAtuaisIntegrantes().subscribe(response => {
+      this.statusResponse = response.status
+      if (response.status == 200) {
+        this.messageApi = response.body['message']
+        this.integrantes = response.body['data']
+      }
+    }, err => {
+      this.messageApi = err
+    })
   }
 
   // insertUrlImageNoticia() {

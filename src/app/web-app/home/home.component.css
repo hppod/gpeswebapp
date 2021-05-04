@@ -32,7 +32,22 @@
 
 .projetos-atuais {
     padding-top: 90px;
-    padding-bottom: 90px;
+    padding-bottom: 10px;
+    padding-left: 40px;
+    text-align: left;
+}
+
+.integrantes-atuais {
+    padding-top: 10px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    text-align: left;
+}
+
+.img-integrantes{
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
 }
 
 @media (max-width: 500px) {

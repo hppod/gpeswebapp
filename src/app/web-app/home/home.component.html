@@ -56,14 +56,42 @@
   </section>
 
   <section class="projetos-atuais">
-    <div class="container text-center">
-
+    <h5>Projetos em Andamento</h5>
+    <div class="container text-center " *ngIf="projetos">
+      <div class="row">
+          <div class="col-sm" style="margin: 5px 10px;" *ngFor="let projeto of projetos">
+            <div class="card-deck" style="width: 200px;">
+              <img class="card-img-top" src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg" alt="Projeto">
+              <div class="card-body">
+                <h5 class="card-text">{{projeto.titulo}}</h5>
+              </div>
+            </div>
+          </div>
+      </div>
     </div>
+    <!--
+    <nav *ngIf="projetos && totalProjetos > limitProjetos">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPageProjetos($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul> 
+    </nav>
+    -->
   </section>
 
   <section class="integrantes-atuais">
+    <h5>Equipe Atual</h5>
     <div class="container text-center">
-
+      <div class="row" *ngIf="integrantes">
+        <div class="col-sm-2"
+          *ngFor="let integrante of integrantes | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}">
+            <img class="img-integrantes"
+              src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg"
+              alt="Integrante">
+              <p>{{integrante.nome}}</p>
+        </div>
+      </div>
     </div>
   </section>
 
