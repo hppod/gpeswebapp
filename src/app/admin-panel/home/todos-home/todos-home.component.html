@@ -1,0 +1,84 @@
+<div class="container-fluid marginTopBottomContentContainerAdminPanel">
+    <div>
+        <div class="row">
+            <div class="col-sm-6 positionTitle">
+                <h5>Página Inicial</h5>
+            </div>
+            <div class="col-sm-6 positionButtons">
+                <button type="button" class="btn btn-outline-info-dkblue btn-sm"
+            (click)="openModal(template)">Ordenação</button>
+                <button type="button" class="btn btn-outline-success btn-sm"
+                    [routerLink]="['/admin/home/novo']">Adicionar</button>
+            </div>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div class="table-responsive" id="marginTopTable">
+            <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Título</th>
+                        <th scope="col">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let infHome of home | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}"
+                        [routerLink]="['/admin/home/detalhes', infHome['titulo']]" class="pointer hoverRowTable">
+                        <th>{{infHome.titulo | slice: 0:50}}
+                            <span *ngIf="showEllipsisInTheText(infHome.titulo, 50)">...</span>
+                        </th>
+                        <td (click)="$event.stopPropagation()">
+                            <button class="btn btn-outline-warning btn-sm"
+                                [routerLink]="['/admin/home/atualizar', infHome['titulo']]">Editar</button>
+                            <button *ngIf="isAdmin" class="btn btn-outline-danger btn-sm"
+                  (click)="canDelete(infHome['titulo'], infHome['_id'])">Excluir</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <app-no-data *ngIf="!isLoading && statusResponse == 204 && !home"></app-no-data>
+        <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !home"></app-error>
+        <nav *ngIf="home">
+            <ul class="pagination">
+                <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+                    nextLabel="Próximo">
+                </pagination-controls>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<ng-template #template>
+    <div>
+        <div class="modal-header">
+            <h5 class="modal-title">Ordenar Cards da Home</h5>
+        </div>
+        <app-loading [condition]="isLoading"></app-loading>
+        <div *ngIf="home && statusResponse == 200" class="modal-body">
+            <div class="table-responsive" id="marginTopTable">
+                <table *ngIf="!isLoading && statusResponse == 200" class="table">
+                    <thead>
+                        <tr>
+                            <th class="info-dragndrop" scope="row">
+                                Clique e arraste para ordenar
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody dragula="HOME" [(dragulaModel)]="home">
+                        <tr class="pointer hoverRowTable cursorMouse" *ngFor="let home of home">
+                            <th><i class="fa fa-bars"> &nbsp; {{home.titulo | slice: 0:50}} </i>
+                                <span *ngIf="showEllipsisInTheText(home.titulo, 50)">...</span>
+                            </th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <app-no-data *ngIf="!isLoading && statusResponse == 204 && !home"></app-no-data>
+            <app-error *ngIf="!isLoading && statusResponse != 200 && statusResponse != 204 && !home"></app-error>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-danger btn-sm" (click)="canCancel()">Cancelar</button>
+            <button type="button" class="btn btn-outline-success btn-sm" (click)="saveNewOrder()">Salvar</button>
+        </div>
+    </div>
+</ng-template>

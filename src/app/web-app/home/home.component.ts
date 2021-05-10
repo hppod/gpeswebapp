@@ -1,11 +1,15 @@
-import { Component, OnInit, OnDestroy } from "@angular/core"
-import { HomeService } from "../../shared/services/home.service"
-import { Evento } from "../../shared/models/evento.model"
-import { Subscription } from "rxjs"
-import { GoogleAnalyticsService } from "./../../shared/services/google-analytics.service"
-import { __event_home, __category_institucional, __action_home } from "./../../shared/helpers/analytics.consts"
-import { Router } from "@angular/router"
-import { setLastUrl } from "src/app/shared/functions/last-pagination"
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { HomeService } from "../../shared/services/home.service";
+import { Sobre } from "../../shared/models/sobre.model";
+import { Subscription } from "rxjs";
+import { GoogleAnalyticsService } from "./../../shared/services/google-analytics.service";
+import { __event_home, __category_institucional, __action_home } from "./../../shared/helpers/analytics.consts";
+import { Router } from "@angular/router";
+import { setLastUrl } from "src/app/shared/functions/last-pagination";
+import { Home } from "src/app/shared/models/home.model";
+import { scrollPageToTop } from "../../shared/functions/scroll-top";
+import { Projetos } from "src/app/shared/models/projetos.model";
+import { Integrantes } from "src/app/shared/models/integrantes.model";
 
 @Component({
   selector: 'app-home',
@@ -14,9 +18,18 @@ import { setLastUrl } from "src/app/shared/functions/last-pagination"
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  public noticias: Evento[];
-
   private components: Subscription
+
+  public sobre: Sobre;
+  public home: Home[];
+  public projetos: Projetos[];
+  public integrantes: Integrantes[];
+
+  p: number = 1
+  total: number
+  limit: number
+  messageApi: string
+  statusResponse: number
 
   constructor(
     private _service: HomeService,
@@ -25,8 +38,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
-    this.getNoticias()
-    this.sendAnalytics()
+    this.sendAnalytics();
+    this.getInfoToCardsHome();  
+    this.getSobrePrincipal();
+    this.getProjetosAtuais();
+    this.getIntegrantesAtuais();
     setLastUrl(this._router.url)
     this._router.routeReuseStrategy.shouldReuseRoute = () => false
   }
@@ -41,18 +57,66 @@ export class HomeComponent implements OnInit, OnDestroy {
     this._analytics.eventEmitter(__event_home, __category_institucional, __action_home)
   }
 
-  getNoticias() {
-    this._service.params = this._service.params.set('columnSort', 'date')
-    this._service.params = this._service.params.set('valueSort', 'descending')
-    this._service.params = this._service.params.set('page', '1')
-    this._service.params = this._service.params.set('limit', '3')
-
-    this.components = this._service.getNoticiasThreeResults('public', 'tmb_ch').subscribe(result => {
-      this.noticias = result.body['data'];
-      // this.insertUrlImageNoticia()
+  getSobrePrincipal() {
+    this.components = this._service.getPrincipalSobre().subscribe(result => {
+      this.sobre = result.body['data']
     },
-      error => console.log("Erro ao carregar as notícias: ", error)
+      error => console.log("Erro ao carregar o sobre principal", error)
     )
+  }
+
+  getInfoToCardsHome() {
+    console.log('entrou')
+    this._service.params = this._service.params.set('limit', '2');
+    this.components = this._service.getHomeWithParams('public').subscribe(response => {
+      this.statusResponse = response.status;
+      if(response.status == 200) {
+        this.messageApi = response.body['message'];
+        this.home = response.body['data'];
+        this.p = response.body['page'];
+        this.total = response.body['count'];
+        this.limit = response.body['limit'];
+      }
+    }, err => {
+      this.messageApi = err;
+    })
+  }
+
+  getPage(page: number) {
+    this.home = null;
+    scrollPageToTop(page);
+    this._service.params = this._service.params.set('page', page.toString());
+    this.getInfoToCardsHome();
+  }
+ 
+  getProjetosAtuais() {
+    this._service.params = this._service.deleteParams
+    this._service.params = this._service.params.set('columnSort', 'dataInicio')
+    this._service.params = this._service.params.set('valueSort', 'descending')
+      this.components = this._service.getProjetosAtuais().subscribe(response => {
+        this.statusResponse = response.status
+        if (response.status == 200) {
+          this.messageApi = response.body['message']
+          this.projetos = response.body['data']
+        }
+      }, err => {
+        this.messageApi = err
+      })
+  }
+
+  getIntegrantesAtuais() {
+    this._service.params = this._service.deleteParams
+    this._service.params = this._service.params.set('columnSort', 'nome')
+    this._service.params = this._service.params.set('valueSort', 'descending')
+    this.components = this._service.getAtuaisIntegrantes().subscribe(response => {
+      this.statusResponse = response.status
+      if (response.status == 200) {
+        this.messageApi = response.body['message']
+        this.integrantes = response.body['data']
+      }
+    }, err => {
+      this.messageApi = err
+    })
   }
 
   // insertUrlImageNoticia() {

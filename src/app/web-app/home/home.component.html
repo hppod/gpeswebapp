@@ -1,49 +1,98 @@
-<app-carousel></app-carousel>
-<section class="container">
-    <h1 class="text-center display-2 font-weight-bold p-5">Notícias</h1>
-    <div class="row">
-        <div class="col-md-4" *ngFor="let noticia of noticias">
-            <div class="card mb-3">
-                <a class="overlay" [routerLink]="['/institucional/noticias/noticia', noticia.titulo]">
-                    <div class="resposividade" *ngIf="noticia['imagemPrincipal'];else imageNotDefined">
-                        <img class="card-img-top" src="{{noticia['imagemPrincipal']}}" alt="{{noticia.titulo}}">
-                    </div>
-                </a>
+<div class="container-fluid marginTopBottomContentContainer">
+  <h2 class="titlePage">Página Incial</h2>
+  <hr>
+  <section>
+    <div *ngIf="statusResponse == 200">
+      <div class="row">
+        <div class="cards card-deck"> &nbsp; &nbsp;
+          <div class="card"
+            *ngFor="let cardsInfo of home | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}">
+            <div class="row">
+              <div class="col-sm-5">
+                <img class="card-img" src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg"
+                  alt="{{cardsInfo['titulo']}}">
+              </div>
+              <div class="col-sm-7">
                 <div class="card-body">
-                    <h5 class="card-title">{{noticia.titulo | slice: 0:50}}
-                        <span *ngIf="showEllipsisInTheText(noticia.titulo, 50)">...</span>
-                    </h5>
-                    <p class="card-text" innerHTML="{{noticia.descricao | slice: 0:130}}">
-                        <span *ngIf="showEllipsisInTheText(noticia.descricao, 130)">...
-                            <a [routerLink]="['/institucional/noticias/noticia', noticia.titulo]">continuar lendo</a>
-                        </span>
-                    </p>
-                    <p class="card-text">
-                        <small class="text-muted">Publicado em: {{noticia.date | date: 'dd/MM/yyyy'}}</small>
-                    </p>
+                  <h5 class="card-title">{{cardsInfo['titulo']}}</h5>
+                  <p class="card-text">{{cardsInfo['descricao']}}</p>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
+      <br>
+      <nav *ngIf="home">
+        <ul class="pagination">
+          <pagination-controls class="my-pagination" (pageChange)="getPage($event)" previousLabel="Anterior"
+            nextLabel="Próximo">
+          </pagination-controls>
+        </ul>
+      </nav>
     </div>
-    <h5 class="text-center text-muted" *ngIf="!noticias">Não há nenhuma notícia cadastrada.</h5>
-    <div class="text-center">
-        <button [routerLink]="['/institucional/noticias']" class="btn btn-outline-info-dkorange">Ver mais
-            notícias</button>
-    </div>
-</section>
-<section class="donate-online">
-    <div class="container text-center">
-        <h1 class="display-2 font-weight-bold p-2">Doe Online</h1>
-        <h2>Realize uma doação online!</h2>
-        <button class="btn btn-info-dkorange" [routerLink]="['/institucional/doe-online']">Saiba mais</button>
-    </div>
-</section>
-<section class="visit-home">
-    <div class="container text-center">
-        <h1 class="display-2 p-2">Venha nos visitar!</h1>
-        <div class="text-muted">
-            <h4>Horários de visita:</h4>
-            <h4>De seguda a sexta das 10h da manhã até as 18h</h4>
+  </section>
+
+
+  <section>
+    <div>
+      <div class="sobre" *ngIf="sobre">
+        <div class="row">
+          <div class="col-sm-4">
+            <img class="imagemSobre" src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg"
+              alt="{{sobre.titulo}}">
+          </div>
+          <!-- <div class="float-sm-left" *ngIf="sobre[0].imagem != null">
+            <img class="imagemSobre" src="{{sobre[0].imagem}}" alt="{{sobre.titulo}}">
+          </div> -->
+          <div class="col-sm-8 conteudoSobre">
+            <h5>{{sobre[0].titulo}}</h5>
+            <p [innerHTML]="sobre[0].descricao | noSanitizeHtml: 'html'"></p>
+          </div>
         </div>
+        <br class="lineBreak">
+      </div>
     </div>
-</section>
+  </section>
+
+  <section class="projetos-atuais">
+    <h5>Projetos em Andamento</h5>
+    <div class="container text-center " *ngIf="projetos">
+      <div class="row">
+          <div class="col-sm" style="margin: 5px 10px;" *ngFor="let projeto of projetos">
+            <div class="card-deck" style="width: 200px;">
+              <img class="card-img-top" src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg" alt="Projeto">
+              <div class="card-body">
+                <h5 class="card-text">{{projeto.titulo}}</h5>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+    <!--
+    <nav *ngIf="projetos && totalProjetos > limitProjetos">
+      <ul class="pagination">
+        <pagination-controls class="my-pagination" (pageChange)="getPageProjetos($event)" previousLabel="Anterior"
+          nextLabel="Próximo">
+        </pagination-controls>
+      </ul> 
+    </nav>
+    -->
+  </section>
+
+  <section class="integrantes-atuais">
+    <h5>Equipe Atual</h5>
+    <div class="container text-center">
+      <div class="row" *ngIf="integrantes">
+        <div class="col-sm-2"
+          *ngFor="let integrante of integrantes | paginate: {itemsPerPage: limit, currentPage: p, totalItems: total}">
+            <img class="img-integrantes"
+              src="https://www.risi.com.br/wp-content/uploads/2018/05/tc-104.jpg"
+              alt="Integrante">
+              <p>{{integrante.nome}}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
